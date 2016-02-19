@@ -3,6 +3,7 @@ package integration;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import utility.UserEvent;
 import management.gamestates.GameState;
 import management.gamestates.TopState;
 
@@ -53,4 +54,28 @@ public final class MainGame {
 	this.currentstate = null;
     }
 
+    /** Called when the user presses the screen with a mouse or his finger. */
+    public void onPress(UserEvent e) {
+	currentstate.onPress(e);
+    }
+
+    /** Called when the user drags his mouse or his finger on the screen. */
+    public void onDrag(UserEvent e) {
+	currentstate.onDrag(e);
+    }
+
+    /** Called when the user releases the screen with a mouse or his finger. */
+    public void onRelease(UserEvent e) {
+	currentstate.onRelease(e);
+    }
+
+    /** Called when the user presses a key on his keyboard. */
+    public void onKeyPressed(UserEvent e) {
+	currentstate.onKeyPressed(e);
+    }
+
+    /** Called when the user releases a key on his keyboard. */
+    public void onKeyReleased(UserEvent e) {
+	currentstate.onKeyReleased(e);
+    }
 }
