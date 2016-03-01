@@ -10,7 +10,6 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Les Chroniques de Norwand";
 		config.addIcon("assets\\textures\\gui\\icon.png", FileType.Internal);
-		config.foregroundFPS = 60;
 		@SuppressWarnings("unused")
 		LwjglApplication app = new LwjglApplication(new MainGame("assets\\"), config);
 	}
