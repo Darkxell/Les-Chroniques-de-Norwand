@@ -1,5 +1,7 @@
 package com.norwand.game.management.gamedata.environement.tiles;
 
+import com.norwand.game.utility.objects.AnimatedSprite;
+
 public class Tile {
 
     public Tile() {
