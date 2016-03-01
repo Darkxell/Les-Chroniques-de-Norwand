@@ -1,5 +1,6 @@
 ## Java
 
+DesktopLauncher.java
 *.class
 *.war
 *.ear
