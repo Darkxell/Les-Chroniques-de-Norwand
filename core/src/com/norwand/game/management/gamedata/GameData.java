@@ -1,6 +1,9 @@
 package com.norwand.game.management.gamedata;
 
+import com.badlogic.gdx.Gdx;
+import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.environement.Floor;
+import com.norwand.game.management.gamedata.environement.FloorData;
 import com.norwand.game.management.gamedata.player.Player;
 
 /**
@@ -30,7 +33,7 @@ public class GameData {
      * The current Floor. This includes the physical and graphical physics, the
      * entities and more.
      */
-    public Floor currentfloor;
+    public Floor currentfloor = new Floor(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH + "maps/prison.txt")));
 
     /** Updates the data of the game. */
     public void update() {

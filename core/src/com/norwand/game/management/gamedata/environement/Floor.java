@@ -12,7 +12,9 @@ import com.norwand.game.management.gamedata.environement.tiles.Tile;
 public class Floor {
 
     public Floor(FloorData data) {
-	// TODO
+	tiles = data.tiles;
+	width = data.width;
+	height = data.height;
     }
 
     public Tile[] tiles;
@@ -25,7 +27,9 @@ public class Floor {
 
     /** Updates this floor. This inclues the tiles, entities and tileentities. */
     public void update() {
-
+	for (int i = 0; i < tiles.length; i++) {
+	    tiles[i].update();
+	}
     }
 
 }

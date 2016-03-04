@@ -9,11 +9,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.TopState;
+import com.norwand.game.resources.ImagesHolder;
 
 public class MainGame extends ApplicationAdapter implements InputProcessor {
 
     /** Constructs a maingame object with the assets path. */
     public MainGame(String assetsPath) {
+	super();
 	MainGame.ASSETSPATH = assetsPath;
     }
 
@@ -33,7 +35,6 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
     public void create() {
 	Gdx.input.setInputProcessor(this);
 	Pixmap.setFilter(Pixmap.Filter.NearestNeighbour);
-	Pixmap.setBlending(Pixmap.Blending.None);
 	state = new TopState();
 	Thread updater = new Thread(new Runnable() {
 	    @Override
@@ -58,6 +59,7 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 	    }
 	});
 	updater.start();
+	ImagesHolder.create(ASSETSPATH);
     }
 
     @Override
@@ -68,7 +70,12 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 	// TODO : generate the spritebatch only when a resize is detected.
 	Pixmap buffer = new Pixmap(240, 240 * Gdx.graphics.getHeight()
 		/ Gdx.graphics.getWidth(), Pixmap.Format.RGB888);
-	state.print(buffer);
+	try {
+	    state.print(buffer);
+	} catch (Exception e) {
+	    System.err
+		    .println("Could not print the current state to the buffer for some reasons.");
+	}
 	Texture t = new Texture(buffer);
 	batch.begin();
 	batch.draw(t, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

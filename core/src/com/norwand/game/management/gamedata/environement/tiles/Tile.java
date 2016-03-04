@@ -4,8 +4,10 @@ import com.norwand.game.utility.objects.AnimatedSprite;
 
 public class Tile {
 
-    public Tile() {
-
+    public Tile(int type, AnimatedSprite[] background,
+	    AnimatedSprite[] foreground) {
+	this.background = background;
+	this.foreground = foreground;
     }
 
     /** The physics of the tile. */
@@ -20,4 +22,24 @@ public class Tile {
 
     public AnimatedSprite[] background;
     public AnimatedSprite[] foreground;
+
+    public void update() {
+	try {
+	    background[1].update();
+	} catch (Exception e) {
+	}
+	try {
+	    background[0].update();
+	} catch (Exception e) {
+	}
+	try {
+	    foreground[0].update();
+	} catch (Exception e) {
+	}
+	try {
+	    foreground[1].update();
+	} catch (Exception e) {
+	}
+
+    }
 }

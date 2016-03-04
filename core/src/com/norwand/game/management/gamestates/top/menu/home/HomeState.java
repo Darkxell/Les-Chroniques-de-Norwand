@@ -1,10 +1,12 @@
 package com.norwand.game.management.gamestates.top.menu.home;
 
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.launched.LaunchedState;
+import com.norwand.game.resources.ImagesHolder;
+import com.norwand.game.utility.PixmapUtility;
 
 /**
  * State that represents the main menu of the game. This is the openning state
@@ -22,9 +24,14 @@ public class HomeState extends GameState {
 
     @Override
     public void print(Pixmap g) {
-	g.setColor(Color.CYAN);
-	g.drawRectangle(80, g.getHeight()/2-30, 80, 20);
-	g.drawRectangle(100, g.getHeight()/2+5, 40, 10);
+	Pixmap cap = null;
+	try {
+	   cap = PixmapUtility.getPixmapPart(ImagesHolder.gui, 256, 209, 128, 46);
+	} catch (Exception e) {
+	}
+	g.drawPixmap(cap, 60, 240 * Gdx.graphics.getHeight()
+		/ Gdx.graphics.getWidth()/2-23);
+	cap.dispose();
     }
 
     @Override
