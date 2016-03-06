@@ -40,7 +40,7 @@ public class GameData {
 
     /** Updates the data of the game. */
     public void update() {
-	playerinputconvertor.update();
+	playerinputconvertor.update(player);
 	try {
 	    player.update();
 	} catch (Exception e) {

@@ -1,7 +1,6 @@
 package com.norwand.game.management.gamestates.top.launched.explore.play;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamedata.GameData;
@@ -19,9 +18,6 @@ import com.norwand.game.utility.PixmapUtility;
  */
 public class PlayState extends GameState {
 
-    int xp = 0;
-    int yp = 0;
-
     /** Stored pointer to the LaunchedState GameData attribute. */
     GameData datapointer = ((LaunchedState) parent.parent).data;
 
@@ -36,7 +32,8 @@ public class PlayState extends GameState {
 
     @Override
     public void print(Pixmap g) {
-	datapointer.currentfloor.printOn(g, xp, yp);
+	datapointer.currentfloor.printOn(g, (g.getWidth()/32)-datapointer.player.cam.x,
+		(g.getHeight()/32)-datapointer.player.cam.y);
 	// --------------
 	Pixmap heart = null;
 	try {
@@ -68,33 +65,27 @@ public class PlayState extends GameState {
     }
 
     public void onPress(UserEvent e) {
+	datapointer.playerinputconvertor.onPress(e, datapointer.player);
     }
 
     public void onDrag(UserEvent e) {
+	datapointer.playerinputconvertor.onDrag(e, datapointer.player);
     }
 
     public void onRelease(UserEvent e) {
+	datapointer.playerinputconvertor.onRelease(e, datapointer.player);
     }
 
     public void onKeyPressed(UserEvent e) {
-	if (e.value == Keys.LEFT) {
-	    xp++;
-	}
-	if (e.value == Keys.RIGHT) {
-	    xp--;
-	}
-	if (e.value == Keys.UP) {
-	    yp++;
-	}
-	if (e.value == Keys.DOWN) {
-	    yp--;
-	}
+	datapointer.playerinputconvertor.onKeyPressed(e, datapointer.player);
     }
 
     public void onKeyReleased(UserEvent e) {
+	datapointer.playerinputconvertor.onKeyReleased(e, datapointer.player);
     }
 
     public void onType(UserEvent e) {
+	datapointer.playerinputconvertor.onType(e, datapointer.player);
     }
 
 }

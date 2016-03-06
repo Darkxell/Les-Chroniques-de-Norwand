@@ -8,12 +8,14 @@ import com.norwand.game.utility.objects.Position;
 /** Object that represents the playable player. */
 public class Player {
 
+    /** The camera following the player. */
+    public PlayerCamera cam = new PlayerCamera(this);
     /** The direction faced by the player. */
     public int facing = Directions.SOUTH;
     /** The x position of the player in the current floor. */
-    public int x = 5;
+    public double x = 1;
     /** The y position of the player in the current floor. */
-    public int y = 11;
+    public double y = 3;
     /** Player specific information. */
     public PlayerInfo info;
     /**
@@ -26,7 +28,9 @@ public class Player {
     /** The player inventory. */
     public Inventory inventory;
 
+    /** Updates the player. */
     public void update() {
+	this.cam.update();
 
     }
 
@@ -46,7 +50,8 @@ public class Player {
 
     /** Called when the user long presses or drags. */
     public void onMoveTo(Position pos) {
-
+	x = pos.x;
+	y = pos.y;
     }
 
     /** Called when the player stop moving. */

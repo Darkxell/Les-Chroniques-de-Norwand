@@ -60,20 +60,22 @@ public class Floor {
      *            the y position where to draw the floor. This value represents
      *            the y position on the floor to be drawn on the top side.
      * */
-    public void printOn(Pixmap g, int x, int y) {
+    public void printOn(Pixmap g, double x, double y) {
 	// print background
 	for (int i = 0; i < width; i++)
 	    for (int j = 0; j < height; j++) {
 		try {
 		    for (int j2 = 0; j2 < tiles[i + j * width].background.length; j2++)
 			g.drawPixmap(tiles[i + j * width].background[j2]
-				.getCurrentFrame(), 16 * (i + x), 16 * (j + y));
+				.getCurrentFrame(), (int) (16 * (i + x)),
+				(int) (16 * (j + y)));
 		} catch (Exception e) {
 		}
 	    }
 	// Print player
-	g.drawPixmap(playerpointer.getSprite(), (playerpointer.x + x) * 16,
-		(playerpointer.y + y) * 16);
+	g.drawPixmap(playerpointer.getSprite(),
+		(int) ((playerpointer.x + x) * 16),
+		(int) ((playerpointer.y + y) * 16));
 	// Print entities n stuff
 
 	// Print foreground
@@ -82,7 +84,8 @@ public class Floor {
 		try {
 		    for (int j2 = 0; j2 < tiles[i + j * width].foreground.length; j2++)
 			g.drawPixmap(tiles[i + j * width].foreground[j2]
-				.getCurrentFrame(), 16 * (i + x), 16 * (j + y));
+				.getCurrentFrame(), (int) (16 * (i + x)),
+				(int) (16 * (j + y)));
 		} catch (Exception e) {
 		}
 	    }

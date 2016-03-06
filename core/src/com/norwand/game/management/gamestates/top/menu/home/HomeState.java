@@ -1,6 +1,5 @@
 package com.norwand.game.management.gamestates.top.menu.home;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamestates.GameState;
@@ -26,11 +25,11 @@ public class HomeState extends GameState {
     public void print(Pixmap g) {
 	Pixmap cap = null;
 	try {
-	   cap = PixmapUtility.getPixmapPart(ImagesHolder.gui, 256, 209, 128, 46);
+	    cap = PixmapUtility.getPixmapPart(ImagesHolder.gui, 256, 209, 128,
+		    46);
 	} catch (Exception e) {
 	}
-	g.drawPixmap(cap, 60, 240 * Gdx.graphics.getHeight()
-		/ Gdx.graphics.getWidth()/2-23);
+	g.drawPixmap(cap, 60, g.getHeight() / 2 - 23);
 	cap.dispose();
     }
 
