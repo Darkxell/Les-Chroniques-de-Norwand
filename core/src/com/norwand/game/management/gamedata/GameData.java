@@ -26,17 +26,21 @@ public class GameData {
      * TODO public GameData(SaveFile){}
      */
 
-    /** The player object. THis object contains all of the needed player data. */
+    /** The player object. This object contains all of the needed player data. */
     public Player player = new Player();
+    public InputConvertor playerinputconvertor = new InputConvertor();
 
     /**
      * The current Floor. This includes the physical and graphical physics, the
      * entities and more.
      */
-    public Floor currentfloor = new Floor(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH + "maps/prison.txt")));
+    public Floor currentfloor = new Floor(new FloorData(
+	    Gdx.files.internal(MainGame.ASSETSPATH + "maps/prison.txt")),
+	    this.player);
 
     /** Updates the data of the game. */
     public void update() {
+	playerinputconvertor.update();
 	try {
 	    player.update();
 	} catch (Exception e) {
@@ -48,7 +52,6 @@ public class GameData {
 	    System.err
 		    .println("Couldn't update the current floor in the gamedata.");
 	}
-
     }
 
 }

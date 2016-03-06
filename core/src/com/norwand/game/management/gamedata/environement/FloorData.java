@@ -5,6 +5,7 @@ import com.norwand.game.management.gamedata.environement.entities.Entity;
 import com.norwand.game.management.gamedata.environement.tileentities.TileEntity;
 import com.norwand.game.management.gamedata.environement.tiles.Tile;
 import com.norwand.game.resources.ImagesHolder;
+import com.norwand.game.utility.StringUtility;
 import com.norwand.game.utility.objects.AnimatedSprite;
 
 /**
@@ -45,11 +46,12 @@ public class FloorData {
 		name = name.substring(0, name.length() - 1);
 		String layer = parts[i].split("type=")[1];
 		layer.replaceAll("\n", "");
+		layer = layer.split("data=")[1];
 		String[] sids = layer.split(",");
 		int[] ids = new int[sids.length];
 		for (int j = 0; j < ids.length; j++)
 		    try {
-			ids[j] = Integer.parseInt(sids[j]);
+			ids[j] = Integer.parseInt(StringUtility.getNumbers(sids[j]));
 		    } catch (Exception e) {
 		    }
 		if (name.equals("physics"))
@@ -75,8 +77,17 @@ public class FloorData {
 				ImagesHolder.tileset
 					.getTileAnimation(fg2[i] - 1) });
 	    } catch (Exception e) {
+		System.err.println("Couldn't create tile " + i
+			+ " when creating a floor.");
 	    }
-
 	}
     }
+
+    public static final int TILEVALUE_NORMAL = 1101;
+    public static final int TILEVALUE_AIR = 1102;
+    public static final int TILEVALUE_ICE = 1103;
+    public static final int TILEVALUE_WATER = 1104;
+    public static final int TILEVALUE_LAVA = 1105;
+    public static final int TILEVALUE_ACID = 1106;
+    public static final int TILEVALUE_VOID = 1107;
 }

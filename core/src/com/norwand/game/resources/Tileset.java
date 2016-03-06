@@ -1,48 +1,13 @@
 package com.norwand.game.resources;
 
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.utils.Disposable;
-import com.norwand.game.utility.PixmapUtility;
 import com.norwand.game.utility.objects.AnimatedSprite;
 
 /** A tileset. holds tiles. */
-public class Tileset implements Disposable {
+public class Tileset extends PixmapSet {
 
-    private Pixmap[] tiles;
-
-    /**
-     * Creates a tileset using the source. the inner tiles don't share the same
-     * data array as the source.
-     */
     public Tileset(int tilesize, Pixmap source) {
-	int width = source.getWidth() / tilesize, height = source.getHeight()
-		/ tilesize;
-	tiles = new Pixmap[height * width];
-	for (int i = 0; i < width; i++)
-	    for (int j = 0; j < height; j++) {
-		try {
-		    tiles[i + j * width] = PixmapUtility.getPixmapPart(source,
-			    i * tilesize, j * tilesize, tilesize, tilesize);
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
-	    }
-    }
-
-    @Override
-    public void dispose() {
-	if (tiles != null)
-	    for (int i = 0; i < tiles.length; i++)
-		tiles[i].dispose();
-    }
-
-    /** Returns the tile of raw id ID in the tile array. */
-    public Pixmap getTile(int id) {
-	try {
-	    return tiles[id];
-	} catch (Exception e) {
-	    return null;
-	}
+	super(tilesize, source);
     }
 
     /** Returns the annimated sprite of the wanted tile tileset. */

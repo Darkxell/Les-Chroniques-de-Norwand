@@ -11,16 +11,23 @@ public abstract class ImagesHolder {
     /** Instanciate all of the ressources holded by this class. */
     public static void create(String assetspath) {
 	try {
-	    entities = new Pixmap(Gdx.files.internal(assetspath
+	    Pixmap enti = new Pixmap(Gdx.files.internal(assetspath
 		    + "textures/entities.png"));
-	    particles = new Pixmap(Gdx.files.internal(assetspath
+	    entityset = new Entityset(16, enti);
+	    enti.dispose();
+	    Pixmap part = new Pixmap(Gdx.files.internal(assetspath
 		    + "textures/particles.png"));
-	    items = new Pixmap(Gdx.files.internal(assetspath
+	    particleset = new Particleset(16, part);
+	    part.dispose();
+	    Pixmap item = new Pixmap(Gdx.files.internal(assetspath
 		    + "textures/items.png"));
-	    tileset_source = new Pixmap(Gdx.files.internal(assetspath
+	    itemset = new Itemset(16, item);
+	    item.dispose();
+	    Pixmap tset = new Pixmap(Gdx.files.internal(assetspath
 		    + "textures/tileset.png"));
-	    tileset = new Tileset(16, tileset_source);
-	    gui =  new Pixmap(Gdx.files.internal(assetspath
+	    tileset = new Tileset(16, tset);
+	    tset.dispose();
+	    gui = new Pixmap(Gdx.files.internal(assetspath
 		    + "textures/gui/gui.png"));
 	    isinstancied = true;
 	} catch (Exception e) {
@@ -31,31 +38,29 @@ public abstract class ImagesHolder {
 
     /** Disposes all the ressouces holded by this class. */
     public static void dispose() {
-	entities.dispose();
-	entities = null;
-	particles.dispose();
-	particles = null;
-	items.dispose();
-	items = null;
-	tileset_source.dispose();
-	tileset_source = null;
 	tileset.dispose();
 	tileset = null;
+	entityset.dispose();
+	entityset = null;
+	particleset.dispose();
+	particleset = null;
+	itemset.dispose();
+	itemset = null;
 	gui.dispose();
 	gui = null;
 	isinstancied = false;
     }
 
     /** Returns true if the pixmaps in this class are created and not disposed. */
-    public boolean isInstancied() {
+    public static boolean isInstancied() {
 	return isinstancied;
     }
 
-    public static Pixmap entities;
-    public static Pixmap items;
-    public static Pixmap particles;
-    public static Pixmap tileset_source;
-    public static Tileset tileset;
     public static Pixmap gui;
+
+    public static Tileset tileset;
+    public static Entityset entityset;
+    public static Particleset particleset;
+    public static Itemset itemset;
 
 }

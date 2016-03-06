@@ -1,8 +1,10 @@
 package com.norwand.game.management.gamedata.environement;
 
+import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.environement.entities.Entity;
 import com.norwand.game.management.gamedata.environement.tileentities.TileEntity;
 import com.norwand.game.management.gamedata.environement.tiles.Tile;
+import com.norwand.game.management.gamedata.player.Player;
 
 /**
  * Represents a part of the world around the player. It includes the tiles of
@@ -11,25 +13,79 @@ import com.norwand.game.management.gamedata.environement.tiles.Tile;
  */
 public class Floor {
 
-    public Floor(FloorData data) {
+    /**
+     * Constructs a floor object from a FloorData object and a pointer to the
+     * player.
+     */
+    public Floor(FloorData data, Player playerpointer) {
 	tiles = data.tiles;
 	width = data.width;
 	height = data.height;
+	this.playerpointer = playerpointer;
     }
 
-    public Tile[] tiles;
+    /** Pointer to the player object. */
+    protected Player playerpointer;
+
+    /** The tiles of this floor */
+    protected Tile[] tiles;
+    /** Represents the width of this floor. */
     public int width;
+    /** Represents the height of this floor. */
     public int height;
 
-    public Entity[] entities;
-
-    public TileEntity[] tileentities;
+    /** The list of entities of this floor. */
+    protected Entity[] entities;
+    /** The list of tileentities of this floor. */
+    protected TileEntity[] tileentities;
 
     /** Updates this floor. This inclues the tiles, entities and tileentities. */
     public void update() {
-	for (int i = 0; i < tiles.length; i++) {
-	    tiles[i].update();
-	}
+	for (int i = 0; i < tiles.length; i++)
+	    try {
+		tiles[i].update();
+	    } catch (Exception e) {
+	    }
+    }
+
+    /**
+     * Print this floor on the g Pixmap at the wanted coordinates.
+     * 
+     * @param g
+     *            the graphic object.
+     * @param x
+     *            the x position where to draw the floor. This value represents
+     *            the x position on the floor to be drawn on the left side.
+     * @param y
+     *            the y position where to draw the floor. This value represents
+     *            the y position on the floor to be drawn on the top side.
+     * */
+    public void printOn(Pixmap g, int x, int y) {
+	// print background
+	for (int i = 0; i < width; i++)
+	    for (int j = 0; j < height; j++) {
+		try {
+		    for (int j2 = 0; j2 < tiles[i + j * width].background.length; j2++)
+			g.drawPixmap(tiles[i + j * width].background[j2]
+				.getCurrentFrame(), 16 * (i + x), 16 * (j + y));
+		} catch (Exception e) {
+		}
+	    }
+	// Print player
+	g.drawPixmap(playerpointer.getSprite(), (playerpointer.x + x) * 16,
+		(playerpointer.y + y) * 16);
+	// Print entities n stuff
+
+	// Print foreground
+	for (int i = 0; i < width; i++)
+	    for (int j = 0; j < height; j++) {
+		try {
+		    for (int j2 = 0; j2 < tiles[i + j * width].foreground.length; j2++)
+			g.drawPixmap(tiles[i + j * width].foreground[j2]
+				.getCurrentFrame(), 16 * (i + x), 16 * (j + y));
+		} catch (Exception e) {
+		}
+	    }
     }
 
 }
