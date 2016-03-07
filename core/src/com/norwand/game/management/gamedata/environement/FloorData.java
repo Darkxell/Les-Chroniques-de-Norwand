@@ -87,6 +87,7 @@ public class FloorData {
 	}
     }
 
+    /** Converts Tiled physics ID to tile object IDs. */
     private int converttiletype(int i) {
 	switch (i) {
 	case TILEVALUE_SOLID:
@@ -104,7 +105,9 @@ public class FloorData {
 	case TILEVALUE_VOID:
 	    return Tile.TYPE_VOID;
 	}
-	return 0;
+	System.err
+		.println("Conversion could not be done, returned Normal tile type.");
+	return Tile.TYPE_NORMAL;
     }
 
     public static final int TILEVALUE_SOLID = 1101;
