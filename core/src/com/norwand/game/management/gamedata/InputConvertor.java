@@ -12,26 +12,28 @@ import com.norwand.game.utility.objects.Position;
  * action methods at the right time.
  */
 public class InputConvertor {
-    private int anchorX;
-    private int anchorY;
+
+    private boolean pressed;
+    private Position anchor;
     private int framecount;
 
     public void onPress(UserEvent e, Player pointer) {
-	anchorX = e.x;
-	anchorY = e.y;
+	pressed = true;
+	anchor = convertPosition(new Position(e.x, e.y), pointer.cam);
 	framecount = 25;
     }
 
     public void onDrag(UserEvent e, Player pointer) {
-	pointer.onMoveTo(convertPosition(new Position(e.x, e.y), pointer.cam));
+	anchor = convertPosition(new Position(e.x, e.y), pointer.cam);
     }
 
     public void onRelease(UserEvent e, Player pointer) {
+	pressed = false;
 	pointer.onStop();
-	if (framecount > 0 && e.x <= anchorX + 5 && e.x >= anchorX - 5
-		&& e.y <= anchorY + 5 && e.y >= anchorY - 5) {
-	    pointer.onTap(convertPosition(new Position(e.x, e.y), pointer.cam));
-	}
+	Position temp = convertPosition(new Position(e.x, e.y), pointer.cam);
+	if (framecount > 0 && temp.x <= anchor.x + 1 && temp.x >= anchor.x - 1
+		&& temp.y <= anchor.y + 1 && temp.y >= anchor.y - 1)
+	    pointer.onTap(temp);
     }
 
     private boolean left;
@@ -82,18 +84,23 @@ public class InputConvertor {
 	Position add = getAdditive();
 	if (add.x != 0 || add.y != 0)
 	    pointer.onMoveTo(new Position(pointer.x + add.x, pointer.y + add.y));
+	else if (pressed
+		&& anchor.getDistanceFrom(new Position(pointer.x, pointer.y)) > 0.5)
+	    pointer.onMoveTo(anchor);
     }
 
     /**
      * Converts the position in pixels on the screen to a real position in the
-     * game using the floor position.
+     * game using the floor position. This only works if the player is centered
+     * in the camera.
      */
-    public Position convertPosition(Position inpixels, PlayerCamera screen) {
-	return new Position(screen.x + ((inpixels.x - 120) / 16), screen.x
+    private Position convertPosition(Position inpixels, PlayerCamera screen) {
+	return new Position(screen.x + ((inpixels.x - 120) / 16), screen.y
 		+ ((inpixels.y - (240 * Gdx.graphics.getHeight()
 			/ Gdx.graphics.getWidth() / 2)) / 16));
     }
 
+    /** gets a position adding the 4 directionnal booleens. */
     private Position getAdditive() {
 	return new Position(right ? 1 : left ? -1 : 0, down ? 1 : up ? -1 : 0);
     }

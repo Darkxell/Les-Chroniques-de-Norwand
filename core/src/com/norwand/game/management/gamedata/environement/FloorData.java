@@ -51,7 +51,8 @@ public class FloorData {
 		int[] ids = new int[sids.length];
 		for (int j = 0; j < ids.length; j++)
 		    try {
-			ids[j] = Integer.parseInt(StringUtility.getNumbers(sids[j]));
+			ids[j] = Integer.parseInt(StringUtility
+				.getNumbers(sids[j]));
 		    } catch (Exception e) {
 		    }
 		if (name.equals("physics"))
@@ -68,9 +69,12 @@ public class FloorData {
 	tiles = new Tile[width * height];
 	for (int i = 0; i < width * height; i++) {
 	    try {
-		tiles[i] = new Tile(Tile.TYPE_NORMAL, new AnimatedSprite[] {
-			ImagesHolder.tileset.getTileAnimation(bg1[i] - 1),
-			ImagesHolder.tileset.getTileAnimation(bg2[i] - 1) },
+		tiles[i] = new Tile(converttiletype(phy[i] - 1),
+			new AnimatedSprite[] {
+				ImagesHolder.tileset
+					.getTileAnimation(bg1[i] - 1),
+				ImagesHolder.tileset
+					.getTileAnimation(bg2[i] - 1) },
 			new AnimatedSprite[] {
 				ImagesHolder.tileset
 					.getTileAnimation(fg1[i] - 1),
@@ -83,7 +87,27 @@ public class FloorData {
 	}
     }
 
-    public static final int TILEVALUE_NORMAL = 1101;
+    private int converttiletype(int i) {
+	switch (i) {
+	case TILEVALUE_SOLID:
+	    return Tile.TYPE_SOLID;
+	case TILEVALUE_AIR:
+	    return Tile.TYPE_NORMAL;
+	case TILEVALUE_ICE:
+	    return Tile.TYPE_ICE;
+	case TILEVALUE_WATER:
+	    return Tile.TYPE_WATER;
+	case TILEVALUE_LAVA:
+	    return Tile.TYPE_LAVA;
+	case TILEVALUE_ACID:
+	    return Tile.TYPE_ACID;
+	case TILEVALUE_VOID:
+	    return Tile.TYPE_VOID;
+	}
+	return 0;
+    }
+
+    public static final int TILEVALUE_SOLID = 1101;
     public static final int TILEVALUE_AIR = 1102;
     public static final int TILEVALUE_ICE = 1103;
     public static final int TILEVALUE_WATER = 1104;

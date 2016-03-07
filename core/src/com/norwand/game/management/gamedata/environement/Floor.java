@@ -74,8 +74,10 @@ public class Floor {
 	    }
 	// Print player
 	g.drawPixmap(playerpointer.getSprite(),
-		(int) ((playerpointer.x + x) * 16),
-		(int) ((playerpointer.y + y) * 16));
+		(int) ((playerpointer.x + x) * 16)
+			- (playerpointer.getSprite().getWidth() / 2),
+		(int) ((playerpointer.y + y) * 16)
+			- (playerpointer.getSprite().getHeight() / 2));
 	// Print entities n stuff
 
 	// Print foreground
@@ -89,6 +91,11 @@ public class Floor {
 		} catch (Exception e) {
 		}
 	    }
+    }
+
+    /** Gets the tile at the wanted coordinates in this floor. */
+    public Tile getTileAt(int x, int y) {
+	return tiles[x + (width * y)];
     }
 
 }

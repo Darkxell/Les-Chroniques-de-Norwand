@@ -5,6 +5,7 @@ import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
 import com.norwand.game.management.gamedata.player.Player;
+import com.norwand.game.management.gamestates.top.launched.LaunchedState;
 
 /**
  * Holds the ram data of the entiere game.<br/>
@@ -51,6 +52,18 @@ public class GameData {
 	} catch (Exception e) {
 	    System.err
 		    .println("Couldn't update the current floor in the gamedata.");
+	}
+    }
+
+    /**
+     * Tries to get an instancied gamedata object in the state arborescence.
+     * Returns null if it fails.
+     */
+    public static GameData get() {
+	try {
+	    return ((LaunchedState) (MainGame.game.state.substate)).data;
+	} catch (Exception e) {
+	    return null;
 	}
     }
 

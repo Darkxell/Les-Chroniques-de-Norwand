@@ -13,10 +13,13 @@ import com.norwand.game.resources.ImagesHolder;
 
 public class MainGame extends ApplicationAdapter implements InputProcessor {
 
+    public static MainGame game;
+    
     /** Constructs a maingame object with the assets path. */
     public MainGame(String assetsPath) {
 	super();
 	MainGame.ASSETSPATH = assetsPath;
+	game = this;
     }
 
     /**
@@ -64,8 +67,6 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 
     @Override
     public void render() {
-	// Gdx.gl.glClearColor(1, 0, 0, 1);
-	// Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	SpriteBatch batch = new SpriteBatch(1);
 	// TODO : generate the spritebatch only when a resize is detected.
 	Pixmap buffer = new Pixmap(240, 240 * Gdx.graphics.getHeight()

@@ -8,6 +8,7 @@ public class Tile {
 	    AnimatedSprite[] foreground) {
 	this.background = background;
 	this.foreground = foreground;
+	this.type = type;
     }
 
     /** The physics of the tile. */
