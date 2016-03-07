@@ -95,7 +95,13 @@ public class Floor {
 
     /** Gets the tile at the wanted coordinates in this floor. */
     public Tile getTileAt(int x, int y) {
-	return tiles[x + (width * y)];
+	if (!(x > width || y > height || y < 0 || x < 0))
+	    return tiles[x + (width * y)];
+	else {
+	    System.err.println("Unknown tile at coords : " + x + "/" + y
+		    + " , returned default type.");
+	    return new Tile(Tile.TYPE_NORMAL, null, null);
+	}
     }
 
 }
