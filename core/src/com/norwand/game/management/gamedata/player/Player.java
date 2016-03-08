@@ -45,7 +45,7 @@ public class Player {
      * musn't) dispose of it.
      */
     public Pixmap getSprite() {
-	return ImagesHolder.tileset.getTile(3);
+	return ImagesHolder.tileset.getTile(3381);
     }
 
     /** Called when the user taps the screen (mosly dash) */

@@ -102,6 +102,15 @@ public class InputConvertor {
 
     /** gets a position adding the 4 directionnal booleens. */
     private Position getAdditive() {
-	return new Position(right ? 1 : left ? -1 : 0, down ? 1 : up ? -1 : 0);
+	Position pos = new Position(0, 0);
+	if (left)
+	    --pos.x;
+	if (right)
+	    ++pos.x;
+	if (up)
+	    --pos.y;
+	if (down)
+	    ++pos.y;
+	return pos;
     }
 }
