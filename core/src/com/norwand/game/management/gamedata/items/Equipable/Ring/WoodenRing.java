@@ -1,4 +1,4 @@
-package com.norwand.game.management.gamedata.items.Ring;
+package com.norwand.game.management.gamedata.items.Equipable.Ring;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.resources.ImagesHolder;

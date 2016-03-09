@@ -1,4 +1,4 @@
-package com.norwand.game.management.gamedata.items.Necklace;
+package com.norwand.game.management.gamedata.items.Equipable.Necklace;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.resources.ImagesHolder;

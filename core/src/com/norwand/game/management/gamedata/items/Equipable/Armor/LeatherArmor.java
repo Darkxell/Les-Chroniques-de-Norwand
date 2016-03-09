@@ -1,4 +1,4 @@
-package com.norwand.game.management.gamedata.items.Armor;
+package com.norwand.game.management.gamedata.items.Equipable.Armor;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.resources.ImagesHolder;

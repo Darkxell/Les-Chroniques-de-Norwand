@@ -1,7 +1,9 @@
-package com.norwand.game.management.gamedata.items;
+package com.norwand.game.management.gamedata.items.Equipable;
 
 
-public abstract class Equipable extends Item{
+import com.norwand.game.management.gamedata.items.Item;
+
+public abstract class Equipable extends Item {
 
     /** The amout of armor that the object will give to the player */
     protected double armor;

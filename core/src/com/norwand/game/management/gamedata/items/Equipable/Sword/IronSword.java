@@ -1,4 +1,4 @@
-package com.norwand.game.management.gamedata.items.Sword;
+package com.norwand.game.management.gamedata.items.Equipable.Sword;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.resources.ImagesHolder;

@@ -1,7 +1,6 @@
-package com.norwand.game.management.gamedata.items.Boots;
+package com.norwand.game.management.gamedata.items.Equipable.Boots;
 
 import com.badlogic.gdx.graphics.Pixmap;
-import com.norwand.game.management.gamedata.items.Armor.LeatherArmor;
 import com.norwand.game.resources.ImagesHolder;
 
 public class LeatherBoots extends Boots {

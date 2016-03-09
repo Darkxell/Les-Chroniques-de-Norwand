@@ -1,4 +1,4 @@
-package com.norwand.game.management.gamedata.items.Helmet;
+package com.norwand.game.management.gamedata.items.Equipable.Helmet;
 
 
 import com.badlogic.gdx.graphics.Pixmap;
