@@ -103,5 +103,32 @@ public class Floor {
 	    return new Tile(Tile.TYPE_NORMAL, null, null);
 	}
     }
+    
+    /**Gets the physics at the wanted float coordinates. This returns the first encountered tileEntity physics, or by default the tile physics under. If no tileEntity is found nor */
+
+    /** Deletes this entity from this floor. */
+    public void deleteEntity(Entity pointer) {
+	Entity[] newentities = new Entity[entities.length - 1];
+	int removeid = -1;
+	for (int i = 0; i < entities.length; i++)
+	    if (entities[i] == pointer)
+		removeid = i;
+	if (removeid == -1)
+	    System.err.println("Entitée non trouvée. Délétion impossible.");
+	else {
+	    System.arraycopy(entities, 0, newentities, 0, removeid);
+	    System.arraycopy(entities, removeid + 1, newentities, removeid,
+		    entities.length - 1 - removeid);
+	    this.entities = newentities;
+	}
+    }
+
+    /** Adds this entity to this floor. */
+    public void addEntity(Entity toAdd) {
+	Entity[] entities2 = new Entity[entities.length + 1];
+	System.arraycopy(entities, 0, entities2, 0, entities.length);
+	entities2[entities.length] = toAdd;
+	entities = entities2;
+    }
 
 }
