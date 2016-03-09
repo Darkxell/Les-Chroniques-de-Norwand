@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.utility.Directions;
-import com.norwand.game.utility.objects.Hitbox;
+import com.norwand.game.utility.objects.DoubleRectangle;
 
 public abstract class Entity {
 
@@ -41,7 +41,7 @@ public abstract class Entity {
     public abstract void print(Graphics2D g2d);
 
     /** Returns the hitbox of this entity. */
-    public abstract Hitbox getHitbox(double posX, double posY);
+    public abstract DoubleRectangle getHitbox(double posX, double posY);
 
     /** Called when the entity is hit by the player. */
     public abstract void onhit(double damage);
