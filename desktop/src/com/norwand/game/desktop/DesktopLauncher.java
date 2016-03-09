@@ -10,7 +10,7 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Les Chroniques de Norwand";
 		config.addIcon("assets/textures/gui/icon.png", FileType.Internal);
-		@SuppressWarnings("unused") //test
+		@SuppressWarnings("unused")
 		LwjglApplication app = new LwjglApplication(new MainGame("assets/"), config);
 	}
 }

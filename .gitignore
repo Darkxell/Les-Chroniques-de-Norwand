@@ -1,6 +1,6 @@
 ## Java
 
-desktop/src/com/norwand/game/desktop/DesktopLauncher.java
+desktop/src/com/norwand/game/desktop
 *.class
 *.war
 *.ear
