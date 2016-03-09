@@ -1,12 +1,19 @@
-package com.norwand.game.management.gamedata.items;
+package com.norwand.game.management.gamedata.items.Consumable;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.GameData;
+import com.norwand.game.management.gamedata.items.Item;
 import com.norwand.game.resources.ImagesHolder;
 
 
 /**Health potion that regenerates HP*/
-public class HealthPot extends Item{
+public class HealthPot extends Item {
+
+    public HealthPot(){
+        this.displayName = "Potion de vie";
+        this.itemDescription = "Potion de vie, permet de récuperer des coeurs.";
+    }
+
     @Override
     public Pixmap getSprite() {
         return ImagesHolder.itemset.getTile(632);
