@@ -16,7 +16,7 @@ public abstract class Entity {
     public double posY;
 
     /** The health of the entity. */
-    public double hp = 1;
+    public double hp;
 
     /**
      * The direction faced by the entity. This may not be relevent depending on
