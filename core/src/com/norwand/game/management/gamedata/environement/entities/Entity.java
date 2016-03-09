@@ -1,7 +1,6 @@
 package com.norwand.game.management.gamedata.environement.entities;
 
-import java.awt.Graphics2D;
-
+import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.utility.Directions;
 import com.norwand.game.utility.objects.DoubleRectangle;
@@ -37,8 +36,8 @@ public abstract class Entity {
     /** updates the entity. */
     public abstract void update();
 
-    /** prints the entity on the graphics object. */
-    public abstract void print(Graphics2D g2d);
+    /** Gets the sprite of this entity. */
+    public abstract Pixmap getCurrentSprite();
 
     /** Returns the hitbox of this entity. */
     public abstract DoubleRectangle getHitbox(double posX, double posY);

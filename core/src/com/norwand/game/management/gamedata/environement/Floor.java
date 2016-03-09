@@ -2,6 +2,7 @@ package com.norwand.game.management.gamedata.environement;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.environement.entities.Entity;
+import com.norwand.game.management.gamedata.environement.entities.monsters.Mimic;
 import com.norwand.game.management.gamedata.environement.tileentities.TileEntity;
 import com.norwand.game.management.gamedata.environement.tiles.Tile;
 import com.norwand.game.management.gamedata.player.Player;
@@ -22,6 +23,9 @@ public class Floor {
 	width = data.width;
 	height = data.height;
 	this.playerpointer = playerpointer;
+
+	// FIXME : remove this
+	addEntity(new Mimic(this, 0, 0));
     }
 
     /** Pointer to the player object. */
@@ -35,9 +39,9 @@ public class Floor {
     public int height;
 
     /** The list of entities of this floor. */
-    protected Entity[] entities;
+    protected Entity[] entities = new Entity[] {};
     /** The list of tileentities of this floor. */
-    protected TileEntity[] tileentities;
+    protected TileEntity[] tileentities = new TileEntity[] {};
 
     /** Updates this floor. This inclues the tiles, entities and tileentities. */
     public void update() {
@@ -46,6 +50,12 @@ public class Floor {
 		tiles[i].update();
 	    } catch (Exception e) {
 	    }
+	for (int i = 0; i < entities.length; i++)
+	    try {
+		entities[i].update();
+	    } catch (Exception e) {
+	    }
+	
     }
 
     /**
@@ -79,7 +89,14 @@ public class Floor {
 		(int) ((playerpointer.y + y) * 16)
 			- (playerpointer.getSprite().getHeight() / 2));
 	// Print entities n stuff
-
+	for (int j = 0; j < entities.length; j++) {
+	    try {
+		g.drawPixmap(entities[j].getCurrentSprite(),
+			(int) (16 * (entities[j].posX + x)),
+			(int) (16 * (entities[j].posY + y)));
+	    } catch (Exception e) {
+	    }
+	}
 	// Print foreground
 	for (int i = 0; i < width; i++)
 	    for (int j = 0; j < height; j++) {
@@ -103,8 +120,15 @@ public class Floor {
 	    return new Tile(Tile.TYPE_NORMAL, null, null);
 	}
     }
-    
-    /**Gets the physics at the wanted float coordinates. This returns the first encountered tileEntity physics, or by default the tile physics under. If no tileEntity is found nor */
+
+    /**
+     * Gets the physics at the wanted float coordinates. This returns the first
+     * encountered tileEntity physics, or by default the tile physics under. If
+     * no tileEntity is found nor
+     */
+    public byte getPhysicsAt() {
+	return 0;// TODO
+    }
 
     /** Deletes this entity from this floor. */
     public void deleteEntity(Entity pointer) {
