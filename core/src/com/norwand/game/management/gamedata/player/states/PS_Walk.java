@@ -21,12 +21,23 @@ public class PS_Walk extends PlayerState {
     }
 
     private MathVector direction;
+    private short countdown = 5;
+    private byte count = 3;
 
     @Override
     public void update() {
+	--countdown;
+	if (countdown < 0) {
+	    countdown = 10;// Frames per sprite
+	    --count;
+	    if (count < 0)
+		count = 3;
+	}
+	player.facing = direction.getOverallDirection();
+
 	// movespeed is 0.17 here.
-	Position newpos = direction
-		.getFixedTranslation(player.x, player.y, 0.17);
+	Position newpos = direction.getFixedTranslation(player.x, player.y,
+		0.17);
 	if (player.canBeAt(newpos.x, player.y))
 	    player.x = newpos.x;
 	if (player.canBeAt(player.x, newpos.y))
@@ -37,13 +48,13 @@ public class PS_Walk extends PlayerState {
     public Pixmap getSprite() {
 	switch (player.facing) {
 	case Directions.SOUTH:
-	    return ImagesHolder.playerset.getTile(0);
+	    return ImagesHolder.playerset.getTile(0 + count);
 	case Directions.NORTH:
-	    return ImagesHolder.playerset.getTile(96);
+	    return ImagesHolder.playerset.getTile(96 + count);
 	case Directions.EAST:
-	    return ImagesHolder.playerset.getTile(64);
+	    return ImagesHolder.playerset.getTile(64 + count);
 	case Directions.WEST:
-	    return ImagesHolder.playerset.getTile(32);
+	    return ImagesHolder.playerset.getTile(32 + count);
 	default:
 	    return null;
 	}

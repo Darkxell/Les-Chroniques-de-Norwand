@@ -1,5 +1,7 @@
 package com.norwand.game.utility.objects;
 
+import com.norwand.game.utility.Directions;
+
 /** Reprensents a mathematical 2D vector. */
 public class MathVector {
 
@@ -38,6 +40,14 @@ public class MathVector {
      */
     public double getBasicLength() {
 	return Math.sqrt(x * x + y * y);
+    }
+
+    /** Gets the overall direction of this vector. */
+    public byte getOverallDirection() {
+	if (Math.abs(x) < Math.abs(y))
+	    return (y > 0) ? Directions.SOUTH : Directions.NORTH;
+	else
+	    return (x > 0) ? Directions.EAST : Directions.WEST;
     }
 
 }
