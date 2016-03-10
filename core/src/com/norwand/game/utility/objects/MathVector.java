@@ -33,4 +33,11 @@ public class MathVector {
 	return new Position(x + x2, y + y2);
     }
 
+    /**
+     * Returns the basic length of this vector.
+     */
+    public double getBasicLength() {
+	return Math.sqrt(x * x + y * y);
+    }
+
 }

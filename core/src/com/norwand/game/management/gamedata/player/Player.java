@@ -58,7 +58,7 @@ public class Player {
 
     /** Called when the user long presses or drags. */
     public void onMoveTo(Position pos) {
-	double speed = 0.2;
+	double speed = 0.25;
 	MathVector v = new MathVector(pos.x - x, pos.y - y);
 	Position newpos = v.getFixedTranslation(x, y, speed);
 	if (canBeAt(newpos.x, y))
