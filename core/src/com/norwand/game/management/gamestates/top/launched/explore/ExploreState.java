@@ -3,7 +3,7 @@ package com.norwand.game.management.gamestates.top.launched.explore;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamestates.GameState;
-import com.norwand.game.management.gamestates.top.launched.explore.play.PlayState;
+import com.norwand.game.management.gamestates.top.launched.explore.dialog.DialogState;
 
 /**
  * This unseen by the user state represents all of the exploration possible. It
@@ -16,7 +16,7 @@ public class ExploreState extends GameState {
 
     public ExploreState(GameState parent) {
 	super(parent);
-	this.substate = new PlayState(this);
+	this.substate = new DialogState(this);
     }
 
     @Override

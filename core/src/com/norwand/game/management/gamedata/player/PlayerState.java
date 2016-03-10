@@ -1,6 +1,7 @@
 package com.norwand.game.management.gamedata.player;
 
 import com.badlogic.gdx.graphics.Pixmap;
+import com.norwand.game.utility.objects.Position;
 
 /** Represents a single state that belongs to a player. */
 public abstract class PlayerState {
@@ -23,5 +24,15 @@ public abstract class PlayerState {
      */
     public abstract Pixmap getSprite();
 
-    // TODO : controls
+    /** Called when the user taps the screen (mosly dash) */
+    public abstract void onTap(Position pos);
+
+    /** Called when the user long presses or drags. */
+    public abstract void onMoveTo(Position pos);
+
+    /** Called when the player stop moving. */
+    public abstract void onStop();
+
+    /** Called when the user uses a skill at the position pos. */
+    public abstract void onSkillUsed(Position pos, Capacity capacity);
 }

@@ -47,7 +47,7 @@ public class PlayState extends GameState {
 	heart.dispose();
 	Pixmap menu = null;
 	try {
-	    menu = PixmapUtility.getPixmapPart(ImagesHolder.gui, 256, 161, 48,
+	    menu = PixmapUtility.getPixmapPart(ImagesHolder.gui, 256, 160, 48,
 		    16);
 	} catch (Exception e) {
 	}
@@ -55,7 +55,7 @@ public class PlayState extends GameState {
 	menu.dispose();
 	Pixmap cap = null;
 	try {
-	    cap = PixmapUtility.getPixmapPart(ImagesHolder.gui, 256, 177, 128,
+	    cap = PixmapUtility.getPixmapPart(ImagesHolder.gui, 256, 176, 128,
 		    32);
 	} catch (Exception e) {
 	}

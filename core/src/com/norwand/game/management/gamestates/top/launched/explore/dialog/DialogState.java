@@ -1,19 +1,20 @@
-package com.norwand.game.management.gamestates.top.menu.home;
+package com.norwand.game.management.gamestates.top.launched.explore.dialog;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.UserEvent;
+import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.launched.LaunchedState;
+import com.norwand.game.management.gamestates.top.launched.explore.play.PlayState;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.PixmapUtility;
 
-/**
- * State that represents the main menu of the game. This is the openning state
- * by default.
- */
-public class HomeState extends GameState {
+public class DialogState extends GameState {
 
-    public HomeState(GameState parent) {
+    /** Stored pointer to the LaunchedState GameData attribute. */
+    GameData datapointer = ((LaunchedState) parent.parent).data;
+
+    public DialogState(GameState parent) {
 	super(parent);
     }
 
@@ -23,19 +24,23 @@ public class HomeState extends GameState {
 
     @Override
     public void print(Pixmap g) {
-	Pixmap cap = null;
+	datapointer.currentfloor.printOn(g, (g.getWidth() / 32)
+		- datapointer.player.cam.x, (g.getHeight() / 32)
+		- datapointer.player.cam.y);
+
+	Pixmap dialog = null;
 	try {
-	    cap = PixmapUtility.getPixmapPart(ImagesHolder.gui, 256, 208, 128,
-		    46);
+	    dialog = PixmapUtility.getPixmapPart(ImagesHolder.gui, 256, 112,
+		    208, 48);
 	} catch (Exception e) {
 	}
-	g.drawPixmap(cap, 60, g.getHeight() / 2 - 23);
-	cap.dispose();
+	g.drawPixmap(dialog, 16, g.getHeight() - 64);
+	dialog.dispose();
     }
 
     @Override
     public void onPress(UserEvent e) {
-	parent.parent.substate = new LaunchedState(parent.parent);
+	parent.substate = new PlayState(parent);
     }
 
     @Override

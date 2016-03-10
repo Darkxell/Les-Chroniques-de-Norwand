@@ -28,7 +28,7 @@ public abstract class ImagesHolder {
 	    tileset = new Tileset(16, tset);
 	    tset.dispose();
 	    gui = new Pixmap(Gdx.files.internal(assetspath
-		    + "textures/gui/gui.png"));
+		    + "textures/gui.png"));
 	    isinstancied = true;
 	} catch (Exception e) {
 	    e.printStackTrace();

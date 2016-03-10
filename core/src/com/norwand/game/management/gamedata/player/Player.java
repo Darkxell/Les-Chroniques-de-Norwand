@@ -7,7 +7,6 @@ import com.norwand.game.management.gamedata.environement.tiles.Tile;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.Directions;
 import com.norwand.game.utility.objects.Hitbox;
-import com.norwand.game.utility.objects.MathVector;
 import com.norwand.game.utility.objects.Position;
 
 /** Object that represents the playable player. */
@@ -50,21 +49,12 @@ public class Player {
 
     /** Called when the user taps the screen (mosly dash) */
     public void onTap(Position pos) {
-	if (canBeAt(pos)) {
-	    x = pos.x;
-	    y = pos.y;
-	}
+
     }
 
     /** Called when the user long presses or drags. */
     public void onMoveTo(Position pos) {
-	double speed = 0.25;
-	MathVector v = new MathVector(pos.x - x, pos.y - y);
-	Position newpos = v.getFixedTranslation(x, y, speed);
-	if (canBeAt(newpos.x, y))
-	    x = newpos.x;
-	if (canBeAt(x, newpos.y))
-	    y = newpos.y;
+
     }
 
     /** Called when the player stop moving. */
