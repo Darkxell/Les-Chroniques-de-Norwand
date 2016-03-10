@@ -11,8 +11,9 @@ public class PlayerCamera {
     }
 
     public Player target;
-
+    /** The x position of the camera. */
     public double x;
+    /** The y position of the camera. */
     public double y;
 
     /**

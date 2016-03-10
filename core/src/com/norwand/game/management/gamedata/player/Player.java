@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.tiles.Tile;
-import com.norwand.game.resources.ImagesHolder;
+import com.norwand.game.management.gamedata.player.states.PS_Iddle;
 import com.norwand.game.utility.Directions;
 import com.norwand.game.utility.objects.Hitbox;
 import com.norwand.game.utility.objects.Position;
@@ -27,7 +27,7 @@ public class Player {
      * currently doing and allows to get the correct player sprite at any
      * moment.
      */
-    public PlayerState state;
+    public PlayerState state = new PS_Iddle(this);
     /** The player inventory. */
     public Inventory inventory;
     /** The player hitbox */
@@ -36,6 +36,7 @@ public class Player {
     /** Updates the player. */
     public void update() {
 	this.cam.update();
+	this.state.update();
     }
 
     /**
@@ -44,27 +45,27 @@ public class Player {
      * musn't) dispose of it.
      */
     public Pixmap getSprite() {
-	return ImagesHolder.tileset.getTile(3381);
+	return state.getSprite();
     }
 
     /** Called when the user taps the screen (mosly dash) */
     public void onTap(Position pos) {
-
+	state.onTap(pos);
     }
 
     /** Called when the user long presses or drags. */
     public void onMoveTo(Position pos) {
-
+	state.onMoveTo(pos);
     }
 
     /** Called when the player stop moving. */
     public void onStop() {
-
+	state.onStop();
     }
 
     /** Called when the user uses a skill at the position pos. */
     public void onSkillUsed(Position pos, Capacity capacity) {
-
+	state.onSkillUsed(pos, capacity);
     }
 
     /**

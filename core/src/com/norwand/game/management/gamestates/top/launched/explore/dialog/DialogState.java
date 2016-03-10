@@ -24,9 +24,8 @@ public class DialogState extends GameState {
 
     @Override
     public void print(Pixmap g) {
-	datapointer.currentfloor.printOn(g, (g.getWidth() / 32)
-		- datapointer.player.cam.x, (g.getHeight() / 32)
-		- datapointer.player.cam.y);
+	datapointer.currentfloor.printOn(g, 7.5 - datapointer.player.cam.x,
+		(((double) (g.getHeight())) / 32d) - datapointer.player.cam.y);
 
 	Pixmap dialog = null;
 	try {

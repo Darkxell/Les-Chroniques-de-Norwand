@@ -9,15 +9,28 @@ import com.norwand.game.utility.Directions;
 import com.norwand.game.utility.objects.MathVector;
 import com.norwand.game.utility.objects.Position;
 
-public class PS_Iddle extends PlayerState {
+/**
+ * Walking state of the player. In this state, the player walks. (Why are you
+ * even reading this documentation?)
+ */
+public class PS_Walk extends PlayerState {
 
-    public PS_Iddle(Player player) {
+    public PS_Walk(Player player, MathVector direction) {
 	super(player);
+	this.direction = direction;
     }
+
+    private MathVector direction;
 
     @Override
     public void update() {
-	// Does nothing I guess?
+	// movespeed is 0.17 here.
+	Position newpos = direction
+		.getFixedTranslation(player.x, player.y, 0.17);
+	if (player.canBeAt(newpos.x, player.y))
+	    player.x = newpos.x;
+	if (player.canBeAt(player.x, newpos.y))
+	    player.y = newpos.y;
     }
 
     @Override
@@ -38,23 +51,22 @@ public class PS_Iddle extends PlayerState {
 
     @Override
     public void onTap(Position pos) {
-	// TODO : dash here
+
     }
 
     @Override
     public void onMoveTo(Position pos) {
-	player.state = new PS_Walk(player, new MathVector(pos.x - player.x,
-		pos.y - player.y));
+	direction = new MathVector(pos.x - player.x, pos.y - player.y);
     }
 
     @Override
     public void onStop() {
-	// Does nothing either I guess. Should never be called anyways.
+	player.state = new PS_Iddle(player);
     }
 
     @Override
     public void onSkillUsed(Position pos, Capacity capacity) {
-	// TODO : use skill here. Welp, need some skills to use too.
+
     }
 
 }

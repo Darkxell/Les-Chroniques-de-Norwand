@@ -32,8 +32,8 @@ public class PlayState extends GameState {
 
     @Override
     public void print(Pixmap g) {
-	datapointer.currentfloor.printOn(g, (g.getWidth()/32)-datapointer.player.cam.x,
-		(g.getHeight()/32)-datapointer.player.cam.y);
+	datapointer.currentfloor.printOn(g, 7.5 - datapointer.player.cam.x,
+		(((double) (g.getHeight())) / 32d) - datapointer.player.cam.y);
 	// --------------
 	Pixmap heart = null;
 	try {
@@ -65,27 +65,27 @@ public class PlayState extends GameState {
     }
 
     public void onPress(UserEvent e) {
-	datapointer.playerinputconvertor.onPress(e, datapointer.player);
+	datapointer.playerinputconvertor.onPress(e);
     }
 
     public void onDrag(UserEvent e) {
-	datapointer.playerinputconvertor.onDrag(e, datapointer.player);
+	datapointer.playerinputconvertor.onDrag(e);
     }
 
     public void onRelease(UserEvent e) {
-	datapointer.playerinputconvertor.onRelease(e, datapointer.player);
+	datapointer.playerinputconvertor.onRelease(e);
     }
 
     public void onKeyPressed(UserEvent e) {
-	datapointer.playerinputconvertor.onKeyPressed(e, datapointer.player);
+	datapointer.playerinputconvertor.onKeyPressed(e);
     }
 
     public void onKeyReleased(UserEvent e) {
-	datapointer.playerinputconvertor.onKeyReleased(e, datapointer.player);
+	datapointer.playerinputconvertor.onKeyReleased(e);
     }
 
     public void onType(UserEvent e) {
-	datapointer.playerinputconvertor.onType(e, datapointer.player);
+	datapointer.playerinputconvertor.onType(e);
     }
 
 }

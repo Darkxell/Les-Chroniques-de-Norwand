@@ -27,8 +27,12 @@ public abstract class ImagesHolder {
 		    + "textures/tileset.png"));
 	    tileset = new Tileset(16, tset);
 	    tset.dispose();
-	    gui = new Pixmap(Gdx.files.internal(assetspath
-		    + "textures/gui.png"));
+	    Pixmap pset = new Pixmap(Gdx.files.internal(assetspath
+		    + "textures/player.png"));
+	    playerset = new Playerset(16, pset);
+	    pset.dispose();
+	    gui = new Pixmap(
+		    Gdx.files.internal(assetspath + "textures/gui.png"));
 	    isinstancied = true;
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -46,6 +50,8 @@ public abstract class ImagesHolder {
 	particleset = null;
 	itemset.dispose();
 	itemset = null;
+	playerset.dispose();
+	playerset = null;
 	gui.dispose();
 	gui = null;
 	isinstancied = false;
@@ -62,5 +68,6 @@ public abstract class ImagesHolder {
     public static Entityset entityset;
     public static Particleset particleset;
     public static Itemset itemset;
+    public static Playerset playerset;
 
 }

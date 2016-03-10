@@ -7,8 +7,7 @@ import com.norwand.game.utility.objects.Position;
 public abstract class PlayerState {
 
     /** Pointer to the player object. Can be usefull when switching state. */
-    @SuppressWarnings("unused")
-    private Player player;
+    protected Player player;
 
     /** Constructs a new PlayerState using the link to the player. */
     public PlayerState(Player player) {
