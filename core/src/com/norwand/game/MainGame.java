@@ -14,7 +14,7 @@ import com.norwand.game.resources.ImagesHolder;
 public class MainGame extends ApplicationAdapter implements InputProcessor {
 
     public static MainGame game;
-    
+
     /** Constructs a maingame object with the assets path. */
     public MainGame(String assetsPath) {
 	super();
@@ -36,6 +36,8 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 
     @Override
     public void create() {
+	widthbackup = Gdx.graphics.getWidth();
+	heightbackup = Gdx.graphics.getHeight();
 	Gdx.input.setInputProcessor(this);
 	Pixmap.setFilter(Pixmap.Filter.NearestNeighbour);
 	state = new TopState();
@@ -65,10 +67,22 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 	ImagesHolder.create(ASSETSPATH);
     }
 
+    SpriteBatch batch = null;
+    int widthbackup;
+    int heightbackup;
+
     @Override
     public void render() {
-	SpriteBatch batch = new SpriteBatch(1);
-	// TODO : generate the spritebatch only when a resize is detected.
+	if(batch == null)
+	    batch = new SpriteBatch(1);
+	if (widthbackup != Gdx.graphics.getWidth()
+		|| heightbackup != Gdx.graphics.getHeight()){
+	    batch.dispose();
+	    batch = new SpriteBatch(1);
+	    widthbackup = Gdx.graphics.getWidth();
+	    heightbackup = Gdx.graphics.getHeight();
+	}
+	    
 	Pixmap buffer = new Pixmap(240, 240 * Gdx.graphics.getHeight()
 		/ Gdx.graphics.getWidth(), Pixmap.Format.RGB888);
 	try {
@@ -81,7 +95,6 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 	batch.begin();
 	batch.draw(t, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	batch.end();
-	batch.dispose();
 	t.dispose();
 	buffer.dispose();
     }

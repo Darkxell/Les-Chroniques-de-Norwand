@@ -69,7 +69,7 @@ public class FloorData {
 	tiles = new Tile[width * height];
 	for (int i = 0; i < width * height; i++) {
 	    try {
-		tiles[i] = new Tile(converttiletype(phy[i] - 1),
+		tiles[i] = new Tile((byte) converttiletype(phy[i] - 1),
 			new AnimatedSprite[] {
 				ImagesHolder.tileset
 					.getTileAnimation(bg1[i] - 1),

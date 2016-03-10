@@ -6,6 +6,7 @@ import com.norwand.game.management.gamedata.environement.entities.monsters.Mimic
 import com.norwand.game.management.gamedata.environement.tileentities.TileEntity;
 import com.norwand.game.management.gamedata.environement.tiles.Tile;
 import com.norwand.game.management.gamedata.player.Player;
+import com.norwand.game.utility.objects.Position;
 
 /**
  * Represents a part of the world around the player. It includes the tiles of
@@ -25,7 +26,7 @@ public class Floor {
 	this.playerpointer = playerpointer;
 
 	// FIXME : remove this
-	addEntity(new Mimic(this, 0, 0));
+	addEntity(new Mimic(this, 21, 9.5));
     }
 
     /** Pointer to the player object. */
@@ -55,7 +56,11 @@ public class Floor {
 		entities[i].update();
 	    } catch (Exception e) {
 	    }
-	
+	for (int i = 0; i < tileentities.length; i++)
+	    try {
+		tileentities[i].update();
+	    } catch (Exception e) {
+	    }
     }
 
     /**
@@ -91,9 +96,12 @@ public class Floor {
 	// Print entities n stuff
 	for (int j = 0; j < entities.length; j++) {
 	    try {
-		g.drawPixmap(entities[j].getCurrentSprite(),
-			(int) (16 * (entities[j].posX + x)),
-			(int) (16 * (entities[j].posY + y)));
+		g.drawPixmap(
+			entities[j].getCurrentSprite(),
+			(int) (16 * (entities[j].posX + x))
+				- (entities[j].getCurrentSprite().getWidth() / 2),
+			(int) (16 * (entities[j].posY + y))
+				- (entities[j].getCurrentSprite().getHeight() / 2));
 	    } catch (Exception e) {
 	    }
 	}
@@ -123,11 +131,22 @@ public class Floor {
 
     /**
      * Gets the physics at the wanted float coordinates. This returns the first
-     * encountered tileEntity physics, or by default the tile physics under. If
-     * no tileEntity is found nor
+     * encountered tileEntity physics, or by default the tile physics under.
      */
-    public byte getPhysicsAt() {
-	return 0;// TODO
+    public byte getPhysicsAt(double x, double y) {
+	return getPhysicsAt(new Position(x, y));
+    }
+
+    /**
+     * Gets the physics at the wanted position. This returns the first
+     * encountered tileEntity physics, or by default the tile physics under.
+     */
+    public byte getPhysicsAt(Position p) {
+	for (int i = 0; i < tileentities.length; i++)
+	    if (tileentities[i].getHitbox(tileentities[i].posX,
+		    tileentities[i].posY).isInside(p))
+		return tileentities[i].getPhysics();
+	return getTileAt((int) p.x, (int) p.y).type;
     }
 
     /** Deletes this entity from this floor. */

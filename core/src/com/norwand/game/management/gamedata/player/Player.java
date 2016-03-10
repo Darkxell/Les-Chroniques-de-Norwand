@@ -18,9 +18,9 @@ public class Player {
     /** The direction faced by the player. */
     public int facing = Directions.SOUTH;
     /** The x position of the player in the current floor. */
-    public double x = 1;
+    public double x = 5;
     /** The y position of the player in the current floor. */
-    public double y = 3;
+    public double y = 11;
     /** Player specific information. */
     public PlayerInfo info;
     /**
@@ -95,7 +95,7 @@ public class Player {
 	    Position[] cardinals = hitbox.getRectangle(new Position(x, y))
 		    .getCardinals();
 	    for (int i = 0; i < cardinals.length; i++)
-		if (f.getTileAt((int) (cardinals[i].x), (int) (cardinals[i].y)).type == Tile.TYPE_SOLID)
+		if (f.getPhysicsAt(cardinals[i].x, cardinals[i].y) == Tile.TYPE_SOLID)
 		    return false;
 	    return true;
 	} catch (Exception e) {
