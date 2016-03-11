@@ -2,7 +2,6 @@ package com.norwand.game.management.gamedata.environement;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.environement.entities.Entity;
-import com.norwand.game.management.gamedata.environement.entities.monsters.Mimic;
 import com.norwand.game.management.gamedata.environement.tileentities.TileEntity;
 import com.norwand.game.management.gamedata.environement.tiles.Tile;
 import com.norwand.game.management.gamedata.player.Player;
@@ -13,7 +12,7 @@ import com.norwand.game.utility.objects.Position;
  * the current floor instance, all of the entities and tileentities on this
  * instance.
  */
-public class Floor {
+public abstract class Floor {
 
     /**
      * Constructs a floor object from a FloorData object and a pointer to the
@@ -24,9 +23,6 @@ public class Floor {
 	width = data.width;
 	height = data.height;
 	this.playerpointer = playerpointer;
-
-	// FIXME : remove this
-	addEntity(new Mimic(this, 21, 9.5));
     }
 
     /** Pointer to the player object. */

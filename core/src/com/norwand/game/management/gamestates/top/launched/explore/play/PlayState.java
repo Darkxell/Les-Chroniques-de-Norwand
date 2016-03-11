@@ -35,7 +35,7 @@ public class PlayState extends GameState {
 	datapointer.currentfloor.printOn(g, 7.5 - datapointer.player.cam.x,
 		(((double) (g.getHeight())) / 32d) - datapointer.player.cam.y);
 	// --------------
-	/*Pixmap heart = null;
+	Pixmap heart = null;
 	try {
 	    heart = PixmapUtility.getPixmapPart(ImagesHolder.gui, 256, 16, 16,
 		    16);
@@ -61,7 +61,7 @@ public class PlayState extends GameState {
 	}
 	g.drawPixmap(cap, 20,
 		240 * Gdx.graphics.getHeight() / Gdx.graphics.getWidth() - 32);
-	cap.dispose();*/
+	cap.dispose();
     }
 
     public void onPress(UserEvent e) {

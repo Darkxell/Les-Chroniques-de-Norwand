@@ -63,7 +63,7 @@ public class InputConvertor {
 	pressed = true;
 	movingAnchor = new Position(e.x, e.y);
 	anchor = new Position(e.x, e.y);
-	framecount = 25;
+	framecount = 20;
 	// time you fave in frames (50f = 1sec) to unpress to dash.
     }
 
@@ -77,14 +77,13 @@ public class InputConvertor {
     public void onRelease(UserEvent e) {
 	pressed = false;
 	if (framecount > 0
-		&& anchor.getDistanceFrom(new Position(e.x, e.y)) < 5)
+		&& anchor.getDistanceFrom(new Position(e.x, e.y)) < 15)
 	    nexttap = true;
 	nextstop = true;
     }
 
     /** Called when the user presses a key. */
     public void onKeyPressed(UserEvent e) {
-	// TODO : handle keys input for moves.
     }
 
     /** Called when the user releases a key. */
@@ -100,6 +99,7 @@ public class InputConvertor {
      * the right order if they need a call.
      */
     public void update(Player pointer) {
+	--framecount;
 	if (pressed) {
 	    pointer.onMoveTo(convertPosition(movingAnchor, pointer.cam));
 	}

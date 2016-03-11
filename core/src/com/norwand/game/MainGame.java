@@ -3,6 +3,7 @@ package com.norwand.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -67,36 +68,51 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 	ImagesHolder.create(ASSETSPATH);
     }
 
+    /**
+     * The spritebatch used to draw on the application. This is locally stored
+     * and changed each time the app changes in size.
+     */
     SpriteBatch batch = null;
-    int widthbackup;
-    int heightbackup;
+    /**
+     * Backup of the used pixmap to draw on the batch. THis is locally stored so
+     * it tries to always be in the same memoryheap zone.
+     */
+    Pixmap pbackup = null;
+    /** The width of the application. */
+    private int widthbackup;
+    /** The height of the application. */
+    private int heightbackup;
 
     @Override
     public void render() {
-	if(batch == null)
+	if (batch == null) {
 	    batch = new SpriteBatch(1);
+	    pbackup = new Pixmap(240, 240 * Gdx.graphics.getHeight()
+		    / Gdx.graphics.getWidth(), Pixmap.Format.RGB888);
+	}
 	if (widthbackup != Gdx.graphics.getWidth()
-		|| heightbackup != Gdx.graphics.getHeight()){
+		|| heightbackup != Gdx.graphics.getHeight()) {
 	    batch.dispose();
 	    batch = new SpriteBatch(1);
+	    pbackup.dispose();
+	    pbackup = new Pixmap(240, 240 * Gdx.graphics.getHeight()
+		    / Gdx.graphics.getWidth(), Pixmap.Format.RGB888);
 	    widthbackup = Gdx.graphics.getWidth();
 	    heightbackup = Gdx.graphics.getHeight();
 	}
-	    
-	Pixmap buffer = new Pixmap(240, 240 * Gdx.graphics.getHeight()
-		/ Gdx.graphics.getWidth(), Pixmap.Format.RGB888);
+	pbackup.setColor(Color.BLACK);
+	pbackup.fill();
 	try {
-	    state.print(buffer);
+	    state.print(pbackup);
 	} catch (Exception e) {
 	    System.err
 		    .println("Could not print the current state to the buffer for some reasons.");
 	}
-	Texture t = new Texture(buffer);
+	Texture t = new Texture(pbackup);
 	batch.begin();
 	batch.draw(t, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	batch.end();
 	t.dispose();
-	buffer.dispose();
     }
 
     /**
