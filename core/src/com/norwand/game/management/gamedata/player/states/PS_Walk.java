@@ -62,7 +62,7 @@ public class PS_Walk extends PlayerState {
 
     @Override
     public void onTap(Position pos) {
-
+	player.state = new PS_Dash(player, pos);
     }
 
     @Override
