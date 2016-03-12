@@ -29,7 +29,7 @@ public class Player {
      */
     public PlayerState state = new PS_Iddle(this);
     /** The player inventory. */
-    public Inventory inventory;
+    public Inventory inventory = new Inventory();
     /** The player hitbox */
     public Hitbox hitbox = new Hitbox(0.35);
 

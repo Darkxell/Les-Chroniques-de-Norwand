@@ -1,12 +1,14 @@
 package com.norwand.game.management.gamestates.top.launched.explore.play;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Pixmap;
+import com.norwand.game.MainGame;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.launched.LaunchedState;
 import com.norwand.game.resources.ImagesHolder;
+import com.norwand.game.utility.Palette;
 import com.norwand.game.utility.PixmapUtility;
 
 /**
@@ -20,6 +22,12 @@ public class PlayState extends GameState {
 
     /** Stored pointer to the LaunchedState GameData attribute. */
     GameData datapointer = ((LaunchedState) parent.parent).data;
+
+    /**
+     * The actived capacity. Equals 0 if no capacity is actived. Can be from 0
+     * to 3.
+     */
+    private byte activedcapacity;
 
     public PlayState(GameState parent) {
 	super(parent);
@@ -59,17 +67,67 @@ public class PlayState extends GameState {
 		    32);
 	} catch (Exception e) {
 	}
-	g.drawPixmap(cap, 20,
-		240 * Gdx.graphics.getHeight() / Gdx.graphics.getWidth() - 32);
+	g.drawPixmap(cap, 20, g.getHeight() - 32);
 	cap.dispose();
+	g.setColor(Palette.GREEN);
+	try {
+	    g.drawPixmap(datapointer.player.inventory.slot_cap1.getCapIcon(),
+		    36, g.getHeight() - 32);
+	    if (activedcapacity == 1)
+		g.drawRectangle(37, g.getHeight() - 31, 30, 30);
+	} catch (Exception e) {
+	}
+	try {
+	    g.drawPixmap(datapointer.player.inventory.slot_cap2.getCapIcon(),
+		    68, g.getHeight() - 32);
+	    if (activedcapacity == 2)
+		g.drawRectangle(69, g.getHeight() - 31, 30, 30);
+	} catch (Exception e) {
+	}
+	try {
+	    g.drawPixmap(datapointer.player.inventory.slot_cap3.getCapIcon(),
+		    100, g.getHeight() - 32);
+	    if (activedcapacity == 3)
+		g.drawRectangle(101, g.getHeight() - 31, 30, 30);
+	} catch (Exception e) {
+	}
+	Pixmap it = null;
+	try {
+	    it = PixmapUtility
+		    .getPixmapPart(ImagesHolder.gui, 256, 256, 48, 32);
+	} catch (Exception e) {
+	}
+	g.drawPixmap(it, 192, g.getHeight() - 32);
+	it.dispose();
     }
 
     public void onPress(UserEvent e) {
-	datapointer.playerinputconvertor.onPress(e);
+	if (e.y > MainGame.getBufferHeight() - 32 && e.x > 36 && e.x < 68) {
+	    if (activedcapacity == 1)
+		activedcapacity = 0;
+	    else
+		activedcapacity = 1;
+	} else if (e.y > MainGame.getBufferHeight() - 32 && e.x > 68
+		&& e.x < 100) {
+	    if (activedcapacity == 2)
+		activedcapacity = 0;
+	    else
+		activedcapacity = 2;
+	} else if (e.y > MainGame.getBufferHeight() - 32 && e.x > 100
+		&& e.x < 132) {
+	    if (activedcapacity == 3)
+		activedcapacity = 0;
+	    else
+		activedcapacity = 3;
+	} else {
+	    datapointer.playerinputconvertor.onPress(e);
+	}
+
     }
 
     public void onDrag(UserEvent e) {
-	datapointer.playerinputconvertor.onDrag(e);
+	if (!(e.y > MainGame.getBufferHeight() - 32 && e.x > 36 && e.x < 132))
+	    datapointer.playerinputconvertor.onDrag(e);
     }
 
     public void onRelease(UserEvent e) {
@@ -78,6 +136,17 @@ public class PlayState extends GameState {
 
     public void onKeyPressed(UserEvent e) {
 	datapointer.playerinputconvertor.onKeyPressed(e);
+	switch (e.value) {
+	case Keys.A:
+	    activedcapacity = (byte) ((activedcapacity == 1) ? 0 : 1);
+	    break;
+	case Keys.Z:
+	    activedcapacity = (byte) ((activedcapacity == 2) ? 0 : 2);
+	    break;
+	case Keys.E:
+	    activedcapacity = (byte) ((activedcapacity == 3) ? 0 : 3);
+	    break;
+	}
     }
 
     public void onKeyReleased(UserEvent e) {

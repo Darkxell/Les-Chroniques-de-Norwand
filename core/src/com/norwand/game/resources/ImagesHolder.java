@@ -31,6 +31,10 @@ public abstract class ImagesHolder {
 		    + "textures/player.png"));
 	    playerset = new Playerset(16, pset);
 	    pset.dispose();
+	    Pixmap cset = new Pixmap(Gdx.files.internal(assetspath
+		    + "textures/capacities.png"));
+	    capacityset = new Capacityset(32, cset);
+	    cset.dispose();
 	    gui = new Pixmap(
 		    Gdx.files.internal(assetspath + "textures/gui.png"));
 	    isinstancied = true;
@@ -52,6 +56,8 @@ public abstract class ImagesHolder {
 	itemset = null;
 	playerset.dispose();
 	playerset = null;
+	capacityset.dispose();
+	capacityset = null;
 	gui.dispose();
 	gui = null;
 	isinstancied = false;
@@ -69,5 +75,6 @@ public abstract class ImagesHolder {
     public static Particleset particleset;
     public static Itemset itemset;
     public static Playerset playerset;
+    public static Capacityset capacityset;
 
 }

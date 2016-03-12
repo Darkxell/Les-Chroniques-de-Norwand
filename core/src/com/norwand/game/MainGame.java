@@ -219,4 +219,9 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 	return y * 240 / Gdx.graphics.getWidth();
 	// Maths here. Yes it works.
     }
+
+    /** Returns the buffer height. Buffer width is ALWAYS 240. */
+    public static int getBufferHeight() {
+	return 240 * Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
+    }
 }
