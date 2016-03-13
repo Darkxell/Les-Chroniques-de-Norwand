@@ -11,6 +11,7 @@ import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.TopState;
 import com.norwand.game.resources.ImagesHolder;
+import com.norwand.game.utility.objects.FramesCounter;
 
 public class MainGame extends ApplicationAdapter implements InputProcessor {
 
@@ -51,7 +52,7 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 		    while (milistart + (frame * 20) > System
 			    .currentTimeMillis()) {
 			try {
-			    Thread.sleep(2);
+			    Thread.sleep(1);
 			} catch (InterruptedException e) {
 			}
 		    }
@@ -74,7 +75,7 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
      */
     SpriteBatch batch = null;
     /**
-     * Backup of the used pixmap to draw on the batch. THis is locally stored so
+     * Backup of the used pixmap to draw on the batch. This is locally stored so
      * it tries to always be in the same memoryheap zone.
      */
     Pixmap pbackup = null;
@@ -82,9 +83,17 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
     private int widthbackup;
     /** The height of the application. */
     private int heightbackup;
+    /** Fps counter. */
+    private FramesCounter fps;
+    private static final boolean SHOWFPS = true;
 
     @Override
     public void render() {
+	if (SHOWFPS) {
+	    if (fps == null)
+		fps = new FramesCounter();
+	    System.out.println("Fps counter : " + fps.calcFPS() + "/sec");
+	}
 	if (batch == null) {
 	    batch = new SpriteBatch(1);
 	    pbackup = new Pixmap(240, 240 * Gdx.graphics.getHeight()
