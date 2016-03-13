@@ -35,8 +35,10 @@ public abstract class ImagesHolder {
 		    + "textures/capacities.png"));
 	    capacityset = new Capacityset(32, cset);
 	    cset.dispose();
-	    gui = new Pixmap(
+	    Pixmap pgui = new Pixmap(
 		    Gdx.files.internal(assetspath + "textures/gui.png"));
+	    gui = new GuiSubImages(pgui);
+	    pgui.dispose();
 	    isinstancied = true;
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -68,7 +70,7 @@ public abstract class ImagesHolder {
 	return isinstancied;
     }
 
-    public static Pixmap gui;
+    public static GuiSubImages gui;
 
     public static Tileset tileset;
     public static Entityset entityset;

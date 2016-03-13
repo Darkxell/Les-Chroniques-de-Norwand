@@ -118,7 +118,7 @@ public class InputConvertor {
      * game using the floor position. This only works if the player is centered
      * in the camera.
      */
-    private Position convertPosition(Position inpixels, PlayerCamera screen) {
+    public static  Position convertPosition(Position inpixels, PlayerCamera screen) {
 	return new Position(screen.x + ((inpixels.x - 120) / 16), screen.y
 		+ ((inpixels.y - (240 * Gdx.graphics.getHeight()
 			/ Gdx.graphics.getWidth() / 2)) / 16));

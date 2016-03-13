@@ -7,7 +7,6 @@ import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.launched.LaunchedState;
 import com.norwand.game.management.gamestates.top.launched.explore.play.PlayState;
 import com.norwand.game.resources.ImagesHolder;
-import com.norwand.game.utility.PixmapUtility;
 
 public class DialogState extends GameState {
 
@@ -26,15 +25,7 @@ public class DialogState extends GameState {
     public void print(Pixmap g) {
 	datapointer.currentfloor.printOn(g, 7.5 - datapointer.player.cam.x,
 		(((double) (g.getHeight())) / 32d) - datapointer.player.cam.y);
-
-	Pixmap dialog = null;
-	try {
-	    dialog = PixmapUtility.getPixmapPart(ImagesHolder.gui, 256, 112,
-		    208, 48);
-	} catch (Exception e) {
-	}
-	g.drawPixmap(dialog, 16, g.getHeight() - 64);
-	dialog.dispose();
+	g.drawPixmap(ImagesHolder.gui.dialog, 16, g.getHeight() - 64);
     }
 
     @Override

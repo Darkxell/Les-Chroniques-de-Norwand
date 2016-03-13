@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.player.Capacity;
 import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.management.gamedata.player.PlayerState;
+import com.norwand.game.management.gamedata.player.states.PS_Teleport;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.objects.Position;
 
@@ -17,7 +18,7 @@ public class Cap_Teleport extends Capacity {
 
     @Override
     public PlayerState getPlayerState(Player pointer, Position cappos) {
-	return null;
+	return new PS_Teleport(pointer, cappos);
     }
 
 }

@@ -5,7 +5,6 @@ import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.launched.LaunchedState;
 import com.norwand.game.resources.ImagesHolder;
-import com.norwand.game.utility.PixmapUtility;
 
 /**
  * State that represents the main menu of the game. This is the openning state
@@ -23,14 +22,7 @@ public class HomeState extends GameState {
 
     @Override
     public void print(Pixmap g) {
-	Pixmap cap = null;
-	try {
-	    cap = PixmapUtility.getPixmapPart(ImagesHolder.gui, 256, 208, 128,
-		    46);
-	} catch (Exception e) {
-	}
-	g.drawPixmap(cap, 60, g.getHeight() / 2 - 23);
-	cap.dispose();
+	g.drawPixmap(ImagesHolder.gui.hometext, 60, g.getHeight() / 2 - 23);
     }
 
     @Override

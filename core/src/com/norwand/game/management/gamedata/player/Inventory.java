@@ -20,6 +20,18 @@ public class Inventory {
     public Capacity slot_cap2 = null;
     /** The third capacity slot of the player. */
     public Capacity slot_cap3 = null;
-    
-    
+
+    public Capacity getCapFromId(byte id) {
+	switch (id) {
+	case 1:
+	    return slot_cap1;
+	case 2:
+	    return slot_cap2;
+	case 3:
+	    return slot_cap3;
+	default:
+	    return null;
+	}
+    }
+
 }
