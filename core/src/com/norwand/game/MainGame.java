@@ -58,9 +58,14 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 		    }
 		    ++frame;
 		    try {
-			update();
+                if (SHOWUPS) {
+                    if (ups == null)
+                        ups = new FramesCounter();
+                    System.out.println("UPS counter : " + ups.calcFPS() + "/sec");
+                }
+			    update();
 		    } catch (Exception e) {
-			e.printStackTrace();
+			    e.printStackTrace();
 		    }
 		}
 	    }
@@ -85,14 +90,16 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
     private int heightbackup;
     /** Fps counter. */
     private FramesCounter fps;
+    private FramesCounter ups;
     private static final boolean SHOWFPS = true;
+    private static final boolean SHOWUPS = true;
 
     @Override
     public void render() {
 	if (SHOWFPS) {
 	    if (fps == null)
 		fps = new FramesCounter();
-	    System.out.println("Fps counter : " + fps.calcFPS() + "/sec");
+	    System.out.println("FPS counter : " + fps.calcFPS() + "/sec");
 	}
 	if (batch == null) {
 	    batch = new SpriteBatch(1);
