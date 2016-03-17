@@ -32,6 +32,7 @@ public class PlayState extends GameState {
     private byte activedcapacity;
     /** Local boolean to show if the act button shows up or not. */
     private boolean canact = false;
+    private int actheight = 0;
 
     public PlayState(GameState parent) {
 	super(parent);
@@ -40,9 +41,14 @@ public class PlayState extends GameState {
     @Override
     public void update() {
 	datapointer.update();
-
 	canact = datapointer.currentfloor.canPlayerAct();
-
+	if (canact) {
+	    if (actheight < 36)
+		actheight +=2;
+	} else {
+	    if (actheight > 0)
+		actheight-=2;
+	}
     }
 
     @Override
@@ -54,8 +60,7 @@ public class PlayState extends GameState {
 	    g.drawPixmap(ImagesHolder.gui.heart, 5 + 16 * i, 6);
 	}
 	g.drawPixmap(ImagesHolder.gui.menubutton, 188, 4);
-	if (canact)
-	    g.drawPixmap(ImagesHolder.gui.actbutton, 134, 4);
+	g.drawPixmap(ImagesHolder.gui.actbutton, 134, actheight - 33);
 	g.drawPixmap(ImagesHolder.gui.capacitiesbar, 20, g.getHeight() - 32);
 	g.setColor(Palette.GREEN);
 	try {
