@@ -12,6 +12,9 @@ public class BitmapFont implements Disposable {
 
     private Pixmap[] caracters;
 
+    /** The length in pixels of the space caracter. */
+    public static final int SPACELENGTH = 4;
+
     /** Constructs a new BitmapFont using the letters pixmap. */
     public BitmapFont(Pixmap source) {
 	int width = source.getWidth() / 8, height = source.getHeight() / 8;
@@ -35,6 +38,38 @@ public class BitmapFont implements Disposable {
 		e.printStackTrace();
 	    }
 	}
+    }
+
+    /** Gets the length in pixels of the given string using this font. */
+    public int getLength(String s) {
+	int length = 0;
+	for (int i = 0; i < s.length(); i++)
+	    if (s.charAt(i) == ' ')
+		length += SPACELENGTH;
+	    else
+		length += 8;
+	return length;
+    }
+
+    /**
+     * Prints the wanted String at the wanted coordonates on the support using
+     * this bitmapfont.
+     */
+    public void printStringOn(Pixmap support, String towrite, int x, int y) {
+	int offset = 0;
+	for (int i = 0; i < towrite.length(); i++) {
+	    if (towrite.charAt(i) == ' ')
+		offset += SPACELENGTH;
+	    else {
+		support.drawPixmap(getChar(towrite.charAt(i)), x + offset, y);
+		offset += 8;
+	    }
+	}
+    }
+
+    /** Gets a 8*8 pixmap representing this character. */
+    public Pixmap getChar(char c) {
+	return caracters[convertChar(c)];
     }
 
     /**

@@ -2,6 +2,7 @@ package com.norwand.game.resources;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
+import com.norwand.game.utility.objects.BitmapFont;
 
 /** Holds different Pixmaps holding the Image sets. */
 public abstract class ImagesHolder {
@@ -39,6 +40,10 @@ public abstract class ImagesHolder {
 		    Gdx.files.internal(assetspath + "textures/gui.png"));
 	    gui = new GuiSubImages(pgui);
 	    pgui.dispose();
+	    Pixmap bmft = new Pixmap(
+		    Gdx.files.internal(assetspath + "textures/font.png"));
+	    font8x8 = new BitmapFont(bmft);
+	    bmft.dispose();
 	    isinstancied = true;
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -62,6 +67,8 @@ public abstract class ImagesHolder {
 	capacityset = null;
 	gui.dispose();
 	gui = null;
+	font8x8.dispose();
+	font8x8 = null;
 	isinstancied = false;
     }
 
@@ -78,5 +85,6 @@ public abstract class ImagesHolder {
     public static Itemset itemset;
     public static Playerset playerset;
     public static Capacityset capacityset;
+    public static BitmapFont font8x8;
 
 }
