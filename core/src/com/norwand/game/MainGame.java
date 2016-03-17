@@ -40,40 +40,41 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 
     @Override
     public void create() {
-        widthbackup = Gdx.graphics.getWidth();
-        heightbackup = Gdx.graphics.getHeight();
-        Gdx.input.setInputProcessor(this);
-        Pixmap.setFilter(Pixmap.Filter.NearestNeighbour);
-        state = new TopState();
-        Thread updater = new Thread(new Runnable() {
-            @Override
-            public void run() {
-            long milistart = System.currentTimeMillis();
-            int frame = 0;
-            for (;;) {
-                while (milistart + (frame * 20) > System
-                    .currentTimeMillis()) {
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException e) {
-                }
-                }
-                ++frame;
-                try {
-                    if (SHOWUPS) {
-                        if (ups == null)
-                            ups = new FramesCounter();
-                        System.out.println("UPS counter : " + ups.calcFPS() + "/sec");
-                    }
-                    update();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            }
-        });
-        updater.start();
-        ImagesHolder.create(ASSETSPATH);
+	widthbackup = Gdx.graphics.getWidth();
+	heightbackup = Gdx.graphics.getHeight();
+	Gdx.input.setInputProcessor(this);
+	Pixmap.setFilter(Pixmap.Filter.NearestNeighbour);
+	state = new TopState();
+	Thread updater = new Thread(new Runnable() {
+	    @Override
+	    public void run() {
+		long milistart = System.currentTimeMillis();
+		int frame = 0;
+		for (;;) {
+		    while (milistart + (frame * 20) > System
+			    .currentTimeMillis()) {
+			try {
+			    Thread.sleep(1);
+			} catch (InterruptedException e) {
+			}
+		    }
+		    ++frame;
+		    try {
+			if (SHOWUPS) {
+			    if (ups == null)
+				ups = new FramesCounter();
+			    System.out.println("UPS counter : " + ups.calcFPS()
+				    + "/sec");
+			}
+			update();
+		    } catch (Exception e) {
+			e.printStackTrace();
+		    }
+		}
+	    }
+	});
+	updater.start();
+	ImagesHolder.create(ASSETSPATH);
     }
 
     /**
@@ -92,49 +93,10 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
     private int heightbackup;
     /** Fps counter. */
     private FramesCounter fps;
-<<<<<<< HEAD
-    private static final boolean SHOWFPS = false;
-
-    @Override
-    public void render() {
-	if (SHOWFPS) {
-	    if (fps == null)
-		fps = new FramesCounter();
-	    System.out.println("Fps counter : " + fps.calcFPS() + "/sec");
-	}
-	if (batch == null) {
-	    batch = new SpriteBatch(1);
-	    pbackup = new Pixmap(240, 240 * Gdx.graphics.getHeight()
-		    / Gdx.graphics.getWidth(), Pixmap.Format.RGB888);
-	}
-	if (widthbackup != Gdx.graphics.getWidth()
-		|| heightbackup != Gdx.graphics.getHeight()) {
-	    batch.dispose();
-	    batch = new SpriteBatch(1);
-	    pbackup.dispose();
-	    pbackup = new Pixmap(240, 240 * Gdx.graphics.getHeight()
-		    / Gdx.graphics.getWidth(), Pixmap.Format.RGB888);
-	    widthbackup = Gdx.graphics.getWidth();
-	    heightbackup = Gdx.graphics.getHeight();
-	}
-	pbackup.setColor(Color.BLACK);
-	pbackup.fill();
-	try {
-	    state.print(pbackup);
-	} catch (Exception e) {
-	    System.err
-		    .println("Could not print the current state to the buffer for some reasons.");
-	    e.printStackTrace();
-	}
-	Texture t = new Texture(pbackup);
-	batch.begin();
-	batch.draw(t, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-	batch.end();
-	t.dispose();
-=======
+    /** Ups counter. */
     private FramesCounter ups;
-    private static final boolean SHOWFPS = true;
-    private static final boolean SHOWUPS = true;
+    private static final boolean SHOWFPS = false;
+    private static final boolean SHOWUPS = false;
 
     @Override
     public void render() {
@@ -170,7 +132,6 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
         batch.draw(t, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
         t.dispose();
->>>>>>> origin/master
     }
 
     /**
@@ -178,8 +139,8 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
      * updates this game to its next frame.
      */
     private void update() {
-        this.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        state.update();
+	this.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+	state.update();
     }
 
     @Override
@@ -196,48 +157,48 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
-        try {
-            state.onKeyReleased(new UserEvent(keycode));
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+	try {
+	    state.onKeyReleased(new UserEvent(keycode));
+	    return true;
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return false;
+	}
     }
 
     @Override
     public boolean keyTyped(char character) {
-        try {
-            state.onType(new UserEvent(character));
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+	try {
+	    state.onType(new UserEvent(character));
+	    return true;
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return false;
+	}
     }
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        try {
-            state.onPress(new UserEvent(button, scaleXdown(screenX),
-                scaleYdown(screenY)));
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+	try {
+	    state.onPress(new UserEvent(button, scaleXdown(screenX),
+		    scaleYdown(screenY)));
+	    return true;
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return false;
+	}
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        try {
-            state.onRelease(new UserEvent(button, scaleXdown(screenX),
-                scaleYdown(screenY)));
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+	try {
+	    state.onRelease(new UserEvent(button, scaleXdown(screenX),
+		    scaleYdown(screenY)));
+	    return true;
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return false;
+	}
     }
 
     @Override
