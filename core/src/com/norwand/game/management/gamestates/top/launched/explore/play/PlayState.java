@@ -32,6 +32,10 @@ public class PlayState extends GameState {
     private byte activedcapacity;
     /** Local boolean to show if the act button shows up or not. */
     private boolean canact = false;
+    /**
+     * the height of the act button. the bigger this value is, the more it
+     * appears on the screen.
+     */
     private int actheight = 0;
 
     public PlayState(GameState parent) {
@@ -43,11 +47,11 @@ public class PlayState extends GameState {
 	datapointer.update();
 	canact = datapointer.currentfloor.canPlayerAct();
 	if (canact) {
-	    if (actheight < 36)
-		actheight +=2;
+	    if (actheight < 37)
+		actheight += 2;
 	} else {
 	    if (actheight > 0)
-		actheight-=2;
+		actheight -= 2;
 	}
     }
 
@@ -60,35 +64,34 @@ public class PlayState extends GameState {
 	    g.drawPixmap(ImagesHolder.gui.heart, 5 + 16 * i, 6);
 	}
 	g.drawPixmap(ImagesHolder.gui.menubutton, 188, 4);
-	g.drawPixmap(ImagesHolder.gui.actbutton, 134, actheight - 33);
+	g.drawPixmap(ImagesHolder.gui.actbutton, 134, actheight - 34);
 	g.drawPixmap(ImagesHolder.gui.capacitiesbar, 20, g.getHeight() - 32);
 	g.setColor(Palette.GREEN);
-	try {
+	if (datapointer.player.inventory.slot_cap1 != null)
 	    g.drawPixmap(datapointer.player.inventory.slot_cap1.getCapIcon(),
 		    36, g.getHeight() - 32);
-	    if (activedcapacity == 1)
-		g.drawRectangle(37, g.getHeight() - 31, 30, 30);
-	} catch (Exception e) {
-	}
-	try {
+	if (activedcapacity == 1)
+	    g.drawRectangle(37, g.getHeight() - 31, 30, 30);
+	if (datapointer.player.inventory.slot_cap2 != null)
 	    g.drawPixmap(datapointer.player.inventory.slot_cap2.getCapIcon(),
 		    68, g.getHeight() - 32);
-	    if (activedcapacity == 2)
-		g.drawRectangle(69, g.getHeight() - 31, 30, 30);
-	} catch (Exception e) {
-	}
-	try {
+	if (activedcapacity == 2)
+	    g.drawRectangle(69, g.getHeight() - 31, 30, 30);
+	if (datapointer.player.inventory.slot_cap3 != null)
 	    g.drawPixmap(datapointer.player.inventory.slot_cap3.getCapIcon(),
 		    100, g.getHeight() - 32);
-	    if (activedcapacity == 3)
-		g.drawRectangle(101, g.getHeight() - 31, 30, 30);
-	} catch (Exception e) {
-	}
+	if (activedcapacity == 3)
+	    g.drawRectangle(101, g.getHeight() - 31, 30, 30);
 	g.drawPixmap(ImagesHolder.gui.itemgui, 192, g.getHeight() - 32);
     }
 
     public void onPress(UserEvent e) {
-	if (e.y > MainGame.getBufferHeight() - 32 && e.x > 36 && e.x < 68
+	if (e.x > 188 && e.y > 4 && e.x < 236 && e.y < 20) {
+	    System.out.println(" > menu");
+	} else if (canact && e.x > 134 && e.y > 4 && e.x < 282 && e.y < 20) {
+	    datapointer.currentfloor.actClosest();
+	} else if (e.y > MainGame.getBufferHeight() - 32 && e.x > 36
+		&& e.x < 68
 		&& datapointer.player.inventory.getCapFromId((byte) 1) != null) {
 	    activedcapacity = (byte) ((activedcapacity == 1) ? 0 : 1);
 	} else if (e.y > MainGame.getBufferHeight() - 32 && e.x > 68
@@ -108,7 +111,10 @@ public class PlayState extends GameState {
 			pl,
 			InputConvertor.convertPosition(new Position(e.x, e.y),
 				pl.cam));
-	    } catch (Exception e2) {
+	    } catch (Exception ex) {
+		System.err
+			.println("Failed to set the player state to this capacity state.\nLogs:");
+		ex.printStackTrace();
 	    }
 	} else {
 	    datapointer.playerinputconvertor.onPress(e);

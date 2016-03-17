@@ -152,6 +152,38 @@ public abstract class Floor {
 	return false;
     }
 
+    /**
+     * Interacts with the closest entity or tileentity it founds, calling its
+     * onAct() method.
+     */
+    public void actClosest() {
+	int te_id = -1, e_id = -1;
+	double te_dist = Double.MAX_VALUE, e_dist = Double.MAX_VALUE;
+	Position playerpos = new Position(GameData.get().player.x,
+		GameData.get().player.y);
+	for (int i = 0; i < entities.length; i++)
+	    if (entities[i].canActWith()
+		    && new Position(entities[i].posX, entities[i].posY)
+			    .getDistanceFrom(playerpos) < e_dist) {
+		e_dist = new Position(entities[i].posX, entities[i].posY)
+			.getDistanceFrom(playerpos);
+		e_id = i;
+	    }
+	for (int i = 0; i < tileentities.length; i++)
+	    if (tileentities[i].canActWith()
+		    && new Position(tileentities[i].posX, tileentities[i].posY)
+			    .getDistanceFrom(playerpos) < e_dist) {
+		te_dist = new Position(tileentities[i].posX,
+			tileentities[i].posY).getDistanceFrom(playerpos);
+		te_id = i;
+	    }
+	if (te_dist != -1 && e_dist != -1)
+	    if (te_dist < e_dist)
+		tileentities[te_id].onAct();
+	    else
+		entities[e_id].onAct();
+    }
+
     /** Deletes this entity from this floor. */
     public void deleteEntity(Entity pointer) {
 	Entity[] newentities = new Entity[entities.length - 1];
