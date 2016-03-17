@@ -81,7 +81,6 @@ public class Player {
      * potition x,y in the current floor.
      */
     public boolean canBeAt(double x, double y) {
-	try {
 	    Floor f = GameData.get().currentfloor;
 	    Position[] cardinals = hitbox.getRectangle(new Position(x, y))
 		    .getCardinals();
@@ -89,8 +88,5 @@ public class Player {
 		if (f.getPhysicsAt(cardinals[i].x, cardinals[i].y) == Tile.TYPE_SOLID)
 		    return false;
 	    return true;
-	} catch (Exception e) {
-	    return true;
-	}
     }
 }

@@ -51,7 +51,7 @@ public abstract class Entity {
      */
     public abstract void onAct();
 
-    /** Returns the hitbox of this entity. */
+    /** Returns the hitbox of this entity the the position in parametters. */
     public abstract DoubleRectangle getHitbox(double posX, double posY);
 
     /** Called when the entity is hit by the player. */

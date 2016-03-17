@@ -1,6 +1,7 @@
 package com.norwand.game.management.gamedata.environement;
 
 import com.badlogic.gdx.graphics.Pixmap;
+import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.entities.Entity;
 import com.norwand.game.management.gamedata.environement.tileentities.TileEntity;
 import com.norwand.game.management.gamedata.environement.tiles.Tile;
@@ -43,11 +44,11 @@ public abstract class Floor {
     /** Updates this floor. This inclues the tiles, entities and tileentities. */
     public void update() {
 	for (int i = 0; i < tiles.length; i++)
-		tiles[i].update();
+	    tiles[i].update();
 	for (int i = 0; i < entities.length; i++)
-		entities[i].update();
+	    entities[i].update();
 	for (int i = 0; i < tileentities.length; i++)
-		tileentities[i].update();
+	    tileentities[i].update();
     }
 
     /**
@@ -105,11 +106,11 @@ public abstract class Floor {
 
     /** Gets the tile at the wanted coordinates in this floor. */
     public Tile getTileAt(int x, int y) {
-	if (!(x > width || y > height || y < 0 || x < 0))
+	if (!(x >= width || y >= height || y < 0 || x < 0))
 	    return tiles[x + (width * y)];
 	else {
 	    System.err.println("Unknown tile at coords : " + x + "/" + y
-		    + " , returned default type.");
+		    + " , returned default template tile (normal type).");
 	    return new Tile(Tile.TYPE_NORMAL, null, null);
 	}
     }
@@ -132,6 +133,23 @@ public abstract class Floor {
 		    tileentities[i].posY).isInside(p))
 		return tileentities[i].getPhysics();
 	return getTileAt((int) p.x, (int) p.y).type;
+    }
+
+    /** Returns true if the player is close to an actable entity or tileentity. */
+    public boolean canPlayerAct() {
+	Position playerpos = new Position(GameData.get().player.x,
+		GameData.get().player.y);
+	for (int i = 0; i < entities.length; i++)
+	    if (entities[i].canActWith()
+		    && playerpos.getDistanceFrom(new Position(entities[i].posX,
+			    entities[i].posY)) < 1.5)
+		return true;
+	for (int i = 0; i < tileentities.length; i++)
+	    if (tileentities[i].canActWith()
+		    && playerpos.getDistanceFrom(new Position(
+			    tileentities[i].posX, tileentities[i].posY)) < 1.5)
+		return true;
+	return false;
     }
 
     /** Deletes this entity from this floor. */
@@ -182,6 +200,22 @@ public abstract class Floor {
 	System.arraycopy(tileentities, 0, entities2, 0, tileentities.length);
 	entities2[tileentities.length] = toAdd;
 	tileentities = entities2;
+    }
+
+    /**
+     * Gets the Entities of this floor. The returned array entities share the
+     * same datas as the real floor entities.
+     */
+    public Entity[] getEntities() {
+	return this.entities;
+    }
+
+    /**
+     * Gets the TileEntities of this floor. The returned array tileEntities
+     * share the same datas as the real floor tileEntities.
+     */
+    public Entity[] getTileEntities() {
+	return this.tileentities;
     }
 
 }

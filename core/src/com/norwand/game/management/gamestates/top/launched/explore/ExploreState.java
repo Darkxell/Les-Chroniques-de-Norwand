@@ -9,7 +9,7 @@ import com.norwand.game.management.gamestates.top.launched.explore.dialog.Dialog
  * This unseen by the user state represents all of the exploration possible. It
  * contains all the states where you see your player, the world around you...<br>
  * For exemples see <code>PlayState</code> or <code>CutsceneState.</code><br>
- * THis state will draw the world in it's print() method, before calling his
+ * This state will draw the world in it's print() method, before calling his
  * son's print one.
  */
 public class ExploreState extends GameState {
@@ -26,7 +26,6 @@ public class ExploreState extends GameState {
 
     @Override
     public void print(Pixmap g) {
-	// TODO : print world.
 	substate.print(g);
     }
 

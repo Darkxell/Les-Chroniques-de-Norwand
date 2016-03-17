@@ -12,6 +12,7 @@ public class SignPost extends TileEntity {
 
     public SignPost(Floor roompointer, double x, double y) {
 	super(Tile.TYPE_SOLID, roompointer, x, y);
+	actable = true;
     }
 
     @Override
@@ -25,8 +26,8 @@ public class SignPost extends TileEntity {
 
     @Override
     public void onAct() {
-	MainGame.game.state.substate.substate.substate = new DialogState(MainGame.game.state.substate.substate);
-
+	MainGame.game.state.substate.substate.substate = new DialogState(
+		MainGame.game.state.substate.substate);
     }
 
     @Override

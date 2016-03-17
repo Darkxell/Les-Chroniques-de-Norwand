@@ -13,6 +13,7 @@ public abstract class TileEntity extends Entity {
 
     public TileEntity(byte type, Floor roompointer, double x, double y) {
 	super(roompointer, x, y);
+	this.type = type;
     }
 
     /** The physics of this tileentity. */
