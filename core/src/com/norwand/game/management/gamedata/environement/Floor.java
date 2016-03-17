@@ -43,20 +43,11 @@ public abstract class Floor {
     /** Updates this floor. This inclues the tiles, entities and tileentities. */
     public void update() {
 	for (int i = 0; i < tiles.length; i++)
-	    try {
 		tiles[i].update();
-	    } catch (Exception e) {
-	    }
 	for (int i = 0; i < entities.length; i++)
-	    try {
 		entities[i].update();
-	    } catch (Exception e) {
-	    }
 	for (int i = 0; i < tileentities.length; i++)
-	    try {
 		tileentities[i].update();
-	    } catch (Exception e) {
-	    }
     }
 
     /**
@@ -75,13 +66,11 @@ public abstract class Floor {
 	// print background
 	for (int i = 0; i < width; i++)
 	    for (int j = 0; j < height; j++) {
-		try {
+		if (tiles[i + j * width].background != null)
 		    for (int j2 = 0; j2 < tiles[i + j * width].background.length; j2++)
 			g.drawPixmap(tiles[i + j * width].background[j2]
 				.getCurrentFrame(), (int) (16 * (i + x)),
 				(int) (16 * (j + y)));
-		} catch (Exception e) {
-		}
 	    }
 	// Print player
 	g.drawPixmap(playerpointer.getSprite(),
@@ -90,28 +79,28 @@ public abstract class Floor {
 		(int) ((playerpointer.y + y) * 16)
 			- (playerpointer.getSprite().getHeight() / 2));
 	// Print entities n stuff
-	for (int j = 0; j < entities.length; j++) {
-	    try {
-		g.drawPixmap(
-			entities[j].getCurrentSprite(),
-			(int) (16 * (entities[j].posX + x))
-				- (entities[j].getCurrentSprite().getWidth() / 2),
-			(int) (16 * (entities[j].posY + y))
-				- (entities[j].getCurrentSprite().getHeight() / 2));
-	    } catch (Exception e) {
-	    }
-	}
+	for (int j = 0; j < entities.length; j++)
+	    g.drawPixmap(entities[j].getCurrentSprite(),
+		    (int) (16 * (entities[j].posX + x))
+			    - (entities[j].getCurrentSprite().getWidth() / 2),
+		    (int) (16 * (entities[j].posY + y))
+			    - (entities[j].getCurrentSprite().getHeight() / 2));
+
+	for (int j = 0; j < tileentities.length; j++)
+	    g.drawPixmap(
+		    tileentities[j].getCurrentSprite(),
+		    (int) (16 * (tileentities[j].posX + x))
+			    - (tileentities[j].getCurrentSprite().getWidth() / 2),
+		    (int) (16 * (tileentities[j].posY + y))
+			    - (tileentities[j].getCurrentSprite().getHeight() / 2));
 	// Print foreground
 	for (int i = 0; i < width; i++)
-	    for (int j = 0; j < height; j++) {
-		try {
+	    for (int j = 0; j < height; j++)
+		if (tiles[i + j * width].foreground != null)
 		    for (int j2 = 0; j2 < tiles[i + j * width].foreground.length; j2++)
 			g.drawPixmap(tiles[i + j * width].foreground[j2]
 				.getCurrentFrame(), (int) (16 * (i + x)),
 				(int) (16 * (j + y)));
-		} catch (Exception e) {
-		}
-	    }
     }
 
     /** Gets the tile at the wanted coordinates in this floor. */
@@ -168,6 +157,31 @@ public abstract class Floor {
 	System.arraycopy(entities, 0, entities2, 0, entities.length);
 	entities2[entities.length] = toAdd;
 	entities = entities2;
+    }
+
+    /** Deletes this tileentity from this floor. */
+    public void deleteTileEntity(TileEntity pointer) {
+	TileEntity[] newentities = new TileEntity[tileentities.length - 1];
+	int removeid = -1;
+	for (int i = 0; i < tileentities.length; i++)
+	    if (tileentities[i] == pointer)
+		removeid = i;
+	if (removeid == -1)
+	    System.err.println("Entitée non trouvée. Délétion impossible.");
+	else {
+	    System.arraycopy(tileentities, 0, newentities, 0, removeid);
+	    System.arraycopy(tileentities, removeid + 1, newentities, removeid,
+		    tileentities.length - 1 - removeid);
+	    this.tileentities = newentities;
+	}
+    }
+
+    /** Adds this tileentity to this floor. */
+    public void addTileEntity(TileEntity toAdd) {
+	TileEntity[] entities2 = new TileEntity[entities.length + 1];
+	System.arraycopy(tileentities, 0, entities2, 0, tileentities.length);
+	entities2[tileentities.length] = toAdd;
+	tileentities = entities2;
     }
 
 }

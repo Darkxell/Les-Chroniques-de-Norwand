@@ -36,4 +36,8 @@ public class Mimic extends Monster {
 	kill();
     }
 
+    @Override
+    public void onAct() {
+    }// Does nothing
+
 }

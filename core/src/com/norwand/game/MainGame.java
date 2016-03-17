@@ -13,8 +13,10 @@ import com.norwand.game.management.gamestates.top.TopState;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.objects.FramesCounter;
 
+/** The maingame object. */
 public class MainGame extends ApplicationAdapter implements InputProcessor {
 
+    /** Static pointer to the last constructed MainGame object. */
     public static MainGame game;
 
     /** Constructs a maingame object with the assets path. */
@@ -85,7 +87,7 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
     private int heightbackup;
     /** Fps counter. */
     private FramesCounter fps;
-    private static final boolean SHOWFPS = true;
+    private static final boolean SHOWFPS = false;
 
     @Override
     public void render() {
@@ -116,6 +118,7 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 	} catch (Exception e) {
 	    System.err
 		    .println("Could not print the current state to the buffer for some reasons.");
+	    e.printStackTrace();
 	}
 	Texture t = new Texture(pbackup);
 	batch.begin();

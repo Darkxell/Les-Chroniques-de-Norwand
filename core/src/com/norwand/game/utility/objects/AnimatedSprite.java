@@ -54,6 +54,7 @@ public class AnimatedSprite implements Disposable {
 	    frames[i].dispose();
     }
 
+    /** Updates this animated sprite. */
     public void update() {
 	if (frames.length > 1)
 	    if (updater < 0) {

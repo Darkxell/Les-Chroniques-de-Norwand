@@ -1,6 +1,5 @@
 package com.norwand.game.management.gamedata.environement.entities;
 
-import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.player.Player;
@@ -13,20 +12,8 @@ public abstract class Monster extends Entity {
 	super(roompointer, x, y);
     }
 
-    @Override
-    public abstract void update();
-
-    @Override
-    public abstract Pixmap getCurrentSprite();
-
-    @Override
-    public abstract DoubleRectangle getHitbox(double posX, double posY);
-
-    @Override
-    public abstract void onhit(double damage);
-
     /**
-     * knockback the player from this monster if it collides with the player
+     * Knockback the player from this monster if it collides with the player
      * hitbox.
      */
     public void knockback() {

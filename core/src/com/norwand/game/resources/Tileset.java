@@ -10,8 +10,13 @@ public class Tileset extends PixmapSet {
 	super(tilesize, source);
     }
 
-    /** Returns the annimated sprite of the wanted tile tileset. */
+    /**
+     * Returns the annimated sprite of the wanted tile tileset. This is
+     * unoptimized, and should not be used in the gameloop.
+     */
     public AnimatedSprite getTileAnimation(int id) {
+	if (id == -1)
+	    return null;
 	switch (id) {
 	case 565:
 	    return new AnimatedSprite(new Pixmap[] { tiles[565], tiles[1013] },

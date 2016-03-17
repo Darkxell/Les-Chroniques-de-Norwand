@@ -5,6 +5,10 @@ import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.utility.Directions;
 import com.norwand.game.utility.objects.DoubleRectangle;
 
+/**
+ * An entity of the game. This is basically anything that isn't a tile or the
+ * player.
+ */
 public abstract class Entity {
 
     /** Pointer to the room containing the entity. */
@@ -13,6 +17,8 @@ public abstract class Entity {
     public double posX;
     /** The Y position of the entity in its room. */
     public double posY;
+    /** Is true if the entity can interact with the player via the act button. */
+    protected boolean actable;
 
     /** The health of the entity. */
     public double hp;
@@ -39,6 +45,12 @@ public abstract class Entity {
     /** Gets the sprite of this entity. */
     public abstract Pixmap getCurrentSprite();
 
+    /**
+     * Called when the player acts with this entity. This should do something if
+     * this entity is actable.
+     */
+    public abstract void onAct();
+
     /** Returns the hitbox of this entity. */
     public abstract DoubleRectangle getHitbox(double posX, double posY);
 
@@ -48,5 +60,10 @@ public abstract class Entity {
     /** Deletes this entity from its parent room. */
     public void kill() {
 	this.roompointer.deleteEntity(this);
+    }
+
+    /** Returns true if you can act with this entity. */
+    public boolean canActWith() {
+	return actable;
     }
 }

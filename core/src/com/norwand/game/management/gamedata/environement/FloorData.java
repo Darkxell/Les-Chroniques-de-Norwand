@@ -69,17 +69,29 @@ public class FloorData {
 	tiles = new Tile[width * height];
 	for (int i = 0; i < width * height; i++) {
 	    try {
-		tiles[i] = new Tile((byte) converttiletype(phy[i] - 1),
-			new AnimatedSprite[] {
-				ImagesHolder.tileset
-					.getTileAnimation(bg1[i] - 1),
-				ImagesHolder.tileset
-					.getTileAnimation(bg2[i] - 1) },
-			new AnimatedSprite[] {
-				ImagesHolder.tileset
-					.getTileAnimation(fg1[i] - 1),
-				ImagesHolder.tileset
-					.getTileAnimation(fg2[i] - 1) });
+		AnimatedSprite[] a1 = new AnimatedSprite[] {};
+		if (bg1[i] != 0 && bg2[i] != 0)
+		    a1 = new AnimatedSprite[] {
+			    ImagesHolder.tileset.getTileAnimation(bg1[i] - 1),
+			    ImagesHolder.tileset.getTileAnimation(bg2[i] - 1) };
+		else if (bg1[i] != 0 && bg2[i] == 0)
+		    a1 = new AnimatedSprite[] { ImagesHolder.tileset
+			    .getTileAnimation(bg1[i] - 1) };
+		else if (bg1[i] == 0 && bg2[i] != 0)
+		    a1 = new AnimatedSprite[] { ImagesHolder.tileset
+			    .getTileAnimation(bg2[i] - 1) };
+		AnimatedSprite[] a2 = new AnimatedSprite[] {};
+		if (fg1[i] != 0 && fg2[i] != 0)
+		    a2 = new AnimatedSprite[] {
+			    ImagesHolder.tileset.getTileAnimation(fg1[i] - 1),
+			    ImagesHolder.tileset.getTileAnimation(fg2[i] - 1) };
+		else if (fg1[i] != 0 && fg2[i] == 0)
+		    a2 = new AnimatedSprite[] { ImagesHolder.tileset
+			    .getTileAnimation(fg1[i] - 1) };
+		else if (fg1[i] == 0 && fg2[i] != 0)
+		    a2 = new AnimatedSprite[] { ImagesHolder.tileset
+			    .getTileAnimation(fg2[i] - 1) };
+		tiles[i] = new Tile((byte) converttiletype(phy[i] - 1), a1, a2);
 	    } catch (Exception e) {
 		System.err.println("Couldn't create tile " + i
 			+ " when creating a floor.");

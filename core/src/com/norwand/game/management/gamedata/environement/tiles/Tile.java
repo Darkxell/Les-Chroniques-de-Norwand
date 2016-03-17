@@ -25,16 +25,10 @@ public class Tile {
     public AnimatedSprite[] foreground;
 
     public void update() {
-	for (int i = 0; i < background.length; i++) 
-	    try {
-		    background[i].update();
-		} catch (Exception e) {
-		}
-	for (int i = 0; i < foreground.length; i++) 
-	    try {
-		    foreground[i].update();
-		} catch (Exception e) {
-		}
+	for (int i = 0; i < background.length; i++)
+		background[i].update();
+	for (int i = 0; i < foreground.length; i++)
+		foreground[i].update();
 
     }
 }

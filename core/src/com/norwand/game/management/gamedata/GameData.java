@@ -13,7 +13,7 @@ import com.norwand.game.management.gamestates.top.launched.LaunchedState;
  */
 public class GameData {
 
-    /**
+    /** 
      * Default GameData constructor.
      * 
      * @see GameData(SaveFile)
