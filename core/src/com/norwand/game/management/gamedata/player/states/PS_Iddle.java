@@ -1,6 +1,8 @@
 package com.norwand.game.management.gamedata.player.states;
 
 import com.badlogic.gdx.graphics.Pixmap;
+import com.norwand.game.management.gamedata.GameData;
+import com.norwand.game.management.gamedata.environement.tiles.Tile;
 import com.norwand.game.management.gamedata.player.Capacity;
 import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.management.gamedata.player.PlayerState;
@@ -17,7 +19,8 @@ public class PS_Iddle extends PlayerState {
 
     @Override
     public void update() {
-	// Does nothing I guess?
+	if(GameData.get().currentfloor.getPhysicsAt(player.x, player.y)==Tile.TYPE_WATER)
+	    player.state = new PS_Drown(player);
     }
 
     @Override

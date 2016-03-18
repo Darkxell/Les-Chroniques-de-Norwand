@@ -184,6 +184,24 @@ public abstract class Floor {
 		entities[e_id].onAct();
     }
 
+    /**
+     * Returns the closest Default type tile position. The returned position is
+     * the middle of the tile.
+     */
+    public Position getClosestRespawnPoint(Position from) {
+	int x = (int) from.x, y = (int) from.y;
+	if (getPhysicsAt(x + 0.5, y + 0.5) == Tile.TYPE_NORMAL)
+	    return new Position(x + 0.5, y + 0.5);
+	for (int dist = 1; dist < 15; ++dist)
+	    for (int i = -dist; i <= dist; ++i)
+		for (int j = -dist; j <= dist; ++j)
+		    if (getPhysicsAt(x + 0.5 + i, y + 0.5 + j) == Tile.TYPE_NORMAL)
+			return new Position(x + 0.5 + i, y + 0.5 + j);
+	System.err.println("Could not return a respawn point from " + from.x
+		+ "/" + from.y + ".");
+	return from;
+    }
+
     /** Deletes this entity from this floor. */
     public void deleteEntity(Entity pointer) {
 	Entity[] newentities = new Entity[entities.length - 1];

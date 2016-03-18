@@ -1,6 +1,8 @@
 package com.norwand.game.management.gamedata.player.states;
 
 import com.badlogic.gdx.graphics.Pixmap;
+import com.norwand.game.management.gamedata.GameData;
+import com.norwand.game.management.gamedata.environement.tiles.Tile;
 import com.norwand.game.management.gamedata.player.Capacity;
 import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.management.gamedata.player.PlayerState;
@@ -26,6 +28,8 @@ public class PS_Walk extends PlayerState {
 
     @Override
     public void update() {
+	if(GameData.get().currentfloor.getPhysicsAt(player.x, player.y)==Tile.TYPE_WATER)
+	    player.state = new PS_Drown(player);
 	--countdown;
 	if (countdown < 0) {
 	    countdown = 10;// Frames per sprite
