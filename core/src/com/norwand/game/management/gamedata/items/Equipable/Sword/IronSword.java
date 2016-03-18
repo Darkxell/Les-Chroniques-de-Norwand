@@ -6,8 +6,8 @@ import com.norwand.game.resources.ImagesHolder;
 public class IronSword extends Sword{
 
     public IronSword(){
-        this.displayName = "Epée en fer";
-        this.itemDescription = "Une épée forgée de fer";
+        this.displayName = "EpÃ©e en fer";
+        this.itemDescription = "Une Ã©pÃ©e forgÃ©e de fer";
         this.damage = 1;
         this.armor = 0;
     }
