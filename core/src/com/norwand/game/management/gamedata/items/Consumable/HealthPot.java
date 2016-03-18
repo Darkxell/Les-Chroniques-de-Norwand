@@ -11,7 +11,7 @@ public class HealthPot extends Item {
 
     public HealthPot(){
         this.displayName = "Potion de vie";
-        this.itemDescription = "Potion de vie, permet de récuperer ... de la vie.";
+        this.itemDescription = "Potion de vie, permet de rÃ©cuperer ... de la vie.";
     }
 
     @Override

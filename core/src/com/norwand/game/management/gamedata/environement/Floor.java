@@ -210,7 +210,7 @@ public abstract class Floor {
 	    if (entities[i] == pointer)
 		removeid = i;
 	if (removeid == -1)
-	    System.err.println("Entitée non trouvée. Délétion impossible.");
+	    System.err.println("EntitÃ©e non trouvÃ©e. DÃ©lÃ©tion impossible.");
 	else {
 	    System.arraycopy(entities, 0, newentities, 0, removeid);
 	    System.arraycopy(entities, removeid + 1, newentities, removeid,
@@ -235,7 +235,7 @@ public abstract class Floor {
 	    if (tileentities[i] == pointer)
 		removeid = i;
 	if (removeid == -1)
-	    System.err.println("Entitée non trouvée. Délétion impossible.");
+	    System.err.println("EntitÃ©e non trouvÃ©e. DÃ©lÃ©tion impossible.");
 	else {
 	    System.arraycopy(tileentities, 0, newentities, 0, removeid);
 	    System.arraycopy(tileentities, removeid + 1, newentities, removeid,
