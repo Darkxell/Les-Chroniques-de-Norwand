@@ -5,33 +5,32 @@ import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
-import com.norwand.game.management.gamedata.environement.entities.monsters.Mimic;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
 
-public class Floor_Prison extends Floor {
+public class Floor_Coloseum extends Floor {
 
-    public Floor_Prison(Player playerpointer) {
+    public Floor_Coloseum(Player playerpointer) {
 	super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
-		+ "maps/prison.txt")), playerpointer);
-	addEntity(new Mimic(this, 21, 9.5));
-	setTileAt(1, 0,new WarpZone(getTileAt(1, 0), 13, 18) {
+		+ "maps/coloseum.txt")), playerpointer);
+	setTileAt(12, 20,new WarpZone(getTileAt(12, 20), 2, 1) {
 	    @Override
 	    public Floor getDestination() {
-		return new Floor_Coloseum(GameData.get().player);
+		return new Floor_Prison(GameData.get().player);
 	    }
 	});
-	setTileAt(2, 0,new WarpZone(getTileAt(2, 0), 13, 18) {
+	setTileAt(13, 20,new WarpZone(getTileAt(13, 20), 2, 1) {
 	    @Override
 	    public Floor getDestination() {
-		return new Floor_Coloseum(GameData.get().player);
+		return new Floor_Prison(GameData.get().player);
 	    }
 	});
-	setTileAt(3, 0,new WarpZone(getTileAt(3, 0), 13, 18) {
+	setTileAt(14, 20,new WarpZone(getTileAt(14, 20), 2, 1) {
 	    @Override
 	    public Floor getDestination() {
-		return new Floor_Coloseum(GameData.get().player);
+		return new Floor_Prison(GameData.get().player);
 	    }
 	});
     }
+
 }

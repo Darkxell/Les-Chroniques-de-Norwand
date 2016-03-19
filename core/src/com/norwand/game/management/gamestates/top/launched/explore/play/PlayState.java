@@ -60,7 +60,6 @@ public class PlayState extends GameState {
 	datapointer.currentfloor.printOn(g, 7.5 - datapointer.player.cam.x,
 		(((double) (g.getHeight())) / 32d) - datapointer.player.cam.y);
 	// --------------
-	ImagesHolder.font8x8.printStringOn(g, "Test de BitmapFont!", 10, 25);
 	for (int i = 0; i < 5; i++) {
 	    g.drawPixmap(ImagesHolder.gui.heart, 5 + 16 * i, 6);
 	}

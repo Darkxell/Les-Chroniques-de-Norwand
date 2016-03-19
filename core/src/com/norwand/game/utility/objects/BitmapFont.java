@@ -220,7 +220,7 @@ public class BitmapFont implements Disposable {
 	    return 69;
 	case '^':
 	    return 70;
-	case 'Â¨':
+	case '¨':
 	    return 71;
 	case '%':
 	    return 72;
@@ -228,11 +228,11 @@ public class BitmapFont implements Disposable {
 	    return 73;
 	case '!':
 	    return 74;
-	case 'Â§':
+	case '§':
 	    return 75;
 	case '$':
 	    return 76;
-	case 'â‚¬':
+	case '€':
 	    return 77;
 	case '(':
 	    return 78;
@@ -250,7 +250,7 @@ public class BitmapFont implements Disposable {
 	    return 84;
 	case '&':
 	    return 85;
-	case 'Â²':
+	case '²':
 	    return 86;
 	case '"':
 	    return 87;
@@ -258,7 +258,7 @@ public class BitmapFont implements Disposable {
 	    return 88;
 	case '|':
 	    return 89;
-	case 'Â°':
+	case '°':
 	    return 90;
 	case '=':
 	    return 91;
@@ -266,41 +266,41 @@ public class BitmapFont implements Disposable {
 	    return 92;
 	case '>':
 	    return 93;
-	case 'Â£':
+	case '£':
 	    return 94;
-	case 'Â¤':
+	case '¤':
 	    return 95;
-	case 'Âµ':
+	case 'µ':
 	    return 100;
 	case '\n':
 	    return 101;
 	case '#':
 	    return 102;
-	case 'Ã©':
+	case 'é':
 	    return 104;
-	case 'Ã¨':
+	case 'è':
 	    return 105;
-	case 'Ã ':
+	case 'à':
 	    return 106;
-	case 'Ãª':
+	case 'ê':
 	    return 107;
-	case 'Ã«':
+	case 'ë':
 	    return 108;
-	case 'Ã´':
+	case 'ô':
 	    return 109;
-	case 'Ã¶':
+	case 'ö':
 	    return 110;
-	case 'Ã§':
+	case 'ç':
 	    return 111;
-	case 'Ã®':
+	case 'î':
 	    return 112;
-	case 'Ã¯':
+	case 'ï':
 	    return 113;
-	case 'Ã»':
+	case 'û':
 	    return 114;
-	case 'Ã¹':
+	case 'ù':
 	    return 115;
-	case 'Ã¢':
+	case 'â':
 	    return 116;
 	default:
 	    return 103;

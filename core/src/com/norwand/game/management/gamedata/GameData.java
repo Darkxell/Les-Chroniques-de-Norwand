@@ -2,7 +2,7 @@ package com.norwand.game.management.gamedata;
 
 import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.environement.Floor;
-import com.norwand.game.management.gamedata.environement.floors.Floor_Snow;
+import com.norwand.game.management.gamedata.environement.floors.Floor_Prison;
 import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.management.gamestates.top.launched.LaunchedState;
 
@@ -13,7 +13,7 @@ import com.norwand.game.management.gamestates.top.launched.LaunchedState;
  */
 public class GameData {
 
-    /** 
+    /**
      * Default GameData constructor.
      * 
      * @see GameData(SaveFile)
@@ -34,7 +34,7 @@ public class GameData {
      * The current Floor. This includes the physical and graphical physics, the
      * entities and more.
      */
-    public Floor currentfloor = new Floor_Snow(this.player);
+    public Floor currentfloor = new Floor_Prison(this.player);
 
     /** Updates the data of the game. */
     public void update() {
