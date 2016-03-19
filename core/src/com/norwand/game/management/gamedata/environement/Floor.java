@@ -186,7 +186,7 @@ public abstract class Floor {
 
     /**
      * Returns the closest Default type tile position. The returned position is
-     * the middle of the tile.
+     * the middle of the tile. This cannot return a position outside of this floor. 
      */
     public Position getClosestRespawnPoint(Position from) {
 	int x = (int) from.x, y = (int) from.y;
@@ -195,7 +195,7 @@ public abstract class Floor {
 	for (int dist = 1; dist < 15; ++dist)
 	    for (int i = -dist; i <= dist; ++i)
 		for (int j = -dist; j <= dist; ++j)
-		    if (getPhysicsAt(x + 0.5 + i, y + 0.5 + j) == Tile.TYPE_NORMAL)
+		    if (x+i >= 0 && x+i < width && y+j >= 0 && y+j < height && getPhysicsAt(x + 0.5 + i, y + 0.5 + j) == Tile.TYPE_NORMAL)
 			return new Position(x + 0.5 + i, y + 0.5 + j);
 	System.err.println("Could not return a respawn point from " + from.x
 		+ "/" + from.y + ".");
