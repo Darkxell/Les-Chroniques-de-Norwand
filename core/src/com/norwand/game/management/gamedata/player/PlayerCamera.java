@@ -29,13 +29,13 @@ public class PlayerCamera {
 	DoubleRectangle zone = getFloorInnerRectangle();
 	if (!zone.isInside(new Position(x, y))) {
 	    if (x < zone.x)
-		x+=0.5;
+		++x;
 	    else if (x > zone.x + zone.width)
-		x-=0.5;
+		--x;
 	    if (y < zone.y)
-		y+=0.5;
+		++y;
 	    else if (y > zone.y + zone.height)
-		y-=0.5;
+		--y;
 	} else {
 	    if (zone.isInside(new Position(p.x, y)))
 		x = p.x;
@@ -58,7 +58,9 @@ public class PlayerCamera {
      */
     public DoubleRectangle getFloorInnerRectangle() {
 	double pheight = 15 * Gdx.graphics.getHeight()
-		/ Gdx.graphics.getWidth(), pwidth = 15;
+		/ Gdx.graphics.getWidth() + 1, pwidth = 15;
+	// Not really sure why the +1 here, seems like it fixes a floatpoint
+	// problem. Works fine this way.
 	return new DoubleRectangle(pwidth / 2, pheight / 2,
 		GameData.get().currentfloor.width - pwidth,
 		GameData.get().currentfloor.height - pheight);

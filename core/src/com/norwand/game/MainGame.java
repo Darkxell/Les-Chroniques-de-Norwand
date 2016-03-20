@@ -68,6 +68,8 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 			}
 			update();
 		    } catch (Exception e) {
+			System.err
+				.println("Couldn't update the gameData.\nLogs :");
 			e.printStackTrace();
 		    }
 		}
@@ -100,38 +102,40 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 
     @Override
     public void render() {
-        if (SHOWFPS) {
-            if (fps == null)
-            fps = new FramesCounter();
-            System.out.println("FPS : " + fps.calcFPS() + "/sec");
-        }
-        if (batch == null) {
-            batch = new SpriteBatch(1);
-            pbackup = new Pixmap(240, 240 * Gdx.graphics.getHeight()
-                / Gdx.graphics.getWidth(), Pixmap.Format.RGB888);
-        }
-        if (widthbackup != Gdx.graphics.getWidth()
-            || heightbackup != Gdx.graphics.getHeight()) {
-            batch.dispose();
-            batch = new SpriteBatch(1);
-            pbackup.dispose();
-            pbackup = new Pixmap(240, 240 * Gdx.graphics.getHeight()
-                / Gdx.graphics.getWidth(), Pixmap.Format.RGB888);
-            widthbackup = Gdx.graphics.getWidth();
-            heightbackup = Gdx.graphics.getHeight();
-        }
-        pbackup.setColor(Color.BLACK);
-        pbackup.fill();
-        try {
-            state.print(pbackup);
-        } catch (Exception e) {
-            System.err.println("Could not print the current state to the buffer for some reasons.");
-        }
-        Texture t = new Texture(pbackup);
-        batch.begin();
-        batch.draw(t, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        batch.end();
-        t.dispose();
+	if (SHOWFPS) {
+	    if (fps == null)
+		fps = new FramesCounter();
+	    System.out.println("FPS : " + fps.calcFPS() + "/sec");
+	}
+	if (batch == null) {
+	    batch = new SpriteBatch(1);
+	    pbackup = new Pixmap(240, 240 * Gdx.graphics.getHeight()
+		    / Gdx.graphics.getWidth(), Pixmap.Format.RGB888);
+	}
+	if (widthbackup != Gdx.graphics.getWidth()
+		|| heightbackup != Gdx.graphics.getHeight()) {
+	    batch.dispose();
+	    batch = new SpriteBatch(1);
+	    pbackup.dispose();
+	    pbackup = new Pixmap(240, 240 * Gdx.graphics.getHeight()
+		    / Gdx.graphics.getWidth(), Pixmap.Format.RGB888);
+	    widthbackup = Gdx.graphics.getWidth();
+	    heightbackup = Gdx.graphics.getHeight();
+	}
+	pbackup.setColor(Color.BLACK);
+	pbackup.fill();
+	try {
+	    state.print(pbackup);
+	} catch (Exception e) {
+	    System.err
+		    .println("Could not print the current state to the buffer for some reasons.\nLogs :");
+	    e.printStackTrace();
+	}
+	Texture t = new Texture(pbackup);
+	batch.begin();
+	batch.draw(t, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+	batch.end();
+	t.dispose();
     }
 
     /**
