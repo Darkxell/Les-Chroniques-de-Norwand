@@ -1,5 +1,8 @@
 package com.norwand.game.management.gamedata.player;
 
+import com.badlogic.gdx.Gdx;
+import com.norwand.game.management.gamedata.GameData;
+import com.norwand.game.utility.objects.DoubleRectangle;
 import com.norwand.game.utility.objects.MathVector;
 import com.norwand.game.utility.objects.Position;
 
@@ -22,8 +25,43 @@ public class PlayerCamera {
      */
     public void update() {
 	MathVector dir = new MathVector(target.x - x, target.y - y);
-	Position p = dir.getFixedTranslation(x, y, dir.getBasicLength() / 10);
-	x = p.x;
-	y = p.y;
+	Position p = dir.getFixedTranslation(x, y, dir.getBasicLength() / 9);
+	DoubleRectangle zone = getFloorInnerRectangle();
+	if (!zone.isInside(new Position(x, y))) {
+	    if (x < zone.x)
+		x+=0.5;
+	    else if (x > zone.x + zone.width)
+		x-=0.5;
+	    if (y < zone.y)
+		y+=0.5;
+	    else if (y > zone.y + zone.height)
+		y-=0.5;
+	} else {
+	    if (zone.isInside(new Position(p.x, y)))
+		x = p.x;
+	    if (zone.isInside(new Position(x, p.y)))
+		y = p.y;
+	}
+
     }
+
+    /**
+     * Returns a doubleRectangle representing where the camera entity can be in
+     * the current frame to only pring the floor interior when printed. This
+     * only works assuming the cammera x/y position is printed at the center of
+     * the screen.
+     * 
+     * @return The double rectangle representing the possible positions, in the
+     *         gameengine coordinates. The returned rectangle might have a
+     *         negative Width/height if there is no way the camera can fit
+     *         inside the room.
+     */
+    public DoubleRectangle getFloorInnerRectangle() {
+	double pheight = 15 * Gdx.graphics.getHeight()
+		/ Gdx.graphics.getWidth(), pwidth = 15;
+	return new DoubleRectangle(pwidth / 2, pheight / 2,
+		GameData.get().currentfloor.width - pwidth,
+		GameData.get().currentfloor.height - pheight);
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.norwand.game.management.gamedata.player.states;
 
 import com.badlogic.gdx.graphics.Pixmap;
+import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.player.Capacity;
 import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.management.gamedata.player.PlayerState;
@@ -14,14 +15,23 @@ public class PS_Teleport extends PlayerState {
 	tpto = p;
     }
 
+    /** The position the player is gonna teleport to in the current floor. */
     private Position tpto;
+    /** THe state iterator. */
     private byte counter = 15;
 
     @Override
     public void update() {
 	if (counter == 15) {
-	    player.x = tpto.x;
-	    player.y = tpto.y;
+	    if (player.canBeAt(tpto.x, tpto.y)) {
+		player.x = tpto.x;
+		player.y = tpto.y;
+	    } else {
+		Position p = GameData.get().currentfloor
+			.getClosestRespawnPoint(tpto);
+		player.x = p.x;
+		player.y = p.y;
+	    }
 	}
 	--counter;
 	if (counter < 0)

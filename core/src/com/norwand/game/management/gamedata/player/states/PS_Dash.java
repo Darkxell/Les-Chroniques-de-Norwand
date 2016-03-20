@@ -19,7 +19,7 @@ public class PS_Dash extends PlayerState {
     }
 
     /** The speed of the dash. */
-    private static final double DASHSPEED = 1.1;
+    private static final double DASHSPEED = 0.9;
     /** The length of this state in frames. */
     private int framelength;
     /** The direction of this dashing state. */

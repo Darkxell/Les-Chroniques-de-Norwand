@@ -39,9 +39,9 @@ public class PS_Walk extends PlayerState {
 	}
 	player.facing = direction.getOverallDirection();
 
-	// movespeed is 0.17 here.
+	// movespeed is 0.15 here.
 	Position newpos = direction.getFixedTranslation(player.x, player.y,
-		0.17);
+		0.15);
 	if (player.canBeAt(newpos.x, player.y))
 	    player.x = newpos.x;
 	if (player.canBeAt(player.x, newpos.y))

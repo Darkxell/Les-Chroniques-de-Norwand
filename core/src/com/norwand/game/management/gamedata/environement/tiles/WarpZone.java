@@ -56,6 +56,8 @@ public abstract class WarpZone extends Tile {
 	    GameData.get().currentfloor = getDestination();
 	    GameData.get().player.x = tox;
 	    GameData.get().player.y = toy;
+	    GameData.get().player.cam.x = tox;
+	    GameData.get().player.cam.y = toy;
 	}
     }
 
