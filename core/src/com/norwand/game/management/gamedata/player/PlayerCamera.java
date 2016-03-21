@@ -27,19 +27,20 @@ public class PlayerCamera {
 	MathVector dir = new MathVector(target.x - x, target.y - y);
 	Position p = dir.getFixedTranslation(x, y, dir.getBasicLength() / 9);
 	DoubleRectangle zone = getFloorInnerRectangle();
-	if (!zone.isInside(new Position(x, y))) {
-	    if (x < zone.x)
-		++x;
-	    else if (x > zone.x + zone.width)
-		--x;
-	    if (y < zone.y)
-		++y;
-	    else if (y > zone.y + zone.height)
-		--y;
+
+	if (x < zone.x || x > zone.x + zone.width) {
+	    if (x < zone.x || x > zone.x + zone.width)
+		x += ((2 * zone.x + zone.width) / 2 - x) / 10;
 	} else {
-	    if (zone.isInside(new Position(p.x, y)))
+	    if (p.x > zone.x && p.x < zone.x + zone.width)
 		x = p.x;
-	    if (zone.isInside(new Position(x, p.y)))
+	}
+
+	if (y < zone.y || y > zone.y + zone.height) {
+	    if (y < zone.y || y > zone.y + zone.height)
+		y += ((2 * zone.y + zone.height) / 2 - y) / 10;
+	} else {
+	    if (p.y > zone.y && p.y < zone.y + zone.height)
 		y = p.y;
 	}
 
