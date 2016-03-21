@@ -19,7 +19,7 @@ public class PS_Iddle extends PlayerState {
 
     @Override
     public void update() {
-	if(GameData.get().currentfloor.getPhysicsAt(player.x, player.y)==Tile.TYPE_WATER)
+	if (GameData.get().currentfloor.getPhysicsAt(player.x, player.y) == Tile.TYPE_WATER)
 	    player.state = new PS_Drown(player);
     }
 
@@ -57,7 +57,7 @@ public class PS_Iddle extends PlayerState {
 
     @Override
     public void onSkillUsed(Position pos, Capacity capacity) {
-	// TODO : use skill here. Welp, need some skills to use too.
+	player.state = capacity.getPlayerState(player, pos);
     }
 
 }

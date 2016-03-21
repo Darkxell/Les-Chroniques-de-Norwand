@@ -106,14 +106,16 @@ public class PlayState extends GameState {
 	    byte a = activedcapacity;
 	    activedcapacity = 0;
 	    try {
+		datapointer.player.state.onSkillUsed(InputConvertor.convertPosition(new Position(e.x, e.y), datapointer.player.cam), datapointer.player.inventory.getCapFromId(a));
+		/*
 		Player pl = datapointer.player;
 		pl.state = pl.inventory.getCapFromId(a).getPlayerState(
 			pl,
 			InputConvertor.convertPosition(new Position(e.x, e.y),
-				pl.cam));
+				pl.cam));*/
 	    } catch (Exception ex) {
 		System.err
-			.println("Failed to set the player state to this capacity state.\nLogs:");
+			.println("Failed to use the capacity.\nLogs:");
 		ex.printStackTrace();
 	    }
 	} else {
@@ -123,8 +125,10 @@ public class PlayState extends GameState {
     }
 
     public void onDrag(UserEvent e) {
-	if (!(e.y > MainGame.getBufferHeight() - 32 && e.x > 36 && e.x < 132))
-	    datapointer.playerinputconvertor.onDrag(e);
+	// if (!(e.y > MainGame.getBufferHeight() - 32 && e.x > 36 && e.x <
+	// 132))
+	// Prefer without this if, feels better on android. (Darkxell)
+	datapointer.playerinputconvertor.onDrag(e);
     }
 
     public void onRelease(UserEvent e) {

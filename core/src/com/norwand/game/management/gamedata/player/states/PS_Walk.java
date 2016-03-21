@@ -28,7 +28,7 @@ public class PS_Walk extends PlayerState {
 
     @Override
     public void update() {
-	if(GameData.get().currentfloor.getPhysicsAt(player.x, player.y)==Tile.TYPE_WATER)
+	if (GameData.get().currentfloor.getPhysicsAt(player.x, player.y) == Tile.TYPE_WATER)
 	    player.state = new PS_Drown(player);
 	--countdown;
 	if (countdown < 0) {
@@ -81,7 +81,7 @@ public class PS_Walk extends PlayerState {
 
     @Override
     public void onSkillUsed(Position pos, Capacity capacity) {
-
+	player.state = capacity.getPlayerState(player, pos);
     }
 
 }
