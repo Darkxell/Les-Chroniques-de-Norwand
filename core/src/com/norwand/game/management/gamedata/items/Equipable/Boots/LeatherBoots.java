@@ -16,9 +16,4 @@ public class LeatherBoots extends Boots {
     public Pixmap getSprite() {
         return ImagesHolder.tileset.getTile(216);
     }
-
-    @Override
-    public void onUse() {
-
-    }
 }

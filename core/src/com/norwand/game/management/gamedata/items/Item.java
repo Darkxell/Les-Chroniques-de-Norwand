@@ -21,5 +21,6 @@ public abstract class Item {
         return this.itemDescription;
     }
 
+    /**describe what the item must do when it is used*/
     public abstract void onUse();
 }

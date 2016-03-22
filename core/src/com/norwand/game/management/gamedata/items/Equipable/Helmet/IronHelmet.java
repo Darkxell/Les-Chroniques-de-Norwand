@@ -17,9 +17,4 @@ public class IronHelmet extends Helmet{
     public Pixmap getSprite() {
         return ImagesHolder.tileset.getTile(361);
     }
-
-    @Override
-    public void onUse() {
-
-    }
 }

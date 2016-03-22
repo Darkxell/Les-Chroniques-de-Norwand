@@ -16,9 +16,4 @@ public class IronSword extends Sword{
     public Pixmap getSprite() {
         return ImagesHolder.tileset.getTile(616);
     }
-
-    @Override
-    public void onUse() {
-        //TODO
-    }
 }
