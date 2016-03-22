@@ -6,9 +6,9 @@ import com.norwand.game.MainGame;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.InputConvertor;
-import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.launched.LaunchedState;
+import com.norwand.game.management.gamestates.top.launched.menus.InGameMenuState;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.Palette;
 import com.norwand.game.utility.objects.Position;
@@ -87,7 +87,7 @@ public class PlayState extends GameState {
 
     public void onPress(UserEvent e) {
 	if (e.x > 188 && e.y > 4 && e.x < 236 && e.y < 20) {
-	    System.out.println(" > menu");
+	    parent.parent.substate = new InGameMenuState(parent.parent);
 	} else if (canact && e.x > 134 && e.y > 4 && e.x < 282 && e.y < 20) {
 	    datapointer.currentfloor.actClosest();
 	} else if (e.y > MainGame.getBufferHeight() - 32 && e.x > 36
@@ -106,16 +106,12 @@ public class PlayState extends GameState {
 	    byte a = activedcapacity;
 	    activedcapacity = 0;
 	    try {
-		datapointer.player.state.onSkillUsed(InputConvertor.convertPosition(new Position(e.x, e.y), datapointer.player.cam), datapointer.player.inventory.getCapFromId(a));
-		/*
-		Player pl = datapointer.player;
-		pl.state = pl.inventory.getCapFromId(a).getPlayerState(
-			pl,
-			InputConvertor.convertPosition(new Position(e.x, e.y),
-				pl.cam));*/
+		datapointer.player.state.onSkillUsed(InputConvertor
+			.convertPosition(new Position(e.x, e.y),
+				datapointer.player.cam),
+			datapointer.player.inventory.getCapFromId(a));
 	    } catch (Exception ex) {
-		System.err
-			.println("Failed to use the capacity.\nLogs:");
+		System.err.println("Failed to use the capacity.\nLogs:");
 		ex.printStackTrace();
 	    }
 	} else {

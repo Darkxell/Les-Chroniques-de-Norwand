@@ -267,7 +267,7 @@ public abstract class Floor {
 
     /** Adds this tileentity to this floor. */
     public void addTileEntity(TileEntity toAdd) {
-	TileEntity[] entities2 = new TileEntity[entities.length + 1];
+	TileEntity[] entities2 = new TileEntity[tileentities.length + 1];
 	System.arraycopy(tileentities, 0, entities2, 0, tileentities.length);
 	entities2[tileentities.length] = toAdd;
 	tileentities = entities2;

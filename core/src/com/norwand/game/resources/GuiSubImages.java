@@ -20,6 +20,7 @@ public class GuiSubImages implements Disposable {
 	    itemgui = PixmapUtility.getPixmapPart(set, 256, 256, 48, 32);
 	    dialog = PixmapUtility.getPixmapPart(set, 256, 112, 208, 48);
 	    hometext = PixmapUtility.getPixmapPart(set, 256, 208, 128, 46);
+	    inventorytop1 = PixmapUtility.getPixmapPart(set, 0, 304, 240, 32);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
@@ -37,4 +38,5 @@ public class GuiSubImages implements Disposable {
     public Pixmap itemgui;
     public Pixmap dialog;
     public Pixmap hometext;
+    public Pixmap inventorytop1;
 }

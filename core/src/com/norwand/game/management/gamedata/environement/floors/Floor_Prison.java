@@ -6,6 +6,7 @@ import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Mimic;
+import com.norwand.game.management.gamedata.environement.tileentities.SignPost;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
 
@@ -33,5 +34,6 @@ public class Floor_Prison extends Floor {
 		return new Floor_Coloseum(GameData.get().player);
 	    }
 	});
+	addTileEntity(new SignPost(this, 10, 2));
     }
 }
