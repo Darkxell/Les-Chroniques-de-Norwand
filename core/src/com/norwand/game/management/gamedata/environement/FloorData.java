@@ -38,12 +38,12 @@ public class FloorData {
 	for (int i = 0; i < parts.length; ++i)
 	    if (parts[i].startsWith("header]")) {
 		String tmp = parts[i].split("width=")[1].split("\n")[0];
-		width = Integer.parseInt(tmp.substring(0, tmp.length() - 1));
+		width = Integer.parseInt(StringUtility.getNumbers(tmp));
 		tmp = parts[i].split("height=")[1].split("\n")[0];
-		height = Integer.parseInt(tmp.substring(0, tmp.length() - 1));
+		height = Integer.parseInt(StringUtility.getNumbers(tmp));
 	    } else if (parts[i].startsWith("layer]")) {
 		String name = parts[i].split("type=")[1].split("\n")[0];
-		name = name.substring(0, name.length() - 1);
+		name = StringUtility.substring(name, 0, name.length() - 1);
 		String layer = parts[i].split("type=")[1];
 		layer.replaceAll("\n", "");
 		layer = layer.split("data=")[1];

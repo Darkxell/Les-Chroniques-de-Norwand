@@ -50,6 +50,7 @@ public class PS_Walk extends PlayerState {
 
     @Override
     public Pixmap getSprite() {
+	
 	switch (player.facing) {
 	case Directions.SOUTH:
 	    return ImagesHolder.playerset.getTile(0 + count);
