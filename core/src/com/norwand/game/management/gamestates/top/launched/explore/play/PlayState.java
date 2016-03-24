@@ -86,7 +86,11 @@ public class PlayState extends GameState {
     }
 
     public void onPress(UserEvent e) {
-	if (e.x > 188 && e.y > 4 && e.x < 236 && e.y < 20) {
+	if (e.x > 192 && e.y > MainGame.getBufferHeight() - 32 && e.x < 216) {
+	    System.out.println("item 1");
+	} else if (e.x > 216 && e.y > MainGame.getBufferHeight() - 32) {
+	    System.out.println("item 2");
+	} else if (e.x > 188 && e.y > 4 && e.x < 236 && e.y < 20) {
 	    parent.parent.substate = new InGameMenuState(parent.parent);
 	} else if (canact && e.x > 134 && e.y > 4 && e.x < 282 && e.y < 20) {
 	    datapointer.currentfloor.actClosest();
@@ -121,9 +125,6 @@ public class PlayState extends GameState {
     }
 
     public void onDrag(UserEvent e) {
-	// if (!(e.y > MainGame.getBufferHeight() - 32 && e.x > 36 && e.x <
-	// 132))
-	// Prefer without this if, feels better on android. (Darkxell)
 	datapointer.playerinputconvertor.onDrag(e);
     }
 
