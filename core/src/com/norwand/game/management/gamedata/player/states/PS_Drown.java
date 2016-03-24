@@ -24,6 +24,7 @@ public class PS_Drown extends PlayerState {
 	    Position respawn = GameData.get().currentfloor.getClosestRespawnPoint(new Position(player.x,player.y));
 	    player.x = respawn.x;
 	    player.y = respawn.y;
+	    player.info.health -= 0.25;
 	}
     }
 

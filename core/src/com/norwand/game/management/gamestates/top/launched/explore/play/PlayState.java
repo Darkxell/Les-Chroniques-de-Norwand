@@ -60,16 +60,25 @@ public class PlayState extends GameState {
 	datapointer.currentfloor.printOn(g, 7.5 - datapointer.player.cam.x,
 		(((double) (g.getHeight())) / 32d) - datapointer.player.cam.y);
 	// --------------
-	for (int i = 0; i < 5; i++) {
-	    //g.drawPixmap(ImagesHolder.gui.heart, 5 + 16 * i, 6);
-	    
-	    
-	    
-	    
-	    
-	    
-	    
+
+	for (float i = 0; i < datapointer.player.info.maxhealth; ++i) {
+	    if (datapointer.player.info.health >= 1f + i)
+		g.drawPixmap(ImagesHolder.entityset.getTile(2688),
+			(int) (10 + (16 * i)), 5);
+	    else if (datapointer.player.info.health <= i )
+		g.drawPixmap(ImagesHolder.entityset.getTile(2692),
+			(int) (10 + (16 * i)), 5);
+	    else if (datapointer.player.info.health == i + 0.75f)
+		g.drawPixmap(ImagesHolder.entityset.getTile(2689),
+			(int) (10 + (16 * i)), 5);
+	    else if (datapointer.player.info.health == i + 0.5f)
+		g.drawPixmap(ImagesHolder.entityset.getTile(2690),
+			(int) (10 + (16 * i)), 5);
+	    else if (datapointer.player.info.health == i + 0.25f)
+		g.drawPixmap(ImagesHolder.entityset.getTile(2691),
+			(int) (10 + (16 * i)), 5);
 	}
+
 	g.drawPixmap(ImagesHolder.gui.menubutton, 188, 4);
 	g.drawPixmap(ImagesHolder.gui.actbutton, 134, actheight - 34);
 	// --------------
