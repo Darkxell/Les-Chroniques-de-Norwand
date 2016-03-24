@@ -139,4 +139,33 @@ public class Inventory {
                     newLenght - removeId);
         }
     }
+
+    /**
+     * Add the specified item to the items list
+     * @param i the item that must be added
+     */
+    public void addItems(Item i){
+        Item[] newItems = new Item[items.length + 1];
+        System.arraycopy(items, 0, newItems, 0, items.length);
+        newItems[items.length] = i;
+        items = newItems;
+    }
+
+    /**
+     * Add the specified equipable to te equipable list
+     * @param e the equipable that must be added
+     */
+    public void addEquipable(Equipable e){
+        Equipable[] newEquipable = new Equipable[equipables.length + 1];
+        System.arraycopy(equipables, 0, newEquipable, 0, equipables.length);
+        newEquipable[items.length] = e;
+        equipables = newEquipable;
+    }
+
+    public void addCapacity(Capacity c){
+        Capacity[] newCapacity = new Capacity[capacity.length + 1];
+        System.arraycopy(capacity, 0, newCapacity, 0, capacity.length);
+        newCapacity[capacity.length] = c;
+        capacity = newCapacity;
+    }
 }
