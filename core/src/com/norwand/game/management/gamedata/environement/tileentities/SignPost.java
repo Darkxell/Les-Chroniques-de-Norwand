@@ -9,10 +9,12 @@ import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.objects.DoubleRectangle;
 
 public class SignPost extends TileEntity {
+    private String message;
 
-    public SignPost(Floor roompointer, double x, double y) {
-	super(Tile.TYPE_SOLID, roompointer, x, y);
-	actable = true;
+    public SignPost(Floor roompointer, String message, double x, double y) {
+        super(Tile.TYPE_SOLID, roompointer, x, y);
+        actable = true;
+        this.message = message;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class SignPost extends TileEntity {
     @Override
     public void onAct() {
 	MainGame.game.state.substate.substate.substate = new DialogState(
-		MainGame.game.state.substate.substate);
+		MainGame.game.state.substate.substate, message);
     }
 
     @Override

@@ -13,7 +13,7 @@ public class Floor_Snow extends Floor {
     public Floor_Snow(Player playerpointer) {
         super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
             + "maps/snow.txt")), playerpointer);
-        addTileEntity(new SignPost(this, 25, 27));
+        addTileEntity(new SignPost(this, "whatever", 25, 27));
         addEntity(new Mimic(this, 21, 9.5));
     }
 
