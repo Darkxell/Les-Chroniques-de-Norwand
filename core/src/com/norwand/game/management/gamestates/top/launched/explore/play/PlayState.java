@@ -61,7 +61,14 @@ public class PlayState extends GameState {
 		(((double) (g.getHeight())) / 32d) - datapointer.player.cam.y);
 	// --------------
 	for (int i = 0; i < 5; i++) {
-	    g.drawPixmap(ImagesHolder.gui.heart, 5 + 16 * i, 6);
+	    //g.drawPixmap(ImagesHolder.gui.heart, 5 + 16 * i, 6);
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 	}
 	g.drawPixmap(ImagesHolder.gui.menubutton, 188, 4);
 	g.drawPixmap(ImagesHolder.gui.actbutton, 134, actheight - 34);

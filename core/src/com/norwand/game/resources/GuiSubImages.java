@@ -13,7 +13,6 @@ public class GuiSubImages implements Disposable {
 
     public void instanciate(Pixmap set) {
 	try {
-	    heart = PixmapUtility.getPixmapPart(set, 256, 16, 16, 16);
 	    menubutton = PixmapUtility.getPixmapPart(set, 256, 160, 48, 16);
 	    actbutton = PixmapUtility.getPixmapPart(set, 304, 160, 48, 16);
 	    capacitiesbar = PixmapUtility.getPixmapPart(set, 256, 176, 128, 32);
@@ -35,7 +34,6 @@ public class GuiSubImages implements Disposable {
 	// TODO
     }
 
-    public Pixmap heart;
     public Pixmap menubutton;
     public Pixmap actbutton;
     public Pixmap capacitiesbar;
