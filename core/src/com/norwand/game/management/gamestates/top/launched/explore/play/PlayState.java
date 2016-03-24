@@ -65,6 +65,7 @@ public class PlayState extends GameState {
 	}
 	g.drawPixmap(ImagesHolder.gui.menubutton, 188, 4);
 	g.drawPixmap(ImagesHolder.gui.actbutton, 134, actheight - 34);
+	// --------------
 	g.drawPixmap(ImagesHolder.gui.capacitiesbar, 20, g.getHeight() - 32);
 	g.setColor(Palette.GREEN);
 	if (datapointer.player.inventory.slot_cap1 != null)
@@ -82,11 +83,24 @@ public class PlayState extends GameState {
 		    100, g.getHeight() - 32);
 	if (activedcapacity == 3)
 	    g.drawRectangle(101, g.getHeight() - 31, 30, 30);
+	// --------------
 	g.drawPixmap(ImagesHolder.gui.itemgui, 192, g.getHeight() - 32);
+	if (datapointer.player.inventory.quickItem1 != null)
+	    g.drawPixmap(datapointer.player.inventory.quickItem1.getSprite(),
+		    196, MainGame.getBufferHeight() - 23);
+	if (datapointer.player.inventory.quickItem2 != null)
+	    g.drawPixmap(datapointer.player.inventory.quickItem2.getSprite(),
+		    220, MainGame.getBufferHeight() - 23);
     }
 
     public void onPress(UserEvent e) {
-	if (e.x > 188 && e.y > 4 && e.x < 236 && e.y < 20) {
+	if (e.x > 192 && e.y > MainGame.getBufferHeight() - 32 && e.x < 216) {
+	    if (datapointer.player.inventory.quickItem1 != null)
+		datapointer.player.inventory.quickItem1.onUse();
+	} else if (e.x > 216 && e.y > MainGame.getBufferHeight() - 32) {
+	    if (datapointer.player.inventory.quickItem2 != null)
+		datapointer.player.inventory.quickItem2.onUse();
+	} else if (e.x > 188 && e.y > 4 && e.x < 236 && e.y < 20) {
 	    parent.parent.substate = new InGameMenuState(parent.parent);
 	} else if (canact && e.x > 134 && e.y > 4 && e.x < 282 && e.y < 20) {
 	    datapointer.currentfloor.actClosest();
@@ -121,9 +135,6 @@ public class PlayState extends GameState {
     }
 
     public void onDrag(UserEvent e) {
-	// if (!(e.y > MainGame.getBufferHeight() - 32 && e.x > 36 && e.x <
-	// 132))
-	// Prefer without this if, feels better on android. (Darkxell)
 	datapointer.playerinputconvertor.onDrag(e);
     }
 

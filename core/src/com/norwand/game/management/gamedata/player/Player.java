@@ -21,7 +21,7 @@ public class Player {
     /** The y position of the player in the current floor. */
     public double y = 11;
     /** Player specific information. */
-    public PlayerInfo info;
+    public PlayerInfo info = new PlayerInfo();
     /**
      * The current state of the player. This represents what the player is
      * currently doing and allows to get the correct player sprite at any
