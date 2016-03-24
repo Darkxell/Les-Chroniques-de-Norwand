@@ -10,6 +10,7 @@ import com.norwand.game.management.gamedata.items.Equipable.Ring.Ring;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Weapon;
 import com.norwand.game.management.gamedata.items.Item;
 import com.norwand.game.management.gamedata.player.capacities.Cap_Teleport;
+import com.sun.org.apache.xml.internal.security.utils.HelperNodeList;
 
 /** Represents the player inventory. */
 public class Inventory {
@@ -144,7 +145,7 @@ public class Inventory {
      * Add the specified item to the items list
      * @param i the item that must be added
      */
-    public void addItems(Item i){
+    public void addItem(Item i){
         Item[] newItems = new Item[items.length + 1];
         System.arraycopy(items, 0, newItems, 0, items.length);
         newItems[items.length] = i;
@@ -152,7 +153,7 @@ public class Inventory {
     }
 
     /**
-     * Add the specified equipable to te equipable list
+     * Add the specified equipable to the equipable list
      * @param e the equipable that must be added
      */
     public void addEquipable(Equipable e){
@@ -162,10 +163,127 @@ public class Inventory {
         equipables = newEquipable;
     }
 
+    /**
+     * Add the specified capacity to the capacity list
+     * @param c the capacity that must be added
+     */
     public void addCapacity(Capacity c){
         Capacity[] newCapacity = new Capacity[capacity.length + 1];
         System.arraycopy(capacity, 0, newCapacity, 0, capacity.length);
         newCapacity[capacity.length] = c;
         capacity = newCapacity;
+    }
+
+    /**
+     * Equip the specified item
+     * @param i the item that must be equiped
+     */
+    public void equipItem(Item i){
+        if(quickItem1 == null)
+            quickItem1 = i;
+
+        if(quickItem1 != null && quickItem2 == null){
+            quickItem2 = quickItem1;
+            quickItem1 = i;
+        }
+
+        if(quickItem1 != null && quickItem2 != null){
+            Item temp1 = quickItem1;
+            Item temp2 = quickItem2;
+            quickItem1 = i;
+            quickItem2 = temp1;
+            addItem(temp2);
+        }
+    }
+
+    /**
+     * Equip the specified capacity
+     * @param c the capacity that must be equiped
+     */
+    public void equipCapacity(Capacity c){
+
+        if(slot_cap1 == null)
+            slot_cap1 = c;
+
+        if(slot_cap1 != null && slot_cap2 == null){
+            slot_cap2 = slot_cap1;
+            slot_cap1 = c;
+        }
+
+        if(slot_cap1 != null && slot_cap2 != null && slot_cap3 == null){
+            Capacity temp1 = slot_cap1;
+            Capacity temp2 = slot_cap2;
+            slot_cap1 = c;
+            slot_cap2 = temp1;
+            slot_cap3 = temp2;
+        }
+
+        if(slot_cap1 != null && slot_cap2 != null && slot_cap3 != null){
+            Capacity temp1 = slot_cap1;
+            Capacity temp2 = slot_cap2;
+            Capacity temp3 = slot_cap3;
+            slot_cap1 = c;
+            slot_cap2 = temp1;
+            slot_cap3 = temp2;
+            addCapacity(temp3);
+        }
+    }
+
+    /**
+     * Equip the specified equipable
+     * @param e the equipable that must be equiped
+     */
+    public void equipEquipable(Equipable e){
+        if(e instanceof Armor){
+            if(armor == null)
+                armor = (Armor)e;
+            else{
+                Armor temp = armor;
+                armor = (Armor)e;
+                addEquipable(e);
+            }
+        }
+
+        if(e instanceof Armor){
+            if(boots == null)
+                boots = (Boots)e;
+            else{
+                Boots temp = boots;
+                boots = (Boots)e;
+                addEquipable(e);
+            }
+        }
+        if(e instanceof Helmet){
+            if(helmet == null)
+                helmet = (Helmet)e;
+            else{
+                Helmet temp = helmet;
+                helmet = (Helmet)e;
+                addEquipable(e);
+            }
+        }
+
+        if(e instanceof Necklace){
+            if(necklace == null)
+                necklace = (Necklace)e;
+            else{
+                Necklace temp = necklace;
+                necklace = (Necklace)e;
+                addEquipable(e);
+            }
+        }
+
+        if(e instanceof Ring){
+            if(ring == null)
+                ring = (Ring)e;
+            else{
+                Ring temp = ring;
+                ring = (Ring)e;
+                addEquipable(e);
+            }
+        }
+        else{
+            System.out.println("Erreur");
+        }
     }
 }
