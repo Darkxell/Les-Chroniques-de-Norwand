@@ -96,6 +96,10 @@ public class Inventory {
         }
     }
 
+    /**
+     * Remove the specified equipable
+     * @param e the equipable that must be removed
+     */
     public void removeEquipable(Equipable e){
         int newLenght = equipables.length - 1;
         if(newLenght < 0)
@@ -114,6 +118,10 @@ public class Inventory {
         }
     }
 
+    /**
+     * Remove the specified capacity
+     * @param c the capacity that must be removed
+     */
     public void removeCapacity(Capacity c){
         int newLenght = capacity.length - 1;
         if(newLenght < 0)
