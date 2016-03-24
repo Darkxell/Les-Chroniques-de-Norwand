@@ -1,9 +1,9 @@
-package com.norwand.game.management.gamedata.items.Equipable.Sword;
+package com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.resources.ImagesHolder;
 
-public class IronSword extends Sword{
+public class IronSword extends Sword {
 
     public IronSword(){
         this.displayName = "Epée en fer";

@@ -1,4 +1,4 @@
-package com.norwand.game.management.gamedata.items.Equipable.Shield;
+package com.norwand.game.management.gamedata.items.Equipable.Weapon.Shield;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.resources.ImagesHolder;
