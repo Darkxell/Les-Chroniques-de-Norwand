@@ -10,7 +10,6 @@ import com.norwand.game.management.gamedata.items.Equipable.Ring.Ring;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Weapon;
 import com.norwand.game.management.gamedata.items.Item;
 import com.norwand.game.management.gamedata.player.capacities.Cap_Teleport;
-import com.sun.org.apache.xml.internal.security.utils.HelperNodeList;
 
 /** Represents the player inventory. */
 public class Inventory {
@@ -244,7 +243,7 @@ public class Inventory {
             }
         }
 
-        if(e instanceof Armor){
+        else if(e instanceof Boots){
             if(boots == null)
                 boots = (Boots)e;
             else{
@@ -253,7 +252,8 @@ public class Inventory {
                 addEquipable(e);
             }
         }
-        if(e instanceof Helmet){
+
+        else if(e instanceof Helmet){
             if(helmet == null)
                 helmet = (Helmet)e;
             else{
@@ -263,7 +263,7 @@ public class Inventory {
             }
         }
 
-        if(e instanceof Necklace){
+        else if(e instanceof Necklace){
             if(necklace == null)
                 necklace = (Necklace)e;
             else{
@@ -272,8 +272,7 @@ public class Inventory {
                 addEquipable(e);
             }
         }
-
-        if(e instanceof Ring){
+        else if(e instanceof Ring){
             if(ring == null)
                 ring = (Ring)e;
             else{
@@ -282,8 +281,25 @@ public class Inventory {
                 addEquipable(e);
             }
         }
-        else{
-            System.out.println("Erreur");
+
+        else if(e instanceof Weapon){
+            if(weapon1 == null)
+                weapon1 = (Weapon)e;
+
+            if(weapon1 == null && weapon2 != null){
+                weapon2 = weapon1;
+                weapon1 = (Weapon)e;
+            }
+
+            if(weapon1 != null && weapon2 != null){
+                Weapon temp1 = weapon1;
+                Weapon temp2 = weapon2;
+                weapon1 = (Weapon)e;
+                weapon2 = temp1;
+                addEquipable(temp2);
+            }
         }
+        else
+            System.out.println("Erreur.");
     }
 }
