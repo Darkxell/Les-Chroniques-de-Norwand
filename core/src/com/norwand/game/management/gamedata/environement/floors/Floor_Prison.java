@@ -16,7 +16,7 @@ public class Floor_Prison extends Floor {
         super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
             + "maps/prison.txt")), playerpointer);
         addEntity(new Mimic(this, 21, 9.5));
-        addEntity(new SignPost(this, "Don't kill Arya. This is a test. But don't. PLease.", 6, 11));
+        addTileEntity(new SignPost(this, "Don't kill Arya. This is a test. But don't. Please.", 4.5, 4.5));
         setTileAt(1, 0, new WarpZone(getTileAt(1, 0), 13, 18) {
             @Override
             public Floor getDestination() {

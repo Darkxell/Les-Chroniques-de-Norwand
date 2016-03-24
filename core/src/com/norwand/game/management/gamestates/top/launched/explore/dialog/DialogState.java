@@ -9,19 +9,11 @@ import com.norwand.game.management.gamestates.top.launched.explore.play.PlayStat
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.objects.BitmapFont;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
-
 public class DialogState extends GameState {
     private String message;
 
     /** Stored pointer to the LaunchedState GameData attribute. */
     GameData datapointer = ((LaunchedState) parent.parent).data;
-
-    public DialogState(GameState parent) {
-        super(parent);
-    }
 
     public DialogState(GameState parent, String message) {
         super(parent);
