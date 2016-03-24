@@ -14,6 +14,6 @@ public class WoodenRing extends Ring {
 
     @Override
     public Pixmap getSprite() {
-        return ImagesHolder.tileset.getTile(456);
+        return ImagesHolder.itemset.getTile(456);
     }
 }

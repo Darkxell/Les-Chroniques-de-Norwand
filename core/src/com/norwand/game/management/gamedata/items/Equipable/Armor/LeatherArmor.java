@@ -15,6 +15,6 @@ public class LeatherArmor extends Armor {
 
     @Override
     public Pixmap getSprite() {
-        return ImagesHolder.tileset.getTile(25);
+        return ImagesHolder.itemset.getTile(25);
     }
 }

@@ -12,11 +12,7 @@ public class CopperNecklace extends Necklace {
 
     @Override
     public Pixmap getSprite() {
-        return ImagesHolder.tileset.getTile(0);
-    }
 
-    @Override
-    public void onUse() {
-
+        return ImagesHolder.itemset.getTile(0);
     }
 }

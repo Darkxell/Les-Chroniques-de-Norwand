@@ -14,6 +14,6 @@ public class WoodenShield extends Shield {
 
     @Override
     public Pixmap getSprite() {
-        return ImagesHolder.tileset.getTile(912);
+        return ImagesHolder.itemset.getTile(912);
     }
 }
