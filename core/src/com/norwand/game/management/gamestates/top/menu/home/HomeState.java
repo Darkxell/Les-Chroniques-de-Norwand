@@ -5,6 +5,7 @@ import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.launched.LaunchedState;
 import com.norwand.game.resources.ImagesHolder;
+import com.norwand.game.utility.Palette;
 
 /**
  * State that represents the main menu of the game. This is the openning state
@@ -16,13 +17,28 @@ public class HomeState extends GameState {
 	super(parent);
     }
 
+    /** Internal counter. */
+    private int counter;
+
     @Override
     public void update() {
+	++counter;
     }
 
     @Override
     public void print(Pixmap g) {
-	g.drawPixmap(ImagesHolder.gui.hometext, 60, g.getHeight() / 2 - 23);
+	g.setColor(Palette.BABYBLUE);
+	g.fill();
+	g.drawPixmap(ImagesHolder.gui.hometop, 0,
+		((counter < 128) ? 128 - counter : 0));
+	g.drawPixmap(ImagesHolder.gui.homebot, 0, g.getHeight()
+		- ((counter / 2 < 64) ? counter / 2 : 64));
+	if (counter > 150)
+	    g.drawPixmap((counter > 165) ? ImagesHolder.gui.hometext
+		    : ImagesHolder.gui.hometexttsp, 60, g.getHeight() / 2 - 33);
+	if (counter > 185)
+	    g.drawPixmap((counter % 80 < 40) ? ImagesHolder.gui.start1
+		    : ImagesHolder.gui.start2, 88, g.getHeight() / 2 + 25);
     }
 
     @Override
