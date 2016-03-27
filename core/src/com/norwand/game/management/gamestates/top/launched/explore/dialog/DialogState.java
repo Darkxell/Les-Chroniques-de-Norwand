@@ -1,16 +1,19 @@
 package com.norwand.game.management.gamestates.top.launched.explore.dialog;
 
 import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.utils.Array;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.launched.LaunchedState;
 import com.norwand.game.management.gamestates.top.launched.explore.play.PlayState;
 import com.norwand.game.resources.ImagesHolder;
+import com.norwand.game.utility.StringUtility;
 import com.norwand.game.utility.objects.BitmapFont;
 
 public class DialogState extends GameState {
     private String message;
+    private int counter;
 
     /** Stored pointer to the LaunchedState GameData attribute. */
     GameData datapointer = ((LaunchedState) parent.parent).data;
@@ -22,6 +25,7 @@ public class DialogState extends GameState {
 
     @Override
     public void update() {
+        ++counter;
     }
 
     @Override
@@ -41,12 +45,22 @@ public class DialogState extends GameState {
      */
     public void print(final Pixmap g, String message) {
         BitmapFont bitmapFont = ImagesHolder.font8x8;
+        int tic = counter/10;
         int posX = g.getWidth() / 10;
         int posY = g.getHeight() - 64 + 11;
+        Array<String> wordsList = new Array<String>();
+        int posInWordsList = 0;
 
-        for (final String word: message.split(" ")){
+        //Save the words to get them in the right order later
+        for (final String word : message.split(" ")){
+            if (word != null) {
+                wordsList.add(word);
+            }
+        }
+        
+        for (final String word : wordsList){
 
-            //Line break
+            //Line break and space input
             if (posX + bitmapFont.getLength(word) >= g.getWidth()*9/10) {
                 posX = g.getWidth()/10;
                 posY += 20;
@@ -57,45 +71,38 @@ public class DialogState extends GameState {
             }
 
             //Display of each character
-
             //TODO : display char after char
-
-            //ANIMATIONS : TRY 1
-            /*Timer timer = new Timer();
-
-            for(int i = 0; i < word.length(); i++) {
-                final int finalI = i;
-                final int finalPosY = posY;
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        System.out.println("I'M IN!");
-                        bitmapFont.printStringOn(g, "" + word.charAt(finalI), posX[0], finalPosY);
-                        posX[0] += bitmapFont.getLength(""+word.charAt(finalI));
-                        try {
-                            TimeUnit.SECONDS.sleep(1);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, 1000);
-            }*/
-
-
-            //ANIMATIONS : TRY 2
-            /*for(int i = 0; i < word.length(); i++) {
-                System.out.println("I'M IN!");
-                bitmapFont.printStringOn(g, "" + word.charAt(i), posX[0], posY);
-                posX[0] += bitmapFont.getLength(""+word.charAt(i));
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            for (int j = 0; j < tic; j++) {
+                if (j <= bitmapFont.getLength(wordsList.get(posInWordsList))
+                        && wordsList.get(posInWordsList) != null) {
+                    bitmapFont.printStringOn(g,
+                            ""+wordsList.get(posInWordsList).charAt(j),
+                            posX + j*bitmapFont.getLength(""+wordsList.get(posInWordsList).charAt(j)),
+                            posY);
                 }
-            }*/
+                else {
+                    bitmapFont.printStringOn(g, " ", posX + (tic+1)*bitmapFont.getLength(" "), posY);
+                    posInWordsList++;
+                    j = 0;
+                }
+            }
 
-            bitmapFont.printStringOn(g, word, posX, posY);
-            posX += bitmapFont.getLength(word);
+
+
+
+
+            /*bitmapFont.printStringOn(
+                    g,
+                    (tic <= bitmapFont.getLength(word)) ?
+                            ""+word.charAt(tic) :
+                            " ",
+                    posX + tic*bitmapFont.getLength(" "),
+                    posY);*/
+
+            //Print the whole word
+            //bitmapFont.printStringOn(g, word, posX, posY);
+
+            posX += bitmapFont.getLength(wordsList.get(posInWordsList));
         }
     }
 
