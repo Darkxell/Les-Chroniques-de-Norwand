@@ -75,8 +75,8 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
 		}
 	    }
 	});
-	updater.start();
 	ImagesHolder.create(ASSETSPATH);
+	updater.start();
     }
 
     /**

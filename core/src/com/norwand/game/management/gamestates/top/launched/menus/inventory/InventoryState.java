@@ -23,12 +23,14 @@ public class InventoryState extends GameState {
     public void print(Pixmap g) {
 	Inventory inv = GameData.get().player.inventory;
 	g.drawPixmap(ImagesHolder.gui.inventorytop1, 0, 0);
-	for (int i = 32; i < g.getHeight() - 16; i += 16)
+	for (int i = 32; i < g.getHeight() - 32; i += 16)
 	    g.drawPixmap(ImagesHolder.gui.inventorymid1, 0, i);
 	for (int i = 0; i < inv.items.length; i++) {
 	    g.drawPixmap(inv.items[i].getSprite(), 57 + 21 * (i % 7),
 		    35 + 21 * (i / 7));
 	}
+	g.drawPixmap(ImagesHolder.gui.inventorymid1, 0, g.getHeight() - 32);
+	g.drawPixmap(ImagesHolder.gui.inventoryselect1, 0, g.getHeight() - 32);
 	g.drawPixmap(ImagesHolder.gui.inventorybot1, 0, g.getHeight() - 16);
 	int h = g.getHeight() - 32;
 	g.drawPixmap(ImagesHolder.gui.x32Box, 9, h / 3 + 16);
