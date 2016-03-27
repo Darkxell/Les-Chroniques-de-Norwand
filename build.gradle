@@ -9,7 +9,6 @@ buildscript {
         classpath 'com.android.tools.build:gradle:1.5.0'
     }
 }
-
 allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
@@ -30,7 +29,6 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
     }
 }
-
 project(":desktop") {
     apply plugin: "java"
 
@@ -42,7 +40,6 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
     }
 }
-
 project(":android") {
     apply plugin: "android"
 
@@ -58,7 +55,6 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
     }
 }
-
 project(":html") {
     apply plugin: "gwt"
     apply plugin: "war"
@@ -71,7 +67,6 @@ project(":html") {
         compile "com.badlogicgames.gdx:gdx-backend-gwt:$gdxVersion:sources"
     }
 }
-
 project(":core") {
     apply plugin: "java"
 
@@ -80,7 +75,9 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
     }
 }
-
 tasks.eclipse.doLast {
     delete ".project"
+}
+
+dependencies {
 }
