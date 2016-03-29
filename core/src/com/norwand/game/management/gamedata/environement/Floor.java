@@ -225,6 +225,8 @@ public abstract class Floor {
 
     /** Deletes this entity from this floor. */
     public void deleteEntity(Entity pointer) {
+	if (entities.length == 0)
+	    return;
 	Entity[] newentities = new Entity[entities.length - 1];
 	int removeid = -1;
 	for (int i = 0; i < entities.length; i++)
@@ -250,6 +252,8 @@ public abstract class Floor {
 
     /** Deletes this tileentity from this floor. */
     public void deleteTileEntity(TileEntity pointer) {
+	if (tileentities.length == 0)
+	    return;
 	TileEntity[] newentities = new TileEntity[tileentities.length - 1];
 	int removeid = -1;
 	for (int i = 0; i < tileentities.length; i++)

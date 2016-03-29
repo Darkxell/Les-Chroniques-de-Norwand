@@ -29,7 +29,12 @@ public class GuiSubImages implements Disposable {
 	    homebot = PixmapUtility.getPixmapPart(set, 0, 48, 240, 64);
 	    start1 = PixmapUtility.getPixmapPart(set, 352, 160, 64, 16);
 	    start2 = PixmapUtility.getPixmapPart(set, 416, 160, 64, 16);
-	    inventoryselect1 = PixmapUtility.getPixmapPart(set, 0, 400, 240, 16);
+	    inventoryselect1 = PixmapUtility
+		    .getPixmapPart(set, 0, 400, 240, 16);
+	    inventorycursorNW = PixmapUtility.getPixmapPart(set, 32, 368, 8, 8);
+	    inventorycursorNE = PixmapUtility.getPixmapPart(set, 40, 368, 8, 8);
+	    inventorycursorSW = PixmapUtility.getPixmapPart(set, 32, 376, 8, 8);
+	    inventorycursorSE = PixmapUtility.getPixmapPart(set, 40, 376, 8, 8);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
@@ -57,4 +62,9 @@ public class GuiSubImages implements Disposable {
     public Pixmap homebot;
     public Pixmap start1;
     public Pixmap start2;
+    public Pixmap inventorycursorNW;
+    public Pixmap inventorycursorNE;
+    public Pixmap inventorycursorSW;
+    public Pixmap inventorycursorSE;
+
 }

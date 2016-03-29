@@ -81,12 +81,23 @@ public class Player {
      * potition x,y in the current floor.
      */
     public boolean canBeAt(double x, double y) {
-	    Floor f = GameData.get().currentfloor;
-	    Position[] cardinals = hitbox.getRectangle(new Position(x, y))
-		    .getCardinals();
-	    for (int i = 0; i < cardinals.length; i++)
-		if (f.getPhysicsAt(cardinals[i].x, cardinals[i].y) == Tile.TYPE_SOLID)
-		    return false;
-	    return true;
+	Floor f = GameData.get().currentfloor;
+	Position[] cardinals = hitbox.getRectangle(new Position(x, y))
+		.getCardinals();
+	for (int i = 0; i < cardinals.length; i++)
+	    if (f.getPhysicsAt(cardinals[i].x, cardinals[i].y) == Tile.TYPE_SOLID)
+		return false;
+	return true;
     }
+
+    /** Returns the damage of the player. */
+    public double getDamage() {
+	return inventory.getTotalDamage();
+    }
+
+    /** Returns the armor of the player. */
+    public double getArmor() {
+	return inventory.getTotalArmor();
+    }
+
 }

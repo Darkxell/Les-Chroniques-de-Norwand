@@ -14,9 +14,14 @@ public class InventoryState extends GameState {
 	super(parent);
     }
 
+    private int counter;
+    private int cursorposition;
+    
     @Override
     public void update() {
-
+	++counter;
+	if (counter > 70)
+	    counter = 0;
     }
 
     @Override
@@ -28,8 +33,11 @@ public class InventoryState extends GameState {
 	for (int i = 0; i < inv.items.length; i++) {
 	    g.drawPixmap(inv.items[i].getSprite(), 57 + 21 * (i % 7),
 		    35 + 21 * (i / 7));
+	    if(i==cursorposition)
+		printCursor(g, 53 + 21 * (i % 7), 31 + 21 * (i / 7), 16, 16, counter<35);
 	}
 	g.drawPixmap(ImagesHolder.gui.inventorymid1, 0, g.getHeight() - 32);
+	ImagesHolder.font8x8.printStringOn(g, inv.items[cursorposition].getItemDescription(), 58, g.getHeight() - 28);
 	g.drawPixmap(ImagesHolder.gui.inventoryselect1, 0, g.getHeight() - 32);
 	g.drawPixmap(ImagesHolder.gui.inventorybot1, 0, g.getHeight() - 16);
 	int h = g.getHeight() - 32;
@@ -41,7 +49,8 @@ public class InventoryState extends GameState {
 	    g.drawPixmap(inv.quickItem1.getSprite(), 17, h / 3 + 24);
 	if (inv.quickItem2 != null)
 	    g.drawPixmap(inv.quickItem2.getSprite(), 17, h - h / 3 + 24);
-
+	g.drawPixmap(ImagesHolder.gui.inventoryarrow, 220,
+		g.getHeight() / 2 - 16);
     }
 
     @Override
@@ -74,6 +83,24 @@ public class InventoryState extends GameState {
     @Override
     public void onType(UserEvent e) {
 
+    }
+
+    /**
+     * Draws a selectcursor of the wanted size at the wanted coordinates on the
+     * g Pixmap. The cursor is smaller by one pixel on each side if the "state"
+     * boolean is true, allwoing to make pretty animated cursors easily. This
+     * will fail if the ImageHolder is not instancied.
+     */
+    public static void printCursor(Pixmap g, int x, int y, int height,
+	    int width, boolean state) {
+	g.drawPixmap(ImagesHolder.gui.inventorycursorNW, (state) ? x : x + 1,
+		(state) ? y : y + 1);
+	g.drawPixmap(ImagesHolder.gui.inventorycursorNE, (state) ? x + width
+		: x + width - 1, (state) ? y : y + 1);
+	g.drawPixmap(ImagesHolder.gui.inventorycursorSW, (state) ? x : x + 1,
+		(state) ? y + height : y + height - 1);
+	g.drawPixmap(ImagesHolder.gui.inventorycursorSE, (state) ? x + height
+		: x + height - 1, (state) ? y + height : y + height - 1);
     }
 
 }
