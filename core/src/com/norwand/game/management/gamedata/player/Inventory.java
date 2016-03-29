@@ -181,18 +181,20 @@ public class Inventory {
         if(quickItem1 == null)
             quickItem1 = i;
 
-        if(quickItem1 != null && quickItem2 == null){
+        else if(quickItem1 != null && quickItem2 == null){
             quickItem2 = quickItem1;
             quickItem1 = i;
         }
 
-        if(quickItem1 != null && quickItem2 != null){
+        else if(quickItem1 != null && quickItem2 != null){
             Item temp1 = quickItem1;
             Item temp2 = quickItem2;
             quickItem1 = i;
             quickItem2 = temp1;
             addItem(temp2);
         }
+
+        removeItem(i);
     }
 
     /**
@@ -204,7 +206,7 @@ public class Inventory {
         if(slot_cap1 == null)
             slot_cap1 = c;
 
-        if(slot_cap1 != null && slot_cap2 == null){
+        else if(slot_cap1 != null && slot_cap2 == null){
             slot_cap2 = slot_cap1;
             slot_cap1 = c;
         }
@@ -217,7 +219,7 @@ public class Inventory {
             slot_cap3 = temp2;
         }
 
-        if(slot_cap1 != null && slot_cap2 != null && slot_cap3 != null){
+        else if(slot_cap1 != null && slot_cap2 != null && slot_cap3 != null){
             Capacity temp1 = slot_cap1;
             Capacity temp2 = slot_cap2;
             Capacity temp3 = slot_cap3;
@@ -226,6 +228,8 @@ public class Inventory {
             slot_cap3 = temp2;
             addCapacity(temp3);
         }
+
+        removeCapacity(c);
     }
 
     /**
@@ -301,5 +305,7 @@ public class Inventory {
         }
         else
             System.out.println("Erreur.");
+
+        removeEquipable(e);
     }
 }
