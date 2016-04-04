@@ -2,8 +2,10 @@ package com.norwand.game.management.gamedata.environement.entities;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.environement.Floor;
+import com.norwand.game.management.gamedata.environement.tiles.Tile;
 import com.norwand.game.utility.Directions;
 import com.norwand.game.utility.objects.DoubleRectangle;
+import com.norwand.game.utility.objects.Position;
 
 /**
  * An entity of the game. This is basically anything that isn't a tile or the
@@ -65,5 +67,18 @@ public abstract class Entity {
     /** Returns true if you can act with this entity. */
     public boolean canActWith() {
 	return actable;
+    }
+
+    /**
+     * Predicate that returns true if the entity can be at the wanted position.
+     * This means that none of its 9 cardinal points are on a solid physics
+     * type.
+     */
+    public boolean canBeAt(double x, double y) {
+	Position[] p = getHitbox(posX, posY).getCardinals();
+	for (int i = 0; i < p.length; i++)
+	    if (roompointer.getPhysicsAt(p[i].x, p[i].y) == Tile.TYPE_SOLID)
+		return false;
+	return true;
     }
 }

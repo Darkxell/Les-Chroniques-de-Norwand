@@ -1,6 +1,7 @@
 package com.norwand.game.management.gamedata.environement.entities.monsters;
 
 import com.badlogic.gdx.graphics.Pixmap;
+import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.entities.Monster;
 import com.norwand.game.resources.ImagesHolder;
@@ -19,6 +20,8 @@ public class Mimic extends Monster {
 	--spritecounter;
 	if (spritecounter < 0)
 	    spritecounter = 50;
+	if(knockback())
+	    GameData.get().player.info.health -= 0.25;
     }
 
     @Override
@@ -28,7 +31,7 @@ public class Mimic extends Monster {
 
     @Override
     public DoubleRectangle getHitbox(double posX, double posY) {
-	return null;
+	return new DoubleRectangle(posX - 0.3, posY - 0.3, 0.6, 0.6);
     }
 
     @Override

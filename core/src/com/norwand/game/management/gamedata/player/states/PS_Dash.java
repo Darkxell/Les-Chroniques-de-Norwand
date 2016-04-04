@@ -9,7 +9,9 @@ import com.norwand.game.utility.Directions;
 import com.norwand.game.utility.objects.MathVector;
 import com.norwand.game.utility.objects.Position;
 
+/** State of the player representing it dashing to a location. */
 public class PS_Dash extends PlayerState {
+
     /** Construcs a new dashing state using a position. */
     public PS_Dash(Player player, Position p) {
 	super(player);
