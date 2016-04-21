@@ -39,13 +39,20 @@ div.parallax_layer_background{
 	background-size: cover;
 	background-position : center;
 	width : 100%;
-	height:1550px;
+	
 	
 	image-rendering: optimizeSpeed;
     image-rendering: optimize-contrast;
 	image-rendering: pixelated;
 }
 
+div.lb_home{
+	height:1164px;
+}
+
+div.lb_about{
+	height:1000px;
+}
 
 a{
 	color:inherit;
@@ -147,3 +154,22 @@ table.members td:hover{
 table.members img{
 	margin-right : 10px;
 }
+
+article.divisioncontent{
+	background-color : #F0F0F0;
+	width : 75%;
+	margin : 0 auto;
+}
+
+article.divisioncontent h1{
+	font-weight: bold;
+	margin : 0;
+	padding : 10;
+}
+
+article.divisioncontent p {
+    text-indent: 50px;
+	text-align : justify;
+	padding-left : 5px;
+	padding-right : 5px;
+} 
