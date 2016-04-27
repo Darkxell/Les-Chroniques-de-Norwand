@@ -23,5 +23,7 @@ public class HealthPot extends Item {
 	GameData.get().player.info.health += 3;
 	if (GameData.get().player.info.health > GameData.get().player.info.maxhealth)
 	    GameData.get().player.info.health = GameData.get().player.info.maxhealth;
+
+    GameData.get().player.inventory.removeItem(this);
     }
 }

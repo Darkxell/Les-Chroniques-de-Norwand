@@ -8,7 +8,8 @@ There's nothing to say really, it's basically it... Furthermore information will
 
 #Licence
 
-   Copyright 2016 Nicolas Candela (Darkxell)
+   Copyright 2016 Nicolas Candela (Darkxell
+   Valentin Marechal (Mroklom)
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
