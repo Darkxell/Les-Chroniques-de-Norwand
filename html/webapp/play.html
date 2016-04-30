@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Jouer en ligne</title>
+		<meta charset="UTF-8">
+		<link rel="icon" href="icon.png">
+		<title> Les Chroniques de Norwand </title>
+		<link href="generic.css" rel="stylesheet" type="text/css">
+		<script src="soundmanager2-setup.js"></script>
+		<script src="soundmanager2-jsmin.js"></script>
+	</head>
+
+	<body class="play">
+		<nav class="top">
+			<div class="expendable">
+				<a href="home.html#part1"><img src="ic1.png" alt="Jouer"></a>
+				<a href="home.html#part2"><img src="ic2.png" alt="Doc"></a>
+				<a href="home.html#part3"><img src="ic3.png" alt="Equipe"></a>
+			</div>
+			<b>Les Chroniques de Norwand</b>
+			<br/>Informations
+		</nav>
+		<div class="padder">
+		</div>
+		<a class="superdev" href="javascript:%7B%20window.__gwt_bookmarklet_params%20%3D%20%7B'server_url'%3A'http%3A%2F%2Flocalhost%3A9876%2F'%7D%3B%20var%20s%20%3D%20document.createElement('script')%3B%20s.src%20%3D%20'http%3A%2F%2Flocalhost%3A9876%2Fdev_mode_on.js'%3B%20void(document.getElementsByTagName('head')%5B0%5D.appendChild(s))%3B%7D">&#8635;</a>
+		<div align="center" id="embed-html">
+		</div>
+		<script type="text/javascript" src="html/html.nocache.js"></script>
+	
+		<script>
+			function handleMouseDown(evt) {
+				evt.preventDefault();
+				evt.stopPropagation();
+				evt.target.style.cursor = 'default';
+			}
+
+			function handleMouseUp(evt) {
+				evt.preventDefault();
+				evt.stopPropagation();
+				evt.target.style.cursor = '';
+			}
+			document.getElementById('embed-html').addEventListener('mousedown', handleMouseDown, false);
+			document.getElementById('embed-html').addEventListener('mouseup', handleMouseUp, false);
+		</script>
+	</body>
+</html>
