@@ -45,13 +45,17 @@ public class DialogState extends GameState {
      */
     public void print(final Pixmap g, String message) {
         BitmapFont bitmapFont = ImagesHolder.font8x8;
-        int tic = counter/10;
+        int tic = counter/40;
         int posX = g.getWidth() / 10;
         int posY = g.getHeight() - 64 + 11;
         Array<String> wordsList = new Array<String>();
+        //Array for the next words, that will be display after the first window of dialog.
+        Array<String> nextWordsList = new Array<String>();
+        final int WINDOWLIMIT = g.getHeight() - 64 + 11 + 40;
+        // Position of the word in the sentence.
         int posInWordsList = 0;
 
-        //Save the words to get them in the right order later
+        //Save the words (the words, not the world, but still) to get them in the right order later
         for (final String word : message.split(" ")){
             if (word != null) {
                 wordsList.add(word);
@@ -70,22 +74,31 @@ public class DialogState extends GameState {
                 posX += bitmapFont.getLength(" ");
             }
 
-            //Display of each character
-            //TODO : display char after char
-            for (int j = 0; j < tic; j++) {
-                if (j <= bitmapFont.getLength(wordsList.get(posInWordsList))
+            //Management of additional words
+            if (posY < WINDOWLIMIT) {
+                nextWordsList.add(word);
+            }
+
+            //Display character after character
+            /*for (int j = 0; j < tic; j++) {
+                if (j < wordsList.get(posInWordsList).length()
                         && wordsList.get(posInWordsList) != null) {
+                    System.out.println("------------------------------------------ IF ------------------------------------------");
+                    System.out.println("bitmapFont.getLength(wordsList.get(posInWordsList))   :   " + bitmapFont.getLength(wordsList.get(posInWordsList)));
+                    System.out.println("wordsList.get(posInWordsList)   :   " +  "\"" + wordsList.get(posInWordsList) + "\"");
+                    System.out.println("wordsList.get(posInWordsList).length()   :   " +  "\"" + wordsList.get(posInWordsList).length() + "\"");
                     bitmapFont.printStringOn(g,
                             ""+wordsList.get(posInWordsList).charAt(j),
-                            posX + j*bitmapFont.getLength(""+wordsList.get(posInWordsList).charAt(j)),
+                            posX + j*bitmapFont.getLength(""+word.charAt(j)),
                             posY);
                 }
                 else {
+                    System.out.println("----------------------------------------- ELSE -----------------------------------------");
                     bitmapFont.printStringOn(g, " ", posX + (tic+1)*bitmapFont.getLength(" "), posY);
                     posInWordsList++;
-                    j = 0;
+                    j = tic;
                 }
-            }
+            }*/
 
 
 
@@ -99,16 +112,18 @@ public class DialogState extends GameState {
                     posX + tic*bitmapFont.getLength(" "),
                     posY);*/
 
-            //Print the whole word
-            //bitmapFont.printStringOn(g, word, posX, posY);
+            //Print the whole word if it belong to this window of dialog
+            if(posY < WINDOWLIMIT)
+                bitmapFont.printStringOn(g, word, posX, posY);
+            //System.out.println("posY = " + posY);
 
-            posX += bitmapFont.getLength(wordsList.get(posInWordsList));
+            posX += bitmapFont.getLength(word);
         }
     }
 
     @Override
     public void onPress(UserEvent e) {
-	parent.substate = new PlayState(parent);
+	    parent.substate = new PlayState(parent);
     }
 
     @Override
