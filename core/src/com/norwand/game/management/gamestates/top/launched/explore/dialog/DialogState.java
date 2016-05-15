@@ -2,6 +2,7 @@ package com.norwand.game.management.gamestates.top.launched.explore.dialog;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.utils.Array;
+import com.norwand.game.MainGame;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamestates.GameState;
@@ -14,6 +15,8 @@ import com.norwand.game.utility.objects.BitmapFont;
 public class DialogState extends GameState {
     private String message;
     private int counter;
+    //String for the next words, that will be display after this window of dialog.
+    String nextMessage = "";
 
     /** Stored pointer to the LaunchedState GameData attribute. */
     GameData datapointer = ((LaunchedState) parent.parent).data;
@@ -49,8 +52,6 @@ public class DialogState extends GameState {
         int posX = g.getWidth() / 10;
         int posY = g.getHeight() - 64 + 11;
         Array<String> wordsList = new Array<String>();
-        //Array for the next words, that will be display after the first window of dialog.
-        Array<String> nextWordsList = new Array<String>();
         final int WINDOWLIMIT = g.getHeight() - 64 + 11 + 40;
         // Position of the word in the sentence.
         int posInWordsList = 0;
@@ -75,8 +76,8 @@ public class DialogState extends GameState {
             }
 
             //Management of additional words
-            if (posY < WINDOWLIMIT) {
-                nextWordsList.add(word);
+            if (posY >= WINDOWLIMIT) {
+                nextMessage += word + " ";
             }
 
             //Display character after character
@@ -123,7 +124,17 @@ public class DialogState extends GameState {
 
     @Override
     public void onPress(UserEvent e) {
-	    parent.substate = new PlayState(parent);
+	    if (nextMessage.equals("")) {
+            System.out.println("nextMessage= " + nextMessage);
+            parent.substate = new PlayState(parent);
+        }
+        else {
+            System.out.println("Else");
+            System.out.println("Message : " + message);
+            parent.substate = new DialogState(MainGame.game.state.substate.substate, nextMessage         /*"This is a test for a dialog. A bla bla bla bla!"*/);
+            nextMessage = "";
+        }
+
     }
 
     @Override
