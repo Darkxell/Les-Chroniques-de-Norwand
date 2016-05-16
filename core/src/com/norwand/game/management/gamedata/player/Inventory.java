@@ -3,11 +3,16 @@ package com.norwand.game.management.gamedata.player;
 import com.norwand.game.management.gamedata.items.Consumable.BigHealthPot;
 import com.norwand.game.management.gamedata.items.Consumable.HealthPot;
 import com.norwand.game.management.gamedata.items.Equipable.Armor.Armor;
+import com.norwand.game.management.gamedata.items.Equipable.Armor.LeatherArmor;
 import com.norwand.game.management.gamedata.items.Equipable.Boots.Boots;
+import com.norwand.game.management.gamedata.items.Equipable.Boots.LeatherBoots;
 import com.norwand.game.management.gamedata.items.Equipable.Equipable;
 import com.norwand.game.management.gamedata.items.Equipable.Helmet.Helmet;
+import com.norwand.game.management.gamedata.items.Equipable.Helmet.IronHelmet;
+import com.norwand.game.management.gamedata.items.Equipable.Necklace.CopperNecklace;
 import com.norwand.game.management.gamedata.items.Equipable.Necklace.Necklace;
 import com.norwand.game.management.gamedata.items.Equipable.Ring.Ring;
+import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.IronSword;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Weapon;
 import com.norwand.game.management.gamedata.items.Item;
 import com.norwand.game.management.gamedata.player.capacities.Cap_Teleport;
@@ -28,7 +33,8 @@ public class Inventory {
     /**
      * The list of non equipped equipables in the player inventory.
      */
-    public Equipable[] equipables = new Equipable[]{};
+    public Equipable[] equipables = new Equipable[]{new IronHelmet(), new IronSword(),
+        new CopperNecklace(), new LeatherArmor(), new LeatherBoots()};
     /**
      * The list of capacities in the player inventory.
      */
