@@ -12,6 +12,8 @@ import com.norwand.game.management.gamedata.items.Equipable.Helmet.IronHelmet;
 import com.norwand.game.management.gamedata.items.Equipable.Necklace.CopperNecklace;
 import com.norwand.game.management.gamedata.items.Equipable.Necklace.Necklace;
 import com.norwand.game.management.gamedata.items.Equipable.Ring.Ring;
+import com.norwand.game.management.gamedata.items.Equipable.Ring.WoodenRing;
+import com.norwand.game.management.gamedata.items.Equipable.Weapon.Shield.WoodenShield;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.IronSword;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Weapon;
 import com.norwand.game.management.gamedata.items.Item;
@@ -34,7 +36,8 @@ public class Inventory {
      * The list of non equipped equipables in the player inventory.
      */
     public Equipable[] equipables = new Equipable[]{new IronHelmet(), new IronSword(),
-        new CopperNecklace(), new LeatherArmor(), new LeatherBoots()};
+            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
+            new IronHelmet(), new WoodenShield(), new LeatherBoots()};
     /**
      * The list of capacities in the player inventory.
      */
@@ -43,32 +46,32 @@ public class Inventory {
     /**
      * The Armor of the player
      */
-    public Armor armor;
+    public Armor armor = new LeatherArmor();
     /**
      * The Boots of the player
      */
-    public Boots boots;
+    public Boots boots = new LeatherBoots();
     /**
      * The Helmet of the player
      */
-    public Helmet helmet;
+    public Helmet helmet = new IronHelmet();
     /**
      * The Necklace of the player
      */
-    public Necklace necklace;
+    public Necklace necklace = new CopperNecklace();
     /**
      * The Ring of the player
      */
-    public Ring ring;
+    public Ring ring = new WoodenRing();
 
     /**
      * The first weapon of the player
      */
-    public Weapon weapon1;
+    public Weapon weapon1 = new IronSword();
     /**
      * The second weapon of the player
      */
-    public Weapon weapon2;
+    public Weapon weapon2 = new WoodenShield();
 
     /**
      * The first capacity slot of the player.

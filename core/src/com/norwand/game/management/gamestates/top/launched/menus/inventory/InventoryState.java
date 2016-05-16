@@ -89,11 +89,8 @@ public class InventoryState extends GameState {
             }
         }
         //switch page
-        else if (e.x > 220 && e.x < 236 && e.y > MainGame.getBufferHeight() / 2 - 16 && e.y < MainGame.getBufferHeight() / 2 + 32) {
-            System.out.println(e.x);
-            System.out.println(e.y);
+        else if (e.x > 220 && e.x < 236 && e.y > MainGame.getBufferHeight() / 2 - 16 && e.y < MainGame.getBufferHeight() / 2 + 32)
             parent.substate = new InventoryEquipState(parent);
-        }
     }
 
     @Override
