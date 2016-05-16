@@ -66,13 +66,15 @@ public class InventoryEquipState extends GameState{
 
         //description Item
 
-        g.drawPixmap(ImagesHolder.gui.inventoryEquipSelect, 0, g.getHeight() - 32);
+            g.drawPixmap(ImagesHolder.gui.inventoryEquipSelect, 0, g.getHeight() - 32);
         g.drawPixmap(ImagesHolder.gui.inventoryEquipBot, 0, g.getHeight() - 16);
 
         if(inv.ring == null)
             g.drawPixmap(ImagesHolder.gui.ringSlot, 27, 26);
         else
             g.drawPixmap(inv.ring.getSprite(), 27, 26);
+
+
 
         if(inv.helmet == null)
             g.drawPixmap(ImagesHolder.gui.helmetSlot, 52, 26);
@@ -137,6 +139,7 @@ public class InventoryEquipState extends GameState{
 
             //equip button
             else if(e.x > 193 && e.x <= 209) {
+                i.equipEquipable(validEquip.get(cursorposition));
                 System.out.println("equip");
             }
 

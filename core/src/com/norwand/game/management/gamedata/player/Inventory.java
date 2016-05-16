@@ -339,7 +339,7 @@ public class Inventory {
      * @param e the equipable that must be equiped
      */
     public void equipEquipable(Equipable e) {
-        if (e instanceof Armor) {
+        /*if (e instanceof Armor) {
             if (armor == null)
                 armor = (Armor) e;
             else {
@@ -394,7 +394,15 @@ public class Inventory {
                 addEquipable(temp2);
             }
         } else
-            System.out.println("Erreur.");
+            System.out.println("Erreur.");*/
+
+        if(e instanceof Ring){
+            if (ring == null) {
+                ring = (Ring) e;
+            }
+        }
+        else {
+        }
 
         removeEquipable(e);
     }
