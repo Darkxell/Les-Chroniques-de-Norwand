@@ -44,7 +44,7 @@ public class InventoryEquipState extends GameState{
         if(cursorposition > GameData.get().player.inventory.equipables.length -1 || cursorposition < 0)
             cursorposition = 0;
         if(arrowAnimation <= 0)
-            arrowAnimation = 40;
+            arrowAnimation = 43;
     }
 
     @Override
@@ -53,13 +53,13 @@ public class InventoryEquipState extends GameState{
         g.drawPixmap(ImagesHolder.gui.inventoryEquipTop, 0, 0);
         for (int i = 64; i < g.getHeight() - 32; i += 16) {
             g.drawPixmap(ImagesHolder.gui.inventoryEquipMid, 0, i);
-            if (i== cursorposition)
-                InventoryState.printCursor(g, 13 + 21 * (i % 9), 63 + 21 * (i / 9), 16, 16, counter < 35);
         }
 
         //equip
         for(int i = 0 ; i < validEquip.size() ; ++i) {
-            g.drawPixmap(validEquip.get(i).getSprite(), 13 + 21*(i % 9), 63 + 21* (i / 9));
+            g.drawPixmap(validEquip.get(i).getSprite(), 17 + 21*(i % 9), 67 + 21* (i / 9));
+            if (i == cursorposition)
+                InventoryState.printCursor(g, 13 + 21 * (i % 9), 63 + 21 * (i / 9), 16, 16, counter < 35);
         }
 
         g.drawPixmap(ImagesHolder.gui.inventoryEquipMid, 0, g.getHeight() - 32);
@@ -118,10 +118,28 @@ public class InventoryEquipState extends GameState{
 
         //field of equipments
         else if(e.y > 62 && e.y < MainGame.getBufferHeight() - 32 && e.x > 9 && e.x < 208 ) {
-            int newCursorposition = (e.x - 13)/21 + (e.y - 35)/21*9;
-            if(GameData.get().player.inventory.equipables.length - 1 >= newCursorposition && newCursorposition >= 0) {
+            int newCursorposition = (e.x - 13)/21 + (e.y - 63)/21*9;
+            if(validEquip.size() > newCursorposition && newCursorposition >= 0) {
                 cursorposition = newCursorposition;
             }
+        }
+
+        //buttons
+        else if(e.y > MainGame.getBufferHeight() - 32 && e.y <= MainGame.getBufferHeight() - 16) {
+            Inventory i = GameData.get().player.inventory;
+
+            //delete button
+            if (e.x > 177 && e.x <= 193) {
+                System.out.println("delete");
+                i.removeEquipable(i.equipables[cursorposition]);
+                validEquip.remove(cursorposition);
+            }
+
+            //equip button
+            else if(e.x > 193 && e.x <= 209) {
+                System.out.println("equip");
+            }
+
         }
 
         //slots

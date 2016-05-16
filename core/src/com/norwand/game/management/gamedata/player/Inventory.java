@@ -78,32 +78,32 @@ public class Inventory {
     /**
      * The Armor of the player
      */
-    public Armor armor = new LeatherArmor();
+    public Armor armor;
     /**
      * The Boots of the player
      */
-    public Boots boots = new LeatherBoots();
+    public Boots boots;
     /**
      * The Helmet of the player
      */
-    public Helmet helmet = new IronHelmet();
+    public Helmet helmet;
     /**
      * The Necklace of the player
      */
-    public Necklace necklace = new CopperNecklace();
+    public Necklace necklace;
     /**
      * The Ring of the player
      */
-    public Ring ring = new WoodenRing();
+    public Ring ring;
 
     /**
      * The first weapon of the player
      */
-    public Weapon weapon1 = new IronSword();
+    public Weapon weapon1;
     /**
      * The second weapon of the player
      */
-    public Weapon weapon2 = new WoodenShield();
+    public Weapon weapon2;
 
     /**
      * The first capacity slot of the player.
