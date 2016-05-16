@@ -35,6 +35,19 @@ public class GuiSubImages implements Disposable {
 	    inventorycursorNE = PixmapUtility.getPixmapPart(set, 40, 368, 8, 8);
 	    inventorycursorSW = PixmapUtility.getPixmapPart(set, 32, 376, 8, 8);
 	    inventorycursorSE = PixmapUtility.getPixmapPart(set, 40, 376, 8, 8);
+        ringSlot = PixmapUtility.getPixmapPart(set, 48, 344, 16, 16);
+        helmetSlot = PixmapUtility.getPixmapPart(set, 64, 344, 16, 16);
+        bootsSlot = PixmapUtility.getPixmapPart(set, 80, 344, 16, 16);
+        armorSlot = PixmapUtility.getPixmapPart(set, 96, 344, 16, 16);
+        necklaceSlot = PixmapUtility.getPixmapPart(set, 112, 344, 16, 16);
+        weapon1Slot = PixmapUtility.getPixmapPart(set, 144, 344, 16, 16);
+        weapon2Slot = PixmapUtility.getPixmapPart(set, 160, 344, 16, 16);
+        selectArrowUp = PixmapUtility.getPixmapPart(set, 48, 368, 8, 8);
+        selectArrowDown = PixmapUtility.getPixmapPart(set, 48, 376, 8, 8);
+        inventoryEquipTop = PixmapUtility.getPixmapPart(set, 0, 416 , 64, 240);
+        inventoryEquipMid = PixmapUtility.getPixmapPart(set, 0, 480 , 16, 240);
+        inventoryEquipBot = PixmapUtility.getPixmapPart(set, 0, 496 , 16, 240);
+        inventoryEquipSelect = PixmapUtility.getPixmapPart(set, 0, 288, 16, 240);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
@@ -66,5 +79,18 @@ public class GuiSubImages implements Disposable {
     public Pixmap inventorycursorNE;
     public Pixmap inventorycursorSW;
     public Pixmap inventorycursorSE;
+    public Pixmap ringSlot;
+    public Pixmap helmetSlot;
+    public Pixmap bootsSlot;
+    public Pixmap armorSlot;
+    public Pixmap necklaceSlot;
+    public Pixmap weapon1Slot;
+    public Pixmap weapon2Slot;
+    public Pixmap selectArrowUp;
+    public Pixmap selectArrowDown;
+    public Pixmap inventoryEquipTop;
+    public Pixmap inventoryEquipMid;
+    public Pixmap inventoryEquipBot;
+    public Pixmap inventoryEquipSelect;
 
 }
