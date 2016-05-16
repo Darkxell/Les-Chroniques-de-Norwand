@@ -6,7 +6,7 @@ tileheight=16
 orientation=orthogonal
 
 [tilesets]
-tileset=Les-Chroniques-de-Norwand/android/assets/textures/tileset.png,16,16,0,0
+tileset=../textures/tileset.png,16,16,0,0
 
 [layer]
 type=physics
