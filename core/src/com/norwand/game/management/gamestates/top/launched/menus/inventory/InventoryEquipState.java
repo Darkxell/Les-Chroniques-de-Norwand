@@ -1,6 +1,7 @@
 package com.norwand.game.management.gamestates.top.launched.menus.inventory;
 
 import com.badlogic.gdx.graphics.Pixmap;
+import com.norwand.game.MainGame;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.items.Equipable.Armor.Armor;
@@ -26,7 +27,6 @@ public class InventoryEquipState extends GameState{
             if(inv.equipables[i] instanceof Ring)
                 validEquip.add(inv.equipables[i]);
         }
-
     }
 
     private int counter, cursorposition;
@@ -51,8 +51,11 @@ public class InventoryEquipState extends GameState{
     public void print(Pixmap g) {
         Inventory inv = GameData.get().player.inventory;
         g.drawPixmap(ImagesHolder.gui.inventoryEquipTop, 0, 0);
-        for (int i = 64; i < g.getHeight() - 32; i += 16)
+        for (int i = 64; i < g.getHeight() - 32; i += 16) {
             g.drawPixmap(ImagesHolder.gui.inventoryEquipMid, 0, i);
+            if (i== cursorposition)
+                InventoryState.printCursor(g, 13 + 21 * (i % 9), 63 + 21 * (i / 9), 16, 16, counter < 35);
+        }
 
         //equip
         for(int i = 0 ; i < validEquip.size() ; ++i) {
@@ -111,6 +114,14 @@ public class InventoryEquipState extends GameState{
         //return on the explore state
         if (e.x > 188 && e.y > 4 && e.x < 236 && e.y < 20) {
             parent.parent.substate = new ExploreState(parent.parent);
+        }
+
+        //field of equipments
+        else if(e.y > 62 && e.y < MainGame.getBufferHeight() - 32 && e.x > 9 && e.x < 208 ) {
+            int newCursorposition = (e.x - 13)/21 + (e.y - 35)/21*9;
+            if(GameData.get().player.inventory.equipables.length - 1 >= newCursorposition && newCursorposition >= 0) {
+                cursorposition = newCursorposition;
+            }
         }
 
         //slots
