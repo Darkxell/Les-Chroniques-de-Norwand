@@ -25,11 +25,11 @@ public abstract class PixmapUtility {
      *            The width of the selection.
      */
     public static Pixmap getPixmapPart(Pixmap source, int cornerX, int cornerY,
-	    int height, int width) throws Exception {
-	Pixmap toreturn = new Pixmap(height, width, source.getFormat());
+	    int width, int height) throws Exception {
+	Pixmap toreturn = new Pixmap(width, height, source.getFormat());
 	try {
-	    for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++) {
+	    for (int i = 0; i < width; i++) {
+		for (int j = 0; j < height; j++) {
 		    toreturn.drawPixel(i, j,
 			    source.getPixel(cornerX + i, cornerY + j));
 		}
