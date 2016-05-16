@@ -2,6 +2,7 @@ package com.norwand.game.management.gamestates.top.launched.explore.dialog;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.StreamUtils;
 import com.norwand.game.MainGame;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamedata.GameData;
@@ -9,21 +10,33 @@ import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.launched.LaunchedState;
 import com.norwand.game.management.gamestates.top.launched.explore.play.PlayState;
 import com.norwand.game.resources.ImagesHolder;
-import com.norwand.game.utility.StringUtility;
 import com.norwand.game.utility.objects.BitmapFont;
 
 public class DialogState extends GameState {
     private String message;
     private int counter;
+    private String firstLine = "";
+    private String secondLine = "";
     //String for the next words, that will be display after this window of dialog.
-    String nextMessage = "";
+    private String nextMessage = "";
+    //Stored pointer to the LaunchedState GameData attribute.
+    private GameData datapointer = ((LaunchedState) parent.parent).data;
+    private BitmapFont bitmapFont = ImagesHolder.font8x8;
 
-    /** Stored pointer to the LaunchedState GameData attribute. */
-    GameData datapointer = ((LaunchedState) parent.parent).data;
+    //private int tic = counter/40;
+
+    private Array<String> wordsList = new Array<String>();
+
+    // Position of the word in the sentence.
+    //private int posInWordsList = 0;
 
     public DialogState(GameState parent, String message) {
         super(parent);
         this.message = message;
+
+        //firstline, secondline
+
+        //reste dans nextmessage
     }
 
     @Override
@@ -31,30 +44,24 @@ public class DialogState extends GameState {
         ++counter;
     }
 
+    /**
+     * Display a String in a Pixmap.
+     * @param g the Pixmap where the message is displayed
+     */
     @Override
     public void print(Pixmap g) {
-
         datapointer.currentfloor.printOn(g, 7.5 - datapointer.player.cam.x,
             (((double) (g.getHeight())) / 32d) - datapointer.player.cam.y);
         g.drawPixmap(ImagesHolder.gui.dialog, 16, g.getHeight() - 64);
 
-        print(g, message);
-    }
-
-    /**
-     * Display a String in a Pixmap.
-     * @param g the Pixmap where the message is displayed
-     * @param message the message displayed
-     */
-    public void print(final Pixmap g, String message) {
-        BitmapFont bitmapFont = ImagesHolder.font8x8;
-        int tic = counter/40;
         int posX = g.getWidth() / 10;
         int posY = g.getHeight() - 64 + 11;
-        Array<String> wordsList = new Array<String>();
         final int WINDOWLIMIT = g.getHeight() - 64 + 11 + 40;
-        // Position of the word in the sentence.
-        int posInWordsList = 0;
+        System.out.println(WINDOWLIMIT);
+
+
+
+
 
         //Save the words (the words, not the world, but still) to get them in the right order later
         for (final String word : message.split(" ")){
@@ -62,7 +69,7 @@ public class DialogState extends GameState {
                 wordsList.add(word);
             }
         }
-        
+
         for (final String word : wordsList){
 
             //Line break and space input
@@ -101,10 +108,6 @@ public class DialogState extends GameState {
                 }
             }*/
 
-
-
-
-
             /*bitmapFont.printStringOn(
                     g,
                     (tic <= bitmapFont.getLength(word)) ?
@@ -131,7 +134,7 @@ public class DialogState extends GameState {
         else {
             System.out.println("Else");
             System.out.println("Message : " + message);
-            parent.substate = new DialogState(MainGame.game.state.substate.substate, nextMessage         /*"This is a test for a dialog. A bla bla bla bla!"*/);
+            parent.substate = new DialogState(MainGame.game.state.substate.substate, nextMessage /*"This is a test for a dialog. A bla bla bla bla!"*/);
             nextMessage = "";
         }
 
