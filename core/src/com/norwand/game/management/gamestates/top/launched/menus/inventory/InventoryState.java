@@ -84,9 +84,15 @@ public class InventoryState extends GameState {
                 i.equipItem(i.items[cursorposition]);
             }
             //button use
-            else if(e.x > 193 && e.x < 208){
+            else if(e.x > 193 && e.x < 208) {
                 i.items[cursorposition].onUse();
             }
+        }
+        //switch page
+        else if (e.x > 220 && e.x < 236 && e.y > MainGame.getBufferHeight() / 2 - 16 && e.y < MainGame.getBufferHeight() / 2 + 32) {
+            System.out.println(e.x);
+            System.out.println(e.y);
+            parent.substate = new InventoryEquipState(parent);
         }
     }
 

@@ -6,6 +6,8 @@ import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.entities.Monster;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.objects.DoubleRectangle;
+import com.norwand.game.utility.objects.MathVector;
+import com.norwand.game.utility.objects.Position;
 
 public class Wolf extends Monster {
 
