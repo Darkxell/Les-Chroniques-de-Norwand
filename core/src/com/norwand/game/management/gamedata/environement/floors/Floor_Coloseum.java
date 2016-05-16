@@ -31,6 +31,25 @@ public class Floor_Coloseum extends Floor {
 		return new Floor_Prison(GameData.get().player);
 	    }
 	});
+	
+	setTileAt(12, 0,new WarpZone(getTileAt(12, 0), 24, 14) {
+	    @Override
+	    public Floor getDestination() {
+		return new Floor_Wastelands(GameData.get().player);
+	    }
+	});
+	setTileAt(13, 0,new WarpZone(getTileAt(13, 0), 24, 14) {
+	    @Override
+	    public Floor getDestination() {
+		return new Floor_Wastelands(GameData.get().player);
+	    }
+	});
+	setTileAt(14, 0,new WarpZone(getTileAt(14, 0), 24, 14) {
+	    @Override
+	    public Floor getDestination() {
+		return new Floor_Wastelands(GameData.get().player);
+	    }
+	});
     }
 
 }
