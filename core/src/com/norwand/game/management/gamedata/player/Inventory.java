@@ -35,41 +35,18 @@ public class Inventory {
     /**
      * The list of non equipped equipables in the player inventory.
      */
-    public Equipable[] equipables = new Equipable[]{new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots(),new IronHelmet(), new IronSword(),
-            new CopperNecklace(), new LeatherArmor(), new LeatherBoots(), new WoodenRing(),
-            new IronHelmet(), new WoodenShield(), new LeatherBoots()};
+    public Equipable[] equipables = new Equipable[]{new WoodenRing(), new IronHelmet(),
+            new LeatherBoots(), new LeatherArmor(),
+            new CopperNecklace(), new IronSword(),
+            new WoodenShield(), new WoodenRing(),
+            new IronHelmet(),
+            new LeatherBoots(), new LeatherArmor(),
+            new CopperNecklace(), new IronSword(),
+            new WoodenShield(), new WoodenRing(),
+            new IronHelmet(),
+            new LeatherBoots(), new LeatherArmor(),
+            new CopperNecklace(), new IronSword(),
+            new WoodenShield()};
     /**
      * The list of capacities in the player inventory.
      */
@@ -149,12 +126,10 @@ public class Inventory {
         if (quickItem1 == i) {
             quickItem1 = null;
             return;
-        }
-        else if (quickItem2 == i) {
+        } else if (quickItem2 == i) {
             quickItem2 = null;
             return;
-        }
-        else
+        } else
             removeItemFromArray(i);
     }
 
@@ -195,10 +170,10 @@ public class Inventory {
             System.err.println("Equipable non trouvé. Délétion impossible.");
         else {
             System.arraycopy(equipables, 0, newEquipables, 0, removeId);
-            System.arraycopy(equipables, removeId + 1, newEquipables, removeId,
-                    newLenght - removeId);
+            System.arraycopy(equipables, removeId + 1, newEquipables, removeId, newLenght - removeId);
             equipables = newEquipables;
         }
+
         if (helmet == e)
             helmet = null;
         if (necklace == e)
@@ -283,18 +258,14 @@ public class Inventory {
      * @param i the item that must be equiped
      */
     public void equipItem(Item i) {
-        if (quickItem1 == null){
+        if (quickItem1 == null) {
             quickItem1 = i;
             removeItemFromArray(i);
-        }
-
-        else if (quickItem1 != null && quickItem2 == null) {
+        } else if (quickItem1 != null && quickItem2 == null) {
             quickItem2 = quickItem1;
             quickItem1 = i;
             removeItemFromArray(i);
-        }
-
-        else if (quickItem1 != null && quickItem2 != null) {
+        } else if (quickItem1 != null && quickItem2 != null) {
             Item temp1 = quickItem1;
             Item temp2 = quickItem2;
             quickItem1 = i;
@@ -339,7 +310,7 @@ public class Inventory {
      * @param e the equipable that must be equiped
      */
     public void equipEquipable(Equipable e) {
-        /*if (e instanceof Armor) {
+        if (e instanceof Armor) {
             if (armor == null)
                 armor = (Armor) e;
             else {
@@ -347,7 +318,9 @@ public class Inventory {
                 armor = (Armor) e;
                 addEquipable(temp);
             }
-        } else if (e instanceof Boots) {
+        }
+
+        else if (e instanceof Boots) {
             if (boots == null)
                 boots = (Boots) e;
             else {
@@ -355,7 +328,9 @@ public class Inventory {
                 boots = (Boots) e;
                 addEquipable(temp);
             }
-        } else if (e instanceof Helmet) {
+        }
+
+        else if (e instanceof Helmet) {
             if (helmet == null)
                 helmet = (Helmet) e;
             else {
@@ -363,7 +338,9 @@ public class Inventory {
                 helmet = (Helmet) e;
                 addEquipable(temp);
             }
-        } else if (e instanceof Necklace) {
+        }
+
+        else if (e instanceof Necklace) {
             if (necklace == null)
                 necklace = (Necklace) e;
             else {
@@ -371,7 +348,9 @@ public class Inventory {
                 necklace = (Necklace) e;
                 addEquipable(temp);
             }
-        } else if (e instanceof Ring) {
+        }
+
+        else if (e instanceof Ring) {
             if (ring == null)
                 ring = (Ring) e;
             else {
@@ -379,30 +358,27 @@ public class Inventory {
                 ring = (Ring) e;
                 addEquipable(temp);
             }
-        } else if (e instanceof Weapon) {
+        }
+
+        else if (e instanceof Weapon) {
+
             if (weapon1 == null)
                 weapon1 = (Weapon) e;
-            if (weapon1 == null && weapon2 != null) {
-                weapon2 = weapon1;
-                weapon1 = (Weapon) e;
-            }
-            if (weapon1 != null && weapon2 != null) {
+
+            else if (weapon2 == null)
+                weapon2 = (Weapon) e;
+
+            else{
                 Weapon temp1 = weapon1;
                 Weapon temp2 = weapon2;
                 weapon1 = (Weapon) e;
                 weapon2 = temp1;
                 addEquipable(temp2);
             }
-        } else
-            System.out.println("Erreur.");*/
+        }
 
-        if(e instanceof Ring){
-            if (ring == null) {
-                ring = (Ring) e;
-            }
-        }
-        else {
-        }
+        else
+            System.out.println("Erreur.");
 
         removeEquipable(e);
     }
