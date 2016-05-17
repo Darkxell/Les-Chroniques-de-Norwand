@@ -53,7 +53,7 @@ public class DialogState extends GameState {
             System.out.println("lineLenght AVANT le if = " + lineLength);
 
             //firstLine
-            if (lineLength <= 198) {
+            if (lineLength <= 190) {
                 lineLength = bitmapFont.getLength(firstLine + word + " ");
 
                 System.out.println("firstLine = " + firstLine);
@@ -64,7 +64,7 @@ public class DialogState extends GameState {
                 System.out.println("firstLine APRES = " + firstLine);
             }
             //secondLine
-            else if (lineLength > 198 && lineLength <= 396) {
+            else if (lineLength > 190 && lineLength <= 380) {
                 lineLength = bitmapFont.getLength(firstLine + secondLine + word + " ");
 
                 System.out.println("secondLine = " + secondLine);
@@ -107,8 +107,10 @@ public class DialogState extends GameState {
 
 
         for (final String word : wordsList){
+            bitmapFont.printStringOn(g, firstLine, posX, posY);
+            bitmapFont.printStringOn(g, secondLine, posX, posY + 20);
 
-            //Line break and space input
+            /*//Line break and space input
             if (posX + bitmapFont.getLength(word) >= g.getWidth()*9/10) {
                 posX = g.getWidth()/10;
                 posY += 20;
@@ -124,7 +126,7 @@ public class DialogState extends GameState {
             }
 
             //Display character after character
-            /*for (int j = 0; j < tic; j++) {
+            *//*for (int j = 0; j < tic; j++) {
                 if (j < wordsList.get(posInWordsList).length()
                         && wordsList.get(posInWordsList) != null) {
                     System.out.println("------------------------------------------ IF ------------------------------------------");
@@ -142,22 +144,22 @@ public class DialogState extends GameState {
                     posInWordsList++;
                     j = tic;
                 }
-            }*/
+            }*//*
 
-            /*bitmapFont.printStringOn(
+            *//*bitmapFont.printStringOn(
                     g,
                     (tic <= bitmapFont.getLength(word)) ?
                             ""+word.charAt(tic) :
                             " ",
                     posX + tic*bitmapFont.getLength(" "),
-                    posY);*/
+                    posY);*//*
 
             //Print the whole word if it belong to this window of dialog
             if(posY < WINDOWLIMIT)
                 bitmapFont.printStringOn(g, word, posX, posY);
             //System.out.println("posY = " + posY);
 
-            posX += bitmapFont.getLength(word);
+            posX += bitmapFont.getLength(word);*/
         }
     }
 
