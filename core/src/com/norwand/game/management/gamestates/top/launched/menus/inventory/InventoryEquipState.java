@@ -24,10 +24,7 @@ public class InventoryEquipState extends GameState {
     public InventoryEquipState(GameState parent) {
         super(parent);
         Inventory inv = GameData.get().player.inventory;
-        for (int i = 0; i < inv.equipables.length; ++i) {
-            if (inv.equipables[i] instanceof Ring)
-                validEquip.add(inv.equipables[i]);
-        }
+        updateBuffer();
         if(validEquip.size() > 0)
             cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
         else
@@ -70,6 +67,9 @@ public class InventoryEquipState extends GameState {
         for (int i = 64; i < g.getHeight() - 32; i += 16) {
             g.drawPixmap(ImagesHolder.gui.inventoryEquipMid, 0, i);
         }
+
+        //switch page
+        g.drawPixmap(ImagesHolder.gui.inventoryarrow, 220, g.getHeight() / 2 - 16);
 
         //equip
         for (int i = 0; i < validEquip.size(); ++i) {
@@ -120,8 +120,13 @@ public class InventoryEquipState extends GameState {
         else
             g.drawPixmap(inv.weapon2.getSprite(), 187, 26);
 
-        g.drawPixmap(ImagesHolder.gui.selectArrowDown, (arrowPosition >= 5) ? 166 + 25 * (arrowPosition - 5) : 31 + 25 * arrowPosition, (arrowAnimation <= 20) ? 46 : 45);
-
+        if(arrowPosition >= 5) {
+            g.drawPixmap(ImagesHolder.gui.selectArrowDown,  166, (arrowAnimation <= 20) ? 46 : 45);
+            g.drawPixmap(ImagesHolder.gui.selectArrowDown,  191, (arrowAnimation <= 20) ? 46 : 45);
+        }
+        else {
+            g.drawPixmap(ImagesHolder.gui.selectArrowDown,  31 + 25 * arrowPosition, (arrowAnimation <= 20) ? 46 : 45);
+        }
     }
 
     @Override
@@ -163,6 +168,8 @@ public class InventoryEquipState extends GameState {
                 }
             }
 
+            updateBuffer();
+
         }
 
         //slots
@@ -172,11 +179,7 @@ public class InventoryEquipState extends GameState {
             //ring slot
             if (e.x > 24 && e.x < 45) {
                 arrowPosition = 0;
-                validEquip.clear();
-                for (int i = 0; i < inv.equipables.length; ++i) {
-                    if (inv.equipables[i] instanceof Ring)
-                        validEquip.add(inv.equipables[i]);
-                }
+                updateBuffer();
 
                 if(validEquip.size() > 0)
                     cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
@@ -187,11 +190,7 @@ public class InventoryEquipState extends GameState {
             //helmet slot
             else if (e.x > 49 && e.x < 70) {
                 arrowPosition = 1;
-                validEquip.clear();
-                for (int i = 0; i < inv.equipables.length; ++i) {
-                    if (inv.equipables[i] instanceof Helmet)
-                        validEquip.add(inv.equipables[i]);
-                }
+                updateBuffer();
                 if(validEquip.size() > 0)
                     cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
                 else
@@ -201,11 +200,7 @@ public class InventoryEquipState extends GameState {
             //boots slot
             else if (e.x > 74 && e.x < 95) {
                 arrowPosition = 2;
-                validEquip.clear();
-                for (int i = 0; i < inv.equipables.length; ++i) {
-                    if (inv.equipables[i] instanceof Boots)
-                        validEquip.add(inv.equipables[i]);
-                }
+                updateBuffer();
                 if(validEquip.size() > 0)
                     cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
                 else
@@ -216,10 +211,7 @@ public class InventoryEquipState extends GameState {
             else if (e.x > 99 && e.x < 120) {
                 arrowPosition = 3;
                 validEquip.clear();
-                for (int i = 0; i < inv.equipables.length; ++i) {
-                    if (inv.equipables[i] instanceof Armor)
-                        validEquip.add(inv.equipables[i]);
-                }
+                updateBuffer();
                 if(validEquip.size() > 0)
                     cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
                 else
@@ -229,11 +221,7 @@ public class InventoryEquipState extends GameState {
             //necklace slot
             else if (e.x > 124 && e.x < 145) {
                 arrowPosition = 4;
-                validEquip.clear();
-                for (int i = 0; i < inv.equipables.length; ++i) {
-                    if (inv.equipables[i] instanceof Necklace)
-                        validEquip.add(inv.equipables[i]);
-                }
+                updateBuffer();
                 if(validEquip.size() > 0)
                     cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
                 else
@@ -243,11 +231,7 @@ public class InventoryEquipState extends GameState {
             //weapon1 slot
             else if (e.x > 159 && e.x < 180) {
                 arrowPosition = 5;
-                validEquip.clear();
-                for (int i = 0; i < inv.equipables.length; ++i) {
-                    if (inv.equipables[i] instanceof Weapon)
-                        validEquip.add(inv.equipables[i]);
-                }
+                updateBuffer();
                 if(validEquip.size() > 0)
                     cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
                 else
@@ -257,11 +241,7 @@ public class InventoryEquipState extends GameState {
             //weapon2 slot
             else if (e.x > 184 && e.x < 205) {
                 arrowPosition = 6;
-                validEquip.clear();
-                for (int i = 0; i < inv.equipables.length; ++i) {
-                    if (inv.equipables[i] instanceof Weapon)
-                        validEquip.add(inv.equipables[i]);
-                }
+                updateBuffer();
                 if(validEquip.size() > 0)
                     cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
                 else
@@ -297,5 +277,60 @@ public class InventoryEquipState extends GameState {
     @Override
     public void onType(UserEvent e) {
 
+    }
+
+
+
+    private void updateBuffer() {
+        Inventory inv = GameData.get().player.inventory;
+        switch (arrowPosition) {
+            case 0:
+                validEquip.clear();
+                for (int i = 0; i < inv.equipables.length; ++i) {
+                    if (inv.equipables[i] instanceof Ring)
+                        validEquip.add(inv.equipables[i]);
+                }
+                break;
+
+            case 1:
+                validEquip.clear();
+                for (int i = 0; i < inv.equipables.length; ++i) {
+                    if (inv.equipables[i] instanceof Helmet)
+                        validEquip.add(inv.equipables[i]);
+                }
+                break;
+
+            case 2 :
+                validEquip.clear();
+                for (int i = 0; i < inv.equipables.length; ++i) {
+                    if (inv.equipables[i] instanceof Boots)
+                        validEquip.add(inv.equipables[i]);
+                }
+                break;
+
+            case 3  :
+                validEquip.clear();
+                for (int i = 0; i < inv.equipables.length; ++i) {
+                    if (inv.equipables[i] instanceof Armor)
+                        validEquip.add(inv.equipables[i]);
+                }
+                break;
+
+            case 4 :
+                validEquip.clear();
+                for (int i = 0; i < inv.equipables.length; ++i) {
+                    if (inv.equipables[i] instanceof Necklace)
+                        validEquip.add(inv.equipables[i]);
+                }
+                break;
+
+            case 5:case 6:
+                validEquip.clear();
+                for (int i = 0; i < inv.equipables.length; ++i) {
+                    if (inv.equipables[i] instanceof Weapon)
+                        validEquip.add(inv.equipables[i]);
+                }
+                break;
+        }
     }
 }

@@ -3,7 +3,9 @@ package com.norwand.game.management.gamedata.player;
 import com.norwand.game.management.gamedata.items.Consumable.BigHealthPot;
 import com.norwand.game.management.gamedata.items.Consumable.HealthPot;
 import com.norwand.game.management.gamedata.items.Equipable.Armor.Armor;
+import com.norwand.game.management.gamedata.items.Equipable.Armor.CopperArmor;
 import com.norwand.game.management.gamedata.items.Equipable.Armor.LeatherArmor;
+import com.norwand.game.management.gamedata.items.Equipable.Armor.OrichalcumArmor;
 import com.norwand.game.management.gamedata.items.Equipable.Boots.Boots;
 import com.norwand.game.management.gamedata.items.Equipable.Boots.LeatherBoots;
 import com.norwand.game.management.gamedata.items.Equipable.Equipable;
@@ -13,7 +15,9 @@ import com.norwand.game.management.gamedata.items.Equipable.Necklace.CopperNeckl
 import com.norwand.game.management.gamedata.items.Equipable.Necklace.Necklace;
 import com.norwand.game.management.gamedata.items.Equipable.Ring.Ring;
 import com.norwand.game.management.gamedata.items.Equipable.Ring.WoodenRing;
+import com.norwand.game.management.gamedata.items.Equipable.Weapon.Shield.ManatarmShield;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Shield.WoodenShield;
+import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.CopperSword;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.IronSword;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Weapon;
 import com.norwand.game.management.gamedata.items.Item;
@@ -35,8 +39,10 @@ public class Inventory {
     /**
      * The list of non equipped equipables in the player inventory.
      */
-    public Equipable[] equipables = new Equipable[]{new WoodenRing(), new IronHelmet(),
-            new LeatherBoots(), new LeatherArmor(), new CopperNecklace(), new IronSword(), new WoodenShield()};
+    public Equipable[] equipables = new Equipable[]{new WoodenRing(), new IronHelmet(), new CopperArmor(), new LeatherArmor(),
+                                                    new LeatherBoots(), new CopperNecklace(), new CopperSword(), new IronSword(),
+                                                    new WoodenShield(), new ManatarmShield(), new IronHelmet(), new CopperNecklace(),
+                                                    new OrichalcumArmor()};
     /**
      * The list of capacities in the player inventory.
      */
@@ -149,6 +155,7 @@ public class Inventory {
      * @param e
      */
     public void removeEquipable(Equipable e) {
+
         int newLenght = equipables.length - 1;
         if (newLenght < 0)
             newLenght = 0;
@@ -172,6 +179,7 @@ public class Inventory {
      * @param c the capacity that must be removed
      */
     public void removeCapacity(Capacity c) {
+
         int newLenght = capacity.length - 1;
         if (newLenght < 0)
             newLenght = 0;
@@ -217,7 +225,7 @@ public class Inventory {
     public void addEquipable(Equipable e) {
         Equipable[] newEquipable = new Equipable[equipables.length + 1];
         System.arraycopy(equipables, 0, newEquipable, 0, equipables.length);
-        newEquipable[items.length] = e;
+        newEquipable[equipables.length] = e;
         equipables = newEquipable;
     }
 
@@ -299,7 +307,9 @@ public class Inventory {
                 armor = (Armor) e;
                 addEquipable(temp);
             }
-        } else if (e instanceof Boots) {
+        }
+
+        else if (e instanceof Boots) {
             if (boots == null)
                 boots = (Boots) e;
             else {
@@ -307,7 +317,9 @@ public class Inventory {
                 boots = (Boots) e;
                 addEquipable(temp);
             }
-        } else if (e instanceof Helmet) {
+        }
+
+        else if (e instanceof Helmet) {
             if (helmet == null)
                 helmet = (Helmet) e;
             else {
@@ -315,7 +327,9 @@ public class Inventory {
                 helmet = (Helmet) e;
                 addEquipable(temp);
             }
-        } else if (e instanceof Necklace) {
+        }
+
+        else if (e instanceof Necklace) {
             if (necklace == null)
                 necklace = (Necklace) e;
             else {
@@ -323,7 +337,9 @@ public class Inventory {
                 necklace = (Necklace) e;
                 addEquipable(temp);
             }
-        } else if (e instanceof Ring) {
+        }
+
+        else if (e instanceof Ring) {
             if (ring == null)
                 ring = (Ring) e;
             else {
@@ -331,7 +347,9 @@ public class Inventory {
                 ring = (Ring) e;
                 addEquipable(temp);
             }
-        } else if (e instanceof Weapon) {
+        }
+
+        else if (e instanceof Weapon) {
 
             if (weapon1 == null)
                 weapon1 = (Weapon) e;
@@ -346,10 +364,14 @@ public class Inventory {
                 weapon2 = temp1;
                 addEquipable(temp2);
             }
+        }
 
-            removeEquipable(e);
-        } else
+        else {
             System.out.println("Erreur.");
+            return;
+        }
+
+        removeEquipable(e);
     }
 
     /**
