@@ -9,18 +9,16 @@ import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.objects.Position;
 
 /**
- * A teleport capacity. Allows you to teleport where you want.
+ * Created by Valentin Marechal on 17/05/2016.
  */
-public class Cap_Teleport extends Capacity {
-
+public class debug_Cap_1 extends Capacity{
     @Override
     public Pixmap getCapIcon() {
-        return ImagesHolder.capacityset.getTile(0);
+        return ImagesHolder.capacityset.getTile(4);
     }
 
     @Override
     public PlayerState getPlayerState(Player pointer, Position cappos) {
         return new PS_Teleport(pointer, cappos);
     }
-
 }

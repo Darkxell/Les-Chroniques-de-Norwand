@@ -48,6 +48,7 @@ public class GuiSubImages implements Disposable {
         inventoryEquipMid = PixmapUtility.getPixmapPart(set, 0, 480 , 240, 16);
         inventoryEquipBot = PixmapUtility.getPixmapPart(set, 0, 496 , 240, 16);
         inventoryEquipSelect = PixmapUtility.getPixmapPart(set, 0, 288, 240, 16);
+        inventoryCapacityTop = PixmapUtility.getPixmapPart(set, 0, 208, 240, 64);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
@@ -92,5 +93,6 @@ public class GuiSubImages implements Disposable {
     public Pixmap inventoryEquipMid;
     public Pixmap inventoryEquipBot;
     public Pixmap inventoryEquipSelect;
+    public Pixmap inventoryCapacityTop;
 
 }

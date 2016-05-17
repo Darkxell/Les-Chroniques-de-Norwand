@@ -1,6 +1,5 @@
 package com.norwand.game.management.gamestates.top.launched.menus.inventory;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.MainGame;
 import com.norwand.game.management.UserEvent;
@@ -9,9 +8,6 @@ import com.norwand.game.management.gamedata.player.Inventory;
 import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.launched.explore.ExploreState;
 import com.norwand.game.resources.ImagesHolder;
-import com.sun.org.apache.xpath.internal.SourceTree;
-
-import sun.applet.Main;
 
 public class InventoryState extends GameState {
 

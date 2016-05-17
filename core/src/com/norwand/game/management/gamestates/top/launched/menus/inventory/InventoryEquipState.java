@@ -150,6 +150,10 @@ public class InventoryEquipState extends GameState {
             }
         }
 
+        //switch page
+        else if (e.x > 220 && e.x < 236 && e.y > MainGame.getBufferHeight() / 2 - 16 && e.y < MainGame.getBufferHeight() / 2 + 32)
+            parent.substate = new InventoryCapacityState(parent);
+
         //buttons
         else if (e.y > MainGame.getBufferHeight() - 32 && e.y <= MainGame.getBufferHeight() - 16) {
             Inventory i = GameData.get().player.inventory;

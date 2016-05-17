@@ -22,6 +22,9 @@ import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.IronSwo
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Weapon;
 import com.norwand.game.management.gamedata.items.Item;
 import com.norwand.game.management.gamedata.player.capacities.Cap_Teleport;
+import com.norwand.game.management.gamedata.player.capacities.debug_Cap_1;
+import com.norwand.game.management.gamedata.player.capacities.debug_Cap_2;
+import com.norwand.game.management.gamedata.player.capacities.debug_Cap_3;
 
 /**
  * Represents the player inventory.
@@ -46,7 +49,7 @@ public class Inventory {
     /**
      * The list of capacities in the player inventory.
      */
-    public Capacity[] capacity = new Capacity[]{};
+    public Capacity[] capacity = new Capacity[]{new debug_Cap_1(), new debug_Cap_2(), new debug_Cap_3()};
 
     /**
      * The Armor of the player
@@ -83,13 +86,13 @@ public class Inventory {
      */
     public Capacity slot_cap1 = new Cap_Teleport();
     /**
-     * The segond capacity slot of the player.
+     * The second capacity slot of the player.
      */
-    public Capacity slot_cap2 = null;
+    public Capacity slot_cap2 = new debug_Cap_1();
     /**
      * The third capacity slot of the player.
      */
-    public Capacity slot_cap3 = null;
+    public Capacity slot_cap3 = new debug_Cap_3();
 
     /**
      * The first quickitem in the quickitems slots.
