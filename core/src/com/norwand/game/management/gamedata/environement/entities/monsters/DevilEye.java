@@ -16,37 +16,29 @@ public class DevilEye extends Monster {
     public DevilEye(Floor roompointer, double x, double y) {
         super(roompointer, x, y);
     }
-    private int nextjumpin = 175;
     private int spritecounter = 10;
-    private MathVector jumpdirection;
+    private MathVector direction;
 
     @Override
     public void update() {
-        --nextjumpin;
-        if(nextjumpin == 0){
-            jumpdirection = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
-        }else if(nextjumpin < -20){
-            nextjumpin = 175;
+
+        direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
+        if (direction.getBasicLength() < 4){
+            Position temp = direction.getFixedTranslation(posX, posY, (spritecounter>33)?0.1:0.8);
+            posX = temp.x;
+            posY = temp.y;
         }
-        if (nextjumpin < 0){
-            Position temp = jumpdirection.getFixedTranslation(posX, posY, 0.08);
-            if (canBeAt(temp.x, temp.y)) {
-                posX = temp.x;
-                posY = temp.y;
-            }
-        }
+
         --spritecounter;
-        if (spritecounter < 0)
-            spritecounter = 50;
+        if (spritecounter < 0 )
+            spritecounter = 40;
         if(knockback())
-            GameData.get().player.info.health -= 0.5;
+            GameData.get().player.info.health -= 0.25;
 
     }
 
     @Override
     public Pixmap getCurrentSprite() {
-        if(nextjumpin < 0)
-            return ImagesHolder.entityset.getTile(794);
         return ImagesHolder.entityset.getTile((spritecounter < 25) ? 786 : 794);
     }
 
