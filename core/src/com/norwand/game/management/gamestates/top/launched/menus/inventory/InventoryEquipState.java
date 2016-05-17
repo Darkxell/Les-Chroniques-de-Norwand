@@ -151,16 +151,14 @@ public class InventoryEquipState extends GameState {
 
             //delete button
             if (e.x > 177 && e.x <= 193) {
-                System.out.println("delete");
+                inv.removeEquipable(validEquip.get(cursorposition));
                 validEquip.remove(cursorposition);
-                inv.removeEquipable(inv.equipables[cursopositionEquip]);
             }
 
             //equip button
             else if (e.x > 193 && e.x <= 209) {
-                System.out.println("equip");
-                if(cursopositionEquip >= 0) {
-                    inv.equipEquipable(inv.equipables[cursopositionEquip]);
+                if (cursopositionEquip >= 0) {
+                    inv.equipEquipable(validEquip.get(cursorposition));
                     validEquip.remove(cursorposition);
                 }
             }

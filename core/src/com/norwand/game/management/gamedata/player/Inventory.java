@@ -142,10 +142,11 @@ public class Inventory {
         }
     }
 
+
     /**
-     * Remove the specified equipable
+     * delete the specified equipable
      *
-     * @param e the equipable that must be removed
+     * @param e
      */
     public void removeEquipable(Equipable e) {
         int newLenght = equipables.length - 1;
@@ -163,17 +164,6 @@ public class Inventory {
             System.arraycopy(equipables, removeId + 1, newEquipables, removeId, newLenght - removeId);
             equipables = newEquipables;
         }
-
-        if (helmet == e)
-            helmet = null;
-        if (necklace == e)
-            necklace = null;
-        if (armor == e)
-            armor = null;
-        if (boots == e)
-            boots = null;
-        if (ring == e)
-            ring = null;
     }
 
     /**
@@ -198,6 +188,7 @@ public class Inventory {
                     newLenght - removeId);
             capacity = newCapacity;
         }
+
         if (slot_cap1 == c)
             slot_cap1 = null;
         if (slot_cap2 == c)
@@ -308,9 +299,7 @@ public class Inventory {
                 armor = (Armor) e;
                 addEquipable(temp);
             }
-        }
-
-        else if (e instanceof Boots) {
+        } else if (e instanceof Boots) {
             if (boots == null)
                 boots = (Boots) e;
             else {
@@ -318,9 +307,7 @@ public class Inventory {
                 boots = (Boots) e;
                 addEquipable(temp);
             }
-        }
-
-        else if (e instanceof Helmet) {
+        } else if (e instanceof Helmet) {
             if (helmet == null)
                 helmet = (Helmet) e;
             else {
@@ -328,9 +315,7 @@ public class Inventory {
                 helmet = (Helmet) e;
                 addEquipable(temp);
             }
-        }
-
-        else if (e instanceof Necklace) {
+        } else if (e instanceof Necklace) {
             if (necklace == null)
                 necklace = (Necklace) e;
             else {
@@ -338,9 +323,7 @@ public class Inventory {
                 necklace = (Necklace) e;
                 addEquipable(temp);
             }
-        }
-
-        else if (e instanceof Ring) {
+        } else if (e instanceof Ring) {
             if (ring == null)
                 ring = (Ring) e;
             else {
@@ -348,9 +331,7 @@ public class Inventory {
                 ring = (Ring) e;
                 addEquipable(temp);
             }
-        }
-
-        else if (e instanceof Weapon) {
+        } else if (e instanceof Weapon) {
 
             if (weapon1 == null)
                 weapon1 = (Weapon) e;
@@ -358,16 +339,16 @@ public class Inventory {
             else if (weapon2 == null)
                 weapon2 = (Weapon) e;
 
-            else{
+            else {
                 Weapon temp1 = weapon1;
                 Weapon temp2 = weapon2;
                 weapon1 = (Weapon) e;
                 weapon2 = temp1;
                 addEquipable(temp2);
             }
-        }
 
-        else
+            removeEquipable(e);
+        } else
             System.out.println("Erreur.");
     }
 

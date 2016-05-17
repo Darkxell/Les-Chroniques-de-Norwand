@@ -21,7 +21,7 @@ public class Hellbat extends Monster {
     @Override
     public void update() {
 		direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
-		Position temp = jumpdirection.getFixedTranslation(posX, posY, 0.02);
+		Position temp = direction.getFixedTranslation(posX, posY, 0.02);
 	    posX = temp.x;
 	    posY = temp.y;
 	--spritecounter;
