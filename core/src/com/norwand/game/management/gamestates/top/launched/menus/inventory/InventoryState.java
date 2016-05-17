@@ -27,7 +27,7 @@ public class InventoryState extends GameState {
         ++counter;
         if (counter > 70)
             counter = 0;
-        if(cursorposition > GameData.get().player.inventory.items.length -1 || cursorposition < 0)
+        if (cursorposition > GameData.get().player.inventory.items.length - 1 || cursorposition < 0)
             cursorposition = 0;
     }
 
@@ -44,7 +44,7 @@ public class InventoryState extends GameState {
                 printCursor(g, 53 + 21 * (i % 7), 31 + 21 * (i / 7), 16, 16, counter < 35);
         }
         g.drawPixmap(ImagesHolder.gui.inventorymid1, 0, g.getHeight() - 32);
-        if(cursorposition <= inv.items.length -1 && cursorposition >= 0)
+        if (cursorposition <= inv.items.length - 1 && cursorposition >= 0)
             ImagesHolder.font8x8.printStringOn(g, inv.items[cursorposition].getItemDescription(), 58, g.getHeight() - 28);
         g.drawPixmap(ImagesHolder.gui.inventoryselect1, 0, g.getHeight() - 32);
         g.drawPixmap(ImagesHolder.gui.inventorybot1, 0, g.getHeight() - 16);
@@ -65,26 +65,25 @@ public class InventoryState extends GameState {
     public void onPress(UserEvent e) {
         if (e.x > 188 && e.y > 4 && e.x < 236 && e.y < 20) {
             parent.parent.substate = new ExploreState(parent.parent);
-        }
-        else if(e.y > 32 && e.x > 53 && e.x < 208 && e.y < MainGame.getBufferHeight() - 32) {
-            int newCursorposition = (e.x - 57)/21 + (e.y - 35)/21*7;
-            if(GameData.get().player.inventory.items.length - 1 >= newCursorposition && newCursorposition >= 0) {
+        } else if (e.y > 32 && e.x > 53 && e.x < 208 && e.y < MainGame.getBufferHeight() - 32) {
+            int newCursorposition = (e.x - 57) / 21 + (e.y - 35) / 21 * 7;
+            if (GameData.get().player.inventory.items.length - 1 >= newCursorposition && newCursorposition >= 0) {
                 cursorposition = newCursorposition;
             }
         }
         //buttons deletes, quick stack, use
-        else if(e.y > MainGame.getBufferHeight() - 32 && e.y <= MainGame.getBufferHeight() - 16){
+        else if (e.y > MainGame.getBufferHeight() - 32 && e.y <= MainGame.getBufferHeight() - 16) {
             Inventory i = GameData.get().player.inventory;
             //button delete
-            if(e.x > 161 && e.x < 177){
+            if (e.x > 161 && e.x < 177) {
                 i.removeItem(i.items[cursorposition]);
             }
             //button quick stack
-            else if(e.x > 177 && e.x < 193){
+            else if (e.x > 177 && e.x < 193) {
                 i.equipItem(i.items[cursorposition]);
             }
             //button use
-            else if(e.x > 193 && e.x < 208) {
+            else if (e.x > 193 && e.x < 208) {
                 i.items[cursorposition].onUse();
             }
         }

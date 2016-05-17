@@ -13,56 +13,56 @@ public class Floor_WastelandsS extends Floor {
     public Floor_WastelandsS(Player playerpointer) {
 	super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
 		+ "maps/wastelands-south.txt")), playerpointer);
-	setTileAt(16, 0,new WarpZone(getTileAt(16, 0), 44, 47.5) {
+	setTileAt(16, 0,new WarpZone(getTileAt(16, 0), 44, 47) {
 	    @Override
 	    public Floor getDestination() {
 		return new Floor_Wastelands(GameData.get().player);
 	    }
 	});
-	setTileAt(17, 0,new WarpZone(getTileAt(17, 0), 45, 47.5) {
+	setTileAt(17, 0,new WarpZone(getTileAt(17, 0), 45, 47) {
 	    @Override
 	    public Floor getDestination() {
 		return new Floor_Wastelands(GameData.get().player);
 	    }
 	});
-	setTileAt(18, 0,new WarpZone(getTileAt(18, 0), 46, 47.5) {
+	setTileAt(18, 0,new WarpZone(getTileAt(18, 0), 46, 47) {
 	    @Override
 	    public Floor getDestination() {
 		return new Floor_Wastelands(GameData.get().player);
 	    }
 	});
-	setTileAt(19, 0,new WarpZone(getTileAt(19, 0), 47, 47.5) {
+	setTileAt(19, 0,new WarpZone(getTileAt(19, 0), 47, 47) {
 	    @Override
 	    public Floor getDestination() {
 		return new Floor_Wastelands(GameData.get().player);
 	    }
 	});
-	setTileAt(20, 0,new WarpZone(getTileAt(20, 0), 48, 47.5) {
+	setTileAt(20, 0,new WarpZone(getTileAt(20, 0), 48, 47) {
 	    @Override
 	    public Floor getDestination() {
 		return new Floor_Wastelands(GameData.get().player);
 	    }
 	});
-	setTileAt(21, 0,new WarpZone(getTileAt(21, 0), 49, 47.5) {
+	setTileAt(21, 0,new WarpZone(getTileAt(21, 0), 49, 47) {
 	    @Override
 	    public Floor getDestination() {
 		return new Floor_Wastelands(GameData.get().player);
 	    }
 	});
-	setTileAt(22, 0,new WarpZone(getTileAt(22, 0), 50, 47.5) {
+	setTileAt(22, 0,new WarpZone(getTileAt(22, 0), 50, 47) {
 	    @Override
 	    public Floor getDestination() {
 		return new Floor_Wastelands(GameData.get().player);
 	    }
 	});
-	setTileAt(23, 0,new WarpZone(getTileAt(23, 0), 51, 47.5) {
+	setTileAt(23, 0,new WarpZone(getTileAt(23, 0), 51, 47) {
 	    @Override
 	    public Floor getDestination() {
 		return new Floor_Wastelands(GameData.get().player);
 	    }
 	});
 	
-	setTileAt(0, 11,new WarpZone(getTileAt(0, 11), 34.5, 12.5) {
+	setTileAt(0, 11,new WarpZone(getTileAt(0, 11), 34, 12) {
 	    @Override
 	    public Floor getDestination() {
 		return new Floor_SnowTown(GameData.get().player);
