@@ -133,9 +133,8 @@ public class InventoryEquipState extends GameState {
     public void onPress(UserEvent e) {
         Inventory inv = GameData.get().player.inventory;
         //return on the explore state
-        if (e.x > 188 && e.y > 4 && e.x < 236 && e.y < 20) {
+        if (e.x > 188 && e.y > 4 && e.x < 236 && e.y < 20)
             parent.parent.substate = new ExploreState(parent.parent);
-        }
 
         //field of equipments
         else if (e.y > 62 && e.y < MainGame.getBufferHeight() - 32 && e.x > 9 && e.x < 208) {
