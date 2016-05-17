@@ -1,7 +1,10 @@
 package com.norwand.game.management.gamedata.environement.tiles;
 
+import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
+import com.norwand.game.management.gamestates.GameState;
+import com.norwand.game.management.gamestates.top.launched.explore.transition.TransitionState;
 import com.norwand.game.utility.objects.AnimatedSprite;
 import com.norwand.game.utility.objects.Position;
 
@@ -53,11 +56,10 @@ public abstract class WarpZone extends Tile {
 	Position p = GameData.get().currentfloor.getTilePosition(this);
 	if ((int) (GameData.get().player.x) == p.x
 		&& (int) (GameData.get().player.y) == p.y){
-	    GameData.get().currentfloor = getDestination();
-	    GameData.get().player.x = tox;
-	    GameData.get().player.y = toy;
-	    GameData.get().player.cam.x = tox;
-	    GameData.get().player.cam.y = toy;
+        MainGame.game.state.substate.substate.substate = new TransitionState(
+
+                MainGame.game.state.substate.substate, getDestination(), tox, toy
+        );
 	}
     }
 

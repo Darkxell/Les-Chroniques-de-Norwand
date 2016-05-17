@@ -1,4 +1,4 @@
-package com.norwand.game.management.gamestates.top.launched.explore.play;
+package com.norwand.game.management.gamestates.top.launched.explore.transition;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -6,8 +6,12 @@ import com.norwand.game.MainGame;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.InputConvertor;
+import com.norwand.game.management.gamedata.environement.Floor;
+import com.norwand.game.management.gamedata.player.states.PS_Iddle;
 import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.launched.LaunchedState;
+import com.norwand.game.management.gamestates.top.launched.explore.ExploreState;
+import com.norwand.game.management.gamestates.top.launched.explore.play.PlayState;
 import com.norwand.game.management.gamestates.top.launched.menus.InGameMenuState;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.Palette;
@@ -27,7 +31,7 @@ public class TransitionState extends GameState {
 	private double toX,toY;
 	
 	/**Creates a new transitionstate.*/
-    public PlayState(GameState parent, Floor destination, double posX, double posY) {
+    public TransitionState(GameState parent, Floor destination, double posX, double posY) {
 		super(parent);
 		this.destination = destination;
 		toX = posX;
@@ -38,16 +42,16 @@ public class TransitionState extends GameState {
     public void update() {
 		counter++;
 		if(counter == 100){
-			datapointer.currentfloor = getDestination();
-			datapointer.player.x = tox;
-			datapointer.player.y = toy;
-			datapointer.player.cam.x = tox;
-			datapointer.player.cam.y = toy;
+			datapointer.currentfloor = this.destination;
+			datapointer.player.x = toX;
+			datapointer.player.y = toY;
+			datapointer.player.cam.x = toX;
+			datapointer.player.cam.y = toY;
 		}else if(counter >= 200){
-            parent.substate = new ExploreState(parent);
+            parent.substate = new PlayState(parent);
+			datapointer.player.state = new PS_Iddle(datapointer.player);
         }
-		
-		//TODO : datapointer.player.cam.update();
+		datapointer.player.cam.update();
     }
 
     @Override
@@ -89,7 +93,10 @@ public class TransitionState extends GameState {
 	if (datapointer.player.inventory.quickItem2 != null)
 	    g.drawPixmap(datapointer.player.inventory.quickItem2.getSprite(),
 		    220, MainGame.getBufferHeight() - 23);
-    }
+    //Start printing the white thing
+		g.setColor(1f,1f,1f,(counter<100)?counter/100f:(200-counter)/100f);
+		g.fillRectangle(0,0,g.getWidth(),g.getHeight());
+	}
 
     public void onPress(UserEvent e) {
     }
