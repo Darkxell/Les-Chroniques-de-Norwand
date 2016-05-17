@@ -28,6 +28,14 @@ public class InventoryEquipState extends GameState {
             if (inv.equipables[i] instanceof Ring)
                 validEquip.add(inv.equipables[i]);
         }
+        if(validEquip.size() > 0)
+            cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
+        else
+            cursopositionEquip = -1;
+
+        System.out.println("cursorposition : " + cursorposition);
+        System.out.println("cursopositionEquip : " + cursopositionEquip);
+        System.out.println();
     }
 
     private int counter, cursorposition, cursopositionEquip;
@@ -40,10 +48,13 @@ public class InventoryEquipState extends GameState {
     public void update() {
         --arrowAnimation;
         ++counter;
+
         if (counter > 70)
             counter = 0;
+
         if (cursorposition > GameData.get().player.inventory.equipables.length - 1 || cursorposition < 0)
             cursorposition = 0;
+
         if (arrowAnimation <= 0)
             arrowAnimation = 43;
     }
@@ -51,7 +62,11 @@ public class InventoryEquipState extends GameState {
     @Override
     public void print(Pixmap g) {
         Inventory inv = GameData.get().player.inventory;
+
+        //TOP
         g.drawPixmap(ImagesHolder.gui.inventoryEquipTop, 0, 0);
+
+        //MID
         for (int i = 64; i < g.getHeight() - 32; i += 16) {
             g.drawPixmap(ImagesHolder.gui.inventoryEquipMid, 0, i);
         }
@@ -145,8 +160,8 @@ public class InventoryEquipState extends GameState {
             else if (e.x > 193 && e.x <= 209) {
                 System.out.println("equip");
                 if(cursopositionEquip >= 0) {
-                    System.out.println(inv.equipables[cursopositionEquip]);
                     inv.equipEquipable(inv.equipables[cursopositionEquip]);
+                    validEquip.remove(cursorposition);
                 }
             }
 

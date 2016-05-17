@@ -36,17 +36,7 @@ public class Inventory {
      * The list of non equipped equipables in the player inventory.
      */
     public Equipable[] equipables = new Equipable[]{new WoodenRing(), new IronHelmet(),
-            new LeatherBoots(), new LeatherArmor(),
-            new CopperNecklace(), new IronSword(),
-            new WoodenShield(), new WoodenRing(),
-            new IronHelmet(),
-            new LeatherBoots(), new LeatherArmor(),
-            new CopperNecklace(), new IronSword(),
-            new WoodenShield(), new WoodenRing(),
-            new IronHelmet(),
-            new LeatherBoots(), new LeatherArmor(),
-            new CopperNecklace(), new IronSword(),
-            new WoodenShield()};
+            new LeatherBoots(), new LeatherArmor(), new CopperNecklace(), new IronSword(), new WoodenShield()};
     /**
      * The list of capacities in the player inventory.
      */
@@ -379,8 +369,6 @@ public class Inventory {
 
         else
             System.out.println("Erreur.");
-
-        removeEquipable(e);
     }
 
     /**
