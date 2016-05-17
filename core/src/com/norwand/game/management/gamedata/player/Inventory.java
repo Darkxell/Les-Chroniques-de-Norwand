@@ -88,11 +88,11 @@ public class Inventory {
     /**
      * The second capacity slot of the player.
      */
-    public Capacity slot_cap2 = new debug_Cap_1();
+    public Capacity slot_cap2;
     /**
      * The third capacity slot of the player.
      */
-    public Capacity slot_cap3 = new debug_Cap_3();
+    public Capacity slot_cap3;
 
     /**
      * The first quickitem in the quickitems slots.
@@ -184,28 +184,25 @@ public class Inventory {
     public void removeCapacity(Capacity c) {
 
         int newLenght = capacity.length - 1;
+
         if (newLenght < 0)
             newLenght = 0;
+
         Capacity[] newCapacity = new Capacity[newLenght];
         int removeId = -1;
+
         for (int i = 0; i < capacity.length; i++)
             if (capacity[i] == c)
                 removeId = i;
+
         if (removeId == -1)
             System.err.println("Capacité non trouvée. Délétion impossible.");
+
         else {
             System.arraycopy(capacity, 0, newCapacity, 0, removeId);
-            System.arraycopy(capacity, removeId + 1, newCapacity, removeId,
-                    newLenght - removeId);
+            System.arraycopy(capacity, removeId + 1, newCapacity, removeId, newLenght - removeId);
             capacity = newCapacity;
         }
-
-        if (slot_cap1 == c)
-            slot_cap1 = null;
-        if (slot_cap2 == c)
-            slot_cap2 = null;
-        if (slot_cap3 == c)
-            slot_cap3 = null;
     }
 
     /**
@@ -275,16 +272,14 @@ public class Inventory {
     public void equipCapacity(Capacity c) {
         if (slot_cap1 == null)
             slot_cap1 = c;
-        else if (slot_cap1 != null && slot_cap2 == null) {
-            slot_cap2 = slot_cap1;
-            slot_cap1 = c;
-        } else if (slot_cap1 != null && slot_cap2 != null && slot_cap3 == null) {
-            Capacity temp1 = slot_cap1;
-            Capacity temp2 = slot_cap2;
-            slot_cap1 = c;
-            slot_cap2 = temp1;
-            slot_cap3 = temp2;
-        } else if (slot_cap1 != null && slot_cap2 != null && slot_cap3 != null) {
+
+        else if (slot_cap2 == null)
+            slot_cap2 = c;
+
+        else if (slot_cap3 == null)
+            slot_cap3 = c;
+
+        else {
             Capacity temp1 = slot_cap1;
             Capacity temp2 = slot_cap2;
             Capacity temp3 = slot_cap3;
@@ -293,6 +288,7 @@ public class Inventory {
             slot_cap3 = temp2;
             addCapacity(temp3);
         }
+
         removeCapacity(c);
     }
 
