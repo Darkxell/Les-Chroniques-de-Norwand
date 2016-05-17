@@ -8,13 +8,13 @@ public class IronHelmet extends Helmet{
 
     public IronHelmet() {
         this.displayName = "Casque de fer";
-        this.itemDescription = "Un casque de fer";
-        this.armor = 1;
+        this.itemDescription = "Un casque en fer";
+        this.armor = 3;
         this.damage = 0;
     }
 
     @Override
     public Pixmap getSprite() {
-        return ImagesHolder.itemset.getTile(361);
+        return ImagesHolder.itemset.getTile(369);
     }
 }

@@ -9,7 +9,7 @@ public class LeatherArmor extends Armor {
         this.displayName = "Armure de cuir";
         this.itemDescription = "Une armure faite de cuir.";
         this.damage = 0;
-        this.armor = 1;
+        this.armor = 2;
 
     }
 

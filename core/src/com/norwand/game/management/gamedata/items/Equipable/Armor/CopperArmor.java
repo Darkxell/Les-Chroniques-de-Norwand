@@ -12,7 +12,7 @@ public class CopperArmor extends Armor {
         this.displayName = "Armure de cuivre";
         this.itemDescription = "Une armure en cuivre de base.";
         this.damage = 0;
-        this.armor = 3;
+        this.armor = 4;
 
     }
 

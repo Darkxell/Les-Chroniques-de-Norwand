@@ -6,18 +6,18 @@ import com.norwand.game.resources.ImagesHolder;
 /**
  * Created by ASUS on 17/05/2016.
  */
-public class SilverArmor extends Armor {
+public class DarkArmor extends Armor {
 
-    public SilverArmor() {
-        this.displayName = "Armure d'argent";
-        this.itemDescription = "Une lourde armure en argent.";
+    public DarkArmor() {
+        this.displayName = "Armure sombre";
+        this.itemDescription = "Une armure en alliage mystique.";
         this.damage = 0;
-        this.armor = 6;
+        this.armor = 8;
 
     }
 
     @Override
     public Pixmap getSprite() {
-        return ImagesHolder.itemset.getTile(33);
+        return ImagesHolder.itemset.getTile(32);
     }
 }

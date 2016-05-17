@@ -14,6 +14,6 @@ public class ScaleBoots extends Boots {
 
     @Override
     public Pixmap getSprite() {
-        return ImagesHolder.itemset.getTile(218);
+        return ImagesHolder.itemset.getTile(220);
     }
 }

@@ -3,17 +3,17 @@ package com.norwand.game.management.gamedata.items.Equipable.Ring;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.resources.ImagesHolder;
 
-public class WoodenRing extends Ring {
+public class SilverRing extends Ring {
 
-    public WoodenRing() {
-        this.displayName = "Anneau en bois";
-        this.itemDescription = "Un anneau en bois";
+    public SilverRing() {
+        this.displayName = "Anneau en argent";
+        this.itemDescription = "Un anneau en argent";
         this.damage = 0;
         this.armor = 0;
     }
 
     @Override
     public Pixmap getSprite() {
-        return ImagesHolder.itemset.getTile(456);
+        return ImagesHolder.itemset.getTile(482);
     }
 }

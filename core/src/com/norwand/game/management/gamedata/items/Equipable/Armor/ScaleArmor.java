@@ -12,7 +12,7 @@ public class ScaleArmor extends Armor {
         this.displayName = "Armure d'ecaille";
         this.itemDescription = "Une solide armure d'ecailles.";
         this.damage = 0;
-        this.armor = 2;
+        this.armor = 3;
 
     }
 
