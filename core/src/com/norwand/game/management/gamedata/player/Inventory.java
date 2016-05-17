@@ -4,21 +4,42 @@ import com.norwand.game.management.gamedata.items.Consumable.BigHealthPot;
 import com.norwand.game.management.gamedata.items.Consumable.HealthPot;
 import com.norwand.game.management.gamedata.items.Equipable.Armor.Armor;
 import com.norwand.game.management.gamedata.items.Equipable.Armor.CopperArmor;
+import com.norwand.game.management.gamedata.items.Equipable.Armor.DarkArmor;
+import com.norwand.game.management.gamedata.items.Equipable.Armor.IronArmor;
 import com.norwand.game.management.gamedata.items.Equipable.Armor.LeatherArmor;
 import com.norwand.game.management.gamedata.items.Equipable.Armor.OrichalcumArmor;
+import com.norwand.game.management.gamedata.items.Equipable.Armor.ScaleArmor;
+import com.norwand.game.management.gamedata.items.Equipable.Armor.SteelArmor;
 import com.norwand.game.management.gamedata.items.Equipable.Boots.Boots;
+import com.norwand.game.management.gamedata.items.Equipable.Boots.HardenedBoots;
 import com.norwand.game.management.gamedata.items.Equipable.Boots.LeatherBoots;
+import com.norwand.game.management.gamedata.items.Equipable.Boots.ScaleBoots;
 import com.norwand.game.management.gamedata.items.Equipable.Equipable;
 import com.norwand.game.management.gamedata.items.Equipable.Helmet.Helmet;
 import com.norwand.game.management.gamedata.items.Equipable.Helmet.IronHelmet;
+import com.norwand.game.management.gamedata.items.Equipable.Helmet.LeatherHelmet;
+import com.norwand.game.management.gamedata.items.Equipable.Helmet.SteelHelm;
+import com.norwand.game.management.gamedata.items.Equipable.Necklace.BluegemNecklace;
 import com.norwand.game.management.gamedata.items.Equipable.Necklace.CopperNecklace;
+import com.norwand.game.management.gamedata.items.Equipable.Necklace.GoldenNecklace;
+import com.norwand.game.management.gamedata.items.Equipable.Necklace.GreengemNecklace;
+import com.norwand.game.management.gamedata.items.Equipable.Necklace.LittlePendent;
 import com.norwand.game.management.gamedata.items.Equipable.Necklace.Necklace;
+import com.norwand.game.management.gamedata.items.Equipable.Necklace.RedgemNecklace;
+import com.norwand.game.management.gamedata.items.Equipable.Ring.CopperRing;
+import com.norwand.game.management.gamedata.items.Equipable.Ring.GoldRing;
+import com.norwand.game.management.gamedata.items.Equipable.Ring.PlatinumRing;
 import com.norwand.game.management.gamedata.items.Equipable.Ring.Ring;
+import com.norwand.game.management.gamedata.items.Equipable.Ring.SilverRing;
 import com.norwand.game.management.gamedata.items.Equipable.Ring.WoodenRing;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Shield.ManatarmShield;
+import com.norwand.game.management.gamedata.items.Equipable.Weapon.Shield.SteelShield;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Shield.WoodenShield;
+import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.ChichKebab;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.CopperSword;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.IronSword;
+import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.Needle;
+import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.SteelSword;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Weapon;
 import com.norwand.game.management.gamedata.items.Item;
 import com.norwand.game.management.gamedata.player.capacities.Cap_Teleport;
@@ -42,10 +63,14 @@ public class Inventory {
     /**
      * The list of non equipped equipables in the player inventory.
      */
-    public Equipable[] equipables = new Equipable[]{new WoodenRing(), new IronHelmet(), new CopperArmor(), new LeatherArmor(),
-                                                    new LeatherBoots(), new CopperNecklace(), new CopperSword(), new IronSword(),
-                                                    new WoodenShield(), new ManatarmShield(), new IronHelmet(), new CopperNecklace(),
-                                                    new OrichalcumArmor()};
+    public Equipable[] equipables = new Equipable[]{
+            new LeatherHelmet(),new IronHelmet(),new SteelHelm(),
+            new LeatherArmor(),new ScaleArmor(),new CopperArmor(),new IronArmor(),new SteelArmor(),new DarkArmor(),new OrichalcumArmor(),
+            new LeatherBoots(),new ScaleBoots(),new HardenedBoots(),
+            new LittlePendent(),new CopperNecklace(),new BluegemNecklace(),new RedgemNecklace(),new GreengemNecklace(),new GoldenNecklace(),
+            new WoodenRing(),new CopperRing(),new SilverRing(),new GoldRing(),new PlatinumRing(),
+            new CopperSword(), new IronSword(),new SteelSword(),new Needle(),new ChichKebab(),
+            new WoodenShield(), new ManatarmShield(),new SteelShield()};
     /**
      * The list of capacities in the player inventory.
      */
