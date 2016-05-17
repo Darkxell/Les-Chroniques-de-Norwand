@@ -5,6 +5,8 @@ import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
+import com.norwand.game.management.gamedata.environement.entities.monsters.Hellbat;
+import com.norwand.game.management.gamedata.environement.entities.monsters.Wolf;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
 
@@ -13,11 +15,12 @@ public class Floor_WastelandsS extends Floor {
     public Floor_WastelandsS(Player playerpointer) {
 	super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
 		+ "maps/wastelands-south.txt")), playerpointer);
-	setTileAt(16, 0,new WarpZone(getTileAt(16, 0), 44, 47) {
-	    @Override
-	    public Floor getDestination() {
-		return new Floor_Wastelands(GameData.get().player);
-	    }
+
+	setTileAt(16, 0, new WarpZone(getTileAt(16, 0), 44, 47) {
+		@Override
+		public Floor getDestination() {
+			return new Floor_Wastelands(GameData.get().player);
+		}
 	});
 	setTileAt(17, 0,new WarpZone(getTileAt(17, 0), 45, 47) {
 	    @Override
@@ -62,7 +65,7 @@ public class Floor_WastelandsS extends Floor {
 	    }
 	});
 	
-	setTileAt(0, 11,new WarpZone(getTileAt(0, 11), 34, 12) {
+	setTileAt(0, 11,new WarpZone(getTileAt(0, 11), 33.5, 12) {
 	    @Override
 	    public Floor getDestination() {
 		return new Floor_SnowTown(GameData.get().player);

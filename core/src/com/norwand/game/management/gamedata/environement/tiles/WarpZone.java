@@ -14,53 +14,64 @@ import com.norwand.game.utility.objects.Position;
  */
 public abstract class WarpZone extends Tile {
 
-    /** The X destination of this warpzone in the destination floor. */
-    private int tox;
-    /** The Y destination of this warpzone in the destination floor. */
-    private int toy;
+    /**
+     * The X destination of this warpzone in the destination floor.
+     */
+    private double tox;
+    /**
+     * The Y destination of this warpzone in the destination floor.
+     */
+    private double toy;
 
-    /** Creates a new WarpZone tile. */
+    /**
+     * Creates a new WarpZone tile.
+     */
     public WarpZone(byte type, AnimatedSprite[] background,
-	    AnimatedSprite[] foreground, int x, int y) {
-	super(type, background, foreground);
-	tox = x;
-	toy = y;
+                    AnimatedSprite[] foreground, double x, double y) {
+        super(type, background, foreground);
+        tox = x;
+        toy = y;
     }
 
     /**
      * Creates a new Warpzone tile using an existing tile. The data of the two
      * tiles are shared.
      */
-    public WarpZone(Tile source, int x, int y) {
-	super(source.type, source.background, source.foreground);
-	tox = x;
-	toy = y;
+    public WarpZone(Tile source, double x, double y) {
+        super(source.type, source.background, source.foreground);
+        tox = x;
+        toy = y;
     }
 
-    /** Gets the destination floor of this warp zone. */
+    /**
+     * Gets the destination floor of this warp zone.
+     */
     public abstract Floor getDestination();
 
-    /** Returns the X destination of this warpzone in the destination floor. */
-    public int getToX() {
-	return tox;
+    /**
+     * Returns the X destination of this warpzone in the destination floor.
+     */
+    public double getToX() {
+        return tox;
     }
 
-    /** Returns the Y destination of this warpzone in the destination floor. */
-    public int getToY() {
-	return toy;
+    /**
+     * Returns the Y destination of this warpzone in the destination floor.
+     */
+    public double getToY() {
+        return toy;
     }
 
     @Override
     public void update() {
-	super.update();
-	Position p = GameData.get().currentfloor.getTilePosition(this);
-	if ((int) (GameData.get().player.x) == p.x
-		&& (int) (GameData.get().player.y) == p.y){
-        MainGame.game.state.substate.substate.substate = new TransitionState(
-
-                MainGame.game.state.substate.substate, getDestination(), tox, toy
-        );
-	}
+        super.update();
+        Position p = GameData.get().currentfloor.getTilePosition(this);
+        if ((int) (GameData.get().player.x) == p.x
+                && (int) (GameData.get().player.y) == p.y) {
+            MainGame.game.state.substate.substate.substate = new TransitionState(
+                    MainGame.game.state.substate.substate, getDestination(), tox, toy
+            );
+        }
     }
 
 }

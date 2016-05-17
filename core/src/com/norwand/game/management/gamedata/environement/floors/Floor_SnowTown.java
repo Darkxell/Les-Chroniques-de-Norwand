@@ -13,13 +13,13 @@ public class Floor_SnowTown extends Floor {
     public Floor_SnowTown(Player playerpointer) {
 	super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
 		+ "maps/snowvillage.txt")), playerpointer);
-	setTileAt(34, 12,new WarpZone(getTileAt(34, 12), 0, 11) {
+	setTileAt(34, 12,new WarpZone(getTileAt(34, 12), 1, 11.5) {
 	    @Override
 	    public Floor getDestination() {
 		return new Floor_WastelandsS(GameData.get().player);
 	    }
 	});
-	setTileAt(0, 2,new WarpZone(getTileAt(0, 2), 98, 25) {
+	setTileAt(0, 2,new WarpZone(getTileAt(0, 2), 98, 25.5) {
 	    @Override
 	    public Floor getDestination() {
 		return new Floor_Snow(GameData.get().player);
