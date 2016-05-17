@@ -12,39 +12,35 @@ import com.norwand.game.utility.objects.Position;
 /**
  * Created by V-SSK on 17/05/2016.
  */
-public class DevilEye extends Monster {
-    public DevilEye(Floor roompointer, double x, double y) {
+public class EvolutivMonster extends Monster {
+    public EvolutivMonster(Floor roompointer, double x, double y) {
         super(roompointer, x, y);
     }
-    private int spritecounter = 10;
+
+    /**Timer until the next jump of the wolf.
+     Can be negative, it means that the wolf is jumping.*/
+    private int spritecounter = 50;
     private MathVector direction;
 
     @Override
     public void update() {
-
         direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
-        if (direction.getBasicLength() < 3){
-            Position temp = direction.getFixedTranslation(posX, posY, (spritecounter>33)?0.06:0.10);
+        if (spritecounter > 33){
+            Position temp = direction.getFixedTranslation(posX, posY, (direction.getBasicLength() < 3)?0.1:0.03);
             posX = temp.x;
             posY = temp.y;
         }
 
         --spritecounter;
-        if (spritecounter < 0 )
-            spritecounter = 40;
+        if (spritecounter < 0)
+            spritecounter = 50;
         if(knockback())
-            GameData.get().player.info.health -= 0.25;
-
+            GameData.get().player.info.health -= 0.5;
     }
 
     @Override
     public Pixmap getCurrentSprite() {
-        return ImagesHolder.entityset.getTile((spritecounter < 25) ? 786 : 794);
-    }
-
-    @Override
-    public void onAct() {
-
+        return ImagesHolder.entityset.getTile((direction.getBasicLength() < 3) ? 1970 : 1968);
     }
 
     @Override
@@ -54,6 +50,11 @@ public class DevilEye extends Monster {
 
     @Override
     public void onhit(double damage) {
-    kill();
+        kill();
     }
+
+    @Override
+    public void onAct() {
+    }// Does nothing
+
 }

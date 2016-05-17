@@ -6,40 +6,29 @@ import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.entities.Monster;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.objects.DoubleRectangle;
-import com.norwand.game.utility.objects.MathVector;
-import com.norwand.game.utility.objects.Position;
 
 /**
  * Created by V-SSK on 17/05/2016.
  */
-public class DevilEye extends Monster {
-    public DevilEye(Floor roompointer, double x, double y) {
+// add projectile for this monster ( snowballs)
+public class IceMonster extends Monster {
+    public IceMonster(Floor roompointer, double x, double y) {
         super(roompointer, x, y);
     }
-    private int spritecounter = 10;
-    private MathVector direction;
+    private int spritecounter = 25;
 
     @Override
     public void update() {
-
-        direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
-        if (direction.getBasicLength() < 3){
-            Position temp = direction.getFixedTranslation(posX, posY, (spritecounter>33)?0.06:0.10);
-            posX = temp.x;
-            posY = temp.y;
-        }
-
         --spritecounter;
-        if (spritecounter < 0 )
-            spritecounter = 40;
+        if (spritecounter < 0)
+            spritecounter = 50;
         if(knockback())
-            GameData.get().player.info.health -= 0.25;
-
+            GameData.get().player.info.health -= 0.20;
     }
 
     @Override
     public Pixmap getCurrentSprite() {
-        return ImagesHolder.entityset.getTile((spritecounter < 25) ? 786 : 794);
+        return ImagesHolder.entityset.getTile((spritecounter < 25) ? 725 : 733);
     }
 
     @Override
@@ -54,6 +43,6 @@ public class DevilEye extends Monster {
 
     @Override
     public void onhit(double damage) {
-    kill();
+        kill();
     }
 }

@@ -12,34 +12,32 @@ import com.norwand.game.utility.objects.Position;
 /**
  * Created by V-SSK on 17/05/2016.
  */
-public class DevilEye extends Monster {
-    public DevilEye(Floor roompointer, double x, double y) {
+public class SnowBird extends Monster {
+    public SnowBird(Floor roompointer, double x, double y) {
         super(roompointer, x, y);
     }
-    private int spritecounter = 10;
+    private int spritecounter = 50;
     private MathVector direction;
-
     @Override
     public void update() {
 
         direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
-        if (direction.getBasicLength() < 3){
-            Position temp = direction.getFixedTranslation(posX, posY, (spritecounter>33)?0.06:0.10);
+        if (direction.getBasicLength() < 4.5) {
+            Position temp = direction.getFixedTranslation(posX, posY, (spritecounter > 25) ? 0.02 : 0.08);
             posX = temp.x;
             posY = temp.y;
         }
-
         --spritecounter;
         if (spritecounter < 0 )
-            spritecounter = 40;
+            spritecounter = 50;
         if(knockback())
-            GameData.get().player.info.health -= 0.25;
+            GameData.get().player.info.health -= 0.5;
 
     }
 
     @Override
     public Pixmap getCurrentSprite() {
-        return ImagesHolder.entityset.getTile((spritecounter < 25) ? 786 : 794);
+        return ImagesHolder.entityset.getTile((spritecounter < 25) ? 100 : 108);
     }
 
     @Override
@@ -54,6 +52,6 @@ public class DevilEye extends Monster {
 
     @Override
     public void onhit(double damage) {
-    kill();
+        kill();
     }
 }

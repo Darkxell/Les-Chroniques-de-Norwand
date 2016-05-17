@@ -17,7 +17,10 @@ public class Floor_Prison extends Floor {
         super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
             + "maps/prison.txt")), playerpointer);
         addEntity(new Wolf(this, 21, 10));
-        addTileEntity(new SignPost(this, "Don't kill Arya. This is a test. But don't. Please. One more line for the road.", 4.5, 4.5));
+        addTileEntity(new SignPost(this,
+                "Prisons du royaume. Il faut savoir qu'en 1380 avant notre ère, il existait un seigneur qui, par inadvertance est mort lorsqu'une porte du cachot s'est abbatue sur lui.",
+                4.5,
+                4.5));
         setTileAt(1, 0, new WarpZone(getTileAt(1, 0), 13, 18) {
             @Override
             public Floor getDestination() {
