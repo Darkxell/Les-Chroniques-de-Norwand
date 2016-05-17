@@ -12,48 +12,44 @@ import com.norwand.game.utility.objects.Position;
 /**
  * Created by V-SSK on 17/05/2016.
  */
-public class DevilEye extends Monster {
-    public DevilEye(Floor roompointer, double x, double y) {
+public class Ghost extends Monster {
+    public Ghost(Floor roompointer, double x, double y) {
         super(roompointer, x, y);
     }
-    private int spritecounter = 10;
+
+    private int spritecounter = 70;
     private MathVector direction;
 
     @Override
     public void update() {
-
         direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
-        if (direction.getBasicLength() < 3){
-            Position temp = direction.getFixedTranslation(posX, posY, (spritecounter>33)?0.06:0.10);
-            posX = temp.x;
-            posY = temp.y;
-        }
-
+        Position temp = direction.getFixedTranslation(posX, posY, 0.03);
+        posX = temp.x;
+        posY = temp.y;
         --spritecounter;
-        if (spritecounter < 0 )
-            spritecounter = 40;
+        if (spritecounter < 0)
+            spritecounter = 70;
         if(knockback())
-            GameData.get().player.info.health -= 0.25;
-
+            GameData.get().player.info.health -= 0.2;
     }
 
     @Override
     public Pixmap getCurrentSprite() {
-        return ImagesHolder.entityset.getTile((spritecounter < 25) ? 786 : 794);
-    }
-
-    @Override
-    public void onAct() {
-
+        return ImagesHolder.entityset.getTile((spritecounter < 25) ? 2450 : 2455);
     }
 
     @Override
     public DoubleRectangle getHitbox(double posX, double posY) {
-        return new DoubleRectangle(posX - 0.35, posY - 0.35, 0.7, 0.7);
+        return new DoubleRectangle(posX - 0.3, posY - 0.3, 0.6, 0.6);
     }
 
     @Override
     public void onhit(double damage) {
-    kill();
+        kill();
     }
+
+    @Override
+    public void onAct() {
+    }// Does nothing
+
 }
