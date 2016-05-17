@@ -22,21 +22,66 @@ public class DialogState extends GameState {
     //Stored pointer to the LaunchedState GameData attribute.
     private GameData datapointer = ((LaunchedState) parent.parent).data;
     private BitmapFont bitmapFont = ImagesHolder.font8x8;
+    private int lineLength = 0;
 
     //private int tic = counter/40;
 
     private Array<String> wordsList = new Array<String>();
 
     // Position of the word in the sentence.
-    //private int posInWordsList = 0;
+    private int posInWordsList = 0;
+    private int posEndOfTheFirstLine = 0;
+    private int posEndOfTheSecondLine = 0;
+
 
     public DialogState(GameState parent, String message) {
         super(parent);
         this.message = message;
 
-        //firstline, secondline
+        //Save the words (the words, not the world, but still) to get them in the right order later
+        for (final String word : message.split(" ")){
+            if (word != null) {
+                wordsList.add(word);
+            }
+        }
 
-        //reste dans nextmessage
+        //firstline
+        for (String word : wordsList) {
+            //Line break
+            System.out.println("Word = " + word);
+
+            System.out.println("lineLenght AVANT le if = " + lineLength);
+
+            //firstLine
+            if (lineLength <= 198) {
+                lineLength = bitmapFont.getLength(firstLine + word + " ");
+
+                System.out.println("firstLine = " + firstLine);
+                posInWordsList = (firstLine + word + " ").length();
+                posEndOfTheFirstLine = posInWordsList;
+                System.out.println("posInWordsList = " + posInWordsList);
+                firstLine = message.substring(0, posInWordsList);
+                System.out.println("firstLine APRES = " + firstLine);
+            }
+            //secondLine
+            else if (lineLength > 198 && lineLength <= 396) {
+                lineLength = bitmapFont.getLength(firstLine + secondLine + word + " ");
+
+                System.out.println("secondLine = " + secondLine);
+                posInWordsList = (secondLine + word + " ").length();
+                posEndOfTheSecondLine = posEndOfTheFirstLine + posInWordsList;
+                System.out.println("posInWordsList = " + posInWordsList);
+                System.out.println("posEndOfTheFirstLine = " + posEndOfTheFirstLine);
+                secondLine = message.substring(posEndOfTheFirstLine, posEndOfTheFirstLine + posInWordsList);
+                System.out.println("secondLine APRES = " + secondLine);
+            }
+            //nextMessage
+            else {
+                nextMessage = message.substring(posEndOfTheSecondLine);
+                System.out.println("next message = " + nextMessage);
+            }
+            System.out.println("--------------------------------");
+        }
     }
 
     @Override
@@ -51,24 +96,15 @@ public class DialogState extends GameState {
     @Override
     public void print(Pixmap g) {
         datapointer.currentfloor.printOn(g, 7.5 - datapointer.player.cam.x,
-            (((double) (g.getHeight())) / 32d) - datapointer.player.cam.y);
+                (((double) (g.getHeight())) / 32d) - datapointer.player.cam.y);
         g.drawPixmap(ImagesHolder.gui.dialog, 16, g.getHeight() - 64);
 
         int posX = g.getWidth() / 10;
         int posY = g.getHeight() - 64 + 11;
         final int WINDOWLIMIT = g.getHeight() - 64 + 11 + 40;
-        System.out.println(WINDOWLIMIT);
 
 
 
-
-
-        //Save the words (the words, not the world, but still) to get them in the right order later
-        for (final String word : message.split(" ")){
-            if (word != null) {
-                wordsList.add(word);
-            }
-        }
 
         for (final String word : wordsList){
 
@@ -127,7 +163,7 @@ public class DialogState extends GameState {
 
     @Override
     public void onPress(UserEvent e) {
-	    if (nextMessage.equals("")) {
+        if (nextMessage.equals("")) {
             System.out.println("nextMessage= " + nextMessage);
             parent.substate = new PlayState(parent);
         }
