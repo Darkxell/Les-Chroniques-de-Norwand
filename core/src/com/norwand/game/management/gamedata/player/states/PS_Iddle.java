@@ -1,11 +1,13 @@
 package com.norwand.game.management.gamedata.player.states;
 
 import com.badlogic.gdx.graphics.Pixmap;
+import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.tiles.Tile;
 import com.norwand.game.management.gamedata.player.Capacity;
 import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.management.gamedata.player.PlayerState;
+import com.norwand.game.management.gamestates.top.launched.menus.misc.GameOverState;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.Directions;
 import com.norwand.game.utility.objects.MathVector;
@@ -19,7 +21,9 @@ public class PS_Iddle extends PlayerState {
 
     @Override
     public void update() {
-        if (GameData.get().currentfloor.getPhysicsAt(player.x, player.y) == Tile.TYPE_WATER)
+        if (player.info.health <= 0)
+            MainGame.game.state.substate.substate.substate = new GameOverState(MainGame.game.state.substate.substate);
+        else if (GameData.get().currentfloor.getPhysicsAt(player.x, player.y) == Tile.TYPE_WATER)
             player.state = new PS_Drown(player);
         else if (GameData.get().currentfloor.getPhysicsAt(player.x, player.y) == Tile.TYPE_VOID)
             player.state = new PS_Falling(player);
