@@ -1,5 +1,7 @@
 package com.norwand.game.management.gamedata.environement;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.entities.Entity;
@@ -14,16 +16,15 @@ import com.norwand.game.utility.objects.Position;
  * instance.
  */
 public abstract class Floor {
-
     /**
      * Constructs a floor object from a FloorData object and a pointer to the
      * player.
      */
     public Floor(FloorData data, Player playerpointer) {
-	tiles = data.tiles;
-	width = data.width;
-	height = data.height;
-	this.playerpointer = playerpointer;
+		tiles = data.tiles;
+		width = data.width;
+		height = data.height;
+		this.playerpointer = playerpointer;
     }
 	
     /** Pointer to the player object. */
@@ -298,5 +299,15 @@ public abstract class Floor {
 	* the transitionstate.
 	*/
 	public abstract String getDisplayName();
+
+	/**
+	 * @return the music path associated to this floor.
+     */
+	public abstract String getMusicPath();
+
+	/**
+	 * @return the music assiciated to this floor.
+     */
+	public abstract Music getMusic();
 
 }

@@ -1,6 +1,7 @@
 package com.norwand.game.management.gamedata.environement.floors;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
@@ -9,6 +10,7 @@ import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
 
 public class Floor_SnowTown extends Floor {
+	Music music = Gdx.audio.newMusic(Gdx.files.internal(getMusicPath()));
 
     public Floor_SnowTown(Player playerpointer) {
 	super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
@@ -30,5 +32,15 @@ public class Floor_SnowTown extends Floor {
 	@Override
 	public String getDisplayName() {
 		return "Village enneigé";
+	}
+
+	@Override
+	public String getMusicPath() {
+		return MainGame.ASSETSPATH + "audio/bgm/allthingsend2.mp3";
+	}
+
+	@Override
+	public Music getMusic() {
+		return music;
 	}
 }

@@ -1,6 +1,8 @@
 package com.norwand.game.management.gamestates.top.launched.explore.transition;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.MainGame;
 import com.norwand.game.management.UserEvent;
@@ -29,6 +31,7 @@ public class TransitionState extends GameState {
 	private int counter = 0;
 	private Floor destination;
 	private double toX,toY;
+	private Music music;
 	
 	/**Creates a new transitionstate.*/
     public TransitionState(GameState parent, Floor destination, double posX, double posY) {
@@ -36,6 +39,8 @@ public class TransitionState extends GameState {
 		this.destination = destination;
 		toX = posX;
 		toY = posY;
+
+		music = destination.getMusic();
     }
 
     @Override
@@ -47,61 +52,88 @@ public class TransitionState extends GameState {
 			datapointer.player.y = toY;
 			datapointer.player.cam.x = toX;
 			datapointer.player.cam.y = toY;
-		}else if(counter >= 200){
+		}
+		else if(counter >= 200){
             parent.substate = new PlayState(parent);
 			datapointer.player.state = new PS_Iddle(datapointer.player);
         }
+
+		//Lower the volume of the current music
+		if (counter < 50 && (!GameData.get().currentfloor.getMusicPath().equals(destination.getMusicPath()))) {
+			GameData.get().currentfloor.getMusic().setVolume((float) (50 - counter)/50);
+		}
+		//Stop the current music
+		if (counter == 50 && (!GameData.get().currentfloor.getMusicPath().equals(destination.getMusicPath()))) {
+			GameData.get().currentfloor.getMusic().stop();
+			GameData.get().currentfloor.getMusic().dispose();
+		}
+		//Play the next music
+		if (counter > 50 && counter < 150 && (!GameData.get().currentfloor.getMusicPath().equals(destination.getMusicPath()))) {
+			if (!music.isPlaying()) {
+				music.play();
+			}
+			music.setVolume((float) (counter - 49)/100);
+			System.out.println("VOLUME = " + music.getVolume());
+		}
+
 		datapointer.player.cam.update();
     }
 
     @Override
     public void print(Pixmap g) {
-	datapointer.currentfloor.printOn(g, 7.5 - datapointer.player.cam.x,
-		(((double) (g.getHeight())) / 32d) - datapointer.player.cam.y);
-	for (float i = 0; i < datapointer.player.info.maxhealth; ++i) {
-	    if (datapointer.player.info.health >= 1f + i)
-		g.drawPixmap(ImagesHolder.entityset.getTile(2688),
-			(int) (10 + (16 * i)), 5);
-	    else if (datapointer.player.info.health <= i )
-		g.drawPixmap(ImagesHolder.entityset.getTile(2692),
-			(int) (10 + (16 * i)), 5);
-	    else if (datapointer.player.info.health == i + 0.75f)
-		g.drawPixmap(ImagesHolder.entityset.getTile(2689),
-			(int) (10 + (16 * i)), 5);
-	    else if (datapointer.player.info.health == i + 0.5f)
-		g.drawPixmap(ImagesHolder.entityset.getTile(2690),
-			(int) (10 + (16 * i)), 5);
-	    else if (datapointer.player.info.health == i + 0.25f)
-		g.drawPixmap(ImagesHolder.entityset.getTile(2691),
-			(int) (10 + (16 * i)), 5);
-	}
-	g.drawPixmap(ImagesHolder.gui.menubutton, 188, 4);
-	g.drawPixmap(ImagesHolder.gui.capacitiesbar, 20, g.getHeight() - 32);
-	if (datapointer.player.inventory.slot_cap1 != null)
-	    g.drawPixmap(datapointer.player.inventory.slot_cap1.getCapIcon(),
-		    36, g.getHeight() - 32);
-	if (datapointer.player.inventory.slot_cap2 != null)
-	    g.drawPixmap(datapointer.player.inventory.slot_cap2.getCapIcon(),
-		    68, g.getHeight() - 32);
-	if (datapointer.player.inventory.slot_cap3 != null)
-	    g.drawPixmap(datapointer.player.inventory.slot_cap3.getCapIcon(),
-		    100, g.getHeight() - 32);
-	g.drawPixmap(ImagesHolder.gui.itemgui, 192, g.getHeight() - 32);
-	if (datapointer.player.inventory.quickItem1 != null)
-	    g.drawPixmap(datapointer.player.inventory.quickItem1.getSprite(),
-		    196, MainGame.getBufferHeight() - 23);
-	if (datapointer.player.inventory.quickItem2 != null)
-	    g.drawPixmap(datapointer.player.inventory.quickItem2.getSprite(),
-		    220, MainGame.getBufferHeight() - 23);
-    //Start printing the white thing
+			datapointer.currentfloor.printOn(g, 7.5 - datapointer.player.cam.x,
+				(((double) (g.getHeight())) / 32d) - datapointer.player.cam.y);
+			for (float i = 0; i < datapointer.player.info.maxhealth; ++i) {
+				if (datapointer.player.info.health >= 1f + i)
+				g.drawPixmap(ImagesHolder.entityset.getTile(2688),
+					(int) (10 + (16 * i)), 5);
+				else if (datapointer.player.info.health <= i )
+				g.drawPixmap(ImagesHolder.entityset.getTile(2692),
+					(int) (10 + (16 * i)), 5);
+				else if (datapointer.player.info.health == i + 0.75f)
+				g.drawPixmap(ImagesHolder.entityset.getTile(2689),
+					(int) (10 + (16 * i)), 5);
+				else if (datapointer.player.info.health == i + 0.5f)
+				g.drawPixmap(ImagesHolder.entityset.getTile(2690),
+					(int) (10 + (16 * i)), 5);
+				else if (datapointer.player.info.health == i + 0.25f)
+				g.drawPixmap(ImagesHolder.entityset.getTile(2691),
+					(int) (10 + (16 * i)), 5);
+		}
+		g.drawPixmap(ImagesHolder.gui.menubutton, 188, 4);
+		g.drawPixmap(ImagesHolder.gui.capacitiesbar, 20, g.getHeight() - 32);
+		if (datapointer.player.inventory.slot_cap1 != null)
+			g.drawPixmap(datapointer.player.inventory.slot_cap1.getCapIcon(),
+				36, g.getHeight() - 32);
+		if (datapointer.player.inventory.slot_cap2 != null)
+			g.drawPixmap(datapointer.player.inventory.slot_cap2.getCapIcon(),
+				68, g.getHeight() - 32);
+		if (datapointer.player.inventory.slot_cap3 != null)
+			g.drawPixmap(datapointer.player.inventory.slot_cap3.getCapIcon(),
+				100, g.getHeight() - 32);
+		g.drawPixmap(ImagesHolder.gui.itemgui, 192, g.getHeight() - 32);
+		if (datapointer.player.inventory.quickItem1 != null)
+			g.drawPixmap(datapointer.player.inventory.quickItem1.getSprite(),
+				196, MainGame.getBufferHeight() - 23);
+		if (datapointer.player.inventory.quickItem2 != null)
+			g.drawPixmap(datapointer.player.inventory.quickItem2.getSprite(),
+				220, MainGame.getBufferHeight() - 23);
+		//Start printing the white thing
 		g.setColor(0.9911f,0.9372f,0.8431f,(counter<50)?counter/50f:((counter>150)?(200-counter)/50f:1f));
 		g.fillRectangle(0,0,g.getWidth(),g.getHeight());
+
+		System.out.println(destination.getMusicPath());
+		System.out.println("Is music playing ? " + music.isPlaying());
+
+
 		if( counter > 50 && counter < 150 ){
+			System.out.println("counter = " + counter);
 			String s = destination.getDisplayName();
 			int length = ImagesHolder.font8x8.getLength(s);
 			ImagesHolder.font8x8.printStringOn(g,s,120-(length/2),g.getHeight()/2);
 		}
 	}
+
 
     public void onPress(UserEvent e) {
     }
