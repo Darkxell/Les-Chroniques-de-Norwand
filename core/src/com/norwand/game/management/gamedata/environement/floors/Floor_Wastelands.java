@@ -80,4 +80,8 @@ public class Floor_Wastelands extends Floor {
 
     }
 
+    @Override
+    public String getDisplayName() {
+        return "Terres Perdues";
+    }
 }

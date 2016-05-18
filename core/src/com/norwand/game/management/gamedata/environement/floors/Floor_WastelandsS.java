@@ -73,4 +73,8 @@ public class Floor_WastelandsS extends Floor {
 	});
     }
 
+	@Override
+	public String getDisplayName() {
+		return "Terres Perdues - Sud";
+	}
 }

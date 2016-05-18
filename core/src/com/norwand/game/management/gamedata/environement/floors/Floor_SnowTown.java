@@ -27,4 +27,8 @@ public class Floor_SnowTown extends Floor {
 	});
     }
 
+	@Override
+	public String getDisplayName() {
+		return "Village enneigé";
+	}
 }

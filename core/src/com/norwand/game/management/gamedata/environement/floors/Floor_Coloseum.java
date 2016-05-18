@@ -52,4 +52,8 @@ public class Floor_Coloseum extends Floor {
 	});
     }
 
+	@Override
+	public String getDisplayName() {
+		return "Colisée";
+	}
 }

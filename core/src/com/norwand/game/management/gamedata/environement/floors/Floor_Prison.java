@@ -40,4 +40,9 @@ public class Floor_Prison extends Floor {
             }
         });
     }
+
+    @Override
+    public String getDisplayName() {
+        return "Prison";
+    }
 }

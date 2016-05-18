@@ -32,4 +32,8 @@ public class Floor_Snow extends Floor {
 
     }
 
+    @Override
+    public String getDisplayName() {
+        return "Forêt des Murmures";
+    }
 }

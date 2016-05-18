@@ -37,4 +37,9 @@ public class Floor_Dungeon extends Floor {
             }
         });
     }
+
+    @Override
+    public String getDisplayName() {
+        return "Dongeon";
+    }
 }
