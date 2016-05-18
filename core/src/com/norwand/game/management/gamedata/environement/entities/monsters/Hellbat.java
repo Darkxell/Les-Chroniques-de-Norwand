@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.entities.Monster;
+import com.norwand.game.management.gamedata.environement.entities.particles.Smoke;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.objects.DoubleRectangle;
 import com.norwand.game.utility.objects.MathVector;
@@ -43,7 +44,8 @@ public class Hellbat extends Monster {
 
     @Override
     public void onhit(double damage) {
-	kill();
+	    kill();
+        roompointer.addEntity(new Smoke(roompointer, posX, posY));
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.entities.Monster;
+import com.norwand.game.management.gamedata.environement.entities.particles.Smoke;
 import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.objects.DoubleRectangle;
@@ -76,8 +77,10 @@ public class Wolf extends Monster {
         if (invicibilityFrames == 0) {
             invicibilityFrames = 5;
             hp -= damage;
-            if (hp <= 0)
+            if (hp <= 0) {
                 kill();
+                roompointer.addEntity(new Smoke(roompointer, posX, posY));
+            }
         }
     }
 
