@@ -3,6 +3,7 @@ package com.norwand.game.management.gamestates.top.menu.home;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.MainGame;
 import com.norwand.game.management.UserEvent;
+import com.norwand.game.management.gamedata.environement.floors.Floor_Prison;
 import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.launched.LaunchedState;
 import com.norwand.game.management.music.MusicHolder;
@@ -50,7 +51,7 @@ public class HomeState extends GameState {
     @Override
     public void onPress(UserEvent e) {
 	    parent.parent.substate = new LaunchedState(parent.parent);
-
+        MusicHolder.switchBGM(MainGame.ASSETSPATH + "audio/bgm/biohazard.mp3");
     }
 
     @Override

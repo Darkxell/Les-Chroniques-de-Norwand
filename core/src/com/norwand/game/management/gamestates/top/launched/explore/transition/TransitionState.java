@@ -61,8 +61,7 @@ public class TransitionState extends GameState {
 
 		//Lower the volume of the current music
 		if (counter < 50 && (!GameData.get().currentfloor.getMusicPath().equals(destination.getMusicPath()))) {
-			music.setVolume(0);
-			//music.setVolume((float) (50 - counter)/50);
+			music.setVolume((float) (50 - counter)/50);
 		}
 		//Stop the current music
 		if (counter == 50 && (!GameData.get().currentfloor.getMusicPath().equals(destination.getMusicPath()))) {

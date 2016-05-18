@@ -27,7 +27,7 @@ public abstract class Floor {
 		height = data.height;
 		this.playerpointer = playerpointer;
 
-		MusicHolder.switchBGM(getMusicPath());
+		/*MusicHolder.switchBGM(getMusicPath());*/
     }
 	
     /** Pointer to the player object. */
