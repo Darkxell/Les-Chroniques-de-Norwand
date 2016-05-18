@@ -99,7 +99,7 @@ public class TransitionState extends GameState {
 		if( counter > 50 && counter < 150 ){
 			String s = destination.getDisplayName();
 			int length = ImagesHolder.font8x8.getLength(s);
-			ImagesHolder.font8x8.printStringOn(g,"",120-(length/2),g.getHeight()/2);
+			ImagesHolder.font8x8.printStringOn(g,s,120-(length/2),g.getHeight()/2);
 		}
 	}
 
