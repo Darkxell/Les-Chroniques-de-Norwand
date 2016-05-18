@@ -9,12 +9,14 @@ import com.norwand.game.MainGame;
 public class DesktopLauncher {
 
     public static void main(String[] arg) {
-	LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-	config.title = "Les Chroniques de Norwand";
-	config.addIcon("../android/assets/textures/icon.png", FileType.Internal);
-	@SuppressWarnings("unused")
-	LwjglApplication app = new LwjglApplication(new MainGame("../android/assets/"),
-		config);
+		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.height = 600;
+		config.width = 800;
+		config.title = "Les Chroniques de Norwand";
+		config.addIcon("../android/assets/textures/icon.png", FileType.Internal);
+		@SuppressWarnings("unused")
+		LwjglApplication app = new LwjglApplication(new MainGame("../android/assets/"),
+			config);
     }
 
 }
