@@ -52,58 +52,58 @@ public class DialogState extends GameState {
 
         //firstline
         for (String word : wordsList) {
-            System.out.println("Word = " + word);
+            //System.out.println("Word = " + word);
 
             firstLineLength = bitmapFont.getLength(firstLine + word + " ");
-            System.out.println("firstLineLenght AVANT le if = " + firstLineLength);
+            //System.out.println("firstLineLenght AVANT le if = " + firstLineLength);
 
             //firstLine
             if (firstLineLength <= 198) {
-                System.out.println("firstLine = " + firstLine);
+                //System.out.println("firstLine = " + firstLine);
                 posInWordsList = (firstLine + word + " ").length();
                 posEndOfTheFirstLine = posInWordsList;
-                System.out.println("posInWordsList = " + posInWordsList);
+                //System.out.println("posInWordsList = " + posInWordsList);
                 firstLine = message.substring(0, posInWordsList);
-                System.out.println("firstLine APRES = " + firstLine);
+                //System.out.println("firstLine APRES = " + firstLine);
 
-                System.out.println("WOOOOOOOOORD = " + word);
+                //System.out.println("WOOOOOOOOORD = " + word);
                 wordsListSecondLine.remove(word);
             }
             else {
                 break;
             }
-            System.out.println("--------------------------------");
+            //System.out.println("--------------------------------");
         }
 
         //secondLine & nextMessage
         for (String word : wordsListSecondLine) {
-            System.out.println("Word = " + word);
+            //System.out.println("Word = " + word);
 
             secondLineLength = bitmapFont.getLength(secondLine + word + " ");
-            System.out.println("secondLineLenght AVANT le if = " + secondLineLength);
+            //System.out.println("secondLineLenght AVANT le if = " + secondLineLength);
 
             //secondLine
             if (secondLineLength <= 198) {
-                System.out.println("secondLine = " + secondLine);
+                //System.out.println("secondLine = " + secondLine);
                 posInWordsList = (secondLine + word + " ").length();
                 posEndOfTheSecondLine = posEndOfTheFirstLine + posInWordsList;
-                System.out.println("posInWordsList = " + posInWordsList);
-                System.out.println("posEndOfTheFirstLine = " + posEndOfTheFirstLine);
+                //System.out.println("posInWordsList = " + posInWordsList);
+                //System.out.println("posEndOfTheFirstLine = " + posEndOfTheFirstLine);
                 try {
                     secondLine = message.substring(posEndOfTheFirstLine, posEndOfTheFirstLine + posInWordsList);
                 }
                 catch (IndexOutOfBoundsException e) {
                     secondLine = message.substring(posEndOfTheFirstLine);
                 }
-                System.out.println("secondLine APRES = " + secondLine);
+                //System.out.println("secondLine APRES = " + secondLine);
             }
             //nextMessage
             else {
                 nextMessage = message.substring(posEndOfTheSecondLine);
-                System.out.println("next message = " + nextMessage);
+                //System.out.println("next message = " + nextMessage);
                 break;
             }
-            System.out.println("--------------------------------");
+            //System.out.println("--------------------------------");
         }
     }
 
@@ -133,12 +133,12 @@ public class DialogState extends GameState {
     @Override
     public void onPress(UserEvent e) {
         if (nextMessage.equals("") || nextMessage.equals(" ")) {
-            System.out.println("--------- nextMessage ---------- = " + nextMessage);
+            //System.out.println("--------- nextMessage ---------- = " + nextMessage);
             parent.substate = new PlayState(parent);
         }
         else {
-            System.out.println("Else");
-            System.out.println("Message : " + message);
+            //System.out.println("Else");
+            //System.out.println("Message : " + message);
             parent.substate = new DialogState(MainGame.game.state.substate.substate, nextMessage);
             nextMessage = "";
         }

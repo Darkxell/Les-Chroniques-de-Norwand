@@ -14,6 +14,6 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public ApplicationListener createApplicationListener () {
-                return new MainGame("../../desktop/assets/");
+                return new MainGame("../android/assets/");
         }
 }
