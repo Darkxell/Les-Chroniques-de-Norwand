@@ -22,11 +22,13 @@ public class DialogState extends GameState {
     //Stored pointer to the LaunchedState GameData attribute.
     private GameData datapointer = ((LaunchedState) parent.parent).data;
     private BitmapFont bitmapFont = ImagesHolder.font8x8;
-    private int lineLength = 0;
+    private int firstLineLength = 0;
+    private int secondLineLength = 0;
 
     //private int tic = counter/40;
 
     private Array<String> wordsList = new Array<String>();
+    private int forCounter = 0;
 
     // Position of the word in the sentence.
     private int posInWordsList = 0;
@@ -47,26 +49,39 @@ public class DialogState extends GameState {
 
         //firstline
         for (String word : wordsList) {
-            //Line break
             System.out.println("Word = " + word);
 
-            System.out.println("lineLenght AVANT le if = " + lineLength);
+            firstLineLength = bitmapFont.getLength(firstLine + word + " ");
+            System.out.println("firstLineLenght AVANT le if = " + firstLineLength);
 
             //firstLine
-            if (lineLength <= 190) {
-                lineLength = bitmapFont.getLength(firstLine + word + " ");
-
+            if (firstLineLength <= 198) {
                 System.out.println("firstLine = " + firstLine);
                 posInWordsList = (firstLine + word + " ").length();
                 posEndOfTheFirstLine = posInWordsList;
                 System.out.println("posInWordsList = " + posInWordsList);
                 firstLine = message.substring(0, posInWordsList);
                 System.out.println("firstLine APRES = " + firstLine);
-            }
-            //secondLine
-            else if (lineLength > 190 && lineLength <= 380) {
-                lineLength = bitmapFont.getLength(firstLine + secondLine + word + " ");
 
+                System.out.println("wordsList.get(forCounter) = " + wordsList.get(forCounter));
+                wordsList.removeIndex(forCounter);
+                forCounter++;
+            }
+            else {
+                break;
+            }
+            System.out.println("--------------------------------");
+        }
+
+        //secondLine & nextMessage
+        for (String word : wordsList) {
+            System.out.println("Word = " + word);
+
+            secondLineLength = bitmapFont.getLength(secondLineLength + word + " ");
+            System.out.println("secondLineLenght AVANT le if = " + secondLineLength);
+
+            //secondLine
+            if (secondLineLength <= 198) {
                 System.out.println("secondLine = " + secondLine);
                 posInWordsList = (secondLine + word + " ").length();
                 posEndOfTheSecondLine = posEndOfTheFirstLine + posInWordsList;
@@ -79,6 +94,7 @@ public class DialogState extends GameState {
             else {
                 nextMessage = message.substring(posEndOfTheSecondLine);
                 System.out.println("next message = " + nextMessage);
+                break;
             }
             System.out.println("--------------------------------");
         }
@@ -165,14 +181,14 @@ public class DialogState extends GameState {
 
     @Override
     public void onPress(UserEvent e) {
-        if (nextMessage.equals("")) {
-            System.out.println("nextMessage= " + nextMessage);
+        if (nextMessage.equals("") || nextMessage.equals(" ")) {
+            System.out.println("--------- nextMessage ---------- = " + nextMessage);
             parent.substate = new PlayState(parent);
         }
         else {
             System.out.println("Else");
             System.out.println("Message : " + message);
-            parent.substate = new DialogState(MainGame.game.state.substate.substate, nextMessage /*"This is a test for a dialog. A bla bla bla bla!"*/);
+            parent.substate = new DialogState(MainGame.game.state.substate.substate, nextMessage);
             nextMessage = "";
         }
 
