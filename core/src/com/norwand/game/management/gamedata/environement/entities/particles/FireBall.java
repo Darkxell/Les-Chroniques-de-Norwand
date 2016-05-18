@@ -42,6 +42,7 @@ public class FireBall extends Monster {
 
     @Override
     public Pixmap getCurrentSprite() {
+        direction.getAffinedOverallDirection();
         return ImagesHolder.particleset.getTile((counter > 25) ? 48 : 56);
     }
 
