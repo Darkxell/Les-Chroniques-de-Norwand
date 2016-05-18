@@ -25,7 +25,7 @@ public abstract class Floor {
 	height = data.height;
 	this.playerpointer = playerpointer;
     }
-
+	
     /** Pointer to the player object. */
     protected Player playerpointer;
 
@@ -292,5 +292,11 @@ public abstract class Floor {
     public Entity[] getTileEntities() {
 	return this.tileentities;
     }
+	
+	/**
+	* Returns the display name of this floor. This is used for the map and for 
+	* the transitionstate.
+	*/
+	public abstract String getDisplayName();
 
 }
