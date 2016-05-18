@@ -16,6 +16,8 @@ import com.norwand.game.utility.objects.Position;
  * instance.
  */
 public abstract class Floor {
+	protected Music music = Gdx.audio.newMusic(Gdx.files.internal(getMusicPath()));
+
     /**
      * Constructs a floor object from a FloorData object and a pointer to the
      * player.
@@ -308,6 +310,8 @@ public abstract class Floor {
 	/**
 	 * @return the music assiciated to this floor.
      */
-	public abstract Music getMusic();
+	public Music getMusic() {
+		return music;
+	}
 
 }

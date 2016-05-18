@@ -52,9 +52,4 @@ public class Floor_Prison extends Floor {
     public String getMusicPath() {
         return MainGame.ASSETSPATH + "audio/bgm/biohazard.mp3";
     }
-
-    @Override
-    public Music getMusic() {
-        return music;
-    }
 }

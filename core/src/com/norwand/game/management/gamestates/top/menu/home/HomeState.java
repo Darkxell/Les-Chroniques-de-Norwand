@@ -1,5 +1,7 @@
 package com.norwand.game.management.gamestates.top.menu.home;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamestates.GameState;
@@ -12,6 +14,7 @@ import com.norwand.game.utility.Palette;
  * by default.
  */
 public class HomeState extends GameState {
+    Music music;
 
     public HomeState(GameState parent) {
 	super(parent);
@@ -22,7 +25,9 @@ public class HomeState extends GameState {
 
     @Override
     public void update() {
-	++counter;
+	    ++counter;
+        //Start the music
+        //music = Gdx.audio.newMusic(Gdx.files.internal("data/mymusic.mp3"));
     }
 
     @Override

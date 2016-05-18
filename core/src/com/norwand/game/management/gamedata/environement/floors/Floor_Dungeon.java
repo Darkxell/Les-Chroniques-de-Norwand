@@ -10,8 +10,6 @@ import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
 
 public class Floor_Dungeon extends Floor {
-    Music music = Gdx.audio.newMusic(Gdx.files.internal(getMusicPath()));
-
     /**
      * Constructs a floor object from a FloorData object and a pointer to the
      * player.
@@ -49,10 +47,5 @@ public class Floor_Dungeon extends Floor {
     @Override
     public String getMusicPath() {
         return MainGame.ASSETSPATH + "audio/bgm/allthingsend2.mp3";
-    }
-
-    @Override
-    public Music getMusic() {
-        return music;
     }
 }

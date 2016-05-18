@@ -10,8 +10,6 @@ import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
 
 public class Floor_Coloseum extends Floor {
-    Music music = Gdx.audio.newMusic(Gdx.files.internal(getMusicPath()));
-
     public Floor_Coloseum(Player playerpointer) {
         super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
             + "maps/coloseum.txt")), playerpointer);
@@ -62,10 +60,5 @@ public class Floor_Coloseum extends Floor {
     @Override
     public String getMusicPath() {
         return MainGame.ASSETSPATH + "audio/bgm/allthingsend2.mp3";
-    }
-
-    @Override
-    public Music getMusic() {
-        return music;
     }
 }
