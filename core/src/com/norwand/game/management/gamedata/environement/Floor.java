@@ -8,6 +8,7 @@ import com.norwand.game.management.gamedata.environement.entities.Entity;
 import com.norwand.game.management.gamedata.environement.tileentities.TileEntity;
 import com.norwand.game.management.gamedata.environement.tiles.Tile;
 import com.norwand.game.management.gamedata.player.Player;
+import com.norwand.game.management.music.MusicHolder;
 import com.norwand.game.utility.objects.Position;
 
 /**
@@ -16,9 +17,7 @@ import com.norwand.game.utility.objects.Position;
  * instance.
  */
 public abstract class Floor {
-	protected Music music = Gdx.audio.newMusic(Gdx.files.internal(getMusicPath()));
-
-    /**
+	/**
      * Constructs a floor object from a FloorData object and a pointer to the
      * player.
      */
@@ -27,6 +26,8 @@ public abstract class Floor {
 		width = data.width;
 		height = data.height;
 		this.playerpointer = playerpointer;
+
+		MusicHolder.switchBGM(getMusicPath());
     }
 	
     /** Pointer to the player object. */
@@ -311,7 +312,7 @@ public abstract class Floor {
 	 * @return the music assiciated to this floor.
      */
 	public Music getMusic() {
-		return music;
+		return MusicHolder.currentMusic;
 	}
 
 }

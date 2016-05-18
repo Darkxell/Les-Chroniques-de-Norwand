@@ -1,11 +1,11 @@
 package com.norwand.game.management.gamestates.top.menu.home;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Pixmap;
+import com.norwand.game.MainGame;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.launched.LaunchedState;
+import com.norwand.game.management.music.MusicHolder;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.Palette;
 
@@ -14,10 +14,10 @@ import com.norwand.game.utility.Palette;
  * by default.
  */
 public class HomeState extends GameState {
-    Music music;
 
     public HomeState(GameState parent) {
-	super(parent);
+	    super(parent);
+        MusicHolder.switchBGM(MainGame.ASSETSPATH + "audio/bgm/adventures.mp3");
     }
 
     /** Internal counter. */
@@ -27,7 +27,8 @@ public class HomeState extends GameState {
     public void update() {
 	    ++counter;
         //Start the music
-        //music = Gdx.audio.newMusic(Gdx.files.internal("data/mymusic.mp3"));
+        if (!MusicHolder.currentMusic.isPlaying())
+            MusicHolder.currentMusic.play();
     }
 
     @Override
@@ -48,7 +49,8 @@ public class HomeState extends GameState {
 
     @Override
     public void onPress(UserEvent e) {
-	parent.parent.substate = new LaunchedState(parent.parent);
+	    parent.parent.substate = new LaunchedState(parent.parent);
+
     }
 
     @Override

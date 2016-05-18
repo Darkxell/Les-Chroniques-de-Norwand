@@ -15,6 +15,7 @@ import com.norwand.game.management.gamestates.top.launched.LaunchedState;
 import com.norwand.game.management.gamestates.top.launched.explore.ExploreState;
 import com.norwand.game.management.gamestates.top.launched.explore.play.PlayState;
 import com.norwand.game.management.gamestates.top.launched.menus.InGameMenuState;
+import com.norwand.game.management.music.MusicHolder;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.Palette;
 import com.norwand.game.utility.objects.Position;
@@ -31,7 +32,6 @@ public class TransitionState extends GameState {
 	private int counter = 0;
 	private Floor destination;
 	private double toX,toY;
-	private Music music;
 	
 	/**Creates a new transitionstate.*/
     public TransitionState(GameState parent, Floor destination, double posX, double posY) {
@@ -40,7 +40,7 @@ public class TransitionState extends GameState {
 		toX = posX;
 		toY = posY;
 
-		music = destination.getMusic();
+		MusicHolder.switchBGM(destination.getMusicPath());
     }
 
     @Override
@@ -69,11 +69,11 @@ public class TransitionState extends GameState {
 		}
 		//Play the next music
 		if (counter > 50 && counter < 150 && (!GameData.get().currentfloor.getMusicPath().equals(destination.getMusicPath()))) {
-			if (!music.isPlaying()) {
-				music.play();
+			if (!MusicHolder.currentMusic.isPlaying()) {
+				MusicHolder.currentMusic.play();
 			}
-			music.setVolume((float) (counter - 49)/100);
-			System.out.println("VOLUME = " + music.getVolume());
+			MusicHolder.currentMusic.setVolume((float) (counter - 49)/100);
+			System.out.println("VOLUME = " + MusicHolder.currentMusic.getVolume());
 		}
 
 		datapointer.player.cam.update();
@@ -123,7 +123,7 @@ public class TransitionState extends GameState {
 		g.fillRectangle(0,0,g.getWidth(),g.getHeight());
 
 		System.out.println(destination.getMusicPath());
-		System.out.println("Is music playing ? " + music.isPlaying());
+		System.out.println("Is music playing ? " + MusicHolder.currentMusic.isPlaying());
 
 
 		if( counter > 50 && counter < 150 ){
