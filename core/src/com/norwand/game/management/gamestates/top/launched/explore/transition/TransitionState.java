@@ -32,6 +32,7 @@ public class TransitionState extends GameState {
 	private int counter = 0;
 	private Floor destination;
 	private double toX,toY;
+	private Music music;
 	
 	/**Creates a new transitionstate.*/
     public TransitionState(GameState parent, Floor destination, double posX, double posY) {
@@ -40,7 +41,7 @@ public class TransitionState extends GameState {
 		toX = posX;
 		toY = posY;
 
-		MusicHolder.switchBGM(destination.getMusicPath());
+		music = MusicHolder.currentMusic;
     }
 
     @Override
@@ -60,12 +61,12 @@ public class TransitionState extends GameState {
 
 		//Lower the volume of the current music
 		if (counter < 50 && (!GameData.get().currentfloor.getMusicPath().equals(destination.getMusicPath()))) {
-			GameData.get().currentfloor.getMusic().setVolume((float) (50 - counter)/50);
+			music.setVolume(0);
+			//music.setVolume((float) (50 - counter)/50);
 		}
 		//Stop the current music
 		if (counter == 50 && (!GameData.get().currentfloor.getMusicPath().equals(destination.getMusicPath()))) {
-			GameData.get().currentfloor.getMusic().stop();
-			GameData.get().currentfloor.getMusic().dispose();
+			MusicHolder.switchBGM(destination.getMusicPath());
 		}
 		//Play the next music
 		if (counter > 50 && counter < 150 && (!GameData.get().currentfloor.getMusicPath().equals(destination.getMusicPath()))) {
@@ -73,7 +74,6 @@ public class TransitionState extends GameState {
 				MusicHolder.currentMusic.play();
 			}
 			MusicHolder.currentMusic.setVolume((float) (counter - 49)/100);
-			System.out.println("VOLUME = " + MusicHolder.currentMusic.getVolume());
 		}
 
 		datapointer.player.cam.update();
@@ -122,12 +122,7 @@ public class TransitionState extends GameState {
 		g.setColor(0.9911f,0.9372f,0.8431f,(counter<50)?counter/50f:((counter>150)?(200-counter)/50f:1f));
 		g.fillRectangle(0,0,g.getWidth(),g.getHeight());
 
-		System.out.println(destination.getMusicPath());
-		System.out.println("Is music playing ? " + MusicHolder.currentMusic.isPlaying());
-
-
 		if( counter > 50 && counter < 150 ){
-			System.out.println("counter = " + counter);
 			String s = destination.getDisplayName();
 			int length = ImagesHolder.font8x8.getLength(s);
 			ImagesHolder.font8x8.printStringOn(g,s,120-(length/2),g.getHeight()/2);
