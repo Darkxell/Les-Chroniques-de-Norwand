@@ -26,7 +26,7 @@ public class InventoryEquipState extends GameState {
         super(parent);
         Inventory inv = GameData.get().player.inventory;
         updateBuffer();
-        if(validEquip.size() > 0)
+        if (validEquip.size() > 0)
             cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
         else
             cursopositionEquip = -1;
@@ -46,7 +46,7 @@ public class InventoryEquipState extends GameState {
         if (counter > 70)
             counter = 0;
 
-        if (cursorposition > GameData.get().player.inventory.equipables.length - 1 || cursorposition < 0)
+        if (cursorposition > validEquip.size() - 1 || cursorposition < 0)
             cursorposition = 0;
 
         if (arrowAnimation <= 0)
@@ -118,12 +118,11 @@ public class InventoryEquipState extends GameState {
         else
             g.drawPixmap(inv.weapon2.getSprite(), 187, 26);
 
-        if(arrowPosition >= 5) {
-            g.drawPixmap(ImagesHolder.gui.selectArrowDown,  166, (arrowAnimation <= 20) ? 46 : 45);
-            g.drawPixmap(ImagesHolder.gui.selectArrowDown,  191, (arrowAnimation <= 20) ? 46 : 45);
-        }
-        else {
-            g.drawPixmap(ImagesHolder.gui.selectArrowDown,  31 + 25 * arrowPosition, (arrowAnimation <= 20) ? 46 : 45);
+        if (arrowPosition >= 5) {
+            g.drawPixmap(ImagesHolder.gui.selectArrowDown, 166, (arrowAnimation <= 20) ? 46 : 45);
+            g.drawPixmap(ImagesHolder.gui.selectArrowDown, 191, (arrowAnimation <= 20) ? 46 : 45);
+        } else {
+            g.drawPixmap(ImagesHolder.gui.selectArrowDown, 31 + 25 * arrowPosition, (arrowAnimation <= 20) ? 46 : 45);
         }
     }
 
@@ -134,7 +133,7 @@ public class InventoryEquipState extends GameState {
         if (e.x > 188 && e.y > 4 && e.x < 236 && e.y < 20)
             parent.parent.substate = new ExploreState(parent.parent);
 
-        //field of equipments
+            //field of equipments
         else if (e.y > 62 && e.y < MainGame.getBufferHeight() - 32 && e.x > 9 && e.x < 208) {
             int newCursorposition = (e.x - 13) / 21 + (e.y - 63) / 21 * 9;
             if (validEquip.size() > newCursorposition && newCursorposition >= 0) {
@@ -147,7 +146,7 @@ public class InventoryEquipState extends GameState {
         else if (e.x > 220 && e.x < 236 && e.y > MainGame.getBufferHeight() / 2 - 16 && e.y < MainGame.getBufferHeight() / 2 + 32)
             parent.substate = new InventoryCapacityState(parent);
 
-        //buttons
+            //buttons
         else if (e.y > MainGame.getBufferHeight() - 32 && e.y <= MainGame.getBufferHeight() - 16) {
             Inventory i = GameData.get().player.inventory;
 
@@ -178,7 +177,7 @@ public class InventoryEquipState extends GameState {
                 arrowPosition = 0;
                 updateBuffer();
 
-                if(validEquip.size() > 0)
+                if (validEquip.size() > 0)
                     cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
                 else
                     cursopositionEquip = -1;
@@ -188,7 +187,7 @@ public class InventoryEquipState extends GameState {
             else if (e.x > 49 && e.x < 70) {
                 arrowPosition = 1;
                 updateBuffer();
-                if(validEquip.size() > 0)
+                if (validEquip.size() > 0)
                     cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
                 else
                     cursopositionEquip = -1;
@@ -198,7 +197,7 @@ public class InventoryEquipState extends GameState {
             else if (e.x > 74 && e.x < 95) {
                 arrowPosition = 2;
                 updateBuffer();
-                if(validEquip.size() > 0)
+                if (validEquip.size() > 0)
                     cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
                 else
                     cursopositionEquip = -1;
@@ -209,7 +208,7 @@ public class InventoryEquipState extends GameState {
                 arrowPosition = 3;
                 validEquip.clear();
                 updateBuffer();
-                if(validEquip.size() > 0)
+                if (validEquip.size() > 0)
                     cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
                 else
                     cursopositionEquip = -1;
@@ -219,7 +218,7 @@ public class InventoryEquipState extends GameState {
             else if (e.x > 124 && e.x < 145) {
                 arrowPosition = 4;
                 updateBuffer();
-                if(validEquip.size() > 0)
+                if (validEquip.size() > 0)
                     cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
                 else
                     cursopositionEquip = -1;
@@ -229,7 +228,7 @@ public class InventoryEquipState extends GameState {
             else if (e.x > 159 && e.x < 180) {
                 arrowPosition = 5;
                 updateBuffer();
-                if(validEquip.size() > 0)
+                if (validEquip.size() > 0)
                     cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
                 else
                     cursopositionEquip = -1;
@@ -239,11 +238,16 @@ public class InventoryEquipState extends GameState {
             else if (e.x > 184 && e.x < 205) {
                 arrowPosition = 6;
                 updateBuffer();
-                if(validEquip.size() > 0)
+                if (validEquip.size() > 0)
                     cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
                 else
                     cursopositionEquip = -1;
             }
+
+            //resume slot
+            else if (e.x > 215 && e.x < 236)
+                parent.substate = new InventoryResumeState(parent);
+
         }
     }
 
@@ -273,7 +277,6 @@ public class InventoryEquipState extends GameState {
     }
 
 
-
     private void updateBuffer() {
         Inventory inv = GameData.get().player.inventory;
         switch (arrowPosition) {
@@ -293,7 +296,7 @@ public class InventoryEquipState extends GameState {
                 }
                 break;
 
-            case 2 :
+            case 2:
                 validEquip.clear();
                 for (int i = 0; i < inv.equipables.length; ++i) {
                     if (inv.equipables[i] instanceof Boots)
@@ -301,7 +304,7 @@ public class InventoryEquipState extends GameState {
                 }
                 break;
 
-            case 3  :
+            case 3:
                 validEquip.clear();
                 for (int i = 0; i < inv.equipables.length; ++i) {
                     if (inv.equipables[i] instanceof Armor)
@@ -309,7 +312,7 @@ public class InventoryEquipState extends GameState {
                 }
                 break;
 
-            case 4 :
+            case 4:
                 validEquip.clear();
                 for (int i = 0; i < inv.equipables.length; ++i) {
                     if (inv.equipables[i] instanceof Necklace)
@@ -317,7 +320,8 @@ public class InventoryEquipState extends GameState {
                 }
                 break;
 
-            case 5:case 6:
+            case 5:
+            case 6:
                 validEquip.clear();
                 for (int i = 0; i < inv.equipables.length; ++i) {
                     if (inv.equipables[i] instanceof Weapon)
