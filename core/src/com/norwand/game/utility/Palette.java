@@ -30,4 +30,13 @@ public abstract class Palette {
 	return new Color(((float) (r)) / 255f, ((float) (g)) / 255f,
 		((float) (b)) / 255f, 1);
     }
+	
+	/**
+     * Creates a new instance of color object using the RGBA values wanted.<br/>
+     * The values should be in 0-255 range.
+     */
+    public static Color newColorAlpha(int r, int g, int b, int a) {
+	return new Color(((float) (r)) / 255f, ((float) (g)) / 255f,
+		((float) (b)) / 255f, ((float) (a)) / 255f);
+    }
 }
