@@ -1,6 +1,9 @@
 package com.norwand.game.management.gamedata.player.states;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Pixmap;
+import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.entities.Entity;
 import com.norwand.game.management.gamedata.environement.entities.Monster;
@@ -18,6 +21,8 @@ import com.norwand.game.utility.objects.Position;
  * State of the player representing it dashing to a location.
  */
 public class PS_Dash extends PlayerState {
+    Sound sound = Gdx.audio.newSound(Gdx.files.internal(MainGame.ASSETSPATH + "audio/sfx/swoosh.wav"));
+    private boolean isPlayed = false;
 
     /**
      * Construcs a new dashing state using a position.
@@ -44,6 +49,10 @@ public class PS_Dash extends PlayerState {
 
     @Override
     public void update() {
+        if (!isPlayed) {
+            sound.play();
+            isPlayed = true;
+        }
         --framelength;
         if (framelength < 0)
             player.state = new PS_Iddle(player);
