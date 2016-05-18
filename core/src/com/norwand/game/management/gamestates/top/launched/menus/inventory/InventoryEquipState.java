@@ -1,5 +1,6 @@
 package com.norwand.game.management.gamestates.top.launched.menus.inventory;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.MainGame;
 import com.norwand.game.management.UserEvent;
@@ -63,6 +64,7 @@ public class InventoryEquipState extends GameState {
         //TOP
         g.drawPixmap(ImagesHolder.gui.inventoryEquipTop, 0, 0);
         ImagesHolder.font8x8.printStringOn(g, "EQUIPEMENTS", 5, 7);
+
 
         //MID
         for (int i = 64; i < g.getHeight() - 32; i += 16) {

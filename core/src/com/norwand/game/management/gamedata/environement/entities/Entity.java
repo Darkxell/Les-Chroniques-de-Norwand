@@ -22,6 +22,8 @@ public abstract class Entity {
     /** Is true if the entity can interact with the player via the act button. */
     protected boolean actable;
 
+    protected int invicibilityFrames;
+
     /** The health of the entity. */
     public double hp;
 
