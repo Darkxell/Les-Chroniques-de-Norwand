@@ -15,7 +15,7 @@ public class Floor_Prison extends Floor {
 
     public Floor_Prison(Player playerpointer) {
         super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
-            + "maps/prison.txt")), playerpointer);
+                + "maps/prison.txt")), playerpointer);
         addEntity(new Wolf(this, 21, 10));
         addTileEntity(new SignPost(this,
                 "Prisons du royaume. Il faut savoir qu'en 1380 avant notre ère, il existait un seigneur qui, par inadvertance est mort lorsqu'une porte du cachot s'est abbatue sur lui.",
@@ -24,19 +24,19 @@ public class Floor_Prison extends Floor {
         setTileAt(1, 0, new WarpZone(getTileAt(1, 0), 13, 18) {
             @Override
             public Floor getDestination() {
-            return new Floor_Coloseum(GameData.get().player);
+                return new Floor_Coloseum(GameData.get().player);
             }
         });
         setTileAt(2, 0, new WarpZone(getTileAt(2, 0), 13, 18) {
             @Override
             public Floor getDestination() {
-            return new Floor_Coloseum(GameData.get().player);
+                return new Floor_Coloseum(GameData.get().player);
             }
         });
         setTileAt(3, 0, new WarpZone(getTileAt(3, 0), 13, 18) {
             @Override
             public Floor getDestination() {
-            return new Floor_Coloseum(GameData.get().player);
+                return new Floor_Coloseum(GameData.get().player);
             }
         });
     }
