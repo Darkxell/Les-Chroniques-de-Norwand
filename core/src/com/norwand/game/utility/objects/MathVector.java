@@ -1,7 +1,6 @@
 package com.norwand.game.utility.objects;
 
 import com.norwand.game.utility.Directions;
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.ComplexType;
 
 /**
  * Reprensents a mathematical 2D vector.
