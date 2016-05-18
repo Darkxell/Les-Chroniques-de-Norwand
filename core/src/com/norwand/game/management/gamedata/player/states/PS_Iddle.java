@@ -19,8 +19,10 @@ public class PS_Iddle extends PlayerState {
 
     @Override
     public void update() {
-	if (GameData.get().currentfloor.getPhysicsAt(player.x, player.y) == Tile.TYPE_WATER)
-	    player.state = new PS_Drown(player);
+        if (GameData.get().currentfloor.getPhysicsAt(player.x, player.y) == Tile.TYPE_WATER)
+            player.state = new PS_Drown(player);
+        else if (GameData.get().currentfloor.getPhysicsAt(player.x, player.y) == Tile.TYPE_VOID)
+            player.state = new PS_Falling(player);
     }
 
     @Override

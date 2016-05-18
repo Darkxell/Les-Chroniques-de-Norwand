@@ -30,6 +30,8 @@ public class PS_Walk extends PlayerState {
     public void update() {
 	if (GameData.get().currentfloor.getPhysicsAt(player.x, player.y) == Tile.TYPE_WATER)
 	    player.state = new PS_Drown(player);
+	else if (GameData.get().currentfloor.getPhysicsAt(player.x, player.y) == Tile.TYPE_VOID)
+		player.state = new PS_Falling(player);
 	--countdown;
 	if (countdown < 0) {
 	    countdown = 10;// Frames per sprite
