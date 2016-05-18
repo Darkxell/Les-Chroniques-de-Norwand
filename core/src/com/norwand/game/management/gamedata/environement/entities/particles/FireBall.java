@@ -1,6 +1,5 @@
 package com.norwand.game.management.gamedata.environement.entities.particles;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;

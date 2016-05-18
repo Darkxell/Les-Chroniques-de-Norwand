@@ -31,7 +31,7 @@ public class Drake extends Monster {
 
         MathVector amv = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
 
-        if (amv.getBasicLength() < 7 && fireball > 40)
+        if (amv.getBasicLength() < 7 && fireball > 10)
             spitFireBall();
 
         if(fireball > 50)
