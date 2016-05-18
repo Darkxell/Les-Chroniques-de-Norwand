@@ -35,6 +35,7 @@ public class InventoryCapacityState extends GameState {
 
         //TOP
         g.drawPixmap(ImagesHolder.gui.inventoryCapacityTop, 0, 0);
+        ImagesHolder.font8x8.printStringOn(g, "CAPACITES", 5, 7);
 
         //MID
         for (int i = 64; i < g.getHeight() - 32; i += 16) {
@@ -76,7 +77,7 @@ public class InventoryCapacityState extends GameState {
 
         //switch page
         else if (e.x > 220 && e.x < 236 && e.y > MainGame.getBufferHeight() / 2 - 16 && e.y < MainGame.getBufferHeight() / 2 + 32)
-            parent.substate = new InventoryCapacityState(parent);
+            parent.substate = new InventoryMapState(parent);
 
         //field of capacities
         else if (e.y > 62 && e.y < MainGame.getBufferHeight() - 32 && e.x > 9 && e.x < 208) {

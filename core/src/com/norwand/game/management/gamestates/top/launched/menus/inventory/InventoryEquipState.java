@@ -62,6 +62,7 @@ public class InventoryEquipState extends GameState {
 
         //TOP
         g.drawPixmap(ImagesHolder.gui.inventoryEquipTop, 0, 0);
+        ImagesHolder.font8x8.printStringOn(g, "EQUIPEMENTS", 5, 7);
 
         //MID
         for (int i = 64; i < g.getHeight() - 32; i += 16) {

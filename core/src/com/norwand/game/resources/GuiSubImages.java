@@ -49,6 +49,14 @@ public class GuiSubImages implements Disposable {
         inventoryEquipBot = PixmapUtility.getPixmapPart(set, 0, 496 , 240, 16);
         inventoryEquipSelect = PixmapUtility.getPixmapPart(set, 0, 288, 240, 16);
         inventoryCapacityTop = PixmapUtility.getPixmapPart(set, 0, 208, 240, 64);
+        inventoryMapTop = PixmapUtility.getPixmapPart(set, 272, 288, 240, 48);
+        inventoryMapMid = PixmapUtility.getPixmapPart(set, 0, 272, 240, 16);
+        inventorySaveTop = PixmapUtility.getPixmapPart(set, 272, 288, 240, 24);
+        inventorySaveSaveButton = PixmapUtility.getPixmapPart(set, 0, 176, 96, 32);
+        inventorySaveOptionsButton = PixmapUtility.getPixmapPart(set, 96, 176, 96, 32);
+        inventorySaveCreditsButton = PixmapUtility.getPixmapPart(set, 192, 176, 48, 16);
+
+        inventorySaveBot = PixmapUtility.getPixmapPart(set, 0, 503 , 240, 16);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
@@ -94,5 +102,12 @@ public class GuiSubImages implements Disposable {
     public Pixmap inventoryEquipBot;
     public Pixmap inventoryEquipSelect;
     public Pixmap inventoryCapacityTop;
+    public Pixmap inventoryMapTop;
+    public Pixmap inventoryMapMid;
+    public Pixmap inventorySaveTop;
+    public Pixmap inventorySaveSaveButton;
+    public Pixmap inventorySaveOptionsButton;
+    public Pixmap inventorySaveCreditsButton;
+    public Pixmap inventorySaveBot;
 
 }

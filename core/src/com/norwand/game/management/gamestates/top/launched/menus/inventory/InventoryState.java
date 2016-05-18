@@ -47,7 +47,7 @@ public class InventoryState extends GameState {
         int h = g.getHeight() - 32;
         g.drawPixmap(ImagesHolder.gui.x32Box, 9, h / 3 + 16);
         g.drawPixmap(ImagesHolder.gui.x32Box, 9, h - h / 3 + 16);
-        ImagesHolder.font8x8.printStringOn(g, "Inventory : Items", 5, 7);
+        ImagesHolder.font8x8.printStringOn(g, "CONSOMABLES", 5, 7);
 
         if (inv.quickItem1 != null)
             g.drawPixmap(inv.quickItem1.getSprite(), 17, h / 3 + 24);
