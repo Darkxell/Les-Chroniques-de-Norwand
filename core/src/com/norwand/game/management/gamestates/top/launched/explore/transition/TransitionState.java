@@ -32,7 +32,6 @@ public class TransitionState extends GameState {
 	private int counter = 0;
 	private Floor destination;
 	private double toX,toY;
-	private Music music;
 	
 	/**Creates a new transitionstate.*/
     public TransitionState(GameState parent, Floor destination, double posX, double posY) {
@@ -40,8 +39,6 @@ public class TransitionState extends GameState {
 		this.destination = destination;
 		toX = posX;
 		toY = posY;
-
-		music = MusicHolder.currentMusic;
     }
 
     @Override
@@ -61,7 +58,7 @@ public class TransitionState extends GameState {
 
 		//Lower the volume of the current music
 		if (counter < 50 && (!GameData.get().currentfloor.getMusicPath().equals(destination.getMusicPath()))) {
-			music.setVolume((float) (50 - counter)/50);
+			MusicHolder.currentMusic.setVolume((float) (50 - counter)/50);
 		}
 		//Stop the current music
 		if (counter == 50 && (!GameData.get().currentfloor.getMusicPath().equals(destination.getMusicPath()))) {
