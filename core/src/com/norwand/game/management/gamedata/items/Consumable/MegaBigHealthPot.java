@@ -21,7 +21,7 @@ public class MegaBigHealthPot extends Item {
 
     @Override
     public void onUse() {
-        GameData.get().player.info.health += 9;
+        GameData.get().player.info.health += 3;
         if (GameData.get().player.info.health > GameData.get().player.info.maxhealth)
             GameData.get().player.info.health = GameData.get().player.info.maxhealth;
 

@@ -20,7 +20,7 @@ public class HealthPot extends Item {
 
     @Override
     public void onUse() {
-	GameData.get().player.info.health += 3;
+	GameData.get().player.info.health += 1;
 	if (GameData.get().player.info.health > GameData.get().player.info.maxhealth)
 	    GameData.get().player.info.health = GameData.get().player.info.maxhealth;
 
