@@ -3,6 +3,8 @@ package com.norwand.game.management.music;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
+import java.lang.reflect.Executable;
+
 public class MusicHolder {
     public static Music currentMusic;
 
@@ -11,7 +13,12 @@ public class MusicHolder {
             currentMusic.stop();
             currentMusic.dispose();
         }
-        currentMusic = Gdx.audio.newMusic(Gdx.files.internal(pathToSet));
-        currentMusic.play();
+        try {
+            currentMusic = Gdx.audio.newMusic(Gdx.files.internal(pathToSet));
+            currentMusic.play();
+        } catch (Exception e) {
+            System.err.println("Error chargement musique : ");
+            e.printStackTrace();
+        }
     }
 }

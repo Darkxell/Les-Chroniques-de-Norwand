@@ -13,8 +13,6 @@ import com.norwand.game.management.gamestates.top.launched.explore.play.PlayStat
 import com.norwand.game.management.music.MusicHolder;
 import com.norwand.game.resources.ImagesHolder;
 
-import sun.applet.Main;
-
 /**
  * Created by Valentin Marechal on 18/05/2016.
  */

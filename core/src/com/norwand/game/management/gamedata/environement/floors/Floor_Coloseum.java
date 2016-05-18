@@ -6,13 +6,25 @@ import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
+import com.norwand.game.management.gamedata.environement.entities.monsters.Drake;
+import com.norwand.game.management.gamedata.environement.entities.particles.FireBall;
+import com.norwand.game.management.gamedata.environement.entities.particles.Tornado;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
 
 public class Floor_Coloseum extends Floor {
     public Floor_Coloseum(Player playerpointer) {
         super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
-            + "maps/coloseum.txt")), playerpointer);
+                + "maps/coloseum.txt")), playerpointer);
+
+        addEntity(new Drake(this, 10, 10));
+        addEntity(new Drake(this, 15, 15));
+        addEntity(new Drake(this, 7, 7));
+        addEntity(new Drake(this, 13, 13));
+        addEntity(new Drake(this, 8, 8));
+        addEntity(new Drake(this, 12, 4));
+        addEntity(new Drake(this, 4, 2));
+
         setTileAt(12, 20,new WarpZone(getTileAt(12, 20), 2, 1) {
             @Override
             public Floor getDestination() {
