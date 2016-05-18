@@ -7,13 +7,13 @@ public class PlatinumRing extends Ring {
 
     public PlatinumRing() {
         this.displayName = "Anneau en platine";
-        this.itemDescription = "Un anneau en platine";
+        this.itemDescription = "Un anneau en platine très précieux";
         this.damage = 0;
         this.armor = 0;
     }
 
     @Override
     public Pixmap getSprite() {
-        return ImagesHolder.itemset.getTile(486);
+        return ImagesHolder.itemset.getTile(480);
     }
 }

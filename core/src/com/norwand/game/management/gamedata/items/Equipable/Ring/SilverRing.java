@@ -7,7 +7,7 @@ public class SilverRing extends Ring {
 
     public SilverRing() {
         this.displayName = "Anneau en argent";
-        this.itemDescription = "Un anneau en argent";
+        this.itemDescription = "Un anneau en argent pur";
         this.damage = 0;
         this.armor = 0;
     }

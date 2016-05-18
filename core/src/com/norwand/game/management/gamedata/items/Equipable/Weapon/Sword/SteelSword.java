@@ -8,12 +8,12 @@ public class SteelSword extends Sword {
     public SteelSword(){
         this.displayName = "Epee en acier";
         this.itemDescription = "Une epee forgee de acier";
-        this.damage = 3;
+        this.damage = 6;
         this.armor = 0;
     }
 
     @Override
     public Pixmap getSprite() {
-        return ImagesHolder.itemset.getTile(619);
+        return ImagesHolder.itemset.getTile(616);
     }
 }

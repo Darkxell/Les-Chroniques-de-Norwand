@@ -2,9 +2,11 @@ package com.norwand.game.management.gamedata.player;
 
 import com.norwand.game.management.gamedata.items.Consumable.BigHealthPot;
 import com.norwand.game.management.gamedata.items.Consumable.HealthPot;
+import com.norwand.game.management.gamedata.items.Consumable.MegaBigHealthPot;
+import com.norwand.game.management.gamedata.items.Consumable.UltraMegaBigHealthPot;
+import com.norwand.game.management.gamedata.items.Equipable.Armor.AlloyArmor;
 import com.norwand.game.management.gamedata.items.Equipable.Armor.Armor;
 import com.norwand.game.management.gamedata.items.Equipable.Armor.CopperArmor;
-import com.norwand.game.management.gamedata.items.Equipable.Armor.DarkArmor;
 import com.norwand.game.management.gamedata.items.Equipable.Armor.IronArmor;
 import com.norwand.game.management.gamedata.items.Equipable.Armor.LeatherArmor;
 import com.norwand.game.management.gamedata.items.Equipable.Armor.OrichalcumArmor;
@@ -33,12 +35,14 @@ import com.norwand.game.management.gamedata.items.Equipable.Ring.Ring;
 import com.norwand.game.management.gamedata.items.Equipable.Ring.SilverRing;
 import com.norwand.game.management.gamedata.items.Equipable.Ring.WoodenRing;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Shield.ManatarmShield;
+import com.norwand.game.management.gamedata.items.Equipable.Weapon.Shield.MasterpieceShield;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Shield.SteelShield;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Shield.WoodenShield;
+import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.AlloySword;
+import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.ButterKnife;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.ChichKebab;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.CopperSword;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.IronSword;
-import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.Needle;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.SteelSword;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Weapon;
 import com.norwand.game.management.gamedata.items.Item;
@@ -55,22 +59,22 @@ public class Inventory {
     /**
      * The list of items in the player inventory.
      */
-    public Item[] items = new Item[]{new HealthPot(), new HealthPot(),
-            new HealthPot(), new HealthPot(), new HealthPot(), new HealthPot(),
-            new HealthPot(), new BigHealthPot(), new HealthPot(), new HealthPot(),
-            new HealthPot(), new HealthPot(), new BigHealthPot(), new HealthPot(),
-            new BigHealthPot(), new HealthPot(), new HealthPot(), new HealthPot()};
+    public Item[] items = new Item[]{new HealthPot(), new HealthPot(), new HealthPot(), new HealthPot(),
+            new BigHealthPot(),new BigHealthPot(),new BigHealthPot(),
+            new MegaBigHealthPot(),new MegaBigHealthPot(),
+            new UltraMegaBigHealthPot(),
+            };
     /**
      * The list of non equipped equipables in the player inventory.
      */
     public Equipable[] equipables = new Equipable[]{
             new LeatherHelmet(),new IronHelmet(),new SteelHelm(),
-            new LeatherArmor(),new ScaleArmor(),new CopperArmor(),new IronArmor(),new SteelArmor(),new DarkArmor(),new OrichalcumArmor(),
+            new LeatherArmor(),new ScaleArmor(),new CopperArmor(),new IronArmor(),new SteelArmor(),new AlloyArmor(),new OrichalcumArmor(),
             new LeatherBoots(),new ScaleBoots(),new HardenedBoots(),
-            new LittlePendent(),new CopperNecklace(),new BluegemNecklace(),new RedgemNecklace(),new GreengemNecklace(),new GoldenNecklace(),
+            new LittlePendent(),new CopperNecklace(),new GoldenNecklace(),new BluegemNecklace(),new RedgemNecklace(),new GreengemNecklace(),
             new WoodenRing(),new CopperRing(),new SilverRing(),new GoldRing(),new PlatinumRing(),
-            new CopperSword(), new IronSword(),new SteelSword(),new Needle(),new ChichKebab(),
-            new WoodenShield(), new ManatarmShield(),new SteelShield()};
+            new CopperSword(), new IronSword(),new SteelSword(),new AlloySword(),new ButterKnife(),new ChichKebab(),
+            new WoodenShield(), new ManatarmShield(),new SteelShield(),new MasterpieceShield()};
     /**
      * The list of capacities in the player inventory.
      */

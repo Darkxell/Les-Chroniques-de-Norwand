@@ -8,7 +8,7 @@ public class CopperSword extends Sword {
     public CopperSword(){
         this.displayName = "Epee en cuivre";
         this.itemDescription = "Une epee en cuivre pour débutant";
-        this.damage = 1;
+        this.damage = 2;
         this.armor = 0;
     }
 

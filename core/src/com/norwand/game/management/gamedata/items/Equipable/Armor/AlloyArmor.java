@@ -6,10 +6,10 @@ import com.norwand.game.resources.ImagesHolder;
 /**
  * Created by ASUS on 17/05/2016.
  */
-public class DarkArmor extends Armor {
+public class AlloyArmor extends Armor {
 
-    public DarkArmor() {
-        this.displayName = "Armure sombre";
+    public AlloyArmor() {
+        this.displayName = "Armure en alliage";
         this.itemDescription = "Une armure en alliage mystique.";
         this.damage = 0;
         this.armor = 8;

@@ -3,17 +3,17 @@ package com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.resources.ImagesHolder;
 
-public class Needle extends Sword {
+public class ButterKnife extends Sword {
 
-    public Needle(){
-        this.displayName = "Aiguille à coudre";
+    public ButterKnife(){
+        this.displayName = "Couteau à beurre";
         this.itemDescription = "Vos poings seraient plus efficaces";
-        this.damage = 0.10;
+        this.damage = 0.20;
         this.armor = 0;
     }
 
     @Override
     public Pixmap getSprite() {
-        return ImagesHolder.itemset.getTile(763);
+        return ImagesHolder.itemset.getTile(829);
     }
 }
