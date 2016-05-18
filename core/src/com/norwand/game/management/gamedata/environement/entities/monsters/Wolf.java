@@ -1,9 +1,11 @@
 package com.norwand.game.management.gamedata.environement.entities.monsters;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.entities.Monster;
+import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.objects.DoubleRectangle;
 import com.norwand.game.utility.objects.MathVector;
@@ -46,8 +48,15 @@ public class Wolf extends Monster {
         --spritecounter;
         if (spritecounter < 0)
             spritecounter = 50;
-        if (knockback())
-            GameData.get().player.info.health -= 0.5;
+        if (knockback()) {
+
+            GameData.get().player.info.health -= Math.round(GameData.get().player.getHitDamage(2) * 4) / 4;
+
+            if(GameData.get().player.info.health <= 0)
+                GameData.get().player.info.health = 0;
+
+            System.out.println(GameData.get().player.info.health);
+        }
     }
 
     @Override

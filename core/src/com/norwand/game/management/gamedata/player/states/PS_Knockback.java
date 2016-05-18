@@ -17,48 +17,52 @@ import com.norwand.game.utility.objects.Position;
 public class PS_Knockback extends PlayerState {
 
     public PS_Knockback(Player player, MathVector direction) {
-	super(player);
-	this.direction = direction;
-	this.length = 7;
+        super(player);
+        this.direction = direction;
+        this.length = 7;
     }
 
     public PS_Knockback(Player player, MathVector direction, int length) {
-	this(player, direction);
-	this.length = length;
+        this(player, direction);
+        this.length = length;
     }
 
-    /** The knockback speed in tiles per frame. */
+    /**
+     * The knockback speed in tiles per frame.
+     */
     private final double KS = 0.17;
-    /** The length of the knockback action, in frames. */
+    /**
+     * The length of the knockback action, in frames.
+     */
     private int length;
     private MathVector direction;
 
     @Override
     public void update() {
-	--length;
-	if (length < 0)
-	    player.state = new PS_Iddle(player);
-	Position newpos = direction.getFixedTranslation(player.x, player.y, KS);
-	if (player.canBeAt(newpos.x, player.y))
-	    player.x = newpos.x;
-	if (player.canBeAt(player.x, newpos.y))
-	    player.y = newpos.y;
+        --length;
+        if (length < 0)
+            player.state = new PS_Iddle(player);
+        Position newpos = direction.getFixedTranslation(player.x, player.y, KS);
+        if (player.canBeAt(newpos.x, player.y))
+            player.x = newpos.x;
+        if (player.canBeAt(player.x, newpos.y))
+            player.y = newpos.y;
     }
 
     @Override
     public Pixmap getSprite() {
-	switch (player.facing) {
-	case Directions.SOUTH:
-	    return ImagesHolder.playerset.getTile((length%4<2)?12:13);
-	case Directions.WEST:
-	    return ImagesHolder.playerset.getTile((length%4<2)?44:45);
-	case Directions.EAST:
-	    return ImagesHolder.playerset.getTile((length%4<2)?76:77);
-	case Directions.NORTH:
-	    return ImagesHolder.playerset.getTile((length%4<2)?108:109);
-	}
-	System.err.println("Unknown player direction, returned null.");
-	return null;
+        switch (player.facing) {
+            case Directions.SOUTH:
+                return ImagesHolder.playerset.getTile((length % 4 < 2) ? 12 : 13);
+            case Directions.WEST:
+                return ImagesHolder.playerset.getTile((length % 4 < 2) ? 44 : 45);
+            case Directions.EAST:
+                return ImagesHolder.playerset.getTile((length % 4 < 2) ? 76 : 77);
+            case Directions.NORTH:
+                return ImagesHolder.playerset.getTile((length % 4 < 2) ? 108 : 109);
+        }
+        System.err.println("Unknown player direction, returned null.");
+        return null;
     }
 
     @Override

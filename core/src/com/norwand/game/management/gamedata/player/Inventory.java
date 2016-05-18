@@ -60,21 +60,21 @@ public class Inventory {
      * The list of items in the player inventory.
      */
     public Item[] items = new Item[]{new HealthPot(), new HealthPot(), new HealthPot(), new HealthPot(),
-            new BigHealthPot(),new BigHealthPot(),new BigHealthPot(),
-            new MegaBigHealthPot(),new MegaBigHealthPot(),
+            new BigHealthPot(), new BigHealthPot(), new BigHealthPot(),
+            new MegaBigHealthPot(), new MegaBigHealthPot(),
             new UltraMegaBigHealthPot(),
-            };
+    };
     /**
      * The list of non equipped equipables in the player inventory.
      */
     public Equipable[] equipables = new Equipable[]{
-            new LeatherHelmet(),new IronHelmet(),new SteelHelm(),
-            new LeatherArmor(),new ScaleArmor(),new CopperArmor(),new IronArmor(),new SteelArmor(),new AlloyArmor(),new OrichalcumArmor(),
-            new LeatherBoots(),new ScaleBoots(),new HardenedBoots(),
-            new LittlePendent(),new CopperNecklace(),new GoldenNecklace(),new BluegemNecklace(),new RedgemNecklace(),new GreengemNecklace(),
-            new WoodenRing(),new CopperRing(),new SilverRing(),new GoldRing(),new PlatinumRing(),
-            new CopperSword(), new IronSword(),new SteelSword(),new AlloySword(),new ButterKnife(),new ChichKebab(),
-            new WoodenShield(), new ManatarmShield(),new SteelShield(),new MasterpieceShield()};
+            new LeatherHelmet(), new IronHelmet(), new SteelHelm(),
+            new LeatherArmor(), new ScaleArmor(), new CopperArmor(), new IronArmor(), new SteelArmor(), new AlloyArmor(), new OrichalcumArmor(),
+            new LeatherBoots(), new ScaleBoots(), new HardenedBoots(),
+            new LittlePendent(), new CopperNecklace(), new GoldenNecklace(), new BluegemNecklace(), new RedgemNecklace(), new GreengemNecklace(),
+            new WoodenRing(), new CopperRing(), new SilverRing(), new GoldRing(), new PlatinumRing(),
+            new CopperSword(), new IronSword(), new SteelSword(), new AlloySword(), new ButterKnife(), new ChichKebab(),
+            new WoodenShield(), new ManatarmShield(), new SteelShield(), new MasterpieceShield()};
     /**
      * The list of capacities in the player inventory.
      */
@@ -335,9 +335,7 @@ public class Inventory {
                 armor = (Armor) e;
                 addEquipable(temp);
             }
-        }
-
-        else if (e instanceof Boots) {
+        } else if (e instanceof Boots) {
             if (boots == null)
                 boots = (Boots) e;
             else {
@@ -345,9 +343,7 @@ public class Inventory {
                 boots = (Boots) e;
                 addEquipable(temp);
             }
-        }
-
-        else if (e instanceof Helmet) {
+        } else if (e instanceof Helmet) {
             if (helmet == null)
                 helmet = (Helmet) e;
             else {
@@ -355,9 +351,7 @@ public class Inventory {
                 helmet = (Helmet) e;
                 addEquipable(temp);
             }
-        }
-
-        else if (e instanceof Necklace) {
+        } else if (e instanceof Necklace) {
             if (necklace == null)
                 necklace = (Necklace) e;
             else {
@@ -365,9 +359,7 @@ public class Inventory {
                 necklace = (Necklace) e;
                 addEquipable(temp);
             }
-        }
-
-        else if (e instanceof Ring) {
+        } else if (e instanceof Ring) {
             if (ring == null)
                 ring = (Ring) e;
             else {
@@ -375,9 +367,7 @@ public class Inventory {
                 ring = (Ring) e;
                 addEquipable(temp);
             }
-        }
-
-        else if (e instanceof Weapon) {
+        } else if (e instanceof Weapon) {
 
             if (weapon1 == null)
                 weapon1 = (Weapon) e;
@@ -392,9 +382,7 @@ public class Inventory {
                 weapon2 = temp1;
                 addEquipable(temp2);
             }
-        }
-
-        else {
+        } else {
             System.out.println("Erreur.");
             return;
         }
@@ -406,17 +394,59 @@ public class Inventory {
      * Returns the total armor rating of the equipped items of this inventory.
      */
     public double getTotalArmor() {
-        return armor.getArmor() + boots.getArmor() + helmet.getArmor()
-                + ring.getArmor() + weapon1.getArmor() + weapon2.getArmor()
-                + necklace.getArmor();
+        double totarmor = 0;
+
+        if (ring != null)
+            totarmor += ring.getArmor();
+
+        if (helmet != null)
+            totarmor += helmet.getArmor();
+
+        if (boots != null)
+            totarmor += boots.getArmor();
+
+        if (armor != null)
+            totarmor += armor.getArmor();
+
+        if (necklace!= null)
+            totarmor += necklace.getArmor();
+
+        if (weapon1 != null)
+            totarmor += weapon1.getArmor();
+
+        if (weapon2 != null)
+            totarmor += weapon2.getArmor();
+
+        return totarmor;
     }
 
     /**
      * Returns the total damage rating of the equipped items of this inventory.
      */
     public double getTotalDamage() {
-        return armor.getDamage() + boots.getDamage() + helmet.getDamage()
-                + ring.getDamage() + weapon1.getDamage() + weapon2.getDamage()
-                + necklace.getDamage();
+        double totdegat = 0;
+
+        if (ring != null)
+            totdegat += ring.getDamage();
+
+        if (helmet != null)
+            totdegat += helmet.getDamage();
+
+        if (boots != null)
+            totdegat += boots.getDamage();
+
+        if (armor != null)
+            totdegat += armor.getDamage();
+
+        if (necklace != null)
+            totdegat += necklace.getDamage();
+
+        if (weapon1 != null)
+            totdegat += weapon1.getDamage();
+
+        if (weapon2 != null)
+            totdegat += weapon2.getDamage();
+
+        return totdegat;
     }
 }

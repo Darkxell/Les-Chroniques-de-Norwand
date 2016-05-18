@@ -100,4 +100,16 @@ public class Player {
 	return inventory.getTotalArmor();
     }
 
+    /** Resturns the damage the player take when he gets hit*/
+    public double getHitDamage(double damage) {
+        double damageTaken = 0;
+
+        if(getArmor() > 100)
+            damageTaken = 0;
+        else
+            damageTaken = (1 - getArmor()/100) * damage;
+
+        return damageTaken;
+    }
+
 }

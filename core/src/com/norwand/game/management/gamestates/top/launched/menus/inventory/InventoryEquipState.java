@@ -30,10 +30,6 @@ public class InventoryEquipState extends GameState {
             cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
         else
             cursopositionEquip = -1;
-
-        System.out.println("cursorposition : " + cursorposition);
-        System.out.println("cursopositionEquip : " + cursopositionEquip);
-        System.out.println();
     }
 
     private int counter, cursorposition, cursopositionEquip;
@@ -64,7 +60,6 @@ public class InventoryEquipState extends GameState {
         //TOP
         g.drawPixmap(ImagesHolder.gui.inventoryEquipTop, 0, 0);
         ImagesHolder.font8x8.printStringOn(g, "EQUIPEMENTS", 5, 7);
-
 
         //MID
         for (int i = 64; i < g.getHeight() - 32; i += 16) {
@@ -145,10 +140,6 @@ public class InventoryEquipState extends GameState {
             if (validEquip.size() > newCursorposition && newCursorposition >= 0) {
                 cursorposition = newCursorposition;
                 cursopositionEquip = Arrays.asList(inv.equipables).indexOf(validEquip.get(cursorposition));
-
-                System.out.println("cursorposition : " + cursorposition);
-                System.out.println("cursopositionEquip : " + cursopositionEquip);
-                System.out.println();
             }
         }
 
@@ -253,10 +244,6 @@ public class InventoryEquipState extends GameState {
                 else
                     cursopositionEquip = -1;
             }
-
-            System.out.println("cursorposition :" + cursorposition);
-            System.out.println("cursopositionEquip : " + cursopositionEquip);
-            System.out.println();
         }
     }
 
