@@ -36,6 +36,6 @@ public class Floor_SnowTown extends Floor {
 
 	@Override
 	public String getMusicPath() {
-		return MainGame.ASSETSPATH + "audio/bgm/allthingsend2.mp3";
+		return MainGame.ASSETSPATH + "audio/bgm/allthingsend2.ogg";
 	}
 }
