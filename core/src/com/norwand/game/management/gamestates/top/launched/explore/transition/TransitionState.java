@@ -59,8 +59,8 @@ public class TransitionState extends GameState {
 		//Lower the volume of the current music
 		if (counter < 50 && (!GameData.get().currentfloor.getMusicPath().equals(destination.getMusicPath()))) {
 			MusicHolder.currentMusic.setVolume((float) (50 - counter)/50);
-			if (MusicHolder.currentMusic.getVolume() >= 0.5f)
-				MusicHolder.currentMusic.setVolume(0.5f);
+			if (MusicHolder.currentMusic.getVolume() >= 0.7f)
+				MusicHolder.currentMusic.setVolume(0.7f);
 		}
 		//Stop the current music
 		if (counter == 50 && (!GameData.get().currentfloor.getMusicPath().equals(destination.getMusicPath()))) {
@@ -72,8 +72,8 @@ public class TransitionState extends GameState {
 				MusicHolder.currentMusic.play();
 			}
 			MusicHolder.currentMusic.setVolume((float) (counter - 49)/100);
-			if (MusicHolder.currentMusic.getVolume() >= 0.5f)
-				MusicHolder.currentMusic.setVolume(0.5f);
+			if (MusicHolder.currentMusic.getVolume() >= 0.7f)
+				MusicHolder.currentMusic.setVolume(0.7f);
 		}
 
 		datapointer.player.cam.update();

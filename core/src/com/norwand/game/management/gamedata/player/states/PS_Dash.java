@@ -21,7 +21,7 @@ import com.norwand.game.utility.objects.Position;
  * State of the player representing it dashing to a location.
  */
 public class PS_Dash extends PlayerState {
-    Sound sound = Gdx.audio.newSound(Gdx.files.internal(MainGame.ASSETSPATH + "audio/sfx/swoosh.mp3"));
+    Sound sound = Gdx.audio.newSound(Gdx.files.internal(MainGame.ASSETSPATH + "audio/sfx/swoosh_cuted.mp3"));
     private boolean isPlayed = false;
 
     /**

@@ -18,7 +18,7 @@ public class HomeState extends GameState {
 
     public HomeState(GameState parent) {
 	    super(parent);
-        MusicHolder.switchBGM(MainGame.ASSETSPATH + "audio/bgm/adventures.mp3");
+        MusicHolder.switchBGM(MainGame.ASSETSPATH + "audio/bgm/dawn.mp3");
     }
 
     /** Internal counter. */
@@ -51,7 +51,7 @@ public class HomeState extends GameState {
     @Override
     public void onPress(UserEvent e) {
 	    parent.parent.substate = new LaunchedState(parent.parent);
-        MusicHolder.switchBGM(MainGame.ASSETSPATH + "audio/bgm/biohazard.mp3");
+        MusicHolder.switchBGM(MainGame.ASSETSPATH + "audio/bgm/prison.mp3");
     }
 
     @Override
