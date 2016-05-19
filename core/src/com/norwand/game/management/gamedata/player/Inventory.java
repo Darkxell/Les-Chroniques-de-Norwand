@@ -78,7 +78,7 @@ public class Inventory {
     /**
      * The list of capacities in the player inventory.
      */
-    public Capacity[] capacity = new Capacity[]{new debug_Cap_1(), new debug_Cap_3()};
+    public Capacity[] capacity = new Capacity[]{new debug_Cap_1(), new debug_Cap_3(), new Cap_FrostWalker()};
 
     /**
      * The Armor of the player

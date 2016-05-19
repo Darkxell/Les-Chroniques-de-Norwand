@@ -23,7 +23,7 @@ public class MagicIce extends Tile{
 		backuptile = backup;
 		background = new AnimatedSprite[] { ImagesHolder.tileset.getTileAnimation(184) };;
 		foreground = null;
-			}
+    }
 	
 	@Override
 	public void update(){
