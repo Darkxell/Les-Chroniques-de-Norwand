@@ -20,7 +20,7 @@ public class Floor_Prison extends Floor {
                 + "maps/prison.txt")), playerpointer);
         addEntity(new Wolf(this, 21, 10));
         addTileEntity(new SignPost(this,
-                "Prisons du royaume. Il faut savoir qu'en 1380 avant notre ère, il existait un seigneur qui, par inadvertance est mort lorsqu'une porte du cachot s'est abbatue sur lui.",
+                "Prison du royaume",
                 4.5,
                 4.5));
         setTileAt(1, 0, new WarpZone(getTileAt(1, 0), 13, 18) {

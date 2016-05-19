@@ -63,7 +63,12 @@ public class DialogState extends GameState {
                 posInWordsList = (firstLine + word + " ").length();
                 posEndOfTheFirstLine = posInWordsList;
                 //System.out.println("posInWordsList = " + posInWordsList);
-                firstLine = message.substring(0, posInWordsList);
+                try {
+                    firstLine = message.substring(0, posInWordsList);
+                }
+                catch (Exception e) {
+                    firstLine = message.substring(0);
+                }
                 //System.out.println("firstLine APRES = " + firstLine);
 
                 //System.out.println("WOOOOOOOOORD = " + word);
@@ -92,7 +97,7 @@ public class DialogState extends GameState {
                 try {
                     secondLine = message.substring(posEndOfTheFirstLine, posEndOfTheFirstLine + posInWordsList);
                 }
-                catch (IndexOutOfBoundsException e) {
+                catch (Exception e) {
                     secondLine = message.substring(posEndOfTheFirstLine);
                 }
                 //System.out.println("secondLine APRES = " + secondLine);
