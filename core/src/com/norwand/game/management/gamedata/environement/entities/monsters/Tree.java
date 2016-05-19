@@ -33,7 +33,7 @@ public class Tree extends Monster {
         if (spritecounter < 0)
             spritecounter = 50;
         if(knockback())
-            GameData.get().player.info.health -= 0.5;
+            GameData.get().player.info.health -= 0.25;
     }
 
     @Override

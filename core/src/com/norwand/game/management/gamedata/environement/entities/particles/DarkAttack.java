@@ -24,10 +24,10 @@ public class DarkAttack extends Monster {
     @Override
     public void update() {
         ++counter;
-        if(counter > 50)
+        if(counter > 20)
             counter = 0;
 
-        Position pos = direction.getFixedTranslation(posX, posY, 0.08);
+        Position pos = direction.getFixedTranslation(posX, posY, 0.25);
         posX = pos.x;
         posY = pos.y;
         if(!canBeAt(posX, posY))
@@ -41,7 +41,7 @@ public class DarkAttack extends Monster {
 
     @Override
     public Pixmap getCurrentSprite() {
-        return ImagesHolder.entityset.getTile((counter > 25) ? 747 : 739);
+        return ImagesHolder.entityset.getTile((counter > 10) ? 747 : 739);
     }
 
     @Override

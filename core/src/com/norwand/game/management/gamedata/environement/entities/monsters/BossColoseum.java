@@ -23,9 +23,9 @@ public class BossColoseum extends Monster {
         hp = 5;
     }
 
-    private int nextjumpin = 270;
+    private int nextjumpin = 100;
     private int spritecounter = 10;
-    private MathVector jumpdirection;
+    private MathVector direction;
     private int darkAttack;
     private int fireball;
     private int Form = 464;
@@ -39,35 +39,42 @@ public class BossColoseum extends Monster {
 
         MathVector amv = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
 
-        if (amv.getBasicLength() < 7 && fireball%5 == 0 && fireball >= 75 && (Form == 464 || Form == 472))
+        if (amv.getBasicLength() < 7 && fireball%5 == 0 && fireball >= 60 && (Form == 464 || Form == 472))
             spitFireBall();
-        else if (amv.getBasicLength() <7  &&  darkAttack%100 == 0  && (Form == 466 || Form == 474))
+        else if (amv.getBasicLength() < 7  &&  darkAttack == 25  && (Form == 466 || Form == 474))
             spitDarkAttack();
+        if (amv.getBasicLength() < 7 && fireball%5 == 0 && fireball >= 50 && (Form == 466 || Form == 474))
+            spitFireBall();
 
-        if (darkAttack > 1000)
-            darkAttack = 0;
-        if (fireball > 100)
+        if (fireball > 60 && darkAttack > 85) {
             fireball = 0;
-
-
-        if (nextjumpin == 0) {
-            jumpdirection = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
-        } else if (nextjumpin < -20) {
-            nextjumpin = 270;
+            darkAttack = 0;
         }
-        if (nextjumpin < 0) {
-            Position temp = jumpdirection.getFixedTranslation(posX, posY, 0.15);
+
+        if (nextjumpin == 0 && (Form == 464 || Form == 472)) {
+            direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
+        } else if (nextjumpin < -20) {
+            nextjumpin = 100;
+        }
+        if (nextjumpin < 0 && (Form == 464 || Form == 472)) {
+            Position temp = direction.getFixedTranslation(posX, posY, 0.09);
             if (canBeAt(temp.x, temp.y)) {
                 posX = temp.x;
                 posY = temp.y;
             }
         }
+        if (Form == 466 || Form == 474) {
+            direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
+            Position temp = direction.getFixedTranslation(posX, posY, 0.06);
+            posX = temp.x;
+            posY = temp.y;
+        }
+
         --spritecounter;
         if (spritecounter < 0)
             spritecounter = 50;
         if (knockback())
-            GameData.get().player.info.health -= 2;
-
+            GameData.get().player.info.health -= 1.25;
     }
 
     @Override
