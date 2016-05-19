@@ -53,11 +53,18 @@ public class Floor_Dungeon extends Floor {
         addTileEntity(new LockedDoor(this, 55.5, 48.5));
         addTileEntity(new Chest(this, 55.5, 17.5, new Object[]{new Key()}, "Vous avez trouvé une petite clé. Vous pouvez ouvrir une porte fermée."));
 
-        setTileAt(3, 53, new PressurePlate(3,53) {
+        setTileAt(3, 53, new PressurePlate(3, 53) {
             @Override
             public void onTrigger() {
-                setTileAt(8,44,new Tile(Tile.TYPE_NORMAL,new AnimatedSprite[] { ImagesHolder.tileset.getTileAnimation(320)},null));
-                setTileAt(9,44,new Tile(Tile.TYPE_NORMAL,new AnimatedSprite[] { ImagesHolder.tileset.getTileAnimation(322)},null));
+                setTileAt(8, 44, new Tile(Tile.TYPE_NORMAL, new AnimatedSprite[]{ImagesHolder.tileset.getTileAnimation(320)}, null));
+                setTileAt(9, 44, new Tile(Tile.TYPE_NORMAL, new AnimatedSprite[]{ImagesHolder.tileset.getTileAnimation(322)}, null));
+            }
+        });
+
+        setTileAt(44, 21, new PressurePlate(44, 21) {
+            @Override
+            public void onTrigger() {
+                setTileAt(44, 30, new Tile(Tile.TYPE_NORMAL, new AnimatedSprite[]{ImagesHolder.tileset.getTileAnimation(325)}, null));
             }
         });
     }

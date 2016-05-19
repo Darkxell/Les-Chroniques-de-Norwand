@@ -6,6 +6,7 @@ import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.tiles.Tile;
+import com.norwand.game.management.gamedata.items.Equipable.Equipable;
 import com.norwand.game.management.gamedata.items.Item;
 import com.norwand.game.management.gamedata.player.Capacity;
 import com.norwand.game.management.gamestates.top.launched.explore.dialog.DialogState;
@@ -47,6 +48,10 @@ public class Chest extends TileEntity {
         for(int i = 0 ; i < content.length ; ++i) {
             if(content[i] instanceof Capacity)
                 GameData.get().player.inventory.addCapacity((Capacity) content[i]);
+
+            else if(content[i] instanceof Equipable)
+                GameData.get().player.inventory.addEquipable((Equipable) content[i]);
+
             //else if other types
             else if(content[i] instanceof Item)
                 GameData.get().player.inventory.addItem((Item) content[i]);

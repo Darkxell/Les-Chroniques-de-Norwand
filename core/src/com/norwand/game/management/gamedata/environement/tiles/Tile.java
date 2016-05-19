@@ -5,13 +5,15 @@ import com.norwand.game.utility.objects.AnimatedSprite;
 public class Tile {
 
     public Tile(byte type, AnimatedSprite[] background,
-	    AnimatedSprite[] foreground) {
-	this.background = background;
-	this.foreground = foreground;
-	this.type = type;
+                AnimatedSprite[] foreground) {
+        this.background = background;
+        this.foreground = foreground;
+        this.type = type;
     }
 
-    /** The physics of the tile. */
+    /**
+     * The physics of the tile.
+     */
     public byte type;
     public static final byte TYPE_NORMAL = 0;
     public static final byte TYPE_SOLID = 1;
@@ -25,10 +27,14 @@ public class Tile {
     public AnimatedSprite[] foreground;
 
     public void update() {
-	for (int i = 0; i < background.length; i++)
-		background[i].update();
-	for (int i = 0; i < foreground.length; i++)
-		foreground[i].update();
+
+        if(background != null)
+            for (int i = 0; i < background.length; i++)
+                background[i].update();
+
+        if(foreground != null)
+            for (int i = 0; i < foreground.length; i++)
+                foreground[i].update();
 
     }
 }
