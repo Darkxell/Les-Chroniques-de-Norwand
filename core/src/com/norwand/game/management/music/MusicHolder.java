@@ -14,8 +14,9 @@ public class MusicHolder {
         try {
             currentMusic = Gdx.audio.newMusic(Gdx.files.internal(pathToSet));
             currentMusic.play();
+            currentMusic.setVolume(0.5f);
         } catch (Exception e) {
-            System.err.println("Error chargement musique : ");
+            System.err.println("Music can't be created or played : ");
             e.printStackTrace();
         }
     }
