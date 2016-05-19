@@ -89,6 +89,6 @@ public class Floor_Wastelands extends Floor {
 
     @Override
     public String getMusicPath() {
-        return MainGame.ASSETSPATH + "audio/bgm/allthingsend2.mp3";
+        return MainGame.ASSETSPATH + "audio/bgm/etherealrealms.mp3";
     }
 }
