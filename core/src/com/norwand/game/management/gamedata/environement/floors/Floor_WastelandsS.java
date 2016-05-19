@@ -11,6 +11,8 @@ import com.norwand.game.management.gamedata.environement.entities.monsters.Wolf;
 import com.norwand.game.management.gamedata.environement.tileentities.SignPost;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
+import com.norwand.game.management.gamedata.player.states.PS_Iddle;
+import com.norwand.game.management.gamestates.top.launched.explore.dialog.DialogState;
 
 public class Floor_WastelandsS extends Floor {
     Music music = Gdx.audio.newMusic(Gdx.files.internal(getMusicPath()));
@@ -76,6 +78,17 @@ public class Floor_WastelandsS extends Floor {
         });
 
         addTileEntity(new SignPost(this, "Ici s'est déroulée l'embuscade de la croisée des chemins où, durant la seconde Grande Guerre, la troupe inquisitrice dirigée par le lieutenant Aurik Rhen a été décimée.", 10.5, 11.5));
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        if (GameData.get().player.y > 19) {
+            GameData.get().player.y = 18;
+            GameData.get().player.state = new PS_Iddle(GameData.get().player);
+            MainGame.game.state.substate.substate.substate = new DialogState(
+                    MainGame.game.state.substate.substate, "Je ne devrais pas aller ici, c'est une zone de forte activité humaine...");
+        }
     }
 
     @Override
