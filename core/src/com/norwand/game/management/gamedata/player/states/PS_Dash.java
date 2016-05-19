@@ -70,7 +70,7 @@ public class PS_Dash extends PlayerState {
             DoubleRectangle hitBoxMonster = monster[i].getHitbox(monster[i].posX, monster[i].posY);
             DoubleRectangle hitBoxPlayer = player.hitbox.getRectangle(new Position(player.x, player.y));
 
-            if (hitBoxMonster.intersects(hitBoxPlayer)) {
+            if (hitBoxMonster != null && hitBoxMonster.intersects(hitBoxPlayer)) {
                 monster[i].onhit(player.getDamage() / 10);
             }
         }
