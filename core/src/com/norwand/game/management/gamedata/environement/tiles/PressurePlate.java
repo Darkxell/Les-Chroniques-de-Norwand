@@ -21,7 +21,7 @@ public abstract class PressurePlate extends Tile{
     @Override
     public void update(){
         if(!ispressed && (int)GameData.get().player.x == px && (int)GameData.get().player.y == py){
-            background = new AnimatedSprite[] { ImagesHolder.tileset.getTileAnimation(250)};
+            background = new AnimatedSprite[] { ImagesHolder.tileset.getTileAnimation(274)};
             onTrigger();
             ispressed = true;
         }

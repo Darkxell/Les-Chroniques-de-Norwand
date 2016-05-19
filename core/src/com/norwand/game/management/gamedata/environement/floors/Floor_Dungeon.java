@@ -10,10 +10,14 @@ import com.norwand.game.management.gamedata.environement.tileentities.Chest;
 import com.norwand.game.management.gamedata.environement.tileentities.HealFountain;
 import com.norwand.game.management.gamedata.environement.tileentities.LockedDoor;
 import com.norwand.game.management.gamedata.environement.tileentities.SignPost;
+import com.norwand.game.management.gamedata.environement.tiles.PressurePlate;
+import com.norwand.game.management.gamedata.environement.tiles.Tile;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.items.Key;
 import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.management.gamedata.player.capacities.Cap_FrostWalker;
+import com.norwand.game.resources.ImagesHolder;
+import com.norwand.game.utility.objects.AnimatedSprite;
 
 public class Floor_Dungeon extends Floor {
     /**
@@ -44,10 +48,18 @@ public class Floor_Dungeon extends Floor {
             }
         });
 
-        addTileEntity(new HealFountain(this,16.5,28.5));
+        addTileEntity(new HealFountain(this, 16.5, 28.5));
         addTileEntity(new Chest(this, 55.5, 52.5, new Object[]{new Cap_FrostWalker()}, "Vous avez trouvez une nouvelle capacité! Pour l'équiper, allez dans l'inventaire, page de capacités et équipez là."));
         addTileEntity(new LockedDoor(this, 55.5, 48.5));
         addTileEntity(new Chest(this, 55.5, 17.5, new Object[]{new Key()}, "Vous avez trouvé une petite clé. Vous pouvez ouvrir une porte fermée."));
+
+        setTileAt(3, 53, new PressurePlate(3,53) {
+            @Override
+            public void onTrigger() {
+                setTileAt(8,44,new Tile(Tile.TYPE_NORMAL,new AnimatedSprite[] { ImagesHolder.tileset.getTileAnimation(320)},null));
+                setTileAt(9,44,new Tile(Tile.TYPE_NORMAL,new AnimatedSprite[] { ImagesHolder.tileset.getTileAnimation(322)},null));
+            }
+        });
     }
 
     @Override
