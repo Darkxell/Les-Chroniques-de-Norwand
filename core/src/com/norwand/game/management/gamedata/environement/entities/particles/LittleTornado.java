@@ -3,6 +3,7 @@ package com.norwand.game.management.gamedata.environement.entities.particles;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
+import com.norwand.game.management.gamedata.environement.entities.Entity;
 import com.norwand.game.management.gamedata.environement.entities.Monster;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.objects.DoubleRectangle;
@@ -10,14 +11,14 @@ import com.norwand.game.utility.objects.MathVector;
 import com.norwand.game.utility.objects.Position;
 
 /**
- * Created by Valentin Marechal on 18/05/2016.
+ * Created by Valentin Marechal on 19/05/2016.
  */
-public class Tornado extends Monster {
+public class LittleTornado extends Monster {
 
     private int counter;
     private MathVector direction;
 
-    public Tornado(Floor roompointer, double x, double y, MathVector direction) {
+    public LittleTornado(Floor roompointer, double x, double y, MathVector direction) {
         super(roompointer, x, y);
         this.direction = direction;
     }
@@ -42,7 +43,7 @@ public class Tornado extends Monster {
 
     @Override
     public Pixmap getCurrentSprite() {
-        return ImagesHolder.particleset.getTile((counter < 25) ? 145 : 153);
+        return ImagesHolder.particleset.getTile((counter < 25) ? 144 : 152);
     }
 
     @Override
@@ -52,7 +53,7 @@ public class Tornado extends Monster {
 
     @Override
     public DoubleRectangle getHitbox(double posX, double posY) {
-        return new DoubleRectangle(posX - 0.5, posY - 0.5, 1, 1);
+        return new DoubleRectangle(posX - 0.25, posY - 0.25, 0.5, 0.5);
     }
 
     @Override
@@ -60,3 +61,4 @@ public class Tornado extends Monster {
 
     }
 }
+

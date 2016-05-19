@@ -1,9 +1,11 @@
 package com.norwand.game.management.gamedata.player.states;
 
 import com.badlogic.gdx.graphics.Pixmap;
+import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.player.Capacity;
 import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.management.gamedata.player.PlayerState;
+import com.norwand.game.management.gamestates.top.launched.menus.misc.GameOverState;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.Directions;
 import com.norwand.game.utility.objects.MathVector;
@@ -39,6 +41,8 @@ public class PS_Knockback extends PlayerState {
 
     @Override
     public void update() {
+        if (player.info.health <= 0)
+            MainGame.game.state.substate.substate.substate = new GameOverState(MainGame.game.state.substate.substate);
         --length;
         if (length < 0)
             player.state = new PS_Iddle(player);

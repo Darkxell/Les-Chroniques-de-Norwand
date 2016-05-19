@@ -10,14 +10,13 @@ import com.norwand.game.utility.objects.MathVector;
 import com.norwand.game.utility.objects.Position;
 
 /**
- * Created by Valentin Marechal on 18/05/2016.
+ * Created by Valentin Marechal on 19/05/2016.
  */
-public class Tornado extends Monster {
-
+public class IceBall extends Monster {
     private int counter;
     private MathVector direction;
 
-    public Tornado(Floor roompointer, double x, double y, MathVector direction) {
+    public IceBall(Floor roompointer, double x, double y, MathVector direction) {
         super(roompointer, x, y);
         this.direction = direction;
     }
@@ -42,7 +41,7 @@ public class Tornado extends Monster {
 
     @Override
     public Pixmap getCurrentSprite() {
-        return ImagesHolder.particleset.getTile((counter < 25) ? 145 : 153);
+        return ImagesHolder.particleset.getTile((counter < 25) ? 52 : 60);
     }
 
     @Override

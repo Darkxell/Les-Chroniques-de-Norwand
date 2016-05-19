@@ -8,6 +8,7 @@ import com.norwand.game.management.gamedata.environement.FloorData;
 import com.norwand.game.management.gamedata.environement.entities.drop.DropKey;
 import com.norwand.game.management.gamedata.environement.entities.monsters.BossColoseum;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Drake;
+import com.norwand.game.management.gamedata.environement.entities.monsters.DungeonBoss;
 import com.norwand.game.management.gamedata.environement.tileentities.LockedDoor;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
@@ -17,7 +18,8 @@ public class Floor_Coloseum extends Floor {
         super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
                 + "maps/coloseum.txt")), playerpointer);
 
-        addEntity(new BossColoseum(this, 13, 13));
+        //addEntity(new BossColoseum(this, 13, 13));
+        addEntity(new DungeonBoss(this, 13, 13));
 
                 setTileAt(12, 20, new WarpZone(getTileAt(12, 20), 2, 1) {
                     @Override
