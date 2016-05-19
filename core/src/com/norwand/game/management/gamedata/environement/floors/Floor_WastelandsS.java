@@ -8,80 +8,83 @@ import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Hellbat;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Wolf;
+import com.norwand.game.management.gamedata.environement.tileentities.SignPost;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
 
 public class Floor_WastelandsS extends Floor {
-	Music music = Gdx.audio.newMusic(Gdx.files.internal(getMusicPath()));
+    Music music = Gdx.audio.newMusic(Gdx.files.internal(getMusicPath()));
 
     public Floor_WastelandsS(Player playerpointer) {
-	super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
-		+ "maps/wastelands-south.txt")), playerpointer);
+        super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
+                + "maps/wastelands-south.txt")), playerpointer);
 
-	setTileAt(16, 0, new WarpZone(getTileAt(16, 0), 44, 47) {
-		@Override
-		public Floor getDestination() {
-			return new Floor_Wastelands(GameData.get().player);
-		}
-	});
-	setTileAt(17, 0,new WarpZone(getTileAt(17, 0), 45, 47) {
-	    @Override
-	    public Floor getDestination() {
-		return new Floor_Wastelands(GameData.get().player);
-	    }
-	});
-	setTileAt(18, 0,new WarpZone(getTileAt(18, 0), 46, 47) {
-	    @Override
-	    public Floor getDestination() {
-		return new Floor_Wastelands(GameData.get().player);
-	    }
-	});
-	setTileAt(19, 0,new WarpZone(getTileAt(19, 0), 47, 47) {
-	    @Override
-	    public Floor getDestination() {
-		return new Floor_Wastelands(GameData.get().player);
-	    }
-	});
-	setTileAt(20, 0,new WarpZone(getTileAt(20, 0), 48, 47) {
-	    @Override
-	    public Floor getDestination() {
-		return new Floor_Wastelands(GameData.get().player);
-	    }
-	});
-	setTileAt(21, 0,new WarpZone(getTileAt(21, 0), 49, 47) {
-	    @Override
-	    public Floor getDestination() {
-		return new Floor_Wastelands(GameData.get().player);
-	    }
-	});
-	setTileAt(22, 0,new WarpZone(getTileAt(22, 0), 50, 47) {
-	    @Override
-	    public Floor getDestination() {
-		return new Floor_Wastelands(GameData.get().player);
-	    }
-	});
-	setTileAt(23, 0,new WarpZone(getTileAt(23, 0), 51, 47) {
-	    @Override
-	    public Floor getDestination() {
-		return new Floor_Wastelands(GameData.get().player);
-	    }
-	});
-	
-	setTileAt(0, 11,new WarpZone(getTileAt(0, 11), 33.5, 12) {
-	    @Override
-	    public Floor getDestination() {
-		return new Floor_SnowTown(GameData.get().player);
-	    }
-	});
+        setTileAt(16, 0, new WarpZone(getTileAt(16, 0), 44, 47) {
+            @Override
+            public Floor getDestination() {
+                return new Floor_Wastelands(GameData.get().player);
+            }
+        });
+        setTileAt(17, 0, new WarpZone(getTileAt(17, 0), 45, 47) {
+            @Override
+            public Floor getDestination() {
+                return new Floor_Wastelands(GameData.get().player);
+            }
+        });
+        setTileAt(18, 0, new WarpZone(getTileAt(18, 0), 46, 47) {
+            @Override
+            public Floor getDestination() {
+                return new Floor_Wastelands(GameData.get().player);
+            }
+        });
+        setTileAt(19, 0, new WarpZone(getTileAt(19, 0), 47, 47) {
+            @Override
+            public Floor getDestination() {
+                return new Floor_Wastelands(GameData.get().player);
+            }
+        });
+        setTileAt(20, 0, new WarpZone(getTileAt(20, 0), 48, 47) {
+            @Override
+            public Floor getDestination() {
+                return new Floor_Wastelands(GameData.get().player);
+            }
+        });
+        setTileAt(21, 0, new WarpZone(getTileAt(21, 0), 49, 47) {
+            @Override
+            public Floor getDestination() {
+                return new Floor_Wastelands(GameData.get().player);
+            }
+        });
+        setTileAt(22, 0, new WarpZone(getTileAt(22, 0), 50, 47) {
+            @Override
+            public Floor getDestination() {
+                return new Floor_Wastelands(GameData.get().player);
+            }
+        });
+        setTileAt(23, 0, new WarpZone(getTileAt(23, 0), 51, 47) {
+            @Override
+            public Floor getDestination() {
+                return new Floor_Wastelands(GameData.get().player);
+            }
+        });
+
+        setTileAt(0, 11, new WarpZone(getTileAt(0, 11), 33.5, 12) {
+            @Override
+            public Floor getDestination() {
+                return new Floor_SnowTown(GameData.get().player);
+            }
+        });
+
+        addTileEntity(new SignPost(this, "Ici s'est déroulée l'embuscade de la croisée des chemins où, durant la seconde Grande Guerre, la troupe inquisitrice dirigée par le lieutenant Aurik Rhen a été décimée.", 10.5, 11.5));
     }
 
-	@Override
-	public String getDisplayName() {
-		return "Terres Perdues - Sud";
-	}
+    @Override
+    public String getDisplayName() {
+        return "Terres Désolées - Sud";
+    }
 
-	@Override
-	public String getMusicPath() {
-		return MainGame.ASSETSPATH + "audio/bgm/etherealrealms.ogg";
-	}
+    @Override
+    public String getMusicPath() {
+        return MainGame.ASSETSPATH + "audio/bgm/etherealrealms.ogg";
+    }
 }
