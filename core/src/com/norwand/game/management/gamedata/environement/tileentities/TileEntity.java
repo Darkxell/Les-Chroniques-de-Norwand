@@ -23,4 +23,11 @@ public abstract class TileEntity extends Entity {
     public byte getPhysics() {
 	return this.type;
     }
+
+    /**
+     * Deletes this tileentity from its parent room.
+     */
+    public void kill() {
+        this.roompointer.deleteTileEntity(this);
+    }
 }

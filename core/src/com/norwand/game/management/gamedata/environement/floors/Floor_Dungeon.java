@@ -6,6 +6,8 @@ import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
+import com.norwand.game.management.gamedata.environement.tileentities.LockedDoor;
+import com.norwand.game.management.gamedata.environement.tileentities.SignPost;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
 
@@ -17,7 +19,7 @@ public class Floor_Dungeon extends Floor {
      * @param playerpointer
      */
     public Floor_Dungeon(Player playerpointer) {
-        super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH+ "maps/demodungeon.txt")), playerpointer);
+        super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH + "maps/demodungeon.txt")), playerpointer);
 
         setTileAt(37, 59, new WarpZone(getTileAt(37, 59), 72.5, 9) {
             @Override
@@ -37,11 +39,14 @@ public class Floor_Dungeon extends Floor {
                 return new Floor_Snow(GameData.get().player);
             }
         });
+
+        //addTileEntity(new LockedDoor(this, 55, 48));
+        addTileEntity(new LockedDoor(this, 55.5, 48.5));
     }
 
     @Override
     public String getDisplayName() {
-        return "Dongeon";
+        return "Donjon";
     }
 
     @Override
