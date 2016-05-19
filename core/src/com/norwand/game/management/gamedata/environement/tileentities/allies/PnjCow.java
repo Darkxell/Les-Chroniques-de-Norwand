@@ -12,12 +12,12 @@ import com.norwand.game.utility.objects.DoubleRectangle;
 /**
  * Created by ASUS on 19/05/2016.
  */
-public class PnjDog extends TileEntity {
+public class PnjCow extends TileEntity {
 
     private String message;
     private int sprite_counter;
 
-    public PnjDog(Floor roompointer, double x, double y, String message) {
+    public PnjCow(Floor roompointer, double x, double y, String message) {
         super(Tile.TYPE_SOLID, roompointer, x, y);
         actable = true;
         this.message = message;
@@ -32,7 +32,7 @@ public class PnjDog extends TileEntity {
 
     @Override
     public Pixmap getCurrentSprite() {
-        return ImagesHolder.entityset.getTile((sprite_counter < 25) ? 626 : 634);
+        return ImagesHolder.entityset.getTile((sprite_counter < 25) ? 2001 : 2009);
     }
 
     @Override
