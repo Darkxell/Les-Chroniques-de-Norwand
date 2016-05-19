@@ -102,7 +102,7 @@ public class Inventory {
     /**
      * The first capacity slot of the player.
      */
-    public Capacity slot_cap1 = new Cap_Teleport();
+    public Capacity slot_cap1 = null /*new Cap_Teleport()*/;
     /**
      * The second capacity slot of the player.
      */

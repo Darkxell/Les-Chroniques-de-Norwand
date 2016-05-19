@@ -74,7 +74,7 @@ public class BossColoseum extends Monster {
         if (spritecounter < 0)
             spritecounter = 50;
         if (knockback())
-            GameData.get().player.info.health -= 1.25;
+            GameData.get().player.info.health -= 0.75;
     }
 
     @Override

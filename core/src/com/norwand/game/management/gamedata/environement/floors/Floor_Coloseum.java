@@ -12,6 +12,8 @@ import com.norwand.game.management.gamedata.environement.entities.monsters.Dunge
 import com.norwand.game.management.gamedata.environement.tileentities.LockedDoor;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
+import com.norwand.game.management.gamedata.player.states.PS_Iddle;
+import com.norwand.game.management.gamestates.top.launched.explore.dialog.DialogState;
 
 public class Floor_Coloseum extends Floor {
     public Floor_Coloseum(Player playerpointer) {
@@ -56,7 +58,34 @@ public class Floor_Coloseum extends Floor {
             public Floor getDestination() {
             return new Floor_Wastelands(GameData.get().player);
             }
+
         });
+    }
+
+
+    private boolean starttextshown;
+    @Override
+    public void update(){
+        super.update();
+        if(!starttextshown){
+            GameData.get().player.state = new PS_Iddle(GameData.get().player);
+            MainGame.game.state.substate.substate.substate = new DialogState(
+                    MainGame.game.state.substate.substate, "Et voici le tant attendu POCKETDESTROYER, et face a lui notre dernier prisonier!" +
+                    "Qui sortira de ce combat a mort?" +
+                    "Note: Dasher sur ennemi lui infligera des dégâts, essayez d'esquiver ses attaques et ne le laissez pas s'approcher de vous! Bonne chance!");
+            starttextshown = true;
+        }
+        if (playerpointer.y > 20 && entities.length != 0){
+            GameData.get().player.y = 19;
+            GameData.get().player.state = new PS_Iddle(GameData.get().player);
+            MainGame.game.state.substate.substate.substate = new DialogState(
+                    MainGame.game.state.substate.substate, "Je ne dois pas fuir mon ennemi!");
+        } else if (playerpointer.y < 3 && entities.length != 0){
+            GameData.get().player.y = 5;
+            GameData.get().player.state = new PS_Iddle(GameData.get().player);
+            MainGame.game.state.substate.substate.substate = new DialogState(
+                    MainGame.game.state.substate.substate, "Je ne dois pas fuir mon ennemi!");
+        }
     }
 
 	@Override

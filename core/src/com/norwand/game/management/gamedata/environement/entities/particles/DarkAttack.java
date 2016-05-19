@@ -34,7 +34,7 @@ public class DarkAttack extends Monster {
             kill();
 
         if(knockback()) {
-            GameData.get().player.info.health -= 1;
+            GameData.get().player.info.health -= 0.5;
             kill();
         }
     }
