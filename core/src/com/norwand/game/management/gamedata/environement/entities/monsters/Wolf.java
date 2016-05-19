@@ -64,7 +64,7 @@ public class Wolf extends Monster {
     public Pixmap getCurrentSprite() {
         if (nextjumpin < 0)
             return ImagesHolder.entityset.getTile(633);
-        return ImagesHolder.entityset.getTile((spritecounter < 35) ? 625 : 633);
+        return ImagesHolder.entityset.getTile((spritecounter < 35) ? 609 : 617);
     }
 
     @Override
