@@ -1,5 +1,7 @@
 package com.norwand.game.management.gamedata.environement.tiles;
 
+import com.norwand.game.management.gamedata.GameData;
+import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.objects.AnimatedSprite;
 
 public class MagicIce extends Tile{
@@ -15,20 +17,20 @@ public class MagicIce extends Tile{
 	
 	/**Builds a new MagicIce tile.*/
 	public MagicIce(int x,int y,Tile backup){
+		super(TYPE_ICE,null,null);
 		px = x;
 		py = y;
 		backuptile = backup;
 		background = new AnimatedSprite[] { ImagesHolder.tileset.getTileAnimation(184) };;
 		foreground = null;
-		super.type = Tile.TYPE_ICE;
-	}
+			}
 	
 	@Override
 	public void update(){
 		//super.update();
 		--decay;
 		if(decay<0){
-			roompointer.setTileAt(px,py,backuptile);
+			GameData.get().currentfloor.setTileAt(px, py, backuptile);
 		}
 	}
 	

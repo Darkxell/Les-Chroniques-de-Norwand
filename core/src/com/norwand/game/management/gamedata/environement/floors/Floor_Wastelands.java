@@ -18,15 +18,15 @@ public class Floor_Wastelands extends Floor {
         super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
                 + "maps/wastelands.txt")), playerpointer);
 
-        addEntity(new Hellbat(this, 21, 17));
-        addEntity(new Hellbat(this, 5, 25));
-        addEntity(new Hellbat(this, 10, 28));
-        addEntity(new Hellbat(this, 17, 31));
-        addEntity(new Hellbat(this, 31, 30));
-        addEntity(new Hellbat(this, 26, 42));
-        addEntity(new Hellbat(this, 27, 3));
-        addEntity(new Hellbat(this, 48, 14));
-        addEntity(new Hellbat(this, 55, 40));
+        addEntity(new Hellbat(this, 21, 19));
+        addEntity(new Hellbat(this, 20, 18));
+        addEntity(new Hellbat(this, 30, 32));
+        addEntity(new Hellbat(this, 31, 31));
+        addEntity(new Hellbat(this, 35, 43));
+        addEntity(new Hellbat(this, 25, 44));
+        addEntity(new Hellbat(this, 29, 42));
+        addEntity(new Hellbat(this, 55, 33));
+        addEntity(new Hellbat(this, 56, 34));
 
         addEntity(new Wolf(this, 36, 44));
 
