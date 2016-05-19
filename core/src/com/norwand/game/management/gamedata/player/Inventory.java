@@ -59,26 +59,15 @@ public class Inventory {
     /**
      * The list of items in the player inventory.
      */
-    public Item[] items = new Item[]{new HealthPot(), new HealthPot(), new HealthPot(), new HealthPot(),
-            new BigHealthPot(), new BigHealthPot(), new BigHealthPot(),
-            new MegaBigHealthPot(), new MegaBigHealthPot(),
-            new UltraMegaBigHealthPot(),
-    };
+    public Item[] items = new Item[]{};
     /**
      * The list of non equipped equipables in the player inventory.
      */
-    public Equipable[] equipables = new Equipable[]{
-            new LeatherHelmet(), new IronHelmet(), new SteelHelm(),
-            new LeatherArmor(), new ScaleArmor(), new CopperArmor(), new IronArmor(), new SteelArmor(), new AlloyArmor(), new OrichalcumArmor(),
-            new LeatherBoots(), new ScaleBoots(), new HardenedBoots(),
-            new LittlePendent(), new CopperNecklace(), new GoldenNecklace(), new BluegemNecklace(), new RedgemNecklace(), new GreengemNecklace(),
-            new WoodenRing(), new CopperRing(), new SilverRing(), new GoldRing(), new PlatinumRing(),
-            new CopperSword(), new IronSword(), new SteelSword(), new AlloySword(), new ButterKnife(), new ChichKebab(),
-            new WoodenShield(), new ManatarmShield(), new SteelShield(), new MasterpieceShield()};
+    public Equipable[] equipables = new Equipable[]{};
     /**
      * The list of capacities in the player inventory.
      */
-    public Capacity[] capacity = new Capacity[]{new debug_Cap_1(), new debug_Cap_3(), new Cap_FrostWalker()};
+    public Capacity[] capacity = new Capacity[]{};
 
     /**
      * The Armor of the player
@@ -130,7 +119,7 @@ public class Inventory {
     /**
      * The second quickitem in the quickitems slots.
      */
-    public Item quickItem2 = new HealthPot();
+    public Item quickItem2 = null;
 
     public Capacity getCapFromId(byte id) {
         switch (id) {

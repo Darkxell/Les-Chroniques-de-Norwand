@@ -22,12 +22,8 @@ public class Floor_Prison extends Floor {
         super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
                 + "maps/prison.txt")), playerpointer);
 
-        addTileEntity(new PnjTuto(this,10.5,9.5,"Je suis Tuto."));
+        addTileEntity(new PnjTuto(this,10.5,9.5));
         addEntity(new Wolf(this, 21, 10));
-        addTileEntity(new SignPost(this,
-                "Prison du royaume",
-                4.5,
-                4.5));
         setTileAt(1, 0, new WarpZone(getTileAt(1, 0), 13, 18) {
             @Override
             public Floor getDestination() {

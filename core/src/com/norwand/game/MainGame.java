@@ -97,8 +97,8 @@ public class MainGame extends ApplicationAdapter implements InputProcessor {
     private FramesCounter fps;
     /** Ups counter. */
     private FramesCounter ups;
-    private static final boolean SHOWFPS = true;
-    private static final boolean SHOWUPS = true;
+    private static final boolean SHOWFPS = false;
+    private static final boolean SHOWUPS = false;
 
     @Override
     public void render() {

@@ -16,7 +16,7 @@ public class Wolf extends Monster {
 
     public Wolf(Floor roompointer, double x, double y) {
         super(roompointer, x, y);
-        hp = 4;
+        hp = 0.4;
     }
 
     /**
@@ -63,7 +63,7 @@ public class Wolf extends Monster {
     @Override
     public Pixmap getCurrentSprite() {
         if (nextjumpin < 0)
-            return ImagesHolder.entityset.getTile(633);
+            return ImagesHolder.entityset.getTile(617);
         return ImagesHolder.entityset.getTile((spritecounter < 35) ? 609 : 617);
     }
 
