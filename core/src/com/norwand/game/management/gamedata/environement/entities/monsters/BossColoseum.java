@@ -5,6 +5,7 @@ import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.entities.Monster;
 import com.norwand.game.management.gamedata.environement.entities.particles.BurnDeath;
+import com.norwand.game.management.gamedata.environement.entities.particles.DarkAttack;
 import com.norwand.game.management.gamedata.environement.entities.particles.FireBall;
 import com.norwand.game.management.gamedata.environement.entities.particles.Smoke;
 import com.norwand.game.resources.ImagesHolder;
@@ -25,6 +26,7 @@ public class BossColoseum extends Monster {
     private int nextjumpin = 270;
     private int spritecounter = 10;
     private MathVector jumpdirection;
+    private int darkAttack;
     private int fireball;
     private int Form = 464;
 
@@ -33,13 +35,18 @@ public class BossColoseum extends Monster {
     public void update() {
         --nextjumpin;
         fireball++;
+        darkAttack++;
 
         MathVector amv = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
 
-        if (amv.getBasicLength() < 7 && fireball%4 == 0 && fireball > 35)
+        if (amv.getBasicLength() < 7 && fireball%5 == 0 && fireball >= 75 && (Form == 464 || Form == 472))
             spitFireBall();
+        else if (amv.getBasicLength() <7  &&  darkAttack%100 == 0  && (Form == 466 || Form == 474))
+            spitDarkAttack();
 
-        if (fireball > 50)
+        if (darkAttack > 1000)
+            darkAttack = 0;
+        if (fireball > 100)
             fireball = 0;
 
 
@@ -83,8 +90,8 @@ public class BossColoseum extends Monster {
         hp -= damage;
         if (hp <= 2 && hp > 0 && (Form == 464 || Form == 472)) {
             Form += 2;
-            hp += 1;
-            roompointer.addEntity(new BurnDeath(roompointer, posX, posY));
+            hp += 4;
+            roompointer.addEntity(new Smoke(roompointer, posX, posY));
         }
         if (hp <= 0) {
             kill();
@@ -95,5 +102,11 @@ public class BossColoseum extends Monster {
         MathVector direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
         roompointer.addEntity(new FireBall(roompointer, posX, posY, direction));
     }
+
+    public void spitDarkAttack() {
+        MathVector direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
+        roompointer.addEntity(new DarkAttack(roompointer, posX, posY, direction));
+    }
+
 }
 
