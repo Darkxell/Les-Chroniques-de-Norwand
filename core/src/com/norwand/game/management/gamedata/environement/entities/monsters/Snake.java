@@ -29,10 +29,12 @@ public class Snake extends Monster {
             nextjumpin = 100;
         }
         if (nextjumpin < 0){
+            if (jumpdirection.getBasicLength() < 6) {
             Position temp = jumpdirection.getFixedTranslation(posX, posY, 0.06);
             if (canBeAt(temp.x, temp.y)) {
                 posX = temp.x;
                 posY = temp.y;
+            }
             }
         }
         --spritecounter;

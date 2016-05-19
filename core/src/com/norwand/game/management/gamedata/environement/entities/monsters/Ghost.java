@@ -23,7 +23,7 @@ public class Ghost extends Monster {
     @Override
     public void update() {
         direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
-        Position temp = direction.getFixedTranslation(posX, posY, 0.03);
+        Position temp = direction.getFixedTranslation(posX, posY, (direction.getBasicLength() < 7)?0.03:0);
         posX = temp.x;
         posY = temp.y;
         --spritecounter;

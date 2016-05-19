@@ -23,11 +23,11 @@ public class SoldierDungeon  extends Monster{
     public void update() {
 
         direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
-        if (direction.getBasicLength() < 2){
+        if (direction.getBasicLength() < 3){
             Position temp = direction.getFixedTranslation(posX, posY, (spritecounter>33)?0.03:0.08);
             posX = temp.x;
             posY = temp.y;
-        } else if (direction.getBasicLength() < 2 &&  GameData.get().player.info.health < 3){
+        } else if (direction.getBasicLength() < 3 &&  GameData.get().player.info.health < 3){
             Position temp = direction.getFixedTranslation(posX, posY, (spritecounter>33)?0.05:0.11);
             posX = temp.x;
             posY = temp.y;

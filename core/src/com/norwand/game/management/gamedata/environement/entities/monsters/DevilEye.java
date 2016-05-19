@@ -23,7 +23,7 @@ public class DevilEye extends Monster {
     public void update() {
 
         direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
-        if (direction.getBasicLength() < 3){
+        if (direction.getBasicLength() < 5){
             Position temp = direction.getFixedTranslation(posX, posY, (spritecounter>33)?0.06:0.10);
             posX = temp.x;
             posY = temp.y;

@@ -7,8 +7,12 @@ import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Hellbat;
+import com.norwand.game.management.gamedata.environement.entities.monsters.Tree;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Wolf;
+import com.norwand.game.management.gamedata.environement.tileentities.Chest;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
+import com.norwand.game.management.gamedata.items.Consumable.HealthPot;
+import com.norwand.game.management.gamedata.items.Equipable.Necklace.CopperNecklace;
 import com.norwand.game.management.gamedata.player.Player;
 
 public class Floor_Wastelands extends Floor {
@@ -25,10 +29,11 @@ public class Floor_Wastelands extends Floor {
         addEntity(new Hellbat(this, 35, 43));
         addEntity(new Hellbat(this, 25, 44));
         addEntity(new Hellbat(this, 29, 42));
-        addEntity(new Hellbat(this, 55, 33));
-        addEntity(new Hellbat(this, 56, 34));
-
+        addEntity(new Hellbat(this, 46, 37));
+        addEntity(new Hellbat(this, 50, 40));
+        addEntity(new Tree(this, 53.5, 35.5));
         addEntity(new Wolf(this, 36, 44));
+        addTileEntity(new Chest(this, 56.5, 33.5, new Object[]{new HealthPot(), new CopperNecklace()},"Vous avez obtenu Potion x1 et Collier de cuivre x1."));
 
 
         setTileAt(44, 49, new WarpZone(getTileAt(44, 49), 16, 1) {

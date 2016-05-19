@@ -25,7 +25,7 @@ public class Tree extends Monster {
     @Override
     public void update() {
         direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
-        Position temp = direction.getFixedTranslation(posX, posY, (direction.getBasicLength() < 3)?0.1:0);
+        Position temp = direction.getFixedTranslation(posX, posY, (direction.getBasicLength() < 2.5)?0.08:0);
         posX = temp.x;
         posY = temp.y;
 
@@ -38,12 +38,15 @@ public class Tree extends Monster {
 
     @Override
     public Pixmap getCurrentSprite() {
-        return ImagesHolder.entityset.getTile((direction.getBasicLength() < 3) ? 1619 : 1627);
+        if ((direction.getBasicLength() > 2.5))
+         return ImagesHolder.tileset.getTile(2889);
+        else
+            return ImagesHolder.entityset.getTile((spritecounter < 25) ? 1619 : 1627);
     }
 
     @Override
     public DoubleRectangle getHitbox(double posX, double posY) {
-        return new DoubleRectangle(posX - 0.35, posY - 0.35, 0.7, 0.7);
+        return new DoubleRectangle(posX - 0.5, posY - 0.5, 1, 1);
     }
 
     @Override

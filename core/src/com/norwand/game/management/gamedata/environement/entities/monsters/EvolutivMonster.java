@@ -19,18 +19,17 @@ public class EvolutivMonster extends Monster {
 
     /**Timer until the next jump of the wolf.
      Can be negative, it means that the wolf is jumping.*/
-    private int spritecounter = 50;
+    private int spritecounter = 10;
     private MathVector direction;
 
     @Override
     public void update() {
         direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
-        if (spritecounter > 33){
-            Position temp = direction.getFixedTranslation(posX, posY, (direction.getBasicLength() < 3)?0.1:0.03);
+        if (spritecounter > 25){
+            Position temp = direction.getFixedTranslation(posX, posY, (direction.getBasicLength() < 6)?0.1:0);
             posX = temp.x;
             posY = temp.y;
         }
-
         --spritecounter;
         if (spritecounter < 0)
             spritecounter = 50;
@@ -40,7 +39,11 @@ public class EvolutivMonster extends Monster {
 
     @Override
     public Pixmap getCurrentSprite() {
-        return ImagesHolder.entityset.getTile((direction.getBasicLength() < 3) ? 1970 : 1968);
+      //  return ImagesHolder.entityset.getTile((direction.getBasicLength() < 6) ? 1970 : 1968);
+        if(direction.getBasicLength() < 6)
+            return ImagesHolder.entityset.getTile((spritecounter < 25) ? 1970 : 1978);
+        else
+            return ImagesHolder.entityset.getTile((spritecounter < 25) ? 1968 : 1976);
     }
 
     @Override

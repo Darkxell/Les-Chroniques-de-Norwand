@@ -16,20 +16,20 @@ public class SnowBird extends Monster {
     public SnowBird(Floor roompointer, double x, double y) {
         super(roompointer, x, y);
     }
-    private int spritecounter = 50;
+    private int spritecounter = 10;
     private MathVector direction;
     @Override
     public void update() {
 
         direction = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
-        if (direction.getBasicLength() < 4.5) {
-            Position temp = direction.getFixedTranslation(posX, posY, (spritecounter > 25) ? 0.02 : 0.08);
+        if (direction.getBasicLength() < 6) {
+            Position temp = direction.getFixedTranslation(posX, posY, (spritecounter > 15) ? 0.02 : 0.06);
             posX = temp.x;
             posY = temp.y;
         }
         --spritecounter;
         if (spritecounter < 0 )
-            spritecounter = 50;
+            spritecounter = 30;
         if(knockback())
             GameData.get().player.info.health -= 0.5;
 
@@ -37,7 +37,7 @@ public class SnowBird extends Monster {
 
     @Override
     public Pixmap getCurrentSprite() {
-        return ImagesHolder.entityset.getTile((spritecounter < 25) ? 100 : 108);
+        return ImagesHolder.entityset.getTile((spritecounter < 15) ? 100 : 108);
     }
 
     @Override
