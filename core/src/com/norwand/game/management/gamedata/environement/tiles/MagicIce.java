@@ -33,8 +33,4 @@ public class MagicIce extends Tile{
 			GameData.get().currentfloor.setTileAt(px, py, backuptile);
 		}
 	}
-	
-	
-	
-   
 }
