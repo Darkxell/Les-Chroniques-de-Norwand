@@ -50,13 +50,7 @@ public class Wolf extends Monster {
         if (spritecounter < 0)
             spritecounter = 50;
         if (knockback()) {
-
-            GameData.get().player.info.health -= Math.round(GameData.get().player.getHitDamage(2) * 4) / 4;
-
-            if(GameData.get().player.info.health <= 0)
-                GameData.get().player.info.health = 0;
-
-            System.out.println(GameData.get().player.info.health);
+            GameData.get().player.info.health -= Math.round(GameData.get().player.getHitDamage(0.75) * 4) / 4;
         }
     }
 
