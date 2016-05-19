@@ -16,6 +16,12 @@ public class Floor_Coloseum extends Floor {
         super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
                 + "maps/coloseum.txt")), playerpointer);
 
+        addEntity(new Drake(this, 7, 7));
+        addEntity(new Drake(this, 11, 7));
+        addEntity(new Drake(this, 14, 7));
+        addEntity(new Drake(this, 8, 8));
+        addEntity(new Drake(this, 13, 7));
+
         setTileAt(12, 20, new WarpZone(getTileAt(12, 20), 2, 1) {
             @Override
             public Floor getDestination() {

@@ -43,9 +43,9 @@ public class Floor_Dungeon extends Floor {
             }
         });
 
-        addTileEntity(new Chest(this, 55.5, 52.5, new Object[]{new Cap_FrostWalker()}));
+        /*addTileEntity(new Chest(this, 55.5, 52.5, new Object[]{new Cap_FrostWalker()}), "Vous avez trouvez une nouvelle capacité : pour l'équiper aller dans l'inventaire, page de capacité et équipez là.");
         addTileEntity(new LockedDoor(this, 55.5, 48.5));
-        addTileEntity(new Chest(this, 55.5, 17.5, new Object[]{new Key()}));
+        addTileEntity(new Chest(this, 55.5, 17.5, new Object[]{new Key()}), "");*/
     }
 
     @Override

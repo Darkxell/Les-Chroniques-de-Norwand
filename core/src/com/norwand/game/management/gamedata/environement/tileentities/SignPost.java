@@ -23,18 +23,18 @@ public class SignPost extends TileEntity {
 
     @Override
     public Pixmap getCurrentSprite() {
-	return ImagesHolder.tileset.getTile(470);
+        return ImagesHolder.tileset.getTile(470);
     }
 
     @Override
     public void onAct() {
-	MainGame.game.state.substate.substate.substate = new DialogState(
-		MainGame.game.state.substate.substate, message);
+        MainGame.game.state.substate.substate.substate = new DialogState(
+                MainGame.game.state.substate.substate, message);
     }
 
     @Override
     public DoubleRectangle getHitbox(double posX, double posY) {
-	return new DoubleRectangle(posX - 0.4, posY - 0.4, 0.8, 0.8);
+        return new DoubleRectangle(posX - 0.4, posY - 0.4, 0.8, 0.8);
     }
 
     @Override
