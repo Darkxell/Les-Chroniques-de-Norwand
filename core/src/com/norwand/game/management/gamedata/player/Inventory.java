@@ -394,7 +394,7 @@ public class Inventory {
      * Returns the total armor rating of the equipped items of this inventory.
      */
     public double getTotalArmor() {
-        double totarmor = 0;
+        double totarmor = 5;
 
         if (ring != null)
             totarmor += ring.getArmor();
@@ -424,7 +424,7 @@ public class Inventory {
      * Returns the total damage rating of the equipped items of this inventory.
      */
     public double getTotalDamage() {
-        double totdegat = 0;
+        double totdegat = 1;
 
         if (ring != null)
             totdegat += ring.getDamage();
