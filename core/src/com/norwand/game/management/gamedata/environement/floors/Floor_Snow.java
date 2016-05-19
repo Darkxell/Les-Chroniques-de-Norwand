@@ -6,7 +6,9 @@ import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
+import com.norwand.game.management.gamedata.environement.entities.monsters.Hellbat;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Mimic;
+import com.norwand.game.management.gamedata.environement.entities.monsters.Wolf;
 import com.norwand.game.management.gamedata.environement.tileentities.SignPost;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
@@ -32,6 +34,20 @@ public class Floor_Snow extends Floor {
             }
         });
 
+        addEntity(new Wolf(this, 8.5, 7.5));
+        addEntity(new Wolf(this, 9.5, 11.5));
+        addEntity(new Wolf(this, 3.5, 15.5));
+        addEntity(new Wolf(this, 19.5, 13.5));
+        addEntity(new Wolf(this, 21.5, 3.5));
+
+        addEntity(new Hellbat(this, 18.5, 40.5));
+        addEntity(new Hellbat(this, 25.5, 54.5));
+        addEntity(new Hellbat(this, 49.5, 49.5));
+        addEntity(new Hellbat(this, 61.5, 57.5));
+        addEntity(new Hellbat(this, 89.5, 53.5));
+        addEntity(new Hellbat(this, 79.5, 21.5));
+        addEntity(new Hellbat(this, 55.5, 10.5));
+        addEntity(new Hellbat(this, 35.5, 7.5));
     }
 
     @Override

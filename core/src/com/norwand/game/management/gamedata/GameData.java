@@ -38,7 +38,7 @@ public class GameData {
      * entities and more.
      */
     //public Floor currentfloor = new Floor_Prison(this.player);
-    public Floor currentfloor = new Floor_Dungeon(this.player); // A CHANGER
+    public Floor currentfloor = new Floor_Prison(this.player); // A CHANGER
 
     /**
      * Updates the data of the game.

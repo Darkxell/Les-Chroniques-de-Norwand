@@ -7,6 +7,9 @@ import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
 import com.norwand.game.management.gamedata.environement.entities.monsters.DungeonBoss;
+import com.norwand.game.management.gamedata.environement.entities.monsters.Hellbat;
+import com.norwand.game.management.gamedata.environement.entities.monsters.Mimic;
+import com.norwand.game.management.gamedata.environement.entities.monsters.Wolf;
 import com.norwand.game.management.gamedata.environement.tileentities.Chest;
 import com.norwand.game.management.gamedata.environement.tileentities.HealFountain;
 import com.norwand.game.management.gamedata.environement.tileentities.LockedDoor;
@@ -55,6 +58,28 @@ public class Floor_Dungeon extends Floor {
         addTileEntity(new Chest(this, 55.5, 17.5, new Object[]{new Key()}, "Vous avez trouvé une petite clé. Vous pouvez ouvrir une porte fermée."));
 
         addEntity(new DungeonBoss(this, 9.5, 4.5));
+        addEntity(new Mimic(this, 54.5, 4.5));
+
+        addEntity(new Wolf(this, 36.5, 16.5));
+        addEntity(new Wolf(this, 37.5, 18.5));
+        addEntity(new Wolf(this, 39.5, 16.5));
+        addEntity(new Wolf(this, 40.5, 17.5));
+
+        addEntity(new Hellbat(this, 55.5, 23.5));
+        addEntity(new Hellbat(this, 56.5, 17.5));
+        addEntity(new Hellbat(this, 56.5, 38.5));
+        addEntity(new Hellbat(this, 57.5, 55.5));
+        addEntity(new Hellbat(this, 22.5, 39.5));
+        addEntity(new Hellbat(this, 23.5, 40.5));
+        addEntity(new Hellbat(this, 25.5, 39.5));
+        addEntity(new Hellbat(this, 22.5, 35.5));
+        addEntity(new Hellbat(this, 14.5, 56.5));
+        addEntity(new Hellbat(this, 10.5, 54.5));
+        addEntity(new Hellbat(this, 6.5, 51.5));
+        addEntity(new Hellbat(this, 2.5, 57.5));
+        addEntity(new Hellbat(this, 2.5, 48.5));
+        addEntity(new Hellbat(this, 54.5, 2.5));
+        addEntity(new Hellbat(this, 57.5, 4.5));
 
         setTileAt(3, 53, new PressurePlate(3, 53) {
             @Override
