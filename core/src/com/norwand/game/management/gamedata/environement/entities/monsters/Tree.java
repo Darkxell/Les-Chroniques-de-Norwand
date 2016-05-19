@@ -19,7 +19,7 @@ public class Tree extends Monster {
 
     /**Timer until the next jump of the wolf.
      Can be negative, it means that the wolf is jumping.*/
-    private int spritecounter = 50;
+    private int spritecounter = 10;
     private MathVector direction;
 
     @Override
@@ -38,10 +38,13 @@ public class Tree extends Monster {
 
     @Override
     public Pixmap getCurrentSprite() {
-        if ((direction.getBasicLength() > 2.5))
-         return ImagesHolder.tileset.getTile(2889);
-        else
+        if (direction == null)
+            return ImagesHolder.tileset.getTile(2889);
+       else if ((direction.getBasicLength() < 2.5))
             return ImagesHolder.entityset.getTile((spritecounter < 25) ? 1619 : 1627);
+       else
+            return ImagesHolder.tileset.getTile(2889);
+
     }
 
     @Override
