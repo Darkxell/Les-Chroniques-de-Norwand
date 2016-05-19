@@ -7,6 +7,7 @@ import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
 import com.norwand.game.management.gamedata.environement.tileentities.Chest;
+import com.norwand.game.management.gamedata.environement.tileentities.HealFountain;
 import com.norwand.game.management.gamedata.environement.tileentities.LockedDoor;
 import com.norwand.game.management.gamedata.environement.tileentities.SignPost;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
@@ -43,9 +44,10 @@ public class Floor_Dungeon extends Floor {
             }
         });
 
-        addTileEntity(new Chest(this, 55.5, 52.5, new Object[]{new Cap_FrostWalker()}, "Vous avez trouvez une nouvelle capacité : pour l'équiper aller dans l'inventaire, page de capacité et équipez là."));
+        addTileEntity(new HealFountain(this,16.5,28.5));
+        addTileEntity(new Chest(this, 55.5, 52.5, new Object[]{new Cap_FrostWalker()}, "Vous avez trouvez une nouvelle capacité! Pour l'équiper, allez dans l'inventaire, page de capacités et équipez là."));
         addTileEntity(new LockedDoor(this, 55.5, 48.5));
-        addTileEntity(new Chest(this, 55.5, 17.5, new Object[]{new Key()}, "Vous avez trouvez une grosse clé. A quoi peut elle donc servir ...?"));
+        addTileEntity(new Chest(this, 55.5, 17.5, new Object[]{new Key()}, "Vous avez trouvé une petite clé. Vous pouvez ouvrir une porte fermée."));
     }
 
     @Override
