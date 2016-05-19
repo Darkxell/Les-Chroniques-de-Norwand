@@ -9,6 +9,9 @@ import com.norwand.game.management.gamedata.environement.FloorData;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Mimic;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Wolf;
 import com.norwand.game.management.gamedata.environement.tileentities.SignPost;
+import com.norwand.game.management.gamedata.environement.tileentities.allies.PnjFem;
+import com.norwand.game.management.gamedata.environement.tileentities.allies.PnjMasc;
+import com.norwand.game.management.gamedata.environement.tileentities.allies.PnjTuto;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
 
@@ -18,6 +21,8 @@ public class Floor_Prison extends Floor {
     public Floor_Prison(Player playerpointer) {
         super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
                 + "maps/prison.txt")), playerpointer);
+
+        addTileEntity(new PnjTuto(this,10.5,9.5,"Je suis Tuto."));
         addEntity(new Wolf(this, 21, 10));
         addTileEntity(new SignPost(this,
                 "Prison du royaume",
