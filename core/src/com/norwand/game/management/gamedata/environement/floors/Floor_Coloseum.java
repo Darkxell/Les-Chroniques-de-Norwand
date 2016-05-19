@@ -18,8 +18,7 @@ public class Floor_Coloseum extends Floor {
         super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
                 + "maps/coloseum.txt")), playerpointer);
 
-        //addEntity(new BossColoseum(this, 13, 13));
-        addEntity(new DungeonBoss(this, 13, 13));
+        addEntity(new BossColoseum(this, 13, 13));
 
                 setTileAt(12, 20, new WarpZone(getTileAt(12, 20), 2, 1) {
                     @Override

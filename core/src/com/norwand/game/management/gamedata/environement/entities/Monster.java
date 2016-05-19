@@ -4,6 +4,8 @@ import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.management.gamedata.player.states.PS_Dash;
+import com.norwand.game.management.gamedata.player.states.PS_Drown;
+import com.norwand.game.management.gamedata.player.states.PS_Falling;
 import com.norwand.game.management.gamedata.player.states.PS_Knockback;
 import com.norwand.game.utility.objects.DoubleRectangle;
 import com.norwand.game.utility.objects.MathVector;
@@ -25,7 +27,7 @@ public abstract class Monster extends Entity {
         Player p = GameData.get().player;
         DoubleRectangle hitbox = getHitbox(super.posX, super.posY);
         DoubleRectangle pr = p.hitbox.getRectangle(new Position(p.x, p.y));
-        if (pr.intersects(hitbox) && !(p.state instanceof PS_Knockback) && !(p.state instanceof PS_Dash)) {
+        if (pr.intersects(hitbox) && !(p.state instanceof PS_Knockback) && !(p.state instanceof PS_Dash) && !(p.state instanceof PS_Drown) && !(p.state instanceof PS_Falling)) {
             p.state = new PS_Knockback(p, new MathVector(p.x - super.posX, p.y - super.posY));
             return true;
         }

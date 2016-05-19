@@ -51,7 +51,7 @@ public class IceBall extends Monster {
 
     @Override
     public DoubleRectangle getHitbox(double posX, double posY) {
-        return new DoubleRectangle(posX - 0.5, posY - 0.5, 1, 1);
+        return new DoubleRectangle(posX - 0.25, posY - 0.25, 0.5, 0.5);
     }
 
     @Override
