@@ -6,10 +6,13 @@ import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
+import com.norwand.game.management.gamedata.environement.tileentities.Chest;
 import com.norwand.game.management.gamedata.environement.tileentities.LockedDoor;
 import com.norwand.game.management.gamedata.environement.tileentities.SignPost;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
+import com.norwand.game.management.gamedata.items.Key;
 import com.norwand.game.management.gamedata.player.Player;
+import com.norwand.game.management.gamedata.player.capacities.Cap_FrostWalker;
 
 public class Floor_Dungeon extends Floor {
     /**
@@ -40,8 +43,9 @@ public class Floor_Dungeon extends Floor {
             }
         });
 
-        //addTileEntity(new LockedDoor(this, 55, 48));
+        addTileEntity(new Chest(this, 55.5, 52.5, new Object[]{new Cap_FrostWalker()}));
         addTileEntity(new LockedDoor(this, 55.5, 48.5));
+        addTileEntity(new Chest(this, 55.5, 17.5, new Object[]{new Key()}));
     }
 
     @Override

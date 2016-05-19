@@ -10,6 +10,8 @@ public class Key extends Item{
 
     public Key() {
         this.displayName = "Clé";
+        this.itemDescription = "Petite clé";
+        this.itemDescription = "Petite clé";
     }
 
     @Override

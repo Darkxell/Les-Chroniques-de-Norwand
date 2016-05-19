@@ -4,14 +4,15 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.player.Capacity;
 import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.management.gamedata.player.PlayerState;
-import com.norwand.game.management.gamedata.player.states.PS_Teleport;
+import com.norwand.game.management.gamedata.player.states.PS_WaterFreeze;
 import com.norwand.game.resources.ImagesHolder;
 import com.norwand.game.utility.objects.Position;
 
 /**
- * Created by Valentin Marechal on 17/05/2016.
+ * Created by Valentin Marechal on 19/05/2016.
  */
-public class debug_Cap_2 extends Capacity {
+public class Cap_FrostWalker extends Capacity {
+
     @Override
     public Pixmap getCapIcon() {
         return ImagesHolder.capacityset.getTile(5);
@@ -19,6 +20,6 @@ public class debug_Cap_2 extends Capacity {
 
     @Override
     public PlayerState getPlayerState(Player pointer, Position cappos) {
-        return new PS_Teleport(pointer, cappos);
+        return new PS_WaterFreeze(pointer, cappos);
     }
 }

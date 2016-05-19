@@ -46,9 +46,9 @@ import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.IronSwo
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Sword.SteelSword;
 import com.norwand.game.management.gamedata.items.Equipable.Weapon.Weapon;
 import com.norwand.game.management.gamedata.items.Item;
+import com.norwand.game.management.gamedata.player.capacities.Cap_FrostWalker;
 import com.norwand.game.management.gamedata.player.capacities.Cap_Teleport;
 import com.norwand.game.management.gamedata.player.capacities.debug_Cap_1;
-import com.norwand.game.management.gamedata.player.capacities.debug_Cap_2;
 import com.norwand.game.management.gamedata.player.capacities.debug_Cap_3;
 
 /**
@@ -78,7 +78,7 @@ public class Inventory {
     /**
      * The list of capacities in the player inventory.
      */
-    public Capacity[] capacity = new Capacity[]{new debug_Cap_1(), new debug_Cap_2(), new debug_Cap_3()};
+    public Capacity[] capacity = new Capacity[]{new debug_Cap_1(), new debug_Cap_3()};
 
     /**
      * The Armor of the player
