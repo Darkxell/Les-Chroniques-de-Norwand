@@ -59,43 +59,4 @@ public class MathVector {
         else
             return (x > 0) ? Directions.EAST : Directions.WEST;
     }
-
-    /**
-     * Dunno if it's works but it would propably
-     * @return
-     */
-    public byte getAffinedOverallDirection() {
-
-        double angle;
-        if(x >= 0)
-            angle = 2 * Math.atan(y/(x + Math.sqrt(x*x + y*y)));
-        else
-            angle = - Math.PI;
-
-
-        if(angle > - Math.PI / 8 && angle < Math.PI / 8)
-            return Directions.EAST;
-
-        else if(angle > Math.PI / 8 && angle < 3*Math.PI / 8)
-            return Directions.NORTH_EAST;
-
-        else if(angle > 3*Math.PI / 8 && angle < 5*Math.PI / 8)
-            return Directions.NORTH;
-
-        else if (angle < 5*Math.PI / 8 && angle < 7*Math.PI / 8)
-            return Directions.NORTH_WEST;
-
-        else if(angle > 7*Math.PI / 8 && x < 0)
-            return Directions.WEST;
-
-        else if(angle < - Math.PI / 8 && angle > -3*Math.PI / 8)
-            return Directions.SOUTH_EAST;
-
-        else if (angle < -3*Math.PI / 8 && angle > -5*Math.PI / 8)
-            return Directions.SOUTH;
-
-        else
-            return Directions.SOUTH_WEST;
-    }
-
 }
