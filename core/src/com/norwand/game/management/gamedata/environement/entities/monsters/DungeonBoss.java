@@ -51,6 +51,10 @@ public class DungeonBoss extends Monster {
     @Override
     public void update() {
         ++spritecounter;
+
+        if(invicibilityFrames > 0)
+            invicibilityFrames--;
+
         if (spritecounter >= 50)
             spritecounter = 0;
 
