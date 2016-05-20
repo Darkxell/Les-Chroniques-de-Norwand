@@ -31,10 +31,10 @@ public class IceMonster extends Monster {
 
         MathVector amv = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
 
-        if (amv.getBasicLength() < 7 && spraySnow > 30 && spraySnow % 5 == 0)
+        if (amv.getBasicLength() < 7 && spraySnow % 13 == 0)
             spitSpraySnow();
 
-        if(spraySnow > 50)
+        if(spraySnow > 78)
             spraySnow = 0;
         if(knockback())
             GameData.get().player.info.health -= 0.25;
