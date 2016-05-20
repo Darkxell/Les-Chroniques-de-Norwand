@@ -69,7 +69,11 @@ public class TransitionState extends GameState {
 		//Play the next music
 		if (counter > 50 && counter < 150 && (!GameData.get().currentfloor.getMusicPath().equals(destination.getMusicPath()))) {
 			if (!MusicHolder.currentMusic.isPlaying()) {
-				MusicHolder.currentMusic.play();
+				try {
+					MusicHolder.currentMusic.play();
+				}catch (Exception e){
+					e.printStackTrace();
+				}
 			}
 			MusicHolder.currentMusic.setVolume((float) (counter - 49)/100);
 			if (MusicHolder.currentMusic.getVolume() >= 0.7f)

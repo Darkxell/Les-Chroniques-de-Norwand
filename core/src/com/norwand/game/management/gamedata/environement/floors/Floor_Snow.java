@@ -19,7 +19,6 @@ public class Floor_Snow extends Floor {
     public Floor_Snow(Player playerpointer) {
         super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
                 + "maps/snow.txt")), playerpointer);
-        addTileEntity(new SignPost(this, "whatever", 25, 27));
 
         setTileAt(99, 25, new WarpZone(getTileAt(99, 25), 1, 2.5) {
             @Override

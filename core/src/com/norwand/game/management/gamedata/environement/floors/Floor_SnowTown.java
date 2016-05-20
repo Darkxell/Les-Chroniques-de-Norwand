@@ -23,14 +23,14 @@ public class Floor_SnowTown extends Floor {
     public Floor_SnowTown(Player playerpointer) {
 	super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
 		+ "maps/snowvillage.txt")), playerpointer);
-		addTileEntity(new PnjMasc(this, 14.5, 17.5, "Les refrigerateurs sont moins chers chez But !"));
-		addTileEntity(new PnjFem(this, 16.5, 8.5, "Si ju va bien c'est Juvamine !"));
-		addTileEntity(new PnjGuard(this, 32.5, 10.5, "Quelqu'un vous a volé votre patisserie ?"));
-		addTileEntity(new PnjMage(this, 18.5, 21.5, "Boule de feu !!"));
-		addTileEntity(new PnjMerchant(this, 27.5, 9.5, "Bienvenue dans ma boutique de potions... DU FUTUR !"));
-		addTileEntity(new PnjPriestess(this, 20.5, 13.5, "Praise the Sun !"));
+		addTileEntity(new PnjMasc(this, 14.5, 17.5, "Pourquoi me parles tu?"));
+		addTileEntity(new PnjFem(this, 16.5, 8.5, "Tu est un démon? La vie doit être dure..."));
+		addTileEntity(new PnjGuard(this, 32.5, 10.5, "Tu est un démon hein? Tu n'est pas le bienvenu ici, nous avons peur des représailles..."));
+		addTileEntity(new PnjMage(this, 18.5, 21.5, "Laisse moi tranquille, ou j'essaie mon nouveau sort sur toi!"));
+		addTileEntity(new PnjMerchant(this, 27.5, 9.5, "Je vends des potions, mais pas au démons, le royaume me punirait pour ça..."));
+		addTileEntity(new PnjPriestess(this, 20.5, 13.5, "Entre nous, personne n'aime le royaume ici. Prends garde tout de même, nous avons tous peur des représailles."));
 		addTileEntity(new PnjCow(this, 25.5, 16.5, "Meuh !"));
-		addTileEntity(new PnjRanger(this, 7.5, 7.5, "CARIBOU !!"));
+		addTileEntity(new PnjRanger(this, 7.5, 7.5, "Je m'entraine pour chasser les monstres! Attention a toi!"));
 	setTileAt(34, 12, new WarpZone(getTileAt(34, 12), 1, 11.5) {
 		@Override
 		public Floor getDestination() {

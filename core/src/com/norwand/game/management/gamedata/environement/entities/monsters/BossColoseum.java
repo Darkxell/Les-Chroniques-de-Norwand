@@ -97,7 +97,7 @@ public class BossColoseum extends Monster {
         hp -= damage;
         if (hp <= 2 && hp > 0 && (Form == 464 || Form == 472)) {
             Form += 2;
-            hp += 4;
+            hp += 1;
             roompointer.addEntity(new Smoke(roompointer, posX, posY));
         }
         if (hp <= 0) {

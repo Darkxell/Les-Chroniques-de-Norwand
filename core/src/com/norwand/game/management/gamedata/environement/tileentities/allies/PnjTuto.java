@@ -6,6 +6,7 @@ import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.tileentities.TileEntity;
 import com.norwand.game.management.gamedata.environement.tiles.Tile;
+import com.norwand.game.management.gamedata.items.Consumable.MegaBigHealthPot;
 import com.norwand.game.management.gamedata.items.Equipable.Armor.LeatherArmor;
 import com.norwand.game.management.gamedata.items.Equipable.Boots.LeatherBoots;
 import com.norwand.game.management.gamedata.items.Equipable.Helmet.LeatherHelmet;
@@ -56,7 +57,7 @@ public class PnjTuto extends TileEntity {
     public void onAct() {
         if(walkcounter==0){
             MainGame.game.state.substate.substate.substate = new DialogState(MainGame.game.state.substate.substate
-                    , "Ah, tu te bouges enfin! C'est bientôt ton tour dans l'arène, alors dépèche toi!" +
+                    , "Ah, tu te bouges enfin! C'est bientôt ton tour dans l'arène, alors dépèche toi! " +
                     "Voici ton armure, equipe toi dans le menu et va te battre! Ne te fais pas attendre " +
                     "par le public...");
             walkcounter = 1;
@@ -65,6 +66,9 @@ public class PnjTuto extends TileEntity {
             pointer.addEquipable(new LeatherBoots());
             pointer.addEquipable(new LeatherHelmet());
             pointer.addEquipable(new CopperSword());
+            pointer.addItem(new MegaBigHealthPot());
+            pointer.addItem(new MegaBigHealthPot());
+            pointer.addItem(new MegaBigHealthPot());
         }
         else
             MainGame.game.state.substate.substate.substate = new DialogState(MainGame.game.state.substate.substate
