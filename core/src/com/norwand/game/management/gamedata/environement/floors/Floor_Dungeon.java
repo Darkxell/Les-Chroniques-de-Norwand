@@ -9,6 +9,7 @@ import com.norwand.game.management.gamedata.environement.FloorData;
 import com.norwand.game.management.gamedata.environement.entities.monsters.DungeonBoss;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Hellbat;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Mimic;
+import com.norwand.game.management.gamedata.environement.entities.monsters.SoldierDungeon;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Wolf;
 import com.norwand.game.management.gamedata.environement.tileentities.Chest;
 import com.norwand.game.management.gamedata.environement.tileentities.HealFountain;
@@ -59,7 +60,7 @@ public class Floor_Dungeon extends Floor {
 
         addEntity(new DungeonBoss(this, 9.5, 4.5));
         addEntity(new Mimic(this, 54.5, 4.5));
-
+        addEntity(new SoldierDungeon(this, 38, 47));
         addEntity(new Wolf(this, 36.5, 16.5));
         addEntity(new Wolf(this, 37.5, 18.5));
         addEntity(new Wolf(this, 39.5, 16.5));
