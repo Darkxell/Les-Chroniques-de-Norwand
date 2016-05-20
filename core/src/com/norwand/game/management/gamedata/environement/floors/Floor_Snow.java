@@ -7,6 +7,7 @@ import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Hellbat;
+import com.norwand.game.management.gamedata.environement.entities.monsters.IceMonster;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Mimic;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Wolf;
 import com.norwand.game.management.gamedata.environement.tileentities.SignPost;
@@ -47,6 +48,9 @@ public class Floor_Snow extends Floor {
         addEntity(new Hellbat(this, 79.5, 21.5));
         addEntity(new Hellbat(this, 55.5, 10.5));
         addEntity(new Hellbat(this, 35.5, 7.5));
+
+        addEntity(new IceMonster(this, 67, 13));
+        addEntity(new IceMonster(this, 65, 15));
     }
 
     @Override
