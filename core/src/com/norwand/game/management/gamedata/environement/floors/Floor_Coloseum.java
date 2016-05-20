@@ -20,13 +20,13 @@ public class Floor_Coloseum extends Floor {
         addEntity(new BossColoseum(this, 13, 13));
 
         for (double sp = 2; sp <= 20; ++sp) {
-            addEntity(new RandomCharacter(this, 1.5, sp + 0.5));
-            addEntity(new RandomCharacter(this, 2.5, sp + 0.5));
+            addTileEntity(new RandomCharacter(this, 1.5, sp + 0.5));
+            addTileEntity(new RandomCharacter(this, 2.5, sp + 0.5));
         }
         for (double sp = 2; sp <= 20; ++sp) {
-            addEntity(
+            addTileEntity(
                     new RandomCharacter(this, 24.5, sp + 0.5));
-            addEntity(new RandomCharacter(this, 25.5, sp + 0.5));
+            addTileEntity(new RandomCharacter(this, 25.5, sp + 0.5));
         }
 
         setTileAt(12, 20, new WarpZone(getTileAt(12, 20), 2, 1) {
@@ -78,8 +78,8 @@ public class Floor_Coloseum extends Floor {
         if (!starttextshown) {
             GameData.get().player.state = new PS_Iddle(GameData.get().player);
             MainGame.game.state.substate.substate.substate = new DialogState(
-                    MainGame.game.state.substate.substate, "Et voici le tant attendu POCKETDESTROYER, et face a lui notre dernier prisonier!" +
-                    "Qui sortira de ce combat a mort?" +
+                    MainGame.game.state.substate.substate, "Et voici le tant attendu POCKETDESTROYER, et face a lui notre dernier prisonier! " +
+                    "Qui sortira de ce combat a mort? " +
                     "Note: Dasher sur ennemi lui infligera des dégâts, essayez d'esquiver ses attaques et ne le laissez pas s'approcher de vous! Bonne chance!");
             starttextshown = true;
         }

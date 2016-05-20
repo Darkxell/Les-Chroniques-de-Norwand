@@ -127,6 +127,24 @@ public class DialogState extends GameState {
                 (((double) (g.getHeight())) / 32d) - datapointer.player.cam.y);
         g.drawPixmap(ImagesHolder.gui.dialog, 16, g.getHeight() - 64);
 
+        for (float i = 0; i < datapointer.player.info.maxhealth; ++i) {
+            if (datapointer.player.info.health >= 1f + i)
+                g.drawPixmap(ImagesHolder.entityset.getTile(2688),
+                        (int) (10 + (16 * i)), 5);
+            else if (datapointer.player.info.health <= i)
+                g.drawPixmap(ImagesHolder.entityset.getTile(2692),
+                        (int) (10 + (16 * i)), 5);
+            else if (datapointer.player.info.health == i + 0.75f)
+                g.drawPixmap(ImagesHolder.entityset.getTile(2689),
+                        (int) (10 + (16 * i)), 5);
+            else if (datapointer.player.info.health == i + 0.5f)
+                g.drawPixmap(ImagesHolder.entityset.getTile(2690),
+                        (int) (10 + (16 * i)), 5);
+            else if (datapointer.player.info.health == i + 0.25f)
+                g.drawPixmap(ImagesHolder.entityset.getTile(2691),
+                        (int) (10 + (16 * i)), 5);
+        }
+
         int posX = g.getWidth() / 10;
         int posY = g.getHeight() - 64 + 11;
         final int WINDOWLIMIT = g.getHeight() - 64 + 11 + 40;
