@@ -15,16 +15,18 @@ public class RandomCharacter extends TileEntity {
         super(Tile.TYPE_SOLID, roompointer, x, y);
     }
 
+    private int counter;
     private int sprite[] = {976, 977, 978, 979, 1024, 1025, 1026, 1027, 1072, 1073};
     private int randomChar = (int)(Math.random()*(sprite.length));
 
     @Override
     public void update() {
-
+counter++;
+        if (counter>50)counter = 0;
     }
 
     public Pixmap getCurrentSprite() {
-        return ImagesHolder.entityset.getTile(sprite[randomChar]);
+        return ImagesHolder.entityset.getTile((counter<25)?sprite[randomChar]:sprite[randomChar]+8);
     }
 
     @Override

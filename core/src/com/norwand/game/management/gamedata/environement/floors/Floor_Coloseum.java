@@ -5,11 +5,8 @@ import com.norwand.game.MainGame;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
-import com.norwand.game.management.gamedata.environement.entities.drop.DropKey;
 import com.norwand.game.management.gamedata.environement.entities.monsters.BossColoseum;
-import com.norwand.game.management.gamedata.environement.entities.monsters.Drake;
-import com.norwand.game.management.gamedata.environement.entities.monsters.DungeonBoss;
-import com.norwand.game.management.gamedata.environement.tileentities.LockedDoor;
+import com.norwand.game.management.gamedata.environement.tileentities.allies.RandomCharacter;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.management.gamedata.player.states.PS_Iddle;
@@ -22,41 +19,51 @@ public class Floor_Coloseum extends Floor {
 
         addEntity(new BossColoseum(this, 13, 13));
 
-                setTileAt(12, 20, new WarpZone(getTileAt(12, 20), 2, 1) {
-                    @Override
-                    public Floor getDestination() {
-                        return new Floor_Prison(GameData.get().player);
-                    }
-                });
-        setTileAt(13, 20,new WarpZone(getTileAt(13, 20), 2, 1) {
+        for (double sp = 2; sp <= 20; ++sp) {
+            addEntity(new RandomCharacter(this, 1.5, sp + 0.5));
+            addEntity(new RandomCharacter(this, 2.5, sp + 0.5));
+        }
+        for (double sp = 2; sp <= 20; ++sp) {
+            addEntity(
+                    new RandomCharacter(this, 24.5, sp + 0.5));
+            addEntity(new RandomCharacter(this, 25.5, sp + 0.5));
+        }
+
+        setTileAt(12, 20, new WarpZone(getTileAt(12, 20), 2, 1) {
             @Override
             public Floor getDestination() {
-            return new Floor_Prison(GameData.get().player);
+                return new Floor_Prison(GameData.get().player);
             }
         });
-        setTileAt(14, 20,new WarpZone(getTileAt(14, 20), 2, 1) {
+        setTileAt(13, 20, new WarpZone(getTileAt(13, 20), 2, 1) {
             @Override
             public Floor getDestination() {
-            return new Floor_Prison(GameData.get().player);
+                return new Floor_Prison(GameData.get().player);
+            }
+        });
+        setTileAt(14, 20, new WarpZone(getTileAt(14, 20), 2, 1) {
+            @Override
+            public Floor getDestination() {
+                return new Floor_Prison(GameData.get().player);
             }
         });
 
-        setTileAt(12, 0,new WarpZone(getTileAt(12, 0), 24, 15) {
+        setTileAt(12, 0, new WarpZone(getTileAt(12, 0), 24, 15) {
             @Override
             public Floor getDestination() {
-            return new Floor_Wastelands(GameData.get().player);
+                return new Floor_Wastelands(GameData.get().player);
             }
         });
-        setTileAt(13, 0,new WarpZone(getTileAt(13, 0), 24, 15) {
+        setTileAt(13, 0, new WarpZone(getTileAt(13, 0), 24, 15) {
             @Override
             public Floor getDestination() {
-            return new Floor_Wastelands(GameData.get().player);
+                return new Floor_Wastelands(GameData.get().player);
             }
         });
-        setTileAt(14, 0,new WarpZone(getTileAt(14, 0), 24, 15) {
+        setTileAt(14, 0, new WarpZone(getTileAt(14, 0), 24, 15) {
             @Override
             public Floor getDestination() {
-            return new Floor_Wastelands(GameData.get().player);
+                return new Floor_Wastelands(GameData.get().player);
             }
 
         });
@@ -64,10 +71,11 @@ public class Floor_Coloseum extends Floor {
 
 
     private boolean starttextshown;
+
     @Override
-    public void update(){
+    public void update() {
         super.update();
-        if(!starttextshown){
+        if (!starttextshown) {
             GameData.get().player.state = new PS_Iddle(GameData.get().player);
             MainGame.game.state.substate.substate.substate = new DialogState(
                     MainGame.game.state.substate.substate, "Et voici le tant attendu POCKETDESTROYER, et face a lui notre dernier prisonier!" +
@@ -75,12 +83,12 @@ public class Floor_Coloseum extends Floor {
                     "Note: Dasher sur ennemi lui infligera des dégâts, essayez d'esquiver ses attaques et ne le laissez pas s'approcher de vous! Bonne chance!");
             starttextshown = true;
         }
-        if (playerpointer.y > 20 && entities.length != 0){
+        if (playerpointer.y > 20 && entities.length != 0) {
             GameData.get().player.y = 19;
             GameData.get().player.state = new PS_Iddle(GameData.get().player);
             MainGame.game.state.substate.substate.substate = new DialogState(
                     MainGame.game.state.substate.substate, "Je ne dois pas fuir mon ennemi!");
-        } else if (playerpointer.y < 3 && entities.length != 0){
+        } else if (playerpointer.y < 3 && entities.length != 0) {
             GameData.get().player.y = 5;
             GameData.get().player.state = new PS_Iddle(GameData.get().player);
             MainGame.game.state.substate.substate.substate = new DialogState(
@@ -88,10 +96,10 @@ public class Floor_Coloseum extends Floor {
         }
     }
 
-	@Override
-	public String getDisplayName() {
-		return "Colisée";
-	}
+    @Override
+    public String getDisplayName() {
+        return "Colisée";
+    }
 
     @Override
     public String getMusicPath() {
