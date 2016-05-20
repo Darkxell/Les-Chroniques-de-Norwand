@@ -37,7 +37,7 @@ public class IceMonster extends Monster {
         if(spraySnow > 50)
             spraySnow = 0;
         if(knockback())
-            GameData.get().player.info.health -= 0.20;
+            GameData.get().player.info.health -= 0.25;
     }
 
     @Override
