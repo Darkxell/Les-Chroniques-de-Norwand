@@ -6,6 +6,7 @@ import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.FloorData;
 import com.norwand.game.management.gamedata.environement.entities.monsters.BossColoseum;
+import com.norwand.game.management.gamedata.environement.entities.monsters.MiniSnowBoss;
 import com.norwand.game.management.gamedata.environement.tileentities.allies.RandomCharacter;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
 import com.norwand.game.management.gamedata.player.Player;

@@ -11,8 +11,12 @@ import com.norwand.game.management.gamedata.environement.entities.monsters.IceMo
 import com.norwand.game.management.gamedata.environement.entities.monsters.Mimic;
 import com.norwand.game.management.gamedata.environement.entities.monsters.MiniSnowBoss;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Wolf;
+import com.norwand.game.management.gamedata.environement.tileentities.Chest;
 import com.norwand.game.management.gamedata.environement.tileentities.SignPost;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
+import com.norwand.game.management.gamedata.items.Consumable.HealthPot;
+import com.norwand.game.management.gamedata.items.Equipable.Necklace.CopperNecklace;
+import com.norwand.game.management.gamedata.items.Equipable.Ring.CopperRing;
 import com.norwand.game.management.gamedata.player.Player;
 
 public class Floor_Snow extends Floor {
@@ -50,7 +54,10 @@ public class Floor_Snow extends Floor {
         addEntity(new Hellbat(this, 55.5, 10.5));
         addEntity(new Hellbat(this, 35.5, 7.5));
 
+        addTileEntity(new Chest(this, 65.5, 40.5, new Object[]{ new CopperRing()}, "Anneau de cuivre x1"));
+
         addEntity(new MiniSnowBoss(this, 71, 38));
+
         addEntity(new IceMonster(this, 67, 13));
         addEntity(new IceMonster(this, 65, 15));
     }
