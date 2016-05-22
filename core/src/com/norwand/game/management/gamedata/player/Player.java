@@ -17,10 +17,11 @@ public class Player {
     /** The direction faced by the player. */
     public int facing = Directions.SOUTH;
     /** The x position of the player in the current floor. */
-    public double x = 5;
-    //public double x = 9;
+    //public double x = 5;
+    public double x = 38.5;
     /** The y position of the player in the current floor. */
-    public double y = 11;
+    //public double y = 11;
+    public double y = 56.5;
     /** Player specific information. */
     public PlayerInfo info = new PlayerInfo();
     /**

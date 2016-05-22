@@ -8,7 +8,7 @@ import com.norwand.game.resources.ImagesHolder;
 /**
  * Created by Valentin Marechal on 27/04/2016.
  */
-public class UltraMegaBigHealthPot extends Item {
+public class UltraMegaBigHealthPot extends Consumable {
     public UltraMegaBigHealthPot() {
         this.displayName = "Ultra Mega Grosse potion de vie";
         this.itemDescription = "Bla bla... très grosse potion de vie blablabla....";

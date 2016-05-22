@@ -11,6 +11,7 @@ import com.norwand.game.management.gamedata.environement.entities.monsters.Hellb
 import com.norwand.game.management.gamedata.environement.entities.monsters.Mimic;
 import com.norwand.game.management.gamedata.environement.entities.monsters.SoldierDungeon;
 import com.norwand.game.management.gamedata.environement.entities.monsters.Wolf;
+import com.norwand.game.management.gamedata.environement.tileentities.BossLockedDoor;
 import com.norwand.game.management.gamedata.environement.tileentities.Chest;
 import com.norwand.game.management.gamedata.environement.tileentities.HealFountain;
 import com.norwand.game.management.gamedata.environement.tileentities.LockedDoor;
@@ -18,6 +19,7 @@ import com.norwand.game.management.gamedata.environement.tileentities.SignPost;
 import com.norwand.game.management.gamedata.environement.tiles.PressurePlate;
 import com.norwand.game.management.gamedata.environement.tiles.Tile;
 import com.norwand.game.management.gamedata.environement.tiles.WarpZone;
+import com.norwand.game.management.gamedata.items.BossKey;
 import com.norwand.game.management.gamedata.items.Key;
 import com.norwand.game.management.gamedata.player.Player;
 import com.norwand.game.management.gamedata.player.capacities.Cap_FrostWalker;
@@ -56,11 +58,14 @@ public class Floor_Dungeon extends Floor {
         addTileEntity(new HealFountain(this, 16.5, 28.5));
         addTileEntity(new Chest(this, 55.5, 52.5, new Object[]{new Cap_FrostWalker()}, "Vous avez trouvez une nouvelle capacité! Pour l'équiper, allez dans l'inventaire, page de capacités et équipez là."));
         addTileEntity(new LockedDoor(this, 55.5, 48.5));
+        addTileEntity(new BossLockedDoor(this, 9.5, 14.5));
         addTileEntity(new Chest(this, 55.5, 17.5, new Object[]{new Key()}, "Vous avez trouvé une petite clé. Vous pouvez ouvrir une porte fermée."));
+        addTileEntity(new Chest(this, 54.5, 4.5, new Object[]{new BossKey()}, "Vous avez trouvé une clé de boss. Vous pouvez maintenement ouvrir un salle de boss"));
+
+        //addEntity(new SoldierDungeon(this, 38, 47));
 
         addEntity(new DungeonBoss(this, 9.5, 4.5));
-        addEntity(new Mimic(this, 54.5, 4.5));
-        //addEntity(new SoldierDungeon(this, 38, 47));
+
         addEntity(new Wolf(this, 36.5, 16.5));
         addEntity(new Wolf(this, 37.5, 18.5));
         addEntity(new Wolf(this, 39.5, 16.5));

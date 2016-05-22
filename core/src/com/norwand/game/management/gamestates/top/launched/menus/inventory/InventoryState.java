@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.MainGame;
 import com.norwand.game.management.UserEvent;
 import com.norwand.game.management.gamedata.GameData;
+import com.norwand.game.management.gamedata.items.Consumable.Consumable;
 import com.norwand.game.management.gamedata.player.Inventory;
 import com.norwand.game.management.gamestates.GameState;
 import com.norwand.game.management.gamestates.top.launched.explore.ExploreState;
@@ -76,6 +77,7 @@ public class InventoryState extends GameState {
             }
             //button quick stack
             else if (e.x > 177 && e.x < 193) {
+                if(i.items[cursorposition] instanceof Consumable)
                 i.equipItem(i.items[cursorposition]);
             }
             //button use

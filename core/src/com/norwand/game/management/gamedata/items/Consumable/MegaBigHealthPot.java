@@ -8,7 +8,7 @@ import com.norwand.game.resources.ImagesHolder;
 /**
  * Created by Valentin Marechal on 27/04/2016.
  */
-public class MegaBigHealthPot extends Item {
+public class MegaBigHealthPot extends Consumable {
     public MegaBigHealthPot() {
         this.displayName = "Mega Grosse potion de vie";
         this.itemDescription = "Encore plus grosse potion de vie, permet de récupérer encore plus de vie.";

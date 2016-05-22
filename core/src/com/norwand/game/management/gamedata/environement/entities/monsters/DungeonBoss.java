@@ -58,8 +58,11 @@ public class DungeonBoss extends Monster {
         if (spritecounter >= 50)
             spritecounter = 0;
 
-        if (new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY).getBasicLength() > 15)
+
+        //agression zone
+        if(!(GameData.get().player.x >= 2 && GameData.get().player.y >= 2 && GameData.get().player.x <= 16 && GameData.get().player.y <= 13))
             return;
+
 
         if (knockback())
             GameData.get().player.info.health -= 0.25;

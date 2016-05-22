@@ -6,7 +6,7 @@ import com.norwand.game.management.gamedata.items.Item;
 import com.norwand.game.resources.ImagesHolder;
 
 /** Health potion that regenerates HP */
-public class HealthPot extends Item {
+public class HealthPot extends Consumable {
 
     public HealthPot() {
 	this.displayName = "Potion de vie";
