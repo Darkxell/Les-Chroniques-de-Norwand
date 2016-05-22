@@ -69,7 +69,12 @@ public class Floor_WastelandsS extends Floor {
                 return new Floor_Wastelands(GameData.get().player);
             }
         });
-
+        setTileAt(27, 11, new WarpZone(getTileAt(27, 11), 12.5, 22) {
+            @Override
+            public Floor getDestination() {
+                return new Floor_House(GameData.get().player);
+            }
+        });
         setTileAt(0, 11, new WarpZone(getTileAt(0, 11), 33.5, 12) {
             @Override
             public Floor getDestination() {
