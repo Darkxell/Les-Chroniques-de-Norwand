@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.norwand.game.management.gamedata.GameData;
 import com.norwand.game.management.gamedata.environement.Floor;
 import com.norwand.game.management.gamedata.environement.entities.Monster;
-import com.norwand.game.management.gamedata.environement.entities.particles.*;
-import com.norwand.game.management.gamedata.environement.tiles.MagicIce;
+import com.norwand.game.management.gamedata.environement.entities.particles.IceBall;
+import com.norwand.game.management.gamedata.environement.entities.particles.Smoke;
 import com.norwand.game.management.gamedata.environement.tiles.MagicVoid;
 import com.norwand.game.management.gamedata.environement.tiles.Tile;
 import com.norwand.game.management.gamedata.player.states.PS_Drown;
@@ -24,9 +24,9 @@ public class DungeonBoss extends Monster {
     private int nextjumpin = 50;
     private int nextvanish = 300;
 
-    private boolean isGoingRight = true;
+    boolean vanished = false;
 
-    private static final byte STATE_GOTO = 0;
+    private boolean isGoingRight = true;
 
     private static final byte STATE_MOVEONLY = 1;
     private static final byte STATE_SPITICEBALLSWEEP = 2;
@@ -52,13 +52,13 @@ public class DungeonBoss extends Monster {
     public void update() {
         ++spritecounter;
 
-        if(invicibilityFrames > 0)
+        if (invicibilityFrames > 0)
             invicibilityFrames--;
 
         if (spritecounter >= 50)
             spritecounter = 0;
 
-        if(new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY).getBasicLength()>15)
+        if (new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY).getBasicLength() > 15)
             return;
 
         if (knockback())
@@ -69,17 +69,19 @@ public class DungeonBoss extends Monster {
             case STATE_MOVEONLY:
                 --nextState;
 
-                launchSTATE_MOVEONLY();
-
-                if (nextState <= 0) {
-                    nextState = 400;
-
-                    posX = 9.5;
-                    posY=  4.5;
-
-                    state = STATE_SPITICEBALLSWEEP;
+                if (nextState > 0) {
+                    executeSTATE_MOVEONLY();
                 }
+                //transition from 1 state to an other
+                else {
+                    goTo(9.5, 4.5, 0.1);
 
+                    if (new MathVector(9.5 - posX, 4.5 - posY).getBasicLength() < 0.1) {
+                        state = STATE_SPITICEBALLSWEEP;
+                        iceballcounter = 0;
+                        nextState = generateNextState();
+                    }
+                }
                 break;
 
 
@@ -87,11 +89,12 @@ public class DungeonBoss extends Monster {
                 ++iceballcounter;
                 --nextState;
 
-                launchSTATE_SPITICEBALLSWEEP();
-
-                if (nextState <= 0) {
-                    nextState = 400;
+                if (nextState > 0) {
+                    executeSTATE_SPITICEBALLSWEEP();
+                } else {
                     state = STATE_SPITICEBALL;
+                    iceballcounter = 0;
+                    nextState = generateNextState();
                 }
 
                 break;
@@ -101,12 +104,20 @@ public class DungeonBoss extends Monster {
                 ++iceballcounter;
                 --nextState;
 
-                launchSTATE_SPITICEBALL();
+                if (nextState > 0) {
+                    executeSTATE_SPITICEBALL();
+                }
 
+                else {
 
-                if (nextState <= 0) {
-                    nextState = 400;
-                    state = STATE_GROUNDBREAK;
+                    goTo(9.5, 7.5, 0.1);
+
+                    if (new MathVector(9.5 - posX, 7.5 - posY).getBasicLength() < 0.1) {
+                        state = STATE_GROUNDBREAK;
+                        nextvanish = 300;
+                        vanished = false;
+                        nextState = generateNextState();
+                    }
                 }
 
                 break;
@@ -114,15 +125,13 @@ public class DungeonBoss extends Monster {
             case STATE_GROUNDBREAK:
                 --nextState;
 
-                launchSTATE_GROUNDBREAK();
-
-                if (nextState <= 0) {
-                    nextState = 400;
+                if (nextState > 0) {
+                    executeSTATE_GROUNDBREAK();
+                } else {
                     state = STATE_MOVEONLY;
+                    nextState = generateNextState();
                 }
-
                 break;
-
         }
     }
 
@@ -135,12 +144,58 @@ public class DungeonBoss extends Monster {
                 }
     }
 
-    private void launchSTATE_MOVEONLY() {
-        //Moves
-        movedirection = new MathVector(GameData.get().player.x - posX, GameData.get().player.y - posY);
-        Position temp = movedirection.getFixedTranslation(posX, posY, 0.03);
+    /**
+     * Function that generates how long the next state will last (expressed in number of frame)
+     *
+     * @return number of frame the state will long
+     */
+    int generateNextState() {
+
+        int numberOfFrames = 0;
+
+        switch (state) {
+
+            //the move only state longs between 350 & 450 frames
+            case STATE_MOVEONLY:
+                numberOfFrames = (400 + (int) Math.random() * 100 - 50);
+                break;
+
+            //the spit iceballs sate longs between 300 & 400 fames;
+            case STATE_SPITICEBALLSWEEP:
+                numberOfFrames = (350 + (int) Math.random() * 100 - 50);
+                break;
+
+            //the spit iceballs sate longs between 150 & 250 frames
+            case STATE_SPITICEBALL:
+                numberOfFrames = (200 + (int) Math.random() * 100 - 50);
+                break;
+
+            //the ground break sate longs 500 frames
+            case STATE_GROUNDBREAK:
+                numberOfFrames = 500;
+                break;
+        }
+
+        return numberOfFrames;
+    }
+
+    /**
+     * function that moves the monster on a specified position
+     *
+     * @param x     value of the x-axis
+     * @param y     value of the y-axis
+     * @param speed the number of frame per update
+     */
+    private void goTo(double x, double y, double speed) {
+        MathVector direction = new MathVector(x - posX, y - posY);
+        Position temp = direction.getFixedTranslation(posX, posY, speed);
         posX = temp.x;
         posY = temp.y;
+    }
+
+    private void executeSTATE_MOVEONLY() {
+        //follow the player
+        goTo(GameData.get().player.x, GameData.get().player.y, 0.03);
 
         //Jumps
         --nextjumpin;
@@ -149,6 +204,7 @@ public class DungeonBoss extends Monster {
         } else if (nextjumpin < -(int) (Math.random() * 7 + 10)) {
             nextjumpin = (int) (Math.random() * 100) + 10;
         }
+
         if (nextjumpin < 0) {
             Position temp3 = jumpdirection.getFixedTranslation(posX, posY, 0.2);
             if (canBeAt(temp3.x, temp3.y)) {
@@ -157,7 +213,7 @@ public class DungeonBoss extends Monster {
             }
         }
 
-        //Go back to spawn
+        //Go back to spawn if the player is drowning
         if (GameData.get().player.state instanceof PS_Drown) {
             gobackposition = new MathVector(9.5 - posX, 7.5 - posY);
             Position temp2 = gobackposition.getFixedTranslation(posX, posY, gobackposition.getBasicLength() / 16);
@@ -167,7 +223,7 @@ public class DungeonBoss extends Monster {
 
     }
 
-    private void launchSTATE_SPITICEBALLSWEEP() {
+    private void executeSTATE_SPITICEBALLSWEEP() {
         if (posX < 14.5 && isGoingRight) {
             posX += 0.12;
         } else if (posX >= 14.5) {
@@ -180,39 +236,36 @@ public class DungeonBoss extends Monster {
         }
 
         if (iceballcounter >= 20) {
-            iceballcounter = 1;
-            shotdirection = new MathVector(/*Math.random() * 2 -1, Math.random()*/0, 1);
+            iceballcounter = 0;
+            shotdirection = new MathVector(0, 1);
         }
 
-        if (iceballcounter % 9 == 0)
+        if (iceballcounter % 10 == 0)
             spitIceBall(shotdirection.x, shotdirection.y);
     }
 
-    private void launchSTATE_SPITICEBALL() {
+    private void executeSTATE_SPITICEBALL() {
         shotdirection = new MathVector(Math.random() * 2 - 1, Math.random());
 
         if (iceballcounter >= 20)
-            iceballcounter = 1;
+            iceballcounter = 0;
 
         if (iceballcounter < 7 && !(GameData.get().player.state instanceof PS_Drown))
             spitIceBall(shotdirection.x, shotdirection.y);
     }
 
-    private void launchSTATE_GROUNDBREAK() {
-        if (nextvanish < 150) {
+    private void executeSTATE_GROUNDBREAK() {
+        //longs 500 frames
+        --nextvanish;
+
+        if (nextvanish < 150 && nextvanish > 10) {
             GameData.get().player.cam.x += 0.2;
             GameData.get().player.cam.y += 0.2;
         }
 
-        gobackposition = new MathVector(9.5 - posX, 7.5 - posY);
-        Position temp2 = gobackposition.getFixedTranslation(posX, posY, gobackposition.getBasicLength() / 16);
-        posX = temp2.x;
-        posY = temp2.y;
-
-        --nextvanish;
-        if (nextvanish <= 0) {
+        if (nextvanish < 10 && !vanished) {
             vanishFloor();
-            nextvanish = 300;
+            vanished = true;
         }
     }
 

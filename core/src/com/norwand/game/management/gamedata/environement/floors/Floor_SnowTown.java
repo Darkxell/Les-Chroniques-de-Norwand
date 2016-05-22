@@ -24,7 +24,7 @@ public class Floor_SnowTown extends Floor {
 	super(new FloorData(Gdx.files.internal(MainGame.ASSETSPATH
 		+ "maps/snowvillage.txt")), playerpointer);
 		addTileEntity(new PnjMasc(this, 14.5, 17.5, "Pourquoi me parles tu?"));
-		addTileEntity(new PnjFem(this, 16.5, 8.5, "Tu est un démon? La vie doit être dure..."));
+		addTileEntity(new PnjFem(this, 16.5, 8.5, "Tu es un démon? La vie doit être dure..."));
 		addTileEntity(new PnjGuard(this, 32.5, 10.5, "Tu est un démon hein? Tu n'est pas le bienvenu ici, nous avons peur des représailles..."));
 		addTileEntity(new PnjMage(this, 18.5, 21.5, "Laisse moi tranquille, ou j'essaie mon nouveau sort sur toi!"));
 		addTileEntity(new PnjMerchant(this, 27.5, 9.5, "Je vends des potions, mais pas au démons, le royaume me punirait pour ça..."));
