@@ -28,12 +28,29 @@ public class Floor_House extends Floor {
 
         addTileEntity(new PnjMerchant(this, 13.5, 18.5, "L'épée céleste se situe dans le coffre...     Prends la et ne reviens jamais !"));
 
+        //Return to WastelandsS
+        setTileAt(11, 24, new WarpZone(getTileAt(12, 24), 27.5, 12.5) {
+            @Override
+            public Floor getDestination() {
+                return new Floor_WastelandsS(GameData.get().player);
+            }
+        });
+
         setTileAt(12, 24, new WarpZone(getTileAt(12, 24), 27.5, 12.5) {
             @Override
             public Floor getDestination() {
                 return new Floor_WastelandsS(GameData.get().player);
             }
         });
+
+        setTileAt(13, 24, new WarpZone(getTileAt(12, 24), 27.5, 12.5) {
+            @Override
+            public Floor getDestination() {
+                return new Floor_WastelandsS(GameData.get().player);
+            }
+        });
+
+
         setTileAt(0, 6, new WarpZone(getTileAt(0, 6), 13, 2) {
             @Override
             public Floor getDestination() {
